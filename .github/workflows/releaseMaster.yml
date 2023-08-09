@@ -24,14 +24,10 @@ jobs:
         with:
           # The root LaTeX file to be compiled
           root_file: main.tex
-      # - name: Upload PDF file
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: PDF
-      #     path: main.pdf
+      - name: Choose name
+        run: echo "FILE_NAME=praca_`date +'%Y_%m_%d_%H:%M'`.pdf" >> "$GITHUB_ENV"
       - name: Rename file 
-        run: echo "FILE_NAME=praca_`date +'%Y_%m_%d_%H:%M'`.pdf" >> "$GITHUB_ENV" |
-             mv main.pdf $FILE_NAME
+        run: mv main.pdf $FILE_NAME
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
         with:
