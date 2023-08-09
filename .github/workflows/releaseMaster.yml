@@ -1,4 +1,4 @@
-name: Compile & relese PDF on push to master
+name: Compile & relese PDF on new tag
 
 on:
   push:
