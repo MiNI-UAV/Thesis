@@ -30,8 +30,7 @@ jobs:
       #     name: PDF
       #     path: main.pdf
       - name: Rename file 
-        run: export FILE_NAME=praca_`date +'%Y_%m_%d_%H:%M'`.pdf |
-             echo "::set-env name=FILE_NAME::$FILE_NAME"
+        run: echo "FILE_NAME=praca_`date +'%Y_%m_%d_%H:%M'`.pdf" >> "$GITHUB_ENV" |
              mv main.pdf $FILE_NAME
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
