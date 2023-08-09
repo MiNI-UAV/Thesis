@@ -29,5 +29,5 @@ jobs:
         run: mv main.pdf $FILE_NAME
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: $FILE_NAME
+          artifacts: ${{ env.FILE_NAME }}
         
