@@ -16,7 +16,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
       - name: Github Action for LaTeX
         # You may pin to the exact commit or the version.
         # uses: xu-cheng/latex-action@cb1ec5785b7605cd308b962e0678cdcfd2595cb7
@@ -29,8 +28,23 @@ jobs:
       - name: Rename file 
         run: mv main.pdf $FILE_NAME
       - name: Create Release
-        uses: ncipollo/release-action@v1.12.0
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: $FILE_NAME
-          artifacts: $FILE_NAME
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ./$FILENAME
+          asset_name: $FILENAME
+          asset_content_type: application/pdf
         
