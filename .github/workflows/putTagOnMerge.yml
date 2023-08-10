@@ -14,3 +14,17 @@ jobs:
           fetch-depth: '0'
       - name: Github Action for LaTeX
         run: ./calcVersion.sh
+      - name: Github Action for LaTeX
+        # You may pin to the exact commit or the version.
+        # uses: xu-cheng/latex-action@cb1ec5785b7605cd308b962e0678cdcfd2595cb7
+        uses: xu-cheng/latex-action@v2
+        with:
+          # The root LaTeX file to be compiled
+          root_file: main.tex
+      - name: Choose name
+        run: echo "FILE_NAME=praca_`date +'%Y_%m_%d_%H:%M'`.pdf" >> "$GITHUB_ENV"
+      - name: Rename file 
+        run: mv main.pdf $FILE_NAME
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: ${{ env.FILE_NAME }}
