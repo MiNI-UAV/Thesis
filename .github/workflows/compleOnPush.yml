@@ -21,7 +21,7 @@ jobs:
         with:
           # The root LaTeX file to be compiled
           root_file: main.tex
-          latexmk_use_lualatex: true
+          latexmk_use_xelatex: true
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:
