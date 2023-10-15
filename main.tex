@@ -30,6 +30,10 @@
 \usepackage{fontspec}
 \usepackage{comment}
 \setmainfont{Verdana}
+\usepackage[nochapter,owncaptions]{vhistory}
+	
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.9}
 
 \definecolor{mGreen}{rgb}{0,0.6,0}
 \definecolor{mGray}{rgb}{0.5,0.5,0.5}
@@ -88,7 +92,7 @@ backend=biber
     \field[strwidth=2,strside=right]{year}
   }
 }
-  
+
 \let\cite=\supercite
 
 \renewcommand*{\figurename}{Rys.}
@@ -126,6 +130,15 @@ foreach \XX in {2,...,\the\numexpr\pgfmatrixcurrentrow-1}
 \usepackage{tocloft}
 \renewcommand\cftfigfont{\small}
 
+\renewcommand{\vhversionname}{Nr rewizji}
+\renewcommand{\vhdatename}{Data}
+\renewcommand{\vhauthorname}{Autor}
+\renewcommand{\vhchangename}{Opis zmian}
+\renewcommand\vhAuthorColWidth{.6\hsize} 
+\renewcommand\vhChangeColWidth{1.4\hsize}
+
+\setlength{\parindent}{0pt}
+
 \begin{document}
 %%\maketitle
 \includepdf[pages=-]{first_page.pdf}
@@ -149,7 +162,37 @@ symulacja, grafika komputerowa 3D, bezzałogowy statek powietrzny, model dynamik
 
 \newpage
 
+\section{Historia zmian}
+\begin{versionhistory}
+  \vhEntry{0.0}{10.08.23}{Wojciech Gajda}{Utworzenie dokumentu, podstawowa struktura}
+  \vhEntry{0.1}{11.10.23}{Wojciech Gajda}{Dostosowanie dokumentu do wymogów edytorskich, dodanie streszczenia}
+  \vhEntry{0.2}{15.10.23}{Wojciech Gajda|Igor Faliszewski}{Dodanie  słownika, specyfikacji, analizy SWOT i bibliografii}
+  \vhEntry{1.0}{15.10.23}{Wojciech Gajda|Igor Faliszewski}{Wydanie zgłoszone do L1}
+\end{versionhistory}
 
+\newpage
+
+\color{orange}
+\section{Słownik pojęć}
+
+\textbf{Statek powietrzny} -- to urządzenie zdolne do unoszenia się (lotu) w atmosferze. Statek powietrzny jest zdolny w sposób aktywny wpływać na kierunek i prędkość lotu. W przeciwieństwie do formalnej definicji termin obejmuje również konstrukcję niewykorzystujące oddziaływania powietrza w locie (rakiety).\\
+
+\textbf{Pocisk} -- obiekt wystrzelony lub upuszczony ze statku powietrznego, nieposiadający własnego napędu. Porusza się na wskutek oddziaływania pola grawitacji i wpływu powietrza. Nie posiada wyróżnionej orientacji.\\
+
+\textbf{Ładunek} -- pocisk, na ogół upuszczany, który pozostaje związany z statkiem powierzanym na sprężysto-tłumiącej linie. \\
+
+\textbf{Stan obiektu} -- Opis położenia, orientacji i prędkości obiektu (pocisku lub statku powietrznego). Stan może zostać rozszerzony o dodatkowe informację, takie jak: prędkości obrotowe poszczególnych silników, położenie powierzchni sterowych itd. \\
+
+\textbf{Silnik fizyczny, silnik dynamiki} -- program komputerowy, którego zadaniem jest obliczenie położenia, orientacji i prędkości (kinematyki) statków powietrznych w zależności od sił działających na obiekt (dynamiki). \\
+
+\textbf{Regulator} -- układ odpowiedzialny za generowanie rozkazów sterujących w oparciu o aktualny i zadany stan obiektu.\\
+
+\textbf{Silnik graficzny} -- program komputerowy, którego zadaniem jest wizualizacja stanu obiektów i otoczenia.\\
+
+\textbf{Agregator} --  program komputerowy, którego zadaniem jest zarządzaniem stanem aplikacji, obsługa przyłączających się aplikacji klienckich i zarządzanie procesami\\
+
+
+\newpage
 
 \color{red}
 
@@ -250,9 +293,75 @@ ubuntu:latest
 
 
 \color{black}
+
+
+\newpage
+\section{Harmonogram projektu}
+
+Prace nad projektem zostały rozpoczęte 13.03.2023. Początkowe wersje modułów były rozwijane w lokalnych repozytoriach autorów. W czerwcu 2023 rozpoczęto integrację modułu, a zagadnienia zostały opisane w programie Jira. Rysunek (\ref{zamkniete_jira}) prezentuje zagadnienia zamknięte do 15.10.2023.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\textwidth]{jira_june_sept.png}
+\caption{Zgłoszenia zamknięte do 15.10.2023}
+\label{zamkniete_jira}
+\end{figure}
+
+Na podstawie otwartych zagadnień i analizy założonej specyfikacji zaplanowany został harmonogram pracy zawierający zagadnienia których realizacja jest niezbędna do ukończenia projektu. Tabela (\ref{harmonogram}) prezentuje ww. harmonogram. 
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+\centering
+\begin{tabular}{|m{0.4\textwidth}|m{0.15\textwidth}|m{0.15\textwidth}|m{0.2\textwidth}|} 
+\hline
+\rowcolor{Gray}
+Opis zadania & Data\newline rozpoczęcia & Data\newline zakończenia & Osoba\newline odpowiedzialna \\
+ \hline
+Dodanie różnych modeli pocisków i ładunków & 16.10.2023 & 23.10.2023 & Igor Faliszewski \\
+ \hline
+Dodanie nowych konfiguracji rakiet & 16.10.2023 & 29.10.2023 & Wojciech Gajda \\
+ \hline
+Generator konfiguracji kontrolera & 24.10.2023 & 29.10.2023 & Igor Faliszewski \\ 
+\hline
+Implementacja nowych regulatorów płatowców & 30.10.2023 & 19.11.2023 & Wojciech Gajda \\ 
+\hline
+Krzywa łańcuchowa & 30.10.2023 & 12.11.2023 & Igor Faliszewski \\ 
+\hline
+Określanie orientacji pocisków i~ładunków & 13.11.2023 & 19.11.2023 & Igor Faliszewski \\ 
+\hline
+GUI wyboru pocisku i ładunku & 20.11.2023 & 26.11.2023 & Igor Faliszewski \\ 
+\hline
+Rozwój klasy regulatorów PID & 20.11.2023 & 10.12.2023 & Wojciech Gajda \\ 
+\hline
+Radio & 27.11.2023 & 03.12.2023 & Igor Faliszewski \\ 
+\hline
+Generowanie assetów na podst. map terenu & 04.12.2023 & 31.12.2023 & Igor Faliszewski \\ 
+\hline
+Nazwy użytkowników nad statkami & 04.12.2023 & 10.12.2023 & Igor Faliszewski \\
+ \hline
+Dodatkowe algorytmy całkowania & 11.12.2023 & 31.12.2023 & Wojciech Gajda \\
+ \hline
+Dźwiek gry & 11.12.2023 & 18.12.2023 & Igor Faliszewski \\
+ \hline
+Limit FPS & 19.12.2023 & 23.12.2023 & Igor Faliszewski \\
+ \hline
+Zachowanie kamery w pobliżu ściany & 26.12.2023 & 31.12.2023 & Igor Faliszewski \\ 
+\hline
+Dokumentacja kodu & 16.10.2023 & 31.12.2023 & Wszyscy \\ 
+\hline
+Testy & 13.11.2023 & 31.12.2023 & Wszyscy \\
+ \hline
+Rozbudowa assetów & 30.10.2023 & 31.12.2023 & Wszyscy \\ 
+\hline
+\end{tabular}
+\caption{Harmonogram projektu październik -- grudzień 2023}
+\label{harmonogram}
+\end{table}
+
+\newpage
 \section{Ocena ryzyka -- analiza SWOT}
 
-
+\begin{table}[!h]
 \begin{tikzpicture}
 \renewcommand{\arraystretch}{1.2}
 \setlist{left=1em,parsep=0.5ex,after=\smallskip}
@@ -278,15 +387,19 @@ Pozytywne & Negatywne\\
  Zewnętrzne \& \begin{tabular}{p{\myw}p{\myw}}
 	\textbf{Szanse:} \begin{itemize}
    	\item dzięki udostępnieniu systemu na otwartej licencji, możliwe jest wykorzystanie wypracowanych rozwiązań w przyszłych projektach,
-       	\item system może stanowić narzędzie ułatwiające opracowanie i testowanie nowatorskich systemów sterowania.
+       	\item system może stanowić narzędzie ułatwiające opracowanie i testowanie nowatorskich systemów sterowania,
+       	\item system może stanowić bezpłatną alternatywę dla komercyjnych symulatorów lotu.
 \end{itemize} & \textbf{Zagrożenia:} \begin{itemize}
   \item język Rust wykorzystany w UAV\_aggregator może przestać być wspierany na przestrzeni najbliższych lat,
-  \item trudności z identyfikacja wiarygodnych współczynników modelu dynamiki.
+  \item trudności z identyfikacja wiarygodnych współczynników modelu dynamiki,
+  \item rozbudowany system może okazać się trudny w obsłudze dla użytkownika.
   
 \end{itemize} \end{tabular}\\
 };
 \end{tikzpicture}
-
+\caption{Analiza SWOT}
+\label{swot}
+\end{table}
 
 
 
