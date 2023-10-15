@@ -19,6 +19,7 @@ jobs:
         with:
           # The root LaTeX file to be compiled
           root_file: main.tex
+          latexmk_use_lualatex: true
       - name: Choose name
         run: |
              latest_tag=$(git tag --sort v:refname | tail -n 1)

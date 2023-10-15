@@ -21,7 +21,7 @@ jobs:
         with:
           # The root LaTeX file to be compiled
           root_file: main.tex
-          args: "-lualatex -file-line-error -interaction=nonstopmode"
+          latexmk_use_lualatex: true
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:
