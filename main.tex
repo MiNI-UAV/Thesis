@@ -58,7 +58,7 @@
 
 \usepackage[
 backend=biber
-,style=alphabetic
+,style=ieee
 ,sorting=none
 ]{biblatex}
 \addbibresource{bibliografia.bib}
@@ -159,7 +159,6 @@ symulacja, grafika komputerowa 3D, bezzałogowy statek powietrzny, model dynamik
 
 Symulacje komputerowe dynamiki ruchu stanowią użyteczne narzędzie w pracach inżynierskich. Pozwalają na analizę poprawności działania układu mechanicznego przed jego wyprodukowaniem. W szczególności w zagadnieniu jakim jest projektowanie bezzałogowych statków powietrznych, zastosowanie symulacji pozwala zminimalizować koszty wytworzenia poprawnie działającego systemu.
 
-\cite{rust} \cite{czystykod} \cite{energies} \cite{zmqguide}
 
 
 \subsection{Cel projektu}
@@ -297,6 +296,7 @@ Pozytywne & Negatywne\\
 \section{Bibliografia}
 
 %\printbibliography
+\nocite{*}
 
 \printbibliography[type=book,heading=subbibliography,title={Literatura}]
 \printbibliography[type=article,heading=subbibliography,title={Artykuły}]
