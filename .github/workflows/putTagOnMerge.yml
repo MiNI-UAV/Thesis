@@ -15,7 +15,7 @@ jobs:
       - name: Github Action for LaTeX
         # You may pin to the exact commit or the version.
         # uses: xu-cheng/latex-action@cb1ec5785b7605cd308b962e0678cdcfd2595cb7
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
           # The root LaTeX file to be compiled
           root_file: main.tex
