@@ -228,7 +228,7 @@ Istnieją również rozwiązania typu open-source, realizujące jedynie poszczeg
 
 \subsection{Cel projektu}
 
-Celem niniejszej pracy jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje podstawowy model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem którego parametry określane są przez konfigurację podaną przez użytkownika. System dzieli się na serwer i aplikacje kliencką. Różnorodność modułów pozwala na realizacje różnych scenariuszy min. strzał, upuszczenie ładunku, kolizje, wpływ warunków środowiskowych. Oprogramowanie jest w głównej mierze przeznaczone dla producentów bezzałogowych statków powietrznych, w celu umożliwienia przetestowania oraz dobrania odpowiednich parametrów BSP przed rzeczywistymi lotami próbnymi, co pozwoli na zminimalizowanie kosztów produkcji. Potencjalnymi klientami są również uczelnie z zamiarem wykorzystania oprogramowania w celach dydaktycznych oraz pasjonaci BSP.
+Celem niniejszej pracy jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje podstawowy model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem którego parametry określane są przez konfigurację podaną przez użytkownika. System dzieli się na serwer i aplikacje kliencką. Różnorodność modułów pozwala na realizacje różnych scenariuszy m.in. strzał, upuszczenie ładunku, kolizje, wpływ warunków środowiskowych. Oprogramowanie jest w głównej mierze przeznaczone dla producentów bezzałogowych statków powietrznych, w celu umożliwienia przetestowania oraz dobrania odpowiednich parametrów BSP przed rzeczywistymi lotami próbnymi, co pozwoli na zminimalizowanie kosztów produkcji. Potencjalnymi klientami są również uczelnie z zamiarem wykorzystania oprogramowania w celach dydaktycznych oraz pasjonaci BSP.
 
 \newpage
 \subsection{Wymagania funkcjonalne}
@@ -243,7 +243,7 @@ W tabeli (\ref{use_case}) przedstawiono scenariusze wykorzystania oprogramowania
 		\rowcolor{Gray}
 		Aktor & Nazwa & Opis \\
 		\hline
-		\centering \multirow{4}{*}{\rotatebox[origin=c]{90}{Użytkownik}} 
+		\centering \multirow{12}{*}{\rotatebox[origin=c]{90}{Użytkownik}} 
 		& Symulacja BSP & Możliwość zasymulowania lotu BSP.  \\
 		\cline{2-3}
 		& Różnorodne typy BSP & Możliwość zasymulowania BSP wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe.  \\
@@ -254,11 +254,11 @@ W tabeli (\ref{use_case}) przedstawiono scenariusze wykorzystania oprogramowania
 		\cline{2-3}
 		& Konfiguracja & Możliwość konfigurowania parametrów serwera, wizualizacji i kontrolerów.\\
 		\cline{2-3}
-		& Interfejs użytkownika & Podczas symulacji użytkownik ma dostęp do informacji niezbędnych do lotu, a więc min. mapa, sztuczny horyzont, silniki. \\
+		& Interfejs użytkownika & Podczas symulacji użytkownik ma dostęp do informacji niezbędnych do lotu, a więc m.in. mapa, sztuczny horyzont, silniki. \\
 		\cline{2-3}
 		& Zdalna aplikacja kliencka & Możliwość zdalnego połączenia wizualizacji z serwerem wykorzystując protokół TCP/IP. \\
 		\hline
-		\centering \multirow{2.5}{*}{\rotatebox[origin=c]{90}{Analityk}} 
+		\centering \multirow{5}{*}{\rotatebox[origin=c]{90}{Analityk}} 
 		& Testowanie parametrów BSP & Możliwość przetestowania własnych parametrów BSP w locie symulowanym i ich poprawianie. \\
 		\cline{2-3}
 		 & Analiza logów & Możliwość przeanalizowania lotu za pomocą logów utworzonych w czasie symulacji. \\ 
@@ -288,7 +288,7 @@ W tabeli (\ref{non_func}) przedstawiono wymagania niefunkcjonalne, które musi s
 		\hline
 		\rowcolor{Gray}		\multicolumn{2}{c}{Wymagania} & No. & Opis \\
 		\hline
-		\centering \multirow{3}{*}{\rotatebox[origin=c]{90}{Usability}}
+		\centering \multirow{9}{*}{\rotatebox[origin=c]{90}{Usability}}
 		&\multirow{1}{*}{Używalność} 
 		& 1 & Użytkownik jest w stanie dopasować rozmiar okna wizualizacji i interfejsu do swoich potrzeb i ograniczeń sprzętu. \\
 		\cline{3-4}
@@ -301,7 +301,7 @@ W tabeli (\ref{non_func}) przedstawiono wymagania niefunkcjonalne, które musi s
 		\cline{3-4}
 		& & 5 & Konfiguracja kontrolera powinna odbyć się bez znajomości użytkownika z interpretacją wejścia przez system.  \\
 		\hline
-		\centering \multirow{3}{*}{\rotatebox[origin=c]{90}{Reliability}}
+		\centering \multirow{3.5}{*}{\rotatebox[origin=c]{90}{Reliability}}
 		& \multirow{1}{*}{Dokładność} 
 		& 6 & Dokładność symulacji powinna zależeć wyłącznie od błędów obliczeń i dokładności wprowadzonych parametrów. \\
 		\cline{2-4}
@@ -312,7 +312,7 @@ W tabeli (\ref{non_func}) przedstawiono wymagania niefunkcjonalne, które musi s
 		& \multirow{1}{*}{Przepustowość} 
 		& 8 & Wydajność serwera powinna skalować się względem liczby aktualnie symulowanych BSP. \\
 		\hline
-		\centering \multirow{3}{*}{\rotatebox[origin=c]{90}{Supportability}}
+		\centering \multirow{7}{*}{\rotatebox[origin=c]{90}{Supportability}}
 		& \multirow{1}{*}{Konserwacja} 
 		& 9 &Systemy sterowania, elementy interfejsu i moduły konfigurowalne powinny być tak zaprojektowanie aby dodawanie nowych oraz modyfikacja istniejących była prosta i szybka.  \\
 		\cline{3-4}
@@ -382,8 +382,17 @@ Do realizacja kontenera wybrane zostało oprogramowanie Docker. Obraz został zd
 
 \newpage
 
-\textbf{UAV\_visualization} -- JAVA. \\ 
+\textbf{UAV\_visualization}\\
 
+Do zrealizowania wizualizacji zostanie wykorzystany język Java. Obiektowość języka pozwoli na wytworzenie przejrzystej implementacji łatwej w utrzymaniu. Zaletą tego wyboru jest również to, że język ten znajduje się na rynku od długiego czasu, dzięki czemu dostępny jest bogaty zasób bibliotek. W opisywanym module zostaną wykorzystane m.in.:
+\begin{itemize}[noitemsep,nolistsep]
+	\item LWJGL -- Lightweight Java Game Library. Biblioteka udostępniająca bindingi do gamy bibliotek dla deweloperów gier napisanych w języku C, takich jak Vulkan, OpenGL, OpenAL i OpenCL,
+	\item JeroMQ -- Implementacja biblioteki libzmq w języku Java. Libzmq jest bazową biblioteką implementującą kolejki ZeroMQ,,
+	\item JOML -- Java OpenGL Math Library. Biblioteka implementująca operacje algbery liniowej przydatne przy implementacji aplikacji renderujących obraz 3D,
+	\item Jackson -- Biblioteka do parsowania plików XML i JSON,
+	\item Project Lombok -- Biblioteka ułatwiająca pisanie kodu, pozwalając na zastępowanie powtarzalnych fragmentów adnotacjami.
+\end{itemize}
+\ \\ 
 Każdy z modułów znajduje się w oddzielnym repozytorium Git na platformie Github. Dla ułatwienia pracy z wykorzystaniem Github Actions przygotowane zostały odpowiednie mechanizmy CI/CD.
 
 
