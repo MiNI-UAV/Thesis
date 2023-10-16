@@ -228,7 +228,7 @@ Istnieją również rozwiązania typu open-source, realizujące jedynie poszczeg
 
 \subsection{Cel projektu}
 
-Celem niniejszej pracy jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje podstawowy model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem którego parametry określane są przez konfigurację podaną przez użytkownika. System dzieli się na serwer i aplikacje kliencką. Różnorodność modułów pozwala na realizacje różnych scenariusz (strzał, upuszczenie ładunku, kolizje, wpływ warunków środowiskowych etc.)
+Celem niniejszej pracy jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje podstawowy model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem którego parametry określane są przez konfigurację podaną przez użytkownika. System dzieli się na serwer i aplikacje kliencką. Różnorodność modułów pozwala na realizacje różnych scenariuszy min. strzał, upuszczenie ładunku, kolizje, wpływ warunków środowiskowych. Oprogramowanie jest w głównej mierze przeznaczone dla producentów bezzałogowych statków powietrznych, w celu umożliwienia przetestowania oraz dobrania odpowiednich parametrów BSP przed rzeczywistymi lotami próbnymi, co pozwoli na zminimalizowanie kosztów produkcji. Potencjalnymi klientami są również uczelnie z zamiarem wykorzystania oprogramowania w celach dydaktycznych oraz pasjonaci BSP.
 
 \newpage
 \subsection{Wymagania funkcjonalne}
@@ -246,13 +246,17 @@ W tabeli (\ref{use_case}) przedstawiono scenariusze wykorzystania oprogramowania
 		\centering \multirow{4}{*}{\rotatebox[origin=c]{90}{Użytkownik}} 
 		& Symulacja BSP & Możliwość zasymulowania lotu BSP.  \\
 		\cline{2-3}
+		& Różnorodne typy BSP & Możliwość zasymulowania BSP wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe.  \\
+		\cline{2-3}
 		& Rój BSP & Możliwość zasymulowania wielu BSP jednocześnie. \\
 		\cline{2-3}
 		& Modele BSP i środowiska & Możliwość dodawania własnych modeli BSP oraz modeli map.\\
 		\cline{2-3}
 		& Konfiguracja & Możliwość konfigurowania parametrów serwera, wizualizacji i kontrolerów.\\
 		\cline{2-3}
-		& Interfejs użytkownika & Podczas symulacji użytkownik ma dostęp do informacji niezbędnych do lotu (mapa, sztuczny horyzont, silniki, etc.). \\
+		& Interfejs użytkownika & Podczas symulacji użytkownik ma dostęp do informacji niezbędnych do lotu, a więc min. mapa, sztuczny horyzont, silniki. \\
+		\cline{2-3}
+		& Zdalna aplikacja kliencka & Możliwość zdalnego połączenia wizualizacji z serwerem wykorzystując protokół TCP/IP. \\
 		\hline
 		\centering \multirow{2.5}{*}{\rotatebox[origin=c]{90}{Analityk}} 
 		& Testowanie parametrów BSP & Możliwość przetestowania własnych parametrów BSP w locie symulowanym i ich poprawianie. \\
