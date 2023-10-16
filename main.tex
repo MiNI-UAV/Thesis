@@ -16,6 +16,7 @@
 \usepackage{hyperref}
 \usepackage{blindtext}
 \usepackage{multicol}
+\usepackage{multirow}
 \usepackage{wrapfig}
 \usepackage{float}
 \usepackage{enumitem}
@@ -177,6 +178,8 @@ symulacja, grafika komputerowa 3D, bezzałogowy statek powietrzny, model dynamik
 
 \textbf{Statek powietrzny} -- to urządzenie zdolne do unoszenia się (lotu) w atmosferze. Statek powietrzny jest zdolny w sposób aktywny wpływać na kierunek i prędkość lotu. W przeciwieństwie do formalnej definicji termin obejmuje również konstrukcję niewykorzystujące oddziaływania powietrza w locie (rakiety).\\
 
+\textbf{Bezzałogowy statek powietrzny, BSP} -- statek powietrzny, który nie wymaga do lotu załogi obecnej na pokładzie oraz nie ma możliwości zabierania pasażerów, pilotowany zdalnie lub wykonujący lot autonomicznie.\\ 
+
 \textbf{Pocisk} -- obiekt wystrzelony lub upuszczony ze statku powietrznego, nieposiadający własnego napędu. Porusza się na wskutek oddziaływania pola grawitacji i wpływu powietrza. Nie posiada wyróżnionej orientacji.\\
 
 \textbf{Ładunek} -- pocisk, na ogół upuszczany, który pozostaje związany z statkiem powierzanym na sprężysto-tłumiącej linie. \\
@@ -194,19 +197,11 @@ symulacja, grafika komputerowa 3D, bezzałogowy statek powietrzny, model dynamik
 
 \newpage
 
-\color{red}
-
 \section{Wstęp}
 
 \subsection{O projekcie}
 
 Symulacje komputerowe dynamiki ruchu stanowią użyteczne narzędzie w pracach inżynierskich. Pozwalają na analizę poprawności działania układu mechanicznego przed jego wyprodukowaniem. W szczególności w zagadnieniu jakim jest projektowanie bezzałogowych statków powietrznych, zastosowanie symulacji pozwala zminimalizować koszty wytworzenia poprawnie działającego systemu.
-
-
-
-\subsection{Cel projektu}
-
-Celem niniejszej pracy jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje podstawowy model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem ktorego parametery określane są przez konfiguracje. System dzieli sie na serwer i aplikacje kliencką. Róznorodność modułów pozwala na realizacje róznych scenariusz (strzał, upuszczenie ładunku, kolizje, wpływ warunków srodowiskowych etc.)
 
 \subsection{Przegląd istniejących rozwiązań}
 
@@ -215,7 +210,7 @@ Historia symulatorów lotu sięga lat 30 XX wieku. Pierwotnie zastosowanie symul
 Na rynku dostępnych jest wiele środowisk symulacyjnych o różnym stopniu szczegółowości. Pełne systemy lotu stanowią produkt komercyjny projektowany na indywidualne zamówienie. Do najpopularniejszych dostępnych systemów sprzedawanych jako zamkniete oprogramowanie należą m. in.:
 
 \begin{itemize}
-\item Microsoft Flight Simulator -  
+\item Microsoft Flight Simulator -  seria komputerowych symulatorów lotu pozwalająca na symulację pilotowania różnych statków powietrznych. Założeniem jest wierne odtworzenie zachowania statków powietrznych, warunków pogodowych, jak również samych maszyn.
 \item VBS (Arma) - środowisko symulacyjne do wizualizacji pola walki
 \item Warthunder - darmowa gra komputerowa wprowadzająca znaczną ilość historycznych i współczesnych modeli samolotów, których parametry zostały oparte na dostępnych i odtajnych danych.
 \item RealFlight - modelarski symulator lotu
@@ -230,12 +225,118 @@ Istnieją również rozwiązania typu open-source, realizujące jedynie poszczeg
 
 
 
-
+\color{orange}
 
 
 \section{Specyfikacja}
 
 
+\subsection{Cel projektu}
+
+Celem niniejszej pracy jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje podstawowy model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem którego parametry określane są przez konfigurację podaną przez użytkownika. System dzieli się na serwer i aplikacje kliencką. Różnorodność modułów pozwala na realizacje różnych scenariusz (strzał, upuszczenie ładunku, kolizje, wpływ warunków środowiskowych etc.)
+
+\subsection{Wymagania Funkcjonalne}
+
+\subsubsection{Scenariusze użycia}
+
+W tabeli \ref{use_case} przedstawiono przykładowe scenariusze wykorzystania oprogramowania.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+	\centering
+	\begin{tabular}{|m{0.15\textwidth}|m{0.2\textwidth}|m{0.5\textwidth}|} 
+		\hline
+		\rowcolor{Gray}
+		Aktor & Nazwa & Opis \\
+		\hline
+		\multirow{1}{*}{Użytkownik} 
+		& Symulacja BSP & Możliwość zasymulowania lotu BSP.  \\
+		\cline{2-3}
+		& Rój BSP & Możliwość zasymulowania wielu BSP jednocześnie. \\
+		\cline{2-3}
+		& Modele BSP i środowiska & Możliwość dodawania własnych modeli BSP oraz modeli map.\\
+		\cline{2-3}
+		& Konfiguracja & Możliwość konfigurowania parametrów serwera, wizualizacji i kontrolerów.\\
+		\cline{2-3}
+		& Interfejs użytkownika & Podczas symulacji użytkownik ma dostęp do informacji niezbędnych do lotu (mapa, sztuczny horyzont, silniki, etc.). \\
+		\hline
+		\multirow{1}{*}{Analityk} 
+		& Testowanie parametrów BSP & Możliwość przetestowania własnych parametrów BSP w locie symulowanym i ich poprawianie. \\
+		\cline{2-3}
+		 & Analiza logów & Możliwość przeanalizowania lotu za pomocą logów utworzonych w czasie symulacji. \\ 
+		 \cline{2-3}
+		 & Symulacja warunków środowiskowych & Testowanie parametrów BSP w różnych warunkach środowiskowych (np. wiatr).\\ 
+		\hline
+		\multirow{1}{*}{Deweloper} & Systemy sterowania & Dodawanie i zarządzanie systemami sterowania. \\
+		\cline{2-3}
+		& Doskonalenie symulacji & Doskonalenie symulacji wykorzystując porównania logów symulacji z wynikami prawdziwych lotów próbnych.\\ 
+		\hline
+	\end{tabular}
+	\caption{Scenariusze użycia}
+	\label{use_case}
+\end{table}
+
+\subsection{Wymaganie niefunkcjonalne}
+
+W tabeli \ref{non_func} przedstawiono wymagania niefunkcjonalne jakie musi spełniać oprogramowanie.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+	\centering
+	\begin{tabular}{|m{0.21\textwidth}|m{0.05\textwidth}|m{0.65\textwidth}|} 
+		\hline
+		\rowcolor{Gray}		Wymaganie & No. & Opis \\
+		\hline
+		\multirow{1}{*}{Używalność} 
+		\multirow{1.5}{*}{(Usability)} 
+		& 1 & Użytkownik jest w stanie dopasować rozmiar okna wizualizacji i interfejsu do swoich potrzeb i ograniczeń sprzętu. \\
+		\cline{2-3}
+		& 2 & Serwer oraz wizualizację da się uruchomić na systemie operacyjnym Windows i Linux. \\
+		\cline{2-3}
+		& 3 & Komunikacja między serwerem, a wizualizacją powinna pozwalać na responsywne sterowanie BSP. \\
+		\hline
+		\multirow{1}{*}{Ergonomia} 
+		\multirow{1.5}{*}{(Usability)} 
+		& 4 & Interfejs użytkownika powinien być przejrzysty i korzystać ze standardowych liczników wykorzystywanych w lotnictwie.  \\
+		\cline{2-3}
+		& 5 & Konfiguracja kontrolera powinna odbyć się bez znajomości użytkownika z interpretacją wejścia przez system.  \\
+		\hline
+		\multirow{1}{*}{Dokładność} 
+		\multirow{1.5}{*}{(Reliability)} 
+		& 6 & Dokładność symulacji powinna zależeć wyłącznie od błędów obliczeń. \\
+		\hline
+		\multirow{1}{*}{Sprawdzalność} 
+		\multirow{1.5}{*}{(Reliability)} 
+		& 7 & Zgodność symulacji z rzeczywistością da się sprawdzić poprzez analizę logów. \\
+		\hline
+		\multirow{1}{*}{Przepustowość} 
+		\multirow{1.5}{*}{(Performance)} 
+		& 8 & Wydajność serwera powinna być względnie liniowa względem liczby aktualnie symulowanych BSP. \\
+		\hline
+		\multirow{1}{*}{Konserwacja} 
+		\multirow{1.5}{*}{(Supportability)} 
+		& 9 &Systemy sterowania, elementy interfejsu, etc. powinny być tak zaprojektowanie aby dodawanie nowych oraz modyfikacja istniejących była prosta i szybka.  \\
+		\cline{2-3}
+		& 10 & System powinien być podzielony na moduły, które można niezależnie modyfikować. \\
+		\hline
+		\multirow{1}{*}{Audytowalność} 
+		\multirow{1.25}{*}{(Supportability)} 
+		& 11 & W czasie lotu serwer powinien zapisywać logi z symulacji. \\
+		\hline
+		\multirow{1}{*}{Instalowalność} 
+		\multirow{1.5}{*}{(Supportability)} 
+		& 12 & Proces instalacji serwera powinien być dobrze opisany i prosty. Niewymagany w przypadku wizualizacji. \\
+		\hline
+		\multirow{1}{*}{Konfigurowalność} 
+		\multirow{1.5}{*}{(Supportability)} 
+		& 13 & Oprogramowanie powinno umożliwiać konfigurację serwera, wizualizacji, modeli, kontrolerów, parametrów BSP. \\
+		\hline
+	\end{tabular}
+	\caption{Wymaganie niefunkcjonalne}
+	\label{non_func}
+\end{table}
+
+\color{red}
 
 \subsection{Architektura}
 
