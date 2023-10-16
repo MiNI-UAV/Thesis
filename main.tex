@@ -30,8 +30,9 @@
 \usepackage{pdfpages}
 \usepackage{fontspec}
 \usepackage{comment}
-\setmainfont{Verdana}
 \usepackage[nochapter,owncaptions]{vhistory}
+
+\setmainfont{Verdana}
 	
 \usepackage{color, colortbl}
 \definecolor{Gray}{gray}{0.9}
@@ -146,7 +147,7 @@ foreach \XX in {2,...,\the\numexpr\pgfmatrixcurrentrow-1}
 
 
 \section*{Streszczenie}
-W pracy opisano realizację systemu przeznaczonego do symulacji dynamiki lotu bezzałogowych statków powietrznych. System pozwala na prowadzenie symulacji lotu w czasie rzeczywistem, który dodatkowo jest prezentowany jest w postaci trójwymiarowej wizualizacji. W trakcie wykonywania lotu logowane są dane i mogą zostać wykorzystane do analizy lotu. Opracowany został uniwersalny model dynamiki pozwalający na swobodną konfigurację parametrów statku. Obejmuje on modyfikację właściwości mechanicznych, aerodynamicznych oraz konfigurację zespołów napędowych i~wpływu czynników zewnętrznych. Symulacja dynamiki rozszerzona została o system sterowania. System został zaprojektowany w sposóbu ułatwiający zmianę parameterów statków i symulacji, tworzenie nowych konfiguracji statków oraz tworzenie i strojenie systemów sterowania. W pracy zaprezentowane zostało działanie systemu dla przykładowych modeli latających: stałopłatowca, wielowirnikowca i rakiety.
+W pracy opisano realizację systemu przeznaczonego do symulacji dynamiki lotu bezzałogowych statków powietrznych. System pozwala na prowadzenie symulacji lotu w czasie rzeczywistem, który dodatkowo jest prezentowany jest w postaci trójwymiarowej wizualizacji. W trakcie wykonywania lotu logowane są dane i mogą zostać wykorzystane do analizy lotu. Opracowany został uniwersalny model dynamiki pozwalający na swobodną konfigurację parametrów statku. Obejmuje on modyfikację właściwości mechanicznych, aerodynamicznych oraz konfigurację zespołów napędowych i~wpływu czynników zewnętrznych. Symulacja dynamiki rozszerzona została o system sterowania. System został zaprojektowany w sposobu ułatwiający zmianę parametrów statków i symulacji, tworzenie nowych konfiguracji statków oraz tworzenie i strojenie systemów sterowania. W pracy zaprezentowane zostało działanie systemu dla przykładowych modeli latających: stałopłatowca, wielowirnikowca i rakiety.
 
 \section*{Słowa kluczowe}
 
@@ -204,22 +205,22 @@ Symulacje komputerowe dynamiki ruchu stanowią użyteczne narzędzie w pracach i
 
 \subsection{Przegląd istniejących rozwiązań}
 
-Historia symulatorów lotu sięga lat 30 XX wieku. Pierwotnie zastosowanie symulatorów sprowadzało się do szkolenia pilotów cywilnych i wojskowych. W znanej obecnie formie kompletne symulatory lotu stanowią rozbudowane systemy integrujące wysokiej klasy oprogramowanie z peryferiami mającymi wierne odwzorowanie kokpitu kierowanej maszyny. Symulatory wykorzystywane do treningu pilotów podlegają rygorystycznym regulacją prawnym i na ogół ich zadaniem jest odwzorowanie jednej konkretnej maszyny. Równolegle uproszczone wersje symulatorów zaczeły zyskiwać popularność w zastosowaniu cywilnym, jako element rozrywki. W szczególności gry komputerowe związane z lotem bardzo często poświęcały zgodność z model rzeczywistym na rzecz lepszych odczuć użytkownika.\\
+Historia symulatorów lotu sięga lat 30. XX wieku. Pierwotnie zastosowanie symulatorów sprowadzało się do szkolenia pilotów cywilnych i wojskowych. W znanej obecnie formie kompletne symulatory lotu stanowią rozbudowane systemy integrujące wysokiej klasy oprogramowanie z peryferiami mającymi wierne odwzorowanie kokpitu kierowanej maszyny. Symulatory wykorzystywane do treningu pilotów podlegają rygorystycznym regulacją prawnym i na ogół ich zadaniem jest odwzorowanie jednej konkretnej maszyny. Równolegle uproszczone wersje symulatorów zaczęły zyskiwać popularność w zastosowaniu cywilnym, jako element rozrywki. W szczególności gry komputerowe związane z lotem bardzo często poświęcały zgodność z rzeczywistością na rzecz lepszych odczuć użytkownika.\\
 
-Na rynku dostępnych jest wiele środowisk symulacyjnych o różnym stopniu szczegółowości. Pełne systemy lotu stanowią produkt komercyjny projektowany na indywidualne zamówienie. Do najpopularniejszych dostępnych systemów sprzedawanych jako zamkniete oprogramowanie należą m. in.:
+Na rynku dostępnych jest wiele środowisk symulacyjnych o różnym stopniu szczegółowości. Pełne systemy lotu stanowią produkt komercyjny projektowany na indywidualne zamówienie. Do najpopularniejszych dostępnych systemów sprzedawanych jako zamknięte oprogramowanie należą m. in.:
 
 \begin{itemize}
-\item Microsoft Flight Simulator -  seria komputerowych symulatorów lotu pozwalająca na symulację pilotowania różnych statków powietrznych. Założeniem jest wierne odtworzenie zachowania statków powietrznych, warunków pogodowych, jak również samych maszyn.
-\item VBS (Arma) - środowisko symulacyjne do wizualizacji pola walki
-\item Warthunder - darmowa gra komputerowa wprowadzająca znaczną ilość historycznych i współczesnych modeli samolotów, których parametry zostały oparte na dostępnych i odtajnych danych.
-\item RealFlight - modelarski symulator lotu
+\item Microsoft Flight Simulator -  seria komputerowych symulatorów lotu pozwalająca na symulację pilotowania różnych statków powietrznych. Założeniem jest wierne odtworzenie zachowania statków powietrznych, warunków pogodowych, jak również samych maszyn,
+\item VBS (Arma) - środowisko symulacyjne do wizualizacji pola walki,
+\item Warthunder - darmowa gra komputerowa wprowadzająca znaczną ilość historycznych i współczesnych modeli samolotów, których parametry zostały oparte na dostępnych i odtajnionych danych,
+\item RealFlight - modelarski symulator lotu.
 \end{itemize}
 
 Istnieją również rozwiązania typu open-source, realizujące jedynie poszczególne zadania:
 
 \begin{itemize}
-\item JSBsim - rozbudowany silnik dynamiki lotu działający w czasie rzeczywistym  
-\item Ardupilot, INAV, Betaflight - kompletne systemy sterowania dla modeli zdalnie sterowanych
+\item JSBsim - rozbudowany silnik dynamiki lotu działający w czasie rzeczywistym,
+\item Ardupilot, INAV, Betaflight - kompletne systemy sterowania dla modeli zdalnie sterowanych.
 \end{itemize}
 
 
@@ -333,7 +334,7 @@ W tabeli (\ref{non_func}) przedstawiono wymagania niefunkcjonalne, które musi s
 \end{table}
 
 \subsection{Architektura}
-System został podzielony na moduły. Moduły komunikują się między sobą poprzez kolejki ZeroMQ. Jako warstwa transportowa wykorzystane są mechanizmy komunikacji wewnątrzprocesowej, międzyprocesowej i protokół TCP/IP. Moduły odpowiadają obiektom z domeny systemu.\\
+System został podzielony na moduły. Moduły komunikują się między sobą poprzez kolejki ZeroMQ. Jako warstwa transportowa wykorzystane są mechanizmy komunikacji wewnątrzprocesowej, międzyprocesowej i protokół TCP/IP. Poszczególne moduły odpowiadają obiektom z domeny projektu i realizują następujące zadania:\\
 
 \textbf{UAV\_physic\_engine} -- moduł odpowiedzialny symulację dynamiki statku powietrznego, uwzględniając wszystkie jego własciwości mechaniczne i wpływ otoczenia. Oblicza stan pojedynczego BSP w czasie rzeczywistym. \\
 
@@ -346,6 +347,16 @@ System został podzielony na moduły. Moduły komunikują się między sobą pop
 \textbf{UAV\_server} -- definicja wirtualnego kontenera, odpowiedzialna zabudowanie wszystkich modułów składających się na serwer, tj. wszystkie z wyłączeniem wizualizacji. Ze zbudowanych modułów budowany jest obraz kontenera. Umożliwia to uruchomienie serwera na dowolnej maszynie wspierającej daną konteneryzację.\\
 
 \textbf{UAV\_visualization} -- moduł odpowiedzialny za wyświetlenie  interfejsu użytkownika oraz obecnego stanu symulacji. Przekazuje dane wejściowe z kontrolera do systemu. Stanowi interfejs komunikacji użytkownika z systemem. \\
+
+Rysunku (\ref{comm}) prezentuje poszczególne moduły wraz oraz kanały komunikacji. Na niebiesko zaznaczone zostały kolejki TCP/IP, a na czerwono kolejki wykorzystujące mechanizmy IPC. Dla zwiększenia czytelności, kolejki w warstwie miedzy procesowej nie zostały zaznaczone na rysunku.
+
+\newpage
+ \begin{figure}[!h]
+  \centering
+  \includegraphics[width=1.2\textwidth, angle=90]{ZMQinMINIUAV.drawio.png}
+  \caption{Architektura systemu -- schemat komunikacji}
+  \label{comm}
+ \end{figure}
 
 \newpage
 
