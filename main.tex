@@ -339,7 +339,7 @@ System został podzielony na moduły. Moduły komunikują się między sobą pop
 
 \textbf{UAV\_aggregator} -- moduł agregujący moduły symulacyjne z wizualizacją. Zarządza pracą pozostałych modeli i wprowadza niektóre zagadnienia otoczenia takie jak atmosferę, połączenia miedzy BSP, a ładunkami oraz kolizje.\\
 
-\textbf{UAV\_server} -- definicja kontenera Docker, odpowiedzialna zazbudowanie wszystkich modułów składających się na serwer, tj. wszystkie z wyłączeniem wizualizacji. Ze zbudowanych modułów budowany jest obraz Docker. Umożliwia to uruchomienie serwera na dowolnej maszynie wspierającej wirtualne kontenery Docker. \\
+\textbf{UAV\_server} -- definicja wirtualnego kontenera, odpowiedzialna zabudowanie wszystkich modułów składających się na serwer, tj. wszystkie z wyłączeniem wizualizacji. Ze zbudowanych modułów budowany jest obraz kontenera. Umożliwia to uruchomienie serwera na dowolnej maszynie wspierającej daną konteneryzację.\\
 
 \textbf{UAV\_visualization} -- moduł odpowiedzialny za wyświetlenie  interfejsu użytkownika oraz obecnego stanu symulacji. Przekazuje dane wejściowe z kontrolera do systemu. Stanowi interfejs komunikacji użytkownika z systemem. \\
 
@@ -350,48 +350,37 @@ System został podzielony na moduły. Moduły komunikują się między sobą pop
 Do realizacji poszczególnych modułów wybrane zostały następujące narzędzia programistyczne i biblioteki zewnętrzne.\\
 
 
-\textbf{UAV\_physic\_engine, UAV\_controller i UAV\_drop\_physic:}\\
-Ze względu na duży nakład obliczeniowy -- symulacja w czasie rzeczywistym z krokiem całkowania rzędu 1ms -- wybrany został język C++. Z uwagi na swoją wydajność i elastyczność stanowi on naturalny wybór w symulacjach. Dodatkowo wykorzystane zostały następujące biblioteki:
-\begin{itemize}
-	\item Eigen - 
-	\item ZeroMQ -
-	\item RapidXML - 
-	\item Cxxopts - 
+\textbf{UAV\_physic\_engine, UAV\_controller i UAV\_drop\_physic}\\
+
+Ze względu na duży nakład obliczeniowy -- symulacja w czasie rzeczywistym z krokiem całkowania rzędu 1ms -- wybrany został język C++. Z uwagi na swoją wydajność i elastyczność stanowi on naturalny wybór w wydajnych symulacjach komputerowych. Dodatkowo wykorzystane zostały następujące biblioteki:
+\begin{itemize}[noitemsep,nolistsep]
+	\item Eigen -- biblioteka zawierająca elementy algebry liniowej: macierze, wektory i związane z nimi algorytmy. Eigen stawia na wydajność poprzez wykorzystanie rozkadów typu SIMD, przy 		jednoczesnym zachowaniu przejrzystej składni,
+	\item ZeroMQ -- binding biblioteki libzmq dla języka C++. Libzmq jest bazową biblioteką implementującą kolejki ZeroMQ,
+	\item RapidXML -- biblioteka do parsowania plików XML,
+	\item Cxxopts -- biblitoteka do interpretowania argumentów wejściowych programu.
 \end{itemize}
+\  \\
+\textbf{UAV\_aggregator}\\
 
-\textbf{UAV\_aggregator} -- moduł agregujący moduły symulacyjne z wizualizacją. Zarządza pracą pozostałych modeli i wprowadza niektóre zagadnienia otoczenia takie jak atmosferę, połączenia miedzy BSP, a ładunkami oraz kolizje.\\
+Do realizacji modułu agregatora wykorzystany zostanie język Rust. Pozwala on na tworzenie wydajnego i kompilowanego kodu przy jednoczesnym zachowaniu przenośności między systemami. Natywnie wspiera zarządzanie innymi procesami i udostępnia wiele bibliotek. Wykorzystane zostały następujące biblioteki:
+\begin{itemize}[noitemsep,nolistsep]
+	\item nalgebra -- biblioteka zawierająca do elementy algebry liniowej, odpowiednik biblioteki Eigen dla języka Rust,
+	\item zmq -- binding biblioteki libzmq dla języka Rust. Libzmq jest bazową biblioteką implementującą kolejki ZeroMQ,
+	\item xmltree -- biblioteka do parsowania plików XML,
+	\item merkletree -- biblioteka wykorzystana do hashowania drzewa plików,
+	\item sha1 -- biblioteka wykorzystana do hashowania plików konfiguracyjnych,
+	\item serde\_yaml  - biblioteka do parsowania plików YAML.
+\end{itemize}
+\  \\
+\textbf{UAV\_server}\\
 
-\textbf{UAV\_server} -- definicja kontenera Docker, odpowiedzialna zazbudowanie wszystkich modułów składających się na serwer, tj. wszystkie z wyłączeniem wizualizacji. Ze zbudowanych modułów budowany jest obraz Docker. Umożliwia to uruchomienie serwera na dowolnej maszynie wspierającej wirtualne kontenery Docker. \\
+Do realizacja kontenera wybrane zostało oprogramowanie Docker. Obraz został zdefiniowany przy pomocy Dockerfile i skryptów Bash. Przygotowany został również plik Docker compose ułatwiający uruchomienie serwera.
 
-\textbf{UAV\_visualization} -- moduł odpowiedzialny za wyświetlenie  interfejsu użytkownika oraz obecnego stanu symulacji. Przekazuje dane wejściowe z kontrolera do systemu. Stanowi interfejs komunikacji użytkownika z systemem. \\ 
+\newpage
 
+\textbf{UAV\_visualization} -- JAVA. \\ 
 
-\subsection{UAV\_visualization}
-
-Java
-
-LWJGL
-
-Music
-
-\subsection{UAV\_aggregator}
-
-Rust
-
-Nalgebra
-
-....
-
-
-\subsection{UAV\_server}
-
-Docker
-
-ubuntu:latest
-
-
-
-\color{black}
+Każdy z modułów znajduje się w oddzielnym repozytorium Git na platformie Github. Dla ułatwienia pracy z wykorzystaniem Github Actions przygotowane zostały odpowiednie mechanizmy CI/CD.
 
 
 \newpage
