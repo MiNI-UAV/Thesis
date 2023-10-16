@@ -30,7 +30,6 @@
 \usepackage{pdfpages}
 \usepackage{fontspec}
 \usepackage{comment}
-\usepackage[nochapter,owncaptions]{vhistory}
 
 \setmainfont{Verdana}
 	
@@ -132,13 +131,6 @@ foreach \XX in {2,...,\the\numexpr\pgfmatrixcurrentrow-1}
 \usepackage{tocloft}
 \renewcommand\cftfigfont{\small}
 
-\renewcommand{\vhversionname}{Nr rewizji}
-\renewcommand{\vhdatename}{Data}
-\renewcommand{\vhauthorname}{Autor}
-\renewcommand{\vhchangename}{Opis zmian}
-\renewcommand\vhAuthorColWidth{.6\hsize} 
-\renewcommand\vhChangeColWidth{1.4\hsize}
-
 \setlength{\parindent}{0pt}
 
 \begin{document}
@@ -165,12 +157,27 @@ symulacja, grafika komputerowa 3D, bezzałogowy statek powietrzny, model dynamik
 \newpage
 
 \section{Historia zmian}
-\begin{versionhistory}
-  \vhEntry{0.0}{10.08.23}{Wojciech Gajda}{Utworzenie dokumentu, podstawowa struktura}
-  \vhEntry{0.1}{11.10.23}{Wojciech Gajda}{Dostosowanie dokumentu do wymogów edytorskich, dodanie streszczenia}
-  \vhEntry{0.2}{15.10.23}{Wojciech Gajda|Igor Faliszewski}{Dodanie  słownika, specyfikacji, analizy SWOT i bibliografii}
-  \vhEntry{1.0}{16.10.23}{Wojciech Gajda|Igor Faliszewski}{Wydanie zgłoszone do L1}
-\end{versionhistory}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[!h]
+\centering
+\begin{tabular}{|m{0.12\textwidth}|m{0.12\textwidth}|m{0.20\textwidth}|m{0.45\textwidth}|} 
+\hline
+\rowcolor{Gray}
+Nr rewizji & Data & Autor & Opis \\
+ \hline
+  0.0 & 10.08.23 & Wojciech Gajda & Utworzenie dokumentu, podstawowa struktura \\ 
+\hline
+  0.1 & 11.10.23 & Wojciech Gajda & Dostosowanie dokumentu do wymogów edytorskich, dodanie streszczenia \\ 
+\hline
+  0.2 & 15.10.23 & Wojciech Gajda \newline Igor Faliszewski & Dodanie  słownika, specyfikacji, analizy SWOT i bibliografii \\ 
+\hline
+  1.0 & 16.10.23 & Wojciech Gajda \newline Igor Faliszewski & Wydanie zgłoszone do L1 \\
+\hline
+\end{tabular}
+\caption{Historia zmian}
+\label{changelog}
+\end{table}
 
 \newpage
 
@@ -229,52 +236,48 @@ Istnieją również rozwiązania typu open-source, realizujące jedynie poszczeg
 
 \subsection{Cel projektu}
 
-Celem niniejszej pracy jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje podstawowy model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem którego parametry określane są przez konfigurację podaną przez użytkownika. System dzieli się na serwer i aplikacje kliencką. Różnorodność modułów pozwala na realizacje różnych scenariuszy m.in. strzał, upuszczenie ładunku, kolizje, wpływ warunków środowiskowych. Oprogramowanie jest w głównej mierze przeznaczone dla producentów bezzałogowych statków powietrznych, w celu umożliwienia przetestowania oraz dobrania odpowiednich parametrów BSP przed rzeczywistymi lotami próbnymi, co pozwoli na zminimalizowanie kosztów produkcji. Potencjalnymi klientami są również uczelnie z zamiarem wykorzystania oprogramowania w celach dydaktycznych oraz pasjonaci BSP.
+Celem niniejszej pracy jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje rozbudowany model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem, którego parametry określane są przez konfigurację podaną przez użytkownika. Oprócz lotu system udostępnia dodatkowe funkcjonalności takie jak możliwość strzału, upuszczenia ładunku, lotu z ładunkiem, rozpoznawania kolizji z otoczeniem.\\
+
+Oprogramowanie jest w głównej mierze przeznaczone dla producentów bezzałogowych statków powietrznych, umożliwiając testy BSP przed rzeczywistymi lotami próbnymi, co w rezultacie pozwoli na zminimalizowanie kosztów produkcji. Ma ono stanowić również narzędzie dla inżynierów zajmujących się projektowanie bezzałogowych statków powietrznych umożliwiając analizę zachowania dla wprowadzonych parametrów. Potencjalnymi klientami są również uczelnie z zamiarem wykorzystania oprogramowania w celach dydaktycznych oraz pasjonaci modelarstwa.\\
+
+Dodatkowo system stanowi oprogramowanie rozrywkowe, jeśli zostanie wykorzystany w roli gry komputerowej.
 
 \newpage
 \subsection{Wymagania funkcjonalne}
 
-W tabeli (\ref{use_case}) przedstawiono scenariusze wykorzystania oprogramowania.
 
-\renewcommand{\arraystretch}{1.5}
-\begin{table}[!h]
-	\centering
-	\begin{tabular}{|m{0.07\textwidth}|m{0.18\textwidth}|m{0.7\textwidth}|} 
-		\hline
-		\rowcolor{Gray}
-		Aktor & Nazwa & Opis \\
-		\hline
-		\centering \multirow{12}{*}{\rotatebox[origin=c]{90}{Użytkownik}} 
-		& Symulacja BSP & Możliwość zasymulowania lotu BSP.  \\
-		\cline{2-3}
-		& Różnorodne typy BSP & Możliwość zasymulowania BSP wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe.  \\
-		\cline{2-3}
-		& Rój BSP & Możliwość zasymulowania wielu BSP jednocześnie. \\
-		\cline{2-3}
-		& Modele BSP i środowiska & Możliwość dodawania własnych modeli BSP oraz modeli map.\\
-		\cline{2-3}
-		& Konfiguracja & Możliwość konfigurowania parametrów serwera, wizualizacji i kontrolerów.\\
-		\cline{2-3}
-		& Interfejs użytkownika & Podczas symulacji użytkownik ma dostęp do informacji niezbędnych do lotu, a więc m.in. mapa, sztuczny horyzont, silniki. \\
-		\cline{2-3}
-		& Zdalna aplikacja kliencka & Możliwość zdalnego połączenia wizualizacji z serwerem wykorzystując protokół TCP/IP. \\
-		\hline
-		\centering \multirow{5}{*}{\rotatebox[origin=c]{90}{Analityk}} 
-		& Testowanie parametrów BSP & Możliwość przetestowania własnych parametrów BSP w locie symulowanym i ich poprawianie. \\
-		\cline{2-3}
-		 & Analiza logów & Możliwość przeanalizowania lotu za pomocą logów utworzonych w czasie symulacji. \\ 
-		 \cline{2-3}
-		 & Symulacja warunków środowiskowych & Testowanie parametrów BSP w różnych warunkach środowiskowych (np. wiatr).\\ 
-		\hline
-		\centering \multirow{3}{*}{\rotatebox[origin=c]{90}{Deweloper}} 
-		& Systemy\newline sterowania & Dodawanie i zarządzanie systemami sterowania. \\
-		\cline{2-3}
-		& Doskonalenie symulacji & Doskonalenie symulacji wykorzystując porównania logów symulacji z wynikami prawdziwych lotów próbnych.\\ 
-		\hline
-	\end{tabular}
-	\caption{Scenariusze użycia -- use cases}
-	\label{use_case}
-\end{table}
+
+
+\textbf{Użytkownik:}
+\begin{itemize}[noitemsep,nolistsep]
+	\item może uruchomić symulację lotu,
+	\item może wybrać jedną z domyślnych konfiguracji BSP,
+	\item może dołączyć do symulacji wraz z innymi użytkownikami,
+	\item może dodać konfigurację własnego kontrolera
+	\item może w trakcie lotu wystrzelić pocisk,
+	\item może w trakcie lotu upuścić ładunek i przenosić go na elastycznej linie,
+	\item może zderzyć się z mapą, innym BSP lub pociskiem,
+	\item może połączyć się zdalnie z wykorzystaniem protokołu TCP/IP,
+	\item może odczytać stan swojego BSP z GUI,
+	\item może zmienić widok z kamery,
+	\item może uruchomić radio w grze.
+\end{itemize}
+\ \\
+
+\textbf{Analityk:}
+\begin{itemize}[noitemsep,nolistsep]
+	\item może przygotować nową konfigurację drona,
+	\item może analizować logi z wykonanych lotów,
+	\item może zaplanować otoczenie symulacji, wybrać mapę i ustalić warunki atmosferyczne.
+\end{itemize}
+\ \\
+
+\textbf{Developer:}
+\begin{itemize}[noitemsep,nolistsep]
+	\item może dodać i zarządzać istniejącymi algorytmami sterowania,
+	\item może dodać i zarządzać istniejącymi algorytmami całkowania.
+\end{itemize}
+\ \\
 
 
 \newpage
@@ -369,8 +372,8 @@ Do realizacji poszczególnych modułów wybrane zostały następujące narzędzi
 
 Ze względu na duży nakład obliczeniowy -- symulacja w czasie rzeczywistym z krokiem całkowania rzędu 1ms -- wybrany został język C++. Z uwagi na swoją wydajność i elastyczność stanowi on naturalny wybór w wydajnych symulacjach komputerowych. Dodatkowo wykorzystane zostały następujące biblioteki:
 \begin{itemize}[noitemsep,nolistsep]
-	\item Eigen -- biblioteka zawierająca elementy algebry liniowej: macierze, wektory i związane z nimi algorytmy. Eigen stawia na wydajność poprzez wykorzystanie rozkadów typu SIMD, przy 		jednoczesnym zachowaniu przejrzystej składni,
-	\item ZeroMQ -- binding biblioteki libzmq dla języka C++. Libzmq jest bazową biblioteką implementującą kolejki ZeroMQ,
+	\item Eigen -- biblioteka zawierająca elementy algebry liniowej: macierze, wektory i~związane z nimi algorytmy. Eigen stawia na wydajność poprzez wykorzystanie rozkadów typu SIMD, przy 		jednoczesnym zachowaniu przejrzystej składni,
+	\item ZeroMQ -- binding biblioteki libzmq dla języka C++. Libzmq jest bazową biblioteką implementującą kolejki ZeroMQ w języku C,
 	\item RapidXML -- biblioteka do parsowania plików XML,
 	\item Cxxopts -- biblitoteka do interpretowania argumentów wejściowych programu.
 \end{itemize}
@@ -380,7 +383,7 @@ Ze względu na duży nakład obliczeniowy -- symulacja w czasie rzeczywistym z k
 Do realizacji modułu agregatora wykorzystany zostanie język Rust. Pozwala on na tworzenie wydajnego i kompilowanego kodu przy jednoczesnym zachowaniu przenośności między systemami. Natywnie wspiera zarządzanie innymi procesami i udostępnia wiele bibliotek. Wykorzystane zostały następujące biblioteki:
 \begin{itemize}[noitemsep,nolistsep]
 	\item nalgebra -- biblioteka zawierająca do elementy algebry liniowej, odpowiednik biblioteki Eigen dla języka Rust,
-	\item zmq -- binding biblioteki libzmq dla języka Rust. Libzmq jest bazową biblioteką implementującą kolejki ZeroMQ,
+	\item zmq -- binding biblioteki libzmq dla języka Rust.
 	\item xmltree -- biblioteka do parsowania plików XML,
 	\item merkletree -- biblioteka wykorzystana do hashowania drzewa plików,
 	\item sha1 -- biblioteka wykorzystana do hashowania plików konfiguracyjnych,
@@ -398,8 +401,8 @@ Do realizacja kontenera wybrane zostało oprogramowanie Docker. Obraz został zd
 Do zrealizowania wizualizacji zostanie wykorzystany język Java. Obiektowość języka pozwoli na wytworzenie przejrzystej implementacji łatwej w utrzymaniu. Zaletą tego wyboru jest również to, że język ten znajduje się na rynku od długiego czasu, dzięki czemu dostępny jest bogaty zasób bibliotek. W opisywanym module zostaną wykorzystane m.in.:
 \begin{itemize}[noitemsep,nolistsep]
 	\item LWJGL -- Lightweight Java Game Library. Biblioteka udostępniająca bindingi do gamy bibliotek dla deweloperów gier napisanych w języku C, takich jak Vulkan, OpenGL, OpenAL i OpenCL,
-	\item JeroMQ -- Implementacja biblioteki libzmq w języku Java. Libzmq jest bazową biblioteką implementującą kolejki ZeroMQ,,
-	\item JOML -- Java OpenGL Math Library. Biblioteka implementująca operacje algbery liniowej przydatne przy implementacji aplikacji renderujących obraz 3D,
+	\item JeroMQ -- Natywna implementacja biblioteki libzmq w języku Java.
+	\item JOML -- Java OpenGL Math Library. Biblioteka implementująca operacje algebry liniowej przydatne przy implementacji aplikacji renderujących obraz 3D,
 	\item Jackson -- Biblioteka do parsowania plików XML i JSON,
 	\item Project Lombok -- Biblioteka ułatwiająca pisanie kodu, pozwalając na zastępowanie powtarzalnych fragmentów adnotacjami.
 \end{itemize}
