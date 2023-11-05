@@ -357,10 +357,16 @@ System został podzielony na moduły. Poszczególne moduły odpowiadają obiekto
 
 \textbf{UAV\_visualization} -- moduł odpowiedzialny za wyświetlenie  interfejsu użytkownika oraz obecnego stanu symulacji. Przekazuje dane wejściowe z kontrolera do systemu. Stanowi interfejs komunikacji użytkownika z systemem. \\
 
+\newpage
 
 \subsection{Opis działania systemu}
 
-\newpage
+Centralnym punktem aplikacji jest moduł aggregator. Stanowi on główna aplikację serwera, bez interfejsu graficznego. Jest on uruchamiany w pierwszej kolejności. Po uruchomieniu aggregatoru uruchamiany jako podproces jest moduł drop physic i aggregator nawiązuje z nim połączenie. Oba moduły pozostają w stanie bezczynności aż do podłączenia się pierwszego użytkownika. Po uruchomieniu wizualizacji komunikuje się ona z serwerem i prosi o utworzenie nowego statku powietrznego. W odpowiedzi na to polecenie aggregator uruchamia jako swoje podprocesy physic engine i controller. Po uruchomieniu para procesów synchronizuje się ze sobą i rozpoczyna symulację. Na każdy statek znajdujący się w symulacji przypada jeden para procesów physic engine i controller. Ponadto każdy statek jest kontrolowany z poziomu jednej konkretnej wizualizacji.\\
+
+W trakcie działania systemu aggregator stanowi pośrednika w komunikacji wizualizacji z procesami silnika fizycznego i regulatora. Przesyła instrukcje sterujące z wizualizacji do odpowiedniej symulacji fizycznej. Agreguje stany ze wszystkich aktywnych symulacji i przesyła je do wizualizacji. Ponadto zarządza procesami strzału, upuszczenia ładunku i kolizji. \\
+
+
+Po odłączeniu się wizualizacji od serwera, procesy związany z danym statkiem są kończone.
 
 
 \subsection{Opis komponentów}
