@@ -96,7 +96,7 @@ backend=biber
   }
 }
 
-\let\cite=\supercite
+%\let\cite=\supercite
 
 \renewcommand*{\figurename}{Rys.}
 
@@ -343,7 +343,7 @@ W tabeli (\ref{non_func}) przedstawiono wymagania niefunkcjonalne, które musi s
 
 \subsection{Architektura}
 
-System został podzielony na moduły. Moduły komunikują się między sobą poprzez kolejki ZeroMQ. Jako warstwa transportowa wykorzystane są mechanizmy komunikacji wewnątrzprocesowej, międzyprocesowej i protokół TCP/IP. Poszczególne moduły odpowiadają obiektom z domeny projektu i realizują następujące zadania:\\
+System został podzielony na moduły. Poszczególne moduły odpowiadają obiektom z domeny projektu i realizują następujące zadania:\\
 
 \textbf{UAV\_physic\_engine} -- moduł odpowiedzialny symulację dynamiki statku powietrznego, uwzględniając wszystkie jego własciwości mechaniczne i wpływ otoczenia. Oblicza stan pojedynczego BSP w czasie rzeczywistym. \\
 
@@ -363,15 +363,25 @@ System został podzielony na moduły. Moduły komunikują się między sobą pop
 
 \subsection{Komunikacja}
 
-%TODO troszeczke rozwnąć
+Moduły komunikują się między sobą poprzez kolejki ZeroMQ\cite{zmqguide}. ZeroMQ to uniwersalna implementacja różnych wzorów komunikacji niezależna od języka i warstwy transportowej. Istnieją oficjalne biblioteki ZeroMQ przeznaczone do wykorzystania w projektach w językach  C++, Rust, Java, Python i wielu innych. Jako warstwa transportowa wykorzystane mogą być mechanizmy komunikacji wewnątrzprocesowej, międzyprocesowej i protokół TCP/IP oraz dowolne ich kombinację. Wzorami dostępnymi w kolejkach ZeroMQ, które zostaną wykorzystane w projekcie są:
 
-Rysunku (\ref{comm}) prezentuje poszczególne moduły wraz oraz kanały komunikacji. Na niebiesko zaznaczone zostały kolejki TCP/IP, a na czerwono kolejki wykorzystujące mechanizmy IPC. Dla zwiększenia czytelności, kolejki w warstwie miedzy procesowej nie zostały zaznaczone na rysunku.
+\begin{itemize}
+\item PUB--SUB -- jednokierunkowa komunikacja publikujący --  subskrybujący. Jest to połączenie jeden do wielu.  Wielu subskrybujących ma możliwość podłączenia się do jednego publikującego i zasubskrybowania określonych wiadomości (zdefiniowanych przez prefix). Publikujący rozsyła wiadomości do wszystkich podłączonych subskrybentów, którzy subskrybują dany typ wiadomości.
+
+\item PAIR--PAIR -- uniwersalne połączenie jeden do jeden. Tworzy połączenie dwóch socketów, umożliwiające dwukierunkową komunikacje. Stanowi bezpośredni odpowiednich Unixowych pipe'ów lub surowego protokołu TCP.
+
+\item REQ--REP -- model komunikacji klient serwer w której serwer (REP -- replyer) odpowiada na zapytania klienta (REQ -- requester). W modelu wielu klientów może odpytywać serwer, a ich żądania są kolejno obsługiwane i wysyłana jest na nie odpowiedź.
+\end{itemize}
+
+Oprócz wyżej przedstawionych istnieje również wiele wariacji modeli komunikacji pozwalające m. in. na rozdzielanie pracy na wiele serwerów (load balance) lub przekierowywanie wiadomości ze zmianą warstwy transportowej lub podsłuchem (proxy).\\
+
+Rysunek (\ref{comm}) prezentuje poszczególne moduły oraz kanały komunikacji. Na niebiesko zaznaczone zostały kolejki TCP/IP, a na czerwono kolejki wykorzystujące mechanizmy IPC. Dla zwiększenia czytelności, kolejki w warstwie miedzy procesowej nie zostały zaznaczone na rysunku.
 
 \newpage
  \begin{figure}[!h]
   \centering
   \includegraphics[width=1.2\textwidth, angle=90]{ZMQinMINIUAV.drawio.png}
-  \caption{Architektura systemu -- schemat komunikacji}
+  \caption{Schemat komunikacji}
   \label{comm}
  \end{figure}
 
