@@ -176,7 +176,9 @@ Nr rewizji & Data & Autor & Opis \\
 \hline
   1.0 & 16.10.23 & Wojciech Gajda \newline Igor Faliszewski & Wydanie zgłoszone do L1 \\
 \hline
-  1.1 & 16.10.23 & Wojciech Gajda \newline Igor Faliszewski & Wprowadznie poprawek po L1 \\
+  1.1 & 16.10.23 & Wojciech Gajda \newline Igor Faliszewski & Wprowadzenie poprawek po L1 \\
+\hline
+  1.2 & 5.11.23 & Wojciech Gajda \newline Igor Faliszewski & Wydanie zgłoszone do L2 \\
 \hline
 \end{tabular}
 \caption{Historia zmian}
@@ -339,9 +341,8 @@ W tabeli (\ref{non_func}) przedstawiono wymagania niefunkcjonalne, które musi s
 	\label{non_func}
 \end{table}
 
-\begin{comment}
+\subsection{Architektura}
 
-\section{Architektura}
 System został podzielony na moduły. Moduły komunikują się między sobą poprzez kolejki ZeroMQ. Jako warstwa transportowa wykorzystane są mechanizmy komunikacji wewnątrzprocesowej, międzyprocesowej i protokół TCP/IP. Poszczególne moduły odpowiadają obiektom z domeny projektu i realizują następujące zadania:\\
 
 \textbf{UAV\_physic\_engine} -- moduł odpowiedzialny symulację dynamiki statku powietrznego, uwzględniając wszystkie jego własciwości mechaniczne i wpływ otoczenia. Oblicza stan pojedynczego BSP w czasie rzeczywistym. \\
@@ -356,6 +357,14 @@ System został podzielony na moduły. Moduły komunikują się między sobą pop
 
 \textbf{UAV\_visualization} -- moduł odpowiedzialny za wyświetlenie  interfejsu użytkownika oraz obecnego stanu symulacji. Przekazuje dane wejściowe z kontrolera do systemu. Stanowi interfejs komunikacji użytkownika z systemem. \\
 
+%TODO waterfall wywołan
+
+\newpage
+
+\subsection{Komunikacja}
+
+%TODO troszeczke rozwnąć
+
 Rysunku (\ref{comm}) prezentuje poszczególne moduły wraz oraz kanały komunikacji. Na niebiesko zaznaczone zostały kolejki TCP/IP, a na czerwono kolejki wykorzystujące mechanizmy IPC. Dla zwiększenia czytelności, kolejki w warstwie miedzy procesowej nie zostały zaznaczone na rysunku.
 
 \newpage
@@ -367,6 +376,29 @@ Rysunku (\ref{comm}) prezentuje poszczególne moduły wraz oraz kanały komunika
  \end{figure}
 
 \newpage
+
+
+\subsection{Opis komponentów}
+
+%TODO kod jest bogato okomentowanyt i wygenerowane zostały doxygen
+
+
+\newpage
+
+\subsection{Graficzny interfejs użykownika}
+
+%TODO gra  i serwer
+
+
+\newpage
+
+\subsection{Interfejs zewnętrzny}
+
+%TODO config file z aggregatora, 
+
+
+\newpage
+
 
 \subsection{Dobór technologii}
 
@@ -414,7 +446,7 @@ Do zrealizowania wizualizacji zostanie wykorzystany język Java. Obiektowość j
 \ \\ 
 Każdy z modułów znajduje się w oddzielnym repozytorium Git na platformie Github. Dla ułatwienia pracy z wykorzystaniem Github Actions przygotowane zostały odpowiednie mechanizmy CI/CD.
 
-\end{comment}
+
 
 \newpage
 \section{Harmonogram projektu}
@@ -523,7 +555,8 @@ Pozytywne & Negatywne\\
 \end{table}
 
 
-
+\newpage
+\section{Załączniki}
 
 
 \newpage
