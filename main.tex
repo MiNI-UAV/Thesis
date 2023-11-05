@@ -361,12 +361,11 @@ System został podzielony na moduły. Poszczególne moduły odpowiadają obiekto
 
 \subsection{Opis działania systemu}
 
-Centralnym punktem aplikacji jest moduł aggregator. Stanowi on główna aplikację serwera, bez interfejsu graficznego. Jest on uruchamiany w pierwszej kolejności. Po uruchomieniu aggregatoru uruchamiany jako podproces jest moduł drop physic i aggregator nawiązuje z nim połączenie. Oba moduły pozostają w stanie bezczynności aż do podłączenia się pierwszego użytkownika. Po uruchomieniu wizualizacji komunikuje się ona z serwerem i prosi o utworzenie nowego statku powietrznego. W odpowiedzi na to polecenie aggregator uruchamia jako swoje podprocesy physic engine i controller. Po uruchomieniu para procesów synchronizuje się ze sobą i rozpoczyna symulację. Na każdy statek znajdujący się w symulacji przypada jeden para procesów physic engine i controller. Ponadto każdy statek jest kontrolowany z poziomu jednej konkretnej wizualizacji.\\
+W centralnym punkcie aplikacji znajduje się moduł agregatora. Stanowi on główną część serwera, jest aplikacją konsolową i nie posiada interfejsu graficznego. Jest zawsze uruchamiany jako pierwszy. Po rozpoczęciu pracy aggregatora, uruchamiany jest moduł "drop physic" jako podproces, a aggregator nawiązuje z nim połączenie. Oba moduły pozostają w stanie bezczynności do momentu podłączenia się pierwszego użytkownika. Nowy użytkownik dodawany jest przez uruchomienie wizualizacji. Po uruchomieniu wizualizacji, komunikuje się ona z serwerem i prosi o utworzenie nowego statku powietrznego. W odpowiedzi na to żądanie, aggregator uruchamia jako swoje podprocesy "physic engine" i "controller".Następnie para procesów synchronizuje się ze sobą i rozpoczyna symulację. Każdemu symulowanemu statkowi powietrznemu odpowiada para procesów "physic engine" i "controller". Ponadto, każdy statek jest kontrolowany z poziomu konkretnej wizualizacji.
 
-W trakcie działania systemu aggregator stanowi pośrednika w komunikacji wizualizacji z procesami silnika fizycznego i regulatora. Przesyła instrukcje sterujące z wizualizacji do odpowiedniej symulacji fizycznej. Agreguje stany ze wszystkich aktywnych symulacji i przesyła je do wizualizacji. Ponadto zarządza procesami strzału, upuszczenia ładunku i kolizji. \\
+W trakcie pracy systemu, aggregator pełni rolę pośrednika w komunikacji między wizualizacją a procesami silnika fizycznego i regulatora. Przesyła instrukcje sterujące z wizualizacji do odpowiedniej symulacji fizycznej, agreguje stany ze wszystkich aktywnych symulacji i przesyła je z powrotem do wizualizacji. Ponadto, zarządza procesami strzału, upuszczania ładunku i kolizji.
 
-
-Po odłączeniu się wizualizacji od serwera, procesy związany z danym statkiem są kończone.
+Po odłączeniu się wizualizacji od serwera, procesy związane z danym statkiem są zamykane.
 
 
 \subsection{Opis komponentów}
