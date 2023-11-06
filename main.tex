@@ -402,11 +402,85 @@ Rysunek (\ref{comm}) prezentuje poszczególne moduły oraz kanały komunikacji. 
 
 \subsection{Graficzny interfejs użykownika}
 
-%TODO gra  i serwer
+Graficzny interfejs użytkownika składa się z interfejsu serwera oraz interfejsu wizualizacji. 
 
+\subsubsection*{Serwer}
+
+Interfejs serwera składa się komunikatów własnych oraz otrzymywanych od poszczególnych modułów wyświetlanych w oknie konsoli. Komunikaty są dodatkowo oznaczone kolorami odpowiadającymi poszczególnym modułom, bądź ostrzegającymi o błędach, jak pokazano na rysunkach \ref{gui_server1}, \ref{gui_server2} i \ref{gui_server3}.
+
+\subsubsection*{Wizualizacja}
+
+Interfejs graficzny wizualizacji składa się z okna konfiguracji przypisań kontrolera pokazanego na rysunku \ref{gui_bindings1}, ekranu ładowania widocznego na rysunku \ref{gui_loading} oraz właściwego widoku wizualizacji ukazanego na rysunkach \ref{gui_game1}, \ref{gui_game2}, \ref{gui_game3} i \ref{gui_game4}. \\
+
+Graficzny interfejs użytkownika właściwego widoku wizualizacji składa się z widoku jednej z kamer do wyboru oraz kokpitu. Kokpit w lewym dolnym rogu zawiera radar pozwalający na wykrycie obcych BSP w okolicy, w prawym dolnym rogu znajduje się schemat silników BSP gdzie możemy odczytać ich prędkość obrotu, a w prawym górnym rogu jest pokazany stan wyposażenia kontrolowanego BSP. Ponadto, w kokpicie na dole ekranu znajduje się sztuczny horyzont, którego wizualizacja zgodna jest z powszechnie stosowaną konstrukcją. Pozwala on na uzyskanie informacji o miejscu BSP w przestrzeni, jego orientacji i prędkościach. Ponadto, w lewym górnym rogu sztucznego horyzontu znajduje się obecny tryb lotu BSP, a parametry przez ten tryb narzucane są narysowane na pozostałych fragmentach sztucznego horyzontu. Użytkownik może również włączyć tryb mapy, aby zobaczyć swoje położenia w świecie symulacji.
 
 \newpage
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{gui_server_start.png}
+	\caption{Interfejs graficzny serwera w momencie startu.}
+	\label{gui_server1}
+\end{figure}
 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{gui_server_drone.png}
+	\caption{Interfejs graficzny serwera w momencie dołączenia nowego klienta wizualizacji.}
+	\label{gui_server2}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{gui_server_exit.png}
+	\caption{Interfejs graficzny serwera w momencie wyłączenia serwera.}
+	\label{gui_server3}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{bindings1.png}
+	\caption{Ekran przypisania osi sterowania.}
+	\label{gui_bindings1}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{loading_screen.png}
+	\caption{Ekran ładowania.}
+	\label{gui_loading}
+\end{figure}
+
+\newpage
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{game_view.png}
+	\caption{Interfejs graficzny wizualizacji w widoku trzecioosobowym.}
+	\label{gui_game1}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{game_view_map.png}
+	\caption{Interfejs graficzny wizualizacji z włączonym widokiem mapy.}
+	\label{gui_game2}
+\end{figure}
+
+\newpage
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{game_view_fpp.png}
+	\caption{Interfejs graficzny wizualizacji w widoku pierwszoosobowym.}
+	\label{gui_game3}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{game_view_observer.png}
+	\caption{Interfejs graficzny wizualizacji w widoku obserwatora.}
+	\label{gui_game4}
+\end{figure}
+
+\newpage
 \subsection{Interfejs zewnętrzny}
 
 Konfiguracja systemu przed uruchomieniem odbywa się poprzez modyfikację plików konfiguracyjnych i zasobów (asset'ów). Pliki konfiguracyjne dotyczą:
@@ -595,8 +669,7 @@ Pozytywne & Negatywne\\
 \item aircraft\_template.xml -- szablon pliku konfiguracyjnego statek powietrzny
 \item aggregator\_config.yaml -- szablon pliku konfiguracyjnego modułu aggregator
 \item visualization\_config.yaml -- szablon pliku konfiguracyjnego modułu wizualizacji
-\item binding\_template.yaml -- szablon pliku konfiguracyjnego kontroler
-%TODO po opisaniu dodaj pliki do folderu z załącznikami
+\item bindings\_template.yaml -- szablon pliku konfiguracyjnego kontroler
 \end{itemize}
 
 

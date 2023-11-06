@@ -1,0 +1,82 @@
+######## Bindings Config ########
+bindingsConfig:
+  # Determines whether to open bindings generator menu on start-up.
+  generateOnStartUp: false
+  # File to source bindings from or write bindings to on generation.
+  source: bindings/bindings_xbox_1.yaml
+######## Server Settings ########
+serverSettings:
+  # Server address to connect to.
+  serverAddress: 127.0.0.1
+  # Source to download assets from if needed.
+  assetsSourceUrl: https://github.com/MiNI-UAV/UAV_aggregator/releases/download/
+  # Determines whether client triggers assets download on checksum missmatch.
+  downloadMissingAssets: true
+  # Determines which assets are going to be used when server checksum is ignored. 
+  # Comment out if above is true.
+  # assetsToUse: 4beda679
+  # Time interval in milliseconds between sending of heartbeat message.
+  heartBeatIntervalMs: 500
+  # Time in milliseconds after the app is to be closed after losing connection to server.
+  serverTimoutMs: 10000
+######## Drone Settings ########
+droneSettings:
+  # Name of the controlled drone.
+  droneName: Maurice
+  # Aircraft parameters config to use.
+  droneConfig: quadcopter.xml
+  # Default camera mode on startup. Available are: DroneCamera, RacingCamera, HorizontalCamera, HardFPV, SoftFPV, ObserverCamera and FreeCamera.
+  defaultCamera: HorizontalCamera
+  # Chosen modes that will be available to request from server. Should be sourced from "assets/data/available_control_modes.yaml".
+  modes:
+    - QPOS
+    - QANGLE
+    - QACRO
+#    - FMANUAL
+#    - RMANUAL
+######## Scene Settings ########
+sceneSettings:
+  # Decides whether to draw an in-world model showing coordinates demanded by positional control mode.
+  drawInWorldDemandedPositionalCoords: true
+  # Time of the day to determin shadows. -45 Sunrise, 45 Sunset
+  sunAngleDayCycle: 38
+  # Time of the year to determine shadows. 15 Winter, 60 Summer (90 is not allowed)
+  sunAngleYearCycle: 124
+  # XYZ vector representing firt person camera coordinate offset from the aircraft.
+  cameraFPP: [1, 0, 0.1]
+  # XYZ vector representing third person camera coordinate offset from the aircraft.
+  cameraTPP: [-1.5, 0, -.75]
+######## Graphics Settings ########
+graphicsSettings:
+  # App window width in pixels.
+  windowWidth: 1920
+  # App window height in pixels.
+  windowHeight: 1080
+  # App fullscreen mode. Available modes: Window, FullScreen, Borderless.
+  fullScreenMode: Borderless
+  # Determines on which monitor the app will be opened.
+  monitor: 0
+  # The scale of the GUI. Default: 1
+  guiScale: 1
+  # Field of view of the camera. 0 < fov < 180.
+  fov: 100
+  # Determines wheter to use gamma correction.
+  useGammaCorrection: true
+  # Gamma correction paramter.
+  gammaCorrection: 2.2
+  # Determines wheter shadows should be rendered.
+  useShadows: true
+  # Texture resolution of shadows.
+  shadowsTextureResolution: 6072
+  # Rendering distance of shadows.
+  shadowsRenderingDistance: 300
+######## Ports ########
+ports:
+  # Port where notification socket is bound
+  notifications: 8000
+  # Port where drone requester socket is bound
+  droneRequester: 9000
+  # Port where drone state socket is bound
+  droneStatuses: 9090
+  # Port where object state socket is bound
+  projectileStatuses: 9100

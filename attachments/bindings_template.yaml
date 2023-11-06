@@ -1,0 +1,78 @@
+---
+########## Steering ##########
+steering:
+# Bound steering axis example.
+- # Axis id to bind to the steering bindings array element.
+  axis: 1
+  # Axis inversion
+  inverse: true
+  # Deadzone area from the trim value.
+  deadzone: 0.05
+  # Minimum axis value
+  min: -1.0
+  # Maximum axis value.
+  max: 1.0
+  # Axis trim value.
+  trim: 0
+#- # Rest of the axis bindings...  
+########## Actions ##########
+actions:
+  # Shoot action.
+  shoot:
+  # Bound axis example.
+  - # Bound axis id.
+    axis: 5
+    # Lower bound value on which the action is executed.
+    lowerBound: 0.0
+    # Upper bound value on which the action is executed.
+    upperBound: 1.05
+  #- # Additational alternative bindings for an action...
+  # Drop action.
+  drop:
+  - # drop binding...
+  release:
+  # Bound button example.
+  - # Bound button id.
+    button: 3
+    # Button inverse.
+    inverse: false
+  respawn:
+  - # respawn binding...
+  nextAmmo:
+  - # nextAmmo binding...
+  nextCargo:
+  - # nextCargo binding...
+  map:
+  # Bound key example.
+  - # Bound key id.
+    key: 77
+  mapZoomIn:
+  - # mapZoomIn binding...
+  mapZoomOut:
+  - # mapZoomOut binding...
+  prevCamera:
+  - # prevCamera binding...
+  nextCamera:
+  - # nextCamera binding...
+  freeCamera:
+  - # freeCamera camera binding...
+  droneCamera:
+  - # droneCamera camera binding...
+  observerCamera:
+  - # observerCamera camera binding...
+  racingCamera:
+  - # racingCamera camera binding...
+  horizontalCamera:
+  - # horizontalCamera camera binding...
+  hardFPV:
+  - # hardFPV camera binding...
+  softFPV:
+  - # softFPV camera binding...
+########## Actions ##########
+modes:
+# Mode array
+- # Binding for a selected mode.
+  - button: 14
+    inverse: false
+  #- # Additional bindings for the selected mode...
+#- # Additional modes to bind.
