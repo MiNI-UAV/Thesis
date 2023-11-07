@@ -207,6 +207,8 @@ Nr rewizji & Data & Autor & Opis \\
 
 \textbf{Agregator} --  program komputerowy, którego zadaniem jest zarządzaniem stanem aplikacji, obsługa przyłączających się aplikacji klienckich i zarządzanie procesami.\\
 
+\textbf{Zasoby wizualizacji, assety} -- Modele i grafiki niezbędne do pracy aplikacji klienckiej.\\
+
 
 \newpage
 
@@ -495,7 +497,32 @@ Konfiguracja systemu przed uruchomieniem odbywa się poprzez modyfikację plikó
 Pliki konfiguracyjne zostały w całości skomentowane przy pomocy komentarzy odpowiednich dla plików XML oraz YAML  i załączone do pracy.\\
 
 
-Zasoby zawierają modele i grafiki niezbędne do pracy wizualizacji. W skład zasobów wchodzą... %TODO
+Zasoby zawierają modele i grafiki niezbędne do pracy wizualizacji. Wersja zasobów to pierwsze 8 znaków numeru checksum, który jest generowany na podstawie zawartości assetów i przekazywany wizualizacji przez serwer, pozwalając użytkownikowi pobrać brakujące zasoby w razie gdy ich nie posiada. Pobrana zawartość jest umieszczana w katalogu nazwanego od wersji zasobów. Zawiera on następujące katalogi:
+
+\subsubsection*{Core}
+\begin{itemize}
+	\item \textbf{GUI} -- Grafiki niezbędne do wyświetlenia elementów interfejsu graficznego użytkownika.
+	\item \textbf{projectile} -- Model i tekstury pocisku w katalogach \textbf{model} i \textbf{textures}.
+	\item \textbf{xMark} -- Model i tekstury markera 3D w katalogach \textbf{model} i \textbf{textures}.
+\end{itemize}
+\subsubsection*{Data}
+\begin{itemize}
+\item "available\_control\_modes.yaml" -- Plik konfiguracyjny zawierający dozwolone tryby kontroli lotu. Przykładowy plik konfiguracyjny został załączony jako "available\_control\_modes\_template.yaml".
+\end{itemize}
+\subsubsection*{Drones}
+\begin{itemize}
+\item \textbf{\textbf{\textit{NazwaModeluBSP}}} -- Katalogi zawierające modele wraz z teksturami dla konkretnego modelu BSP w folderach \textbf{model} i \textbf{textures}.
+\end{itemize}
+\subsubsection*{Core}
+\begin{itemize}
+	\item \textbf{\textbf{\textit{NazwaMapy}}} -- Katalogi zawierające modele oraz tekstury mapy w folderach \textbf{model} i \textbf{textures}. W folderze \textbf{model} dodatkowo znajduje się obraz mapy z lotu ptaka pod nazwą "minimap.png".
+\end{itemize}
+
+W katalogu \textbf{model} domyślnie znajduje się model obiektu w postaci pliku z rozszerzeniem GLTF, a więc "model.gltf" wraz z odpowiadającym mu "model.bin" oraz pliku z rozszerzeniem OBJ: "model.obj". \\
+
+
+Gdy wizualizacja wykryje brakujące tekstury, zastępowane są one przez grafikę brakującej tekstury "missing.jpg" znajdującą się w katalogu \textbf{assets}.\\
+
 
 \newpage
 
@@ -664,7 +691,7 @@ Pozytywne & Negatywne\\
 \item UAV\_controller\_doc.pdf -- dokumentacja modułu UAV controller
 \item UAV\_common\_doc.pdf -- dokumentacja wspólnej biblioteki dla modułów napisanych w języku C++
 \item UAV\_aggregator\_doc.zip -- dokumentacja modułu UAV aggregator w formie strony HTML.
-%TODO dokumentacja Java Doc?
+\item UAV\_visualization\_doc.zip -- dokumentacja modułu UAV visualization w formie strony HTML.
 
 \item aircraft\_template.xml -- szablon pliku konfiguracyjnego statek powietrzny
 \item aggregator\_config.yaml -- szablon pliku konfiguracyjnego modułu aggregator
