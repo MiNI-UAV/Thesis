@@ -363,9 +363,9 @@ System został podzielony na moduły. Poszczególne moduły odpowiadają obiekto
 
 \subsection{Opis działania systemu}
 
-W centralnym punkcie aplikacji znajduje się moduł agregatora. Stanowi on główną część serwera, jest aplikacją konsolową i nie posiada interfejsu graficznego. Jest zawsze uruchamiany jako pierwszy. Po rozpoczęciu pracy aggregatora, uruchamiany jest moduł "drop physic" jako podproces, a aggregator nawiązuje z nim połączenie. Oba moduły pozostają w stanie bezczynności do momentu podłączenia się pierwszego użytkownika. Nowy użytkownik dodawany jest przez uruchomienie wizualizacji. Po uruchomieniu wizualizacji, komunikuje się ona z serwerem i prosi o utworzenie nowego statku powietrznego. W odpowiedzi na to żądanie, aggregator uruchamia jako swoje podprocesy "physic engine" i "controller".Następnie para procesów synchronizuje się ze sobą i rozpoczyna symulację. Każdemu symulowanemu statkowi powietrznemu odpowiada para procesów "physic engine" i "controller". Ponadto, każdy statek jest kontrolowany z poziomu konkretnej wizualizacji.
+W centralnym punkcie aplikacji znajduje się moduł agregatora. Stanowi on główną część serwera, jest aplikacją konsolową i nie posiada interfejsu graficznego. Jest zawsze uruchamiany jako pierwszy. Po rozpoczęciu pracy aggregatora, uruchamiany jest moduł "drop physic" jako podproces, a aggregator nawiązuje z nim połączenie. Oba moduły pozostają w stanie bezczynności do momentu podłączenia się pierwszego użytkownika. Nowy użytkownik dodawany jest przez uruchomienie wizualizacji. Po uruchomieniu wizualizacji, komunikuje się ona z serwerem i prosi o~utworzenie nowego statku powietrznego. W odpowiedzi na to żądanie, aggregator uruchamia jako swoje podprocesy "physic engine" i "controller".Następnie para procesów synchronizuje się ze sobą i rozpoczyna symulację. Każdemu symulowanemu statkowi powietrznemu odpowiada para procesów "physic engine" i "controller". Ponadto, każdy statek jest kontrolowany z poziomu konkretnej wizualizacji.\\
 
-W trakcie pracy systemu, aggregator pełni rolę pośrednika w komunikacji między wizualizacją a procesami silnika fizycznego i regulatora. Przesyła instrukcje sterujące z wizualizacji do odpowiedniej symulacji fizycznej, agreguje stany ze wszystkich aktywnych symulacji i przesyła je z powrotem do wizualizacji. Ponadto, zarządza procesami strzału, upuszczania ładunku i kolizji.
+W trakcie pracy systemu, aggregator pełni rolę pośrednika w komunikacji między wizualizacją a procesami silnika fizycznego i regulatora. Przesyła instrukcje sterujące z wizualizacji do odpowiedniej symulacji fizycznej, agreguje stany ze wszystkich aktywnych symulacji i przesyła je z powrotem do wizualizacji. Ponadto, zarządza procesami strzału, upuszczania ładunku i kolizji.\\
 
 Po odłączeniu się wizualizacji od serwera, procesy związane z danym statkiem są zamykane.
 
@@ -402,19 +402,19 @@ Rysunek (\ref{comm}) prezentuje poszczególne moduły oraz kanały komunikacji. 
 
 \newpage
 
-\subsection{Graficzny interfejs użykownika}
+\subsection{Graficzny interfejs użytkownika}
 
 Graficzny interfejs użytkownika składa się z interfejsu serwera oraz interfejsu wizualizacji. 
 
 \subsubsection*{Serwer}
 
-Interfejs serwera składa się komunikatów własnych oraz otrzymywanych od poszczególnych modułów wyświetlanych w oknie konsoli. Komunikaty są dodatkowo oznaczone kolorami odpowiadającymi poszczególnym modułom, bądź ostrzegającymi o błędach, jak pokazano na rysunkach \ref{gui_server1}, \ref{gui_server2} i \ref{gui_server3}.
+Interfejs serwera zawiera komunikaty dotyczące pracy agregatora oraz otrzymywane od poszczególnych modułów, które są wyświetlane w oknie konsoli. Komunikaty są dodatkowo oznaczone kolorami różniącymi dla poszczególnych modułów, jak pokazano na rysunkach (\ref{gui_server1}), (\ref{gui_server2}) i (\ref{gui_server3}).
 
 \subsubsection*{Wizualizacja}
 
-Interfejs graficzny wizualizacji składa się z okna konfiguracji przypisań kontrolera pokazanego na rysunku \ref{gui_bindings1}, ekranu ładowania widocznego na rysunku \ref{gui_loading} oraz właściwego widoku wizualizacji ukazanego na rysunkach \ref{gui_game1}, \ref{gui_game2}, \ref{gui_game3} i \ref{gui_game4}. \\
+Interfejs graficzny wizualizacji składa się z okna konfiguracji przypisań kontrolera pokazanego na rysunku (\ref{gui_bindings1}), ekranu ładowania widocznego na rysunku (\ref{gui_loading}) oraz właściwego widoku wizualizacji ukazanego na rysunkach (\ref{gui_game1}), (\ref{gui_game2}), (\ref{gui_game3}) i (\ref{gui_game4}). \\
 
-Graficzny interfejs użytkownika właściwego widoku wizualizacji składa się z widoku jednej z kamer do wyboru oraz kokpitu. Kokpit w lewym dolnym rogu zawiera radar pozwalający na wykrycie obcych BSP w okolicy, w prawym dolnym rogu znajduje się schemat silników BSP gdzie możemy odczytać ich prędkość obrotu, a w prawym górnym rogu jest pokazany stan wyposażenia kontrolowanego BSP. Ponadto, w kokpicie na dole ekranu znajduje się sztuczny horyzont, którego wizualizacja zgodna jest z powszechnie stosowaną konstrukcją. Pozwala on na uzyskanie informacji o miejscu BSP w przestrzeni, jego orientacji i prędkościach. Ponadto, w lewym górnym rogu sztucznego horyzontu znajduje się obecny tryb lotu BSP, a parametry przez ten tryb narzucane są narysowane na pozostałych fragmentach sztucznego horyzontu. Użytkownik może również włączyć tryb mapy, aby zobaczyć swoje położenia w świecie symulacji.
+Graficzny interfejs użytkownika w wizualizacji składa się z widoku jednej z kamer do wyboru oraz kokpitu. Kokpit w lewym dolnym rogu zawiera radar pozwalający na wykrycie BSP w okolicy. W prawym dolnym rogu znajduje się schemat silników BSP, gdzie możemy odczytać ich prędkości obrotowe. W prawym górnym rogu jest pokazany stan wyposażenia kontrolowanego BSP. Ponadto na kokpicie na dole ekranu znajduje się sztuczny horyzont, którego wizualizacja zgodna jest z powszechnie stosowaną konstrukcją. Pozwala on na uzyskanie informacji o pozycji BSP w przestrzeni, jego orientacji i prędkościach. W lewym górnym rogu sztucznego horyzontu znajduje się obecny tryb lotu BSP. Użytkownik może również włączyć tryb mapy, aby zobaczyć swoje położenia w świecie symulacji.
 
 \newpage
 \begin{figure}[!h]
@@ -437,7 +437,6 @@ Graficzny interfejs użytkownika właściwego widoku wizualizacji składa się z
 	\caption{Interfejs graficzny serwera w momencie wyłączenia serwera.}
 	\label{gui_server3}
 \end{figure}
-
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{bindings1.png}
@@ -492,36 +491,44 @@ Konfiguracja systemu przed uruchomieniem odbywa się poprzez modyfikację plikó
 \item Parametrów agregatora -- UAV\_aggregator/configs/config.yaml
 \item Parametrów wizualizacji -- UAV\_visualization/config.yaml
 \item Parametrów kontrolera --  UAV\_visualization/bindings/template.yaml
+\item Opisu dostępnych trybów lotu --\\ UAV\_aggregator/assets/data/available\_control\_modes.yaml
 \end{itemize}
 
 Pliki konfiguracyjne zostały w całości skomentowane przy pomocy komentarzy odpowiednich dla plików XML oraz YAML  i załączone do pracy.\\
 
 
-Zasoby zawierają modele i grafiki niezbędne do pracy wizualizacji. Wersja zasobów to pierwsze 8 znaków numeru checksum, który jest generowany na podstawie zawartości assetów i przekazywany wizualizacji przez serwer, pozwalając użytkownikowi pobrać brakujące zasoby w razie gdy ich nie posiada. Pobrana zawartość jest umieszczana w katalogu nazwanego od wersji zasobów. Zawiera on następujące katalogi:
+Zasoby zawierają modele i grafiki niezbędne do pracy wizualizacji. Wersja zasobów to pierwsze 8 znaków sumy kontrolnej, która jest generowana na podstawie zawartości assetów i przekazywana wizualizacji przez serwer. Pozwala to użytkownikowi pobrać brakujące zasoby w razie, gdy ich jeszcze nie posiada. Pobrana zawartość jest umieszczana w katalogu od nazwie będącej wersją zasobu. Zasób zawiera następujące katalogi:
 
-\subsubsection*{Core}
+\begin{itemize}
+
+\item \textbf{Drones} -- folder zawierający modele 3D statków powietrznych. Zawiera foldery odpowiadające poszczególnym BSP. Nazwa folderu jest tożsama z nazwą BSP.
+\begin{itemize}
+\item \textbf{\textbf{\textit{NazwaModeluBSP}}} -- Katalog zawierający modele wraz z teksturami dla konkretnego modelu BSP w folderach \textbf{model} i \textbf{textures}.
+\end{itemize}
+
+\item \textbf{Maps} -- folder zawierający modele 3D map, które mogą zostać wykorzystane w symulacji. Zawiera foldery odpowiadające poszczególnym mapą. Nazwa folderu jest tożsama z nazwą mapy.
+\begin{itemize}
+	\item \textbf{\textbf{\textit{NazwaMapy}}} -- Katalog modeli danej mapy. Zawiera modele oraz tekstury mapy w folderach \textbf{model} i \textbf{textures}. W folderze \textbf{model} dodatkowo znajduje się obraz mapy z lotu ptaka pod nazwą "minimap.png".
+\end{itemize}
+
+\item \textbf{Data} -- folder zawierający wspólne pliki konfiguracyjne. Obecnie zawiera następujące pliki:
+\begin{itemize}
+	\item "available\_control\_modes.yaml" -- Plik konfiguracyjny zawierający dozwolone tryby kontroli lotu.
+\end{itemize}
+
+\item \textbf{Core} -- folder zawierający pozostałe modele 3D i elementy interfejsu. Zawiera następujące podfoldery:
 \begin{itemize}
 	\item \textbf{GUI} -- Grafiki niezbędne do wyświetlenia elementów interfejsu graficznego użytkownika.
 	\item \textbf{projectile} -- Model i tekstury pocisku w katalogach \textbf{model} i \textbf{textures}.
 	\item \textbf{xMark} -- Model i tekstury markera 3D w katalogach \textbf{model} i \textbf{textures}.
 \end{itemize}
-\subsubsection*{Data}
-\begin{itemize}
-\item "available\_control\_modes.yaml" -- Plik konfiguracyjny zawierający dozwolone tryby kontroli lotu. Przykładowy plik konfiguracyjny został załączony jako "available\_control\_modes\_template.yaml".
-\end{itemize}
-\subsubsection*{Drones}
-\begin{itemize}
-\item \textbf{\textbf{\textit{NazwaModeluBSP}}} -- Katalogi zawierające modele wraz z teksturami dla konkretnego modelu BSP w folderach \textbf{model} i \textbf{textures}.
-\end{itemize}
-\subsubsection*{Core}
-\begin{itemize}
-	\item \textbf{\textbf{\textit{NazwaMapy}}} -- Katalogi zawierające modele oraz tekstury mapy w folderach \textbf{model} i \textbf{textures}. W folderze \textbf{model} dodatkowo znajduje się obraz mapy z lotu ptaka pod nazwą "minimap.png".
+
 \end{itemize}
 
-W katalogu \textbf{model} domyślnie znajduje się model obiektu w postaci pliku z rozszerzeniem GLTF, a więc "model.gltf" wraz z odpowiadającym mu "model.bin" oraz pliku z rozszerzeniem OBJ: "model.obj". \\
+W katalogach \textbf{model} zawarty jest model obiektu w postaci pliku z rozszerzeniem GLTF, a więc "model.gltf" wraz z odpowiadającym mu "model.bin" oraz pliku z rozszerzeniem OBJ: "model.obj". Plik GLTF wykorzystywany jest w wizualizacji, a OBJ służy rozpoznawaniu kolizji.\\
 
 
-Gdy wizualizacja wykryje brakujące tekstury, zastępowane są one przez grafikę brakującej tekstury "missing.jpg" znajdującą się w katalogu \textbf{assets}.\\
+W zasobie znajduje się również tekstura domyślna ładowana w przypadku nieznalezienia wymaganej tekstury.\\
 
 
 \newpage
@@ -697,6 +704,7 @@ Pozytywne & Negatywne\\
 \item aggregator\_config.yaml -- szablon pliku konfiguracyjnego modułu aggregator
 \item visualization\_config.yaml -- szablon pliku konfiguracyjnego modułu wizualizacji
 \item bindings\_template.yaml -- szablon pliku konfiguracyjnego kontroler
+\item available\_control\_modes.yaml -- szablon pliku konfiguracyjnego trybów lotu
 \end{itemize}
 
 
