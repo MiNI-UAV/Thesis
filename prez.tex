@@ -1,0 +1,157 @@
+% PROSZĘ KOMPILOWAĆ TEN DOKUMENT ZA POMOCĄ SILNIKA XELATEX
+% W PRZECIWNYM RAZIE NALEŻY USUNĄĆ PAKIET fontspec ORAZ USTAWIENIA FONTU
+% Z PLIKU styles/prez_wmini_pl.sty (PIERWSZE TRZY LINIJKI)
+% W PRZYPADKU BRAKU FONTU Adagio Slab NALEŻY ZGŁOSIĆ SIĘ DO BIP PW O JEGO UDOSTĘPNIENIE,
+% ZAŁADOWAĆ INNY KRÓJ CZCIONKI LUB ZAKOMENTOWAĆ/USUNĄĆ USTAWIENIA FONTU
+
+\documentclass[aspectratio=169]{beamer}
+
+\usepackage{styles/prez_wmini_pl}
+
+
+% ------------------ Ustawienia użytkownika ------------------
+% kolor tytułu prezentacji; zalecany white lub grafitowy.
+% Poza tym można użyć zdefiniowanych w pakiecie kolorów:
+% sloneczny, morelowy, mietowy, mokka, grafitowy, sliwkowy, szafirowy, wrzosowy
+% lub wybrać sobie kolor z pakietu xcolor
+\colorlet{title_color}{grafitowy}
+
+\title{Tytuł prezentacji. Lorem ipsum dolor sit amet}
+%\subtitle{Podtytuł consectetur adispiscing elit}
+\author{John Doe \and  Jan Kowalski}
+\date{} % można tam wpisać datę jaką się chce lub zakomentować dla daty dzisiejszej
+
+
+
+% ------------------ Początek prezentacji ------------------
+
+\begin{document}
+\sloppy
+
+% Slajd tytułowy
+{
+\maketitleframe 
+}
+
+
+
+
+\begin{frame}[allowframebreaks]
+  \frametitle{Otoczenia}
+  \begin{theorem}
+    There exists an infinite set.
+  \end{theorem}
+  \begin{definition}
+  Definicja czegoś.
+  \end{definition}
+  \begin{corollary}
+  Wniosek
+  \end{corollary}
+  \begin{lemma}
+  Lemat
+  \end{lemma}
+  \begin{proposition}
+  Stwierdzenie
+  \end{proposition}
+  \begin{proof}
+    This follows from the axiom of infinity.
+  \end{proof}
+  \begin{example}
+    The set of natural numbers is infinite.
+  \end{example}
+  \begin{block}{Blok o dowolnym nagłówku}
+  Bleble
+  \end{block}
+	\begin{alertblock}{Tzw. alert block}
+  		Bleble
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Tytuł slajdu łamanego na strony}
+Przykładowe równanie:
+  \begin{equation}
+    \begin{pmatrix}
+    1 & 0 \\
+    0 & 1
+    \end{pmatrix} \cdot x = b.
+  \end{equation}
+  \color{black}
+Lorem ipsum dolor  sit amet, consectetur  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit  in voluptate  velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Równanie nienumerowane:
+\[
+e = mc^2.
+\]
+\end{frame}
+
+\begin{frame}{Wylistowywanie i pauzy}
+  \begin{itemize}
+  \item {
+    First item.
+    \pause % Tu nastąpi pauza
+  }
+  \item {   
+    Second item.
+  }
+  % Można ustalić kiedy dany element ma się pojawić, używając <n->:
+  \item<3-> {
+    Third item.
+  }
+  \item<4-> {
+    Fourth item.
+  }
+  % można użyć komendy \uncover żeby ,,odkryć'' cokolwiek, nie tylko item
+  \item<5-> {
+    Fifth item. \uncover<6->{Extra text in the fifth item.}
+  }
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Obrazek}
+%\begin{figure}
+%    \centering
+%    \includegraphics[height=0.8\textheight]{nazwaobrazka}
+%
+%    \caption{Caption them all}
+%    \end{figure}
+\end{frame}
+
+% ------------------------------------------------------------
+\begin{frame}[fragile,allowframebreaks]{Środowisko verbatim}
+	\begin{verbatim}
+int main (void)
+{
+  std::vector<bool> is_prime (100, true);
+  for (int i = 2; i < 100; i++)
+    if (is_prime[i])
+      {
+        std::cout << i << " ";
+        for (int j = i; j < 100;
+            is_prime [j] = false, j+=i);
+      }
+  return 0;
+}
+\end{verbatim}
+\end{frame}
+
+
+
+\begin{frame}{Literatura}
+\begin{thebibliography}{10}
+\beamertemplatebookbibitems
+\bibitem{Goldbach1742}[Goldbach, 1742]
+  Christian Goldbach.
+  \newblock A problem we should try to solve before the ISPN '43 deadline,
+  \newblock \emph{Letter to Leonhard Euler}, 1742.
+
+\beamertemplatearticlebibitems
+\bibitem{Goldbach1742}[Goldbach, 1742]
+  Christian Goldbach.
+  \newblock A problem we should try to solve before the ISPN '43 deadline,
+  \newblock \emph{Letter to Leonhard Euler}, 1742.
+\end{thebibliography}
+\end{frame}
+
+
+\end{document}
