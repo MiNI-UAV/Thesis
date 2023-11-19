@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.3) (preloaded format=xelatex 2022.8.14)  13 NOV 2023 19:25
+This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.3) (preloaded format=xelatex 2022.8.14)  19 NOV 2023 20:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -782,34 +782,65 @@ Package inputenc Warning: inputenc package ignored with utf8 based engines.
 
 (C:\Users\Wojtek\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerfontthemeprofess
 ionalfonts.sty))
-No file prez.aux.
+(C:\Users\Wojtek\AppData\Roaming\MiKTeX\tex/latex/booktabs\booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen295
+\lightrulewidth=\dimen296
+\cmidrulewidth=\dimen297
+\belowrulesep=\dimen298
+\belowbottomsep=\dimen299
+\aboverulesep=\dimen300
+\abovetopsep=\dimen301
+\cmidrulesep=\dimen302
+\cmidrulekern=\dimen303
+\defaultaddspace=\dimen304
+\@cmidla=\count349
+\@cmidlb=\count350
+\@aboverulesep=\dimen305
+\@belowrulesep=\dimen306
+\@thisruleclass=\count351
+\@lastruleclass=\count352
+\@thisrulewidth=\dimen307
+)
+(C:\Users\Wojtek\AppData\Roaming\MiKTeX\tex/latex/psnfss\times.sty
+Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
+)
+LaTeX Font Info:    Trying to load font information for TU+phv on input line 62
+.
+LaTeX Font Info:    No file TUphv.fd. on input line 62.
+
+
+LaTeX Font Warning: Font shape `TU/phv/m/n' undefined
+(Font)              using `TU/lmr/m/n' instead on input line 62.
+
+(prez.aux)
 \openout1 = `prez.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 2
-8.
-(d:\Program Files\MiKTeX\tex/latex/base\ts1cmr.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 62.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 6
+2.
+ (d:\Program Files\MiKTeX\tex/latex/base\ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -845,12 +876,10 @@ LaTeX Font Info:    ... okay on input line 28.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 28.
+Package hyperref Info: Link coloring OFF on input line 62.
+(prez.out) (prez.out)
 \@outlinefile=\write5
 \openout5 = `prez.out'.
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
 
 
 (C:\Users\Wojtek\AppData\Roaming\MiKTeX\tex/latex/translator\translator-basic-d
@@ -907,60 +936,57 @@ Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 
 \symlegacymaths=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 28.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 28.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 28.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 28.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 28.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 28.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 28.
-LaTeX Font Info:    Redeclaring math accent \check on input line 28.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 28.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 28.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 28.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 28.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 28.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 28.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 28.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 28.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 28.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 28.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 28.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 28.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 28.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 28.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 28.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 28.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 62.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 62.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 62.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 62.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 62.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 62.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 62.
+LaTeX Font Info:    Redeclaring math accent \check on input line 62.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 62.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 62.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 62.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 62.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 28.
+(Font)              `operators' in the math version `normal' on input line 62.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 28.
+(Font)                  OT1/cmr/m/n --> TU/ptm/m/n on input line 62.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 28.
+(Font)              `operators' in the math version `bold' on input line 62.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 28.
+(Font)                  OT1/cmr/bx/n --> TU/ptm/m/n on input line 62.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 28.
+(Font)                  TU/ptm/m/n --> TU/ptm/m/n on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 28.
+(Font)                  OT1/cmr/m/it --> TU/ptm/m/it on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 28.
+(Font)                  OT1/cmr/bx/n --> TU/ptm/b/n on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/Adagio_Slab(0)/m/n on input line 28
-.
+(Font)                  OT1/cmss/m/n --> TU/phv/m/n on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 28.
+(Font)                  OT1/cmtt/m/n --> TU/pcr/m/n on input line 62.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 28.
+(Font)                  TU/ptm/m/n --> TU/ptm/b/n on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 28.
+(Font)                  OT1/cmr/bx/it --> TU/ptm/b/it on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/Adagio_Slab(0)/b/n on input line 2
-8.
+(Font)                  OT1/cmss/bx/n --> TU/phv/b/n on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 28.
-
-No file prez.nav.
+(Font)                  OT1/cmtt/m/n --> TU/pcr/b/n on input line 62.
+ (prez.nav)
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
 File: img/WMiNI-znak-RGB.pdf Graphic file (type pdf)
@@ -969,52 +995,93 @@ File: img/symbol-PL-mokka.pdf Graphic file (type pdf)
 <use img/symbol-PL-mokka.pdf>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
-[1
+ [1
 
-]
-
-LaTeX Font Warning: Font shape `TU/Adagio_Slab(0)/m/it' undefined
-(Font)              using `TU/Adagio_Slab(0)/m/n' instead on input line 68.
-
+] (prez.toc)
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
-[2
+ [2
 
 ]
-File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
-<use img/Znak_podstawowy_PL.pdf>
- [3
+File: ./images//spitfire.png Graphic file (type bmp)
+<./images//spitfire.png>
+LaTeX Font Info:    Trying to load font information for TU+ptm on input line 10
+6.
+LaTeX Font Info:    No file TUptm.fd. on input line 106.
 
 
-]
-File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
-<use img/Znak_podstawowy_PL.pdf>
- [4
+LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
+(Font)              using `TU/lmr/m/n' instead on input line 106.
 
-
-]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 85.
-
- (d:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
+LaTeX Font Info:    Trying to load font information for U+msa on input line 106
+.
+(d:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 85.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 106
+.
 
 (d:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+File: ./images//quadcopter_fpv.png Graphic file (type bmp)
+<./images//quadcopter_fpv.png>
+File: ./images//missile.png Graphic file (type bmp)
+<./images//missile.png>
+File: ./images//helicopter.png Graphic file (type bmp)
+<./images//helicopter.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [3
+
+]
+File: ./images//spitfire.png Graphic file (type bmp)
+<./images//spitfire.png>
+File: ./images//quadcopter_fpv.png Graphic file (type bmp)
+<./images//quadcopter_fpv.png>
+File: ./images//missile.png Graphic file (type bmp)
+<./images//missile.png>
+File: ./images//helicopter.png Graphic file (type bmp)
+<./images//helicopter.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [4
+
+]
+File: ./images//spitfire.png Graphic file (type bmp)
+<./images//spitfire.png>
+File: ./images//quadcopter_fpv.png Graphic file (type bmp)
+<./images//quadcopter_fpv.png>
+File: ./images//missile.png Graphic file (type bmp)
+<./images//missile.png>
+File: ./images//helicopter.png Graphic file (type bmp)
+<./images//helicopter.png>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
  [5
 
 ]
+File: ./images//spitfire.png Graphic file (type bmp)
+<./images//spitfire.png>
+File: ./images//quadcopter_fpv.png Graphic file (type bmp)
+<./images//quadcopter_fpv.png>
+File: ./images//missile.png Graphic file (type bmp)
+<./images//missile.png>
+File: ./images//helicopter.png Graphic file (type bmp)
+<./images//helicopter.png>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
  [6
 
-
 ]
+File: ./images//spitfire.png Graphic file (type bmp)
+<./images//spitfire.png>
+File: ./images//quadcopter_fpv.png Graphic file (type bmp)
+<./images//quadcopter_fpv.png>
+File: ./images//missile.png Graphic file (type bmp)
+<./images//missile.png>
+File: ./images//helicopter.png Graphic file (type bmp)
+<./images//helicopter.png>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
  [7
@@ -1022,7 +1089,8 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [8
+
+[8
 
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1032,8 +1100,7 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
-
-[10
+ [10
 
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1051,29 +1118,126 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
  [13
 
 ]
-\openout4 = `prez.vrb'.
 
- (prez.vrb)
+LaTeX Font Warning: Font shape `TU/phv/b/n' undefined
+(Font)              using `TU/phv/m/n' instead on input line 137.
+
+
+LaTeX Font Warning: Font shape `TU/phv/m/sc' undefined
+(Font)              using `TU/phv/m/n' instead on input line 137.
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [14
+[14
 
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
  [15
 
-
 ]
-File: beamericonarticle.pdf Graphic file (type pdf)
-<use beamericonarticle.pdf>
-File: beamericonbook.pdf Graphic file (type pdf)
-<use beamericonbook.pdf>
-File: beamericonarticle.pdf Graphic file (type pdf)
-<use beamericonarticle.pdf>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
  [16
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [17
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [18
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [19
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [20
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [21
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [22
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [23
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [24
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [25
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [26
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [27
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [28
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+
+[29
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [30
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [31
+
+]
+File: ./images//dog.jpg Graphic file (type bmp)
+<./images//dog.jpg>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [32
+
+]
+File: ./images//questions.png Graphic file (type bmp)
+<./images//questions.png>
+
+Overfull \vbox (111.84758pt too high) detected at line 247
+ []
+
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+[33
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [34
 
 ]
 \tf@nav=\write6
@@ -1089,25 +1253,16 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `prez.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `prez.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package rerunfilecheck Info: File `prez.out' has not changed.
+(rerunfilecheck)             Checksum: 9CEEAD2E860E4DD3B3B9F85017CF0DF9;1098.
  ) 
 Here is how much of TeX's memory you used:
- 24324 strings out of 410670
- 509426 string characters out of 2820971
- 826824 words of memory out of 3000000
- 44885 multiletter control sequences out of 15000+600000
- 474411 words of font info for 65 fonts, out of 8000000 for 9000
+ 24492 strings out of 410670
+ 509930 string characters out of 2820971
+ 830565 words of memory out of 3000000
+ 45021 multiletter control sequences out of 15000+600000
+ 477002 words of font info for 75 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 128i,14n,122p,464b,464s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 128i,14n,122p,419b,504s stack positions out of 10000i,1000n,20000p,200000b,80000s
 
-Output written on prez.pdf (16 pages).
+Output written on prez.pdf (34 pages).

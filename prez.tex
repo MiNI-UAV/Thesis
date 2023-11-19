@@ -7,6 +7,40 @@
 \documentclass[aspectratio=169]{beamer}
 
 \usepackage{styles/prez_wmini_pl}
+\usepackage{booktabs}
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+\usepackage{times}
+
+\definecolor{quotationcolour}{HTML}{F0F0F0}
+\definecolor{quotationmarkcolour}{HTML}{1F3F81}
+
+% Double-line for start and end of epigraph.
+\newcommand{\epiline}{\hrule \vskip -.2em \hrule}
+% Massively humongous opening quotation mark.
+\newcommand{\hugequote}{%
+  \fontsize{42}{48}\selectfont \color{quotationmarkcolour} \textbf{``}
+  \vskip -.5em
+}
+
+% Beautify quotations.
+\newcommand{\epigraph}[2]{%
+  \bigskip
+  \begin{center}
+  \colorbox{quotationcolour}{%
+    \parbox{.80\textwidth}{%
+    \epiline \vskip 1em {\hugequote} \vskip -.5em
+    \parindent 2.2em
+    #1\begin{flushright}\textsc{#2}\end{flushright}
+    \epiline
+    }
+  }
+  \end{center}
+  \bigskip
+}
+
+\graphicspath{ {./images/} }
+
 
 
 % ------------------ Ustawienia użytkownika ------------------
@@ -16,10 +50,10 @@
 % lub wybrać sobie kolor z pakietu xcolor
 \colorlet{title_color}{grafitowy}
 
-\title{Tytuł prezentacji. Lorem ipsum dolor sit amet}
+\title{Opracowanie wirtualnego środowiska\\do symulacji dynamiki lotu\\ bezzałogowych statków powietrznych}
 %\subtitle{Podtytuł consectetur adispiscing elit}
-\author{John Doe \and  Jan Kowalski}
-\date{} % można tam wpisać datę jaką się chce lub zakomentować dla daty dzisiejszej
+\author{Wojciech Gajda \and  Igor Faliszewski}
+\date{28 listopada 2023} % można tam wpisać datę jaką się chce lub zakomentować dla daty dzisiejszej
 
 
 
@@ -33,125 +67,189 @@
 \maketitleframe 
 }
 
+\begin{frame}
+\frametitle{Agenda}
+  \tableofcontents[  
+    sectionstyle=show, 
+    %hideallsubsections
+    ]
+\end{frame}
+
+\section{Wprowadzenie}
+\subsection{Motywacje}
+\begin{frame}%[allowframebreaks]
+	\frametitle{Motywacja}
+	\begin{columns}
+		\begin{column}{0.33\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{spitfire.png}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.33\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<3->{\includegraphics[width=0.9\textwidth]{quadcopter_fpv.png}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.33\textwidth}
+	    		\begin{figure}
+	   		 \centering
+	      		 \uncover<4->{\includegraphics[width=0.9\textwidth]{missile.png}}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
+	\begin{figure}
+		\hfill
+		\uncover<5->{\includegraphics[width=0.2\textwidth]{helicopter.png}}
+	\end{figure}
+\end{frame}
+
+\subsection{Cel projektu}
+\begin{frame}%[allowframebreaks]
+	\frametitle{Cel projektu}
+	  \begin{itemize}
+	  \item {
+	    First item.
+	    \pause % Tu nastąpi pauza
+	  }
+	  \item {   
+	    Second item.
+	  }
+	  % Można ustalić kiedy dany element ma się pojawić, używając <n->:
+	  \item<3-> {
+	    Third item.
+	  }
+	  \item<4-> {
+	    Fourth item.
+	  }
+	  % można użyć komendy \uncover żeby ,,odkryć'' cokolwiek, nie tylko item
+	  \item<5-> {
+	    Fifth item. \uncover<6->{Extra text in the fifth item.}
+	  }
+ 	 \end{itemize}
+\end{frame}
+
+\section{Wstep teoretyczny}
+\begin{frame}%[allowframebreaks]
+	\frametitle{Wstep teoretyczny}
+	\epigraph{Nie ma osobnej ani teorii, ani praktyki inżynierskiej, jest tylko wspólna sztuka inżynierska}{prof. Jan Oderfeld}
+\end{frame}
 
 
+\subsection{Dynamika statku powietrznego}
+\begin{frame}[allowframebreaks]
+	\frametitle{Dynamika lotu}
+	
+\end{frame}
 
 \begin{frame}[allowframebreaks]
-  \frametitle{Otoczenia}
-  \begin{theorem}
-    There exists an infinite set.
-  \end{theorem}
-  \begin{definition}
-  Definicja czegoś.
-  \end{definition}
-  \begin{corollary}
-  Wniosek
-  \end{corollary}
-  \begin{lemma}
-  Lemat
-  \end{lemma}
-  \begin{proposition}
-  Stwierdzenie
-  \end{proposition}
-  \begin{proof}
-    This follows from the axiom of infinity.
-  \end{proof}
-  \begin{example}
-    The set of natural numbers is infinite.
-  \end{example}
-  \begin{block}{Blok o dowolnym nagłówku}
-  Bleble
-  \end{block}
-	\begin{alertblock}{Tzw. alert block}
-  		Bleble
-	\end{alertblock}
+	\frametitle{Równania stanu}
+	
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Tytuł slajdu łamanego na strony}
-Przykładowe równanie:
-  \begin{equation}
-    \begin{pmatrix}
-    1 & 0 \\
-    0 & 1
-    \end{pmatrix} \cdot x = b.
-  \end{equation}
-  \color{black}
-Lorem ipsum dolor  sit amet, consectetur  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit  in voluptate  velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-Równanie nienumerowane:
-\[
-e = mc^2.
-\]
+\begin{frame}[allowframebreaks]
+	\frametitle{Równania różniczkowe}
+	
 \end{frame}
 
-\begin{frame}{Wylistowywanie i pauzy}
-  \begin{itemize}
-  \item {
-    First item.
-    \pause % Tu nastąpi pauza
-  }
-  \item {   
-    Second item.
-  }
-  % Można ustalić kiedy dany element ma się pojawić, używając <n->:
-  \item<3-> {
-    Third item.
-  }
-  \item<4-> {
-    Fourth item.
-  }
-  % można użyć komendy \uncover żeby ,,odkryć'' cokolwiek, nie tylko item
-  \item<5-> {
-    Fifth item. \uncover<6->{Extra text in the fifth item.}
-  }
-  \end{itemize}
+\begin{frame}[allowframebreaks]
+	\frametitle{Model matematyczny statku powietrznego}
+	
 \end{frame}
 
-
-\begin{frame}{Obrazek}
-%\begin{figure}
-%    \centering
-%    \includegraphics[height=0.8\textheight]{nazwaobrazka}
-%
-%    \caption{Caption them all}
-%    \end{figure}
+\begin{frame}[allowframebreaks]
+	\frametitle{Kolizje}
+	
 \end{frame}
 
-% ------------------------------------------------------------
-\begin{frame}[fragile,allowframebreaks]{Środowisko verbatim}
-	\begin{verbatim}
-int main (void)
-{
-  std::vector<bool> is_prime (100, true);
-  for (int i = 2; i < 100; i++)
-    if (is_prime[i])
-      {
-        std::cout << i << " ";
-        for (int j = i; j < 100;
-            is_prime [j] = false, j+=i);
-      }
-  return 0;
-}
-\end{verbatim}
+\begin{frame}[allowframebreaks]
+	\frametitle{Odrzut}
+	
+\end{frame}
+
+\subsection{Sterowanie statkiem powietrznym}
+\begin{frame}[allowframebreaks]
+	\frametitle{Sterowanie statkiem powietrznym}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{Nawigacja}
+	
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{Regulatory PID}
+	
+\end{frame}
+
+\subsection{Grafika komputerowa}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{Potok renderowania}
+	
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{Shadery}
+	
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{GPU}
+	
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{Cieniowanie i model oświetlenia}
+	
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{Renderowanie interfejsu}
+	
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{Obsługa kontrolera}
+	
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{Krzywa łańcuchowa}
+	
+\end{frame}
+
+\section{Demo}
+
+\begin{frame}
+	  \begin{center}
+	\Huge Demo
+	\end{center}
 \end{frame}
 
 
-
-\begin{frame}{Literatura}
-\begin{thebibliography}{10}
-\beamertemplatebookbibitems
-\bibitem{Goldbach1742}[Goldbach, 1742]
-  Christian Goldbach.
-  \newblock A problem we should try to solve before the ISPN '43 deadline,
-  \newblock \emph{Letter to Leonhard Euler}, 1742.
-
-\beamertemplatearticlebibitems
-\bibitem{Goldbach1742}[Goldbach, 1742]
-  Christian Goldbach.
-  \newblock A problem we should try to solve before the ISPN '43 deadline,
-  \newblock \emph{Letter to Leonhard Euler}, 1742.
-\end{thebibliography}
+\begin{frame}
+	\frametitle{Testy $\alpha$} %JOKE
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{dog.jpg}
+	\end{figure}
 \end{frame}
 
+
+\begin{frame}
+	\frametitle{Dyskusja}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{questions.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	  \begin{center}
+	\Huge Dziękuje za uwagę!
+	\end{center}
+\end{frame}
 
 \end{document}
