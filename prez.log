@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.3) (preloaded format=xelatex 2022.8.14)  19 NOV 2023 20:09
+This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.3) (preloaded format=xelatex 2022.8.14)  20 NOV 2023 19:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -805,42 +805,42 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 (C:\Users\Wojtek\AppData\Roaming\MiKTeX\tex/latex/psnfss\times.sty
 Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
 )
-LaTeX Font Info:    Trying to load font information for TU+phv on input line 62
+LaTeX Font Info:    Trying to load font information for TU+phv on input line 63
 .
-LaTeX Font Info:    No file TUphv.fd. on input line 62.
+LaTeX Font Info:    No file TUphv.fd. on input line 63.
 
 
 LaTeX Font Warning: Font shape `TU/phv/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 62.
+(Font)              using `TU/lmr/m/n' instead on input line 63.
 
 (prez.aux)
 \openout1 = `prez.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 62.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 63.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 6
-2.
+3.
  (d:\Program Files\MiKTeX\tex/latex/base\ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -876,7 +876,7 @@ LaTeX Font Info:    ... okay on input line 62.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 62.
+Package hyperref Info: Link coloring OFF on input line 63.
 (prez.out) (prez.out)
 \@outlinefile=\write5
 \openout5 = `prez.out'.
@@ -936,56 +936,56 @@ Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 
 \symlegacymaths=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 62.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 62.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 62.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 62.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 62.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 62.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 62.
-LaTeX Font Info:    Redeclaring math accent \check on input line 62.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 62.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 62.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 62.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 62.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 63.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 63.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 63.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 63.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 63.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 63.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 63.
+LaTeX Font Info:    Redeclaring math accent \check on input line 63.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 63.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 63.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 63.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 63.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 62.
+(Font)              `operators' in the math version `normal' on input line 63.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/ptm/m/n on input line 62.
+(Font)                  OT1/cmr/m/n --> TU/ptm/m/n on input line 63.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 62.
+(Font)              `operators' in the math version `bold' on input line 63.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/ptm/m/n on input line 62.
+(Font)                  OT1/cmr/bx/n --> TU/ptm/m/n on input line 63.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/ptm/m/n --> TU/ptm/m/n on input line 62.
+(Font)                  TU/ptm/m/n --> TU/ptm/m/n on input line 63.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/ptm/m/it on input line 62.
+(Font)                  OT1/cmr/m/it --> TU/ptm/m/it on input line 63.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/ptm/b/n on input line 62.
+(Font)                  OT1/cmr/bx/n --> TU/ptm/b/n on input line 63.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/phv/m/n on input line 62.
+(Font)                  OT1/cmss/m/n --> TU/phv/m/n on input line 63.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/pcr/m/n on input line 62.
+(Font)                  OT1/cmtt/m/n --> TU/pcr/m/n on input line 63.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/ptm/m/n --> TU/ptm/b/n on input line 62.
+(Font)                  TU/ptm/m/n --> TU/ptm/b/n on input line 63.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/ptm/b/it on input line 62.
+(Font)                  OT1/cmr/bx/it --> TU/ptm/b/it on input line 63.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/phv/b/n on input line 62.
+(Font)                  OT1/cmss/bx/n --> TU/phv/b/n on input line 63.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/pcr/b/n on input line 62.
+(Font)                  OT1/cmtt/m/n --> TU/pcr/b/n on input line 63.
  (prez.nav)
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
@@ -1003,137 +1003,292 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
  [2
 
 ]
-File: ./images//spitfire.png Graphic file (type bmp)
-<./images//spitfire.png>
-LaTeX Font Info:    Trying to load font information for TU+ptm on input line 10
-6.
-LaTeX Font Info:    No file TUptm.fd. on input line 106.
+File: ./images//logos/warthunder.png Graphic file (type bmp)
+<./images//logos/warthunder.png>
+File: ./images//logos/MFS.png Graphic file (type bmp)
+<./images//logos/MFS.png>
+LaTeX Font Info:    Trying to load font information for TU+ptm on input line 11
+9.
+LaTeX Font Info:    No file TUptm.fd. on input line 119.
 
 
 LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 106.
+(Font)              using `TU/lmr/m/n' instead on input line 119.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 106
+LaTeX Font Info:    Trying to load font information for U+msa on input line 119
 .
 (d:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 106
+LaTeX Font Info:    Trying to load font information for U+msb on input line 119
 .
 
 (d:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-File: ./images//quadcopter_fpv.png Graphic file (type bmp)
-<./images//quadcopter_fpv.png>
-File: ./images//missile.png Graphic file (type bmp)
-<./images//missile.png>
-File: ./images//helicopter.png Graphic file (type bmp)
-<./images//helicopter.png>
+File: ./images//logos/ardupilot.jpg Graphic file (type bmp)
+<./images//logos/ardupilot.jpg>
+File: ./images//logos/betaflight.png Graphic file (type bmp)
+<./images//logos/betaflight.png>
+File: ./images//logos/inav.png Graphic file (type bmp)
+<./images//logos/inav.png>
+File: ./images//logos/JSBSim.png Graphic file (type bmp)
+<./images//logos/JSBSim.png>
+File: ./images//logos/VBS.png Graphic file (type bmp)
+<./images//logos/VBS.png>
+
+Overfull \vbox (7.41185pt too high) detected at line 119
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [3
+[3
 
 ]
-File: ./images//spitfire.png Graphic file (type bmp)
-<./images//spitfire.png>
-File: ./images//quadcopter_fpv.png Graphic file (type bmp)
-<./images//quadcopter_fpv.png>
-File: ./images//missile.png Graphic file (type bmp)
-<./images//missile.png>
-File: ./images//helicopter.png Graphic file (type bmp)
-<./images//helicopter.png>
+File: ./images//logos/warthunder.png Graphic file (type bmp)
+<./images//logos/warthunder.png>
+File: ./images//logos/MFS.png Graphic file (type bmp)
+<./images//logos/MFS.png>
+File: ./images//logos/ardupilot.jpg Graphic file (type bmp)
+<./images//logos/ardupilot.jpg>
+File: ./images//logos/betaflight.png Graphic file (type bmp)
+<./images//logos/betaflight.png>
+File: ./images//logos/inav.png Graphic file (type bmp)
+<./images//logos/inav.png>
+File: ./images//logos/JSBSim.png Graphic file (type bmp)
+<./images//logos/JSBSim.png>
+File: ./images//logos/VBS.png Graphic file (type bmp)
+<./images//logos/VBS.png>
+
+Overfull \vbox (7.41185pt too high) detected at line 119
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [4
+[4
 
 ]
-File: ./images//spitfire.png Graphic file (type bmp)
-<./images//spitfire.png>
-File: ./images//quadcopter_fpv.png Graphic file (type bmp)
-<./images//quadcopter_fpv.png>
-File: ./images//missile.png Graphic file (type bmp)
-<./images//missile.png>
-File: ./images//helicopter.png Graphic file (type bmp)
-<./images//helicopter.png>
+File: ./images//logos/warthunder.png Graphic file (type bmp)
+<./images//logos/warthunder.png>
+File: ./images//logos/MFS.png Graphic file (type bmp)
+<./images//logos/MFS.png>
+File: ./images//logos/ardupilot.jpg Graphic file (type bmp)
+<./images//logos/ardupilot.jpg>
+File: ./images//logos/betaflight.png Graphic file (type bmp)
+<./images//logos/betaflight.png>
+File: ./images//logos/inav.png Graphic file (type bmp)
+<./images//logos/inav.png>
+File: ./images//logos/JSBSim.png Graphic file (type bmp)
+<./images//logos/JSBSim.png>
+File: ./images//logos/VBS.png Graphic file (type bmp)
+<./images//logos/VBS.png>
+
+Overfull \vbox (7.41185pt too high) detected at line 119
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [5
+[5
 
 ]
-File: ./images//spitfire.png Graphic file (type bmp)
-<./images//spitfire.png>
-File: ./images//quadcopter_fpv.png Graphic file (type bmp)
-<./images//quadcopter_fpv.png>
-File: ./images//missile.png Graphic file (type bmp)
-<./images//missile.png>
-File: ./images//helicopter.png Graphic file (type bmp)
-<./images//helicopter.png>
+File: ./images//logos/warthunder.png Graphic file (type bmp)
+<./images//logos/warthunder.png>
+File: ./images//logos/MFS.png Graphic file (type bmp)
+<./images//logos/MFS.png>
+File: ./images//logos/ardupilot.jpg Graphic file (type bmp)
+<./images//logos/ardupilot.jpg>
+File: ./images//logos/betaflight.png Graphic file (type bmp)
+<./images//logos/betaflight.png>
+File: ./images//logos/inav.png Graphic file (type bmp)
+<./images//logos/inav.png>
+File: ./images//logos/JSBSim.png Graphic file (type bmp)
+<./images//logos/JSBSim.png>
+File: ./images//logos/VBS.png Graphic file (type bmp)
+<./images//logos/VBS.png>
+
+Overfull \vbox (7.41185pt too high) detected at line 119
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [6
+[6
 
 ]
-File: ./images//spitfire.png Graphic file (type bmp)
-<./images//spitfire.png>
-File: ./images//quadcopter_fpv.png Graphic file (type bmp)
-<./images//quadcopter_fpv.png>
-File: ./images//missile.png Graphic file (type bmp)
-<./images//missile.png>
-File: ./images//helicopter.png Graphic file (type bmp)
-<./images//helicopter.png>
+File: ./images//logos/warthunder.png Graphic file (type bmp)
+<./images//logos/warthunder.png>
+File: ./images//logos/MFS.png Graphic file (type bmp)
+<./images//logos/MFS.png>
+File: ./images//logos/ardupilot.jpg Graphic file (type bmp)
+<./images//logos/ardupilot.jpg>
+File: ./images//logos/betaflight.png Graphic file (type bmp)
+<./images//logos/betaflight.png>
+File: ./images//logos/inav.png Graphic file (type bmp)
+<./images//logos/inav.png>
+File: ./images//logos/JSBSim.png Graphic file (type bmp)
+<./images//logos/JSBSim.png>
+File: ./images//logos/VBS.png Graphic file (type bmp)
+<./images//logos/VBS.png>
+
+Overfull \vbox (7.41185pt too high) detected at line 119
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [7
+[7
 
 ]
+File: ./images//logos/warthunder.png Graphic file (type bmp)
+<./images//logos/warthunder.png>
+File: ./images//logos/MFS.png Graphic file (type bmp)
+<./images//logos/MFS.png>
+File: ./images//logos/ardupilot.jpg Graphic file (type bmp)
+<./images//logos/ardupilot.jpg>
+File: ./images//logos/betaflight.png Graphic file (type bmp)
+<./images//logos/betaflight.png>
+File: ./images//logos/inav.png Graphic file (type bmp)
+<./images//logos/inav.png>
+File: ./images//logos/JSBSim.png Graphic file (type bmp)
+<./images//logos/JSBSim.png>
+File: ./images//logos/VBS.png Graphic file (type bmp)
+<./images//logos/VBS.png>
+
+Overfull \vbox (7.41185pt too high) detected at line 119
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
-
 [8
 
 ]
+File: ./images//logos/warthunder.png Graphic file (type bmp)
+<./images//logos/warthunder.png>
+File: ./images//logos/MFS.png Graphic file (type bmp)
+<./images//logos/MFS.png>
+File: ./images//logos/ardupilot.jpg Graphic file (type bmp)
+<./images//logos/ardupilot.jpg>
+File: ./images//logos/betaflight.png Graphic file (type bmp)
+<./images//logos/betaflight.png>
+File: ./images//logos/inav.png Graphic file (type bmp)
+<./images//logos/inav.png>
+File: ./images//logos/JSBSim.png Graphic file (type bmp)
+<./images//logos/JSBSim.png>
+File: ./images//logos/VBS.png Graphic file (type bmp)
+<./images//logos/VBS.png>
+
+Overfull \vbox (7.41185pt too high) detected at line 119
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [9
+[9
 
 ]
+File: ./images//logos/warthunder.png Graphic file (type bmp)
+<./images//logos/warthunder.png>
+File: ./images//logos/MFS.png Graphic file (type bmp)
+<./images//logos/MFS.png>
+File: ./images//logos/ardupilot.jpg Graphic file (type bmp)
+<./images//logos/ardupilot.jpg>
+File: ./images//logos/betaflight.png Graphic file (type bmp)
+<./images//logos/betaflight.png>
+File: ./images//logos/inav.png Graphic file (type bmp)
+<./images//logos/inav.png>
+File: ./images//logos/JSBSim.png Graphic file (type bmp)
+<./images//logos/JSBSim.png>
+File: ./images//logos/VBS.png Graphic file (type bmp)
+<./images//logos/VBS.png>
+
+Overfull \vbox (7.41185pt too high) detected at line 119
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [10
+[10
 
 ]
+File: ./images//spitfire.png Graphic file (type bmp)
+<./images//spitfire.png>
+File: ./images//quadcopter_fpv.png Graphic file (type bmp)
+<./images//quadcopter_fpv.png>
+File: ./images//missile.png Graphic file (type bmp)
+<./images//missile.png>
+File: ./images//helicopter_ban.png Graphic file (type bmp)
+<./images//helicopter_ban.png>
+
+Overfull \vbox (35.11263pt too high) detected at line 147
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [11
+[11
 
 ]
+File: ./images//spitfire.png Graphic file (type bmp)
+<./images//spitfire.png>
+File: ./images//quadcopter_fpv.png Graphic file (type bmp)
+<./images//quadcopter_fpv.png>
+File: ./images//missile.png Graphic file (type bmp)
+<./images//missile.png>
+File: ./images//helicopter_ban.png Graphic file (type bmp)
+<./images//helicopter_ban.png>
+
+Overfull \vbox (35.11263pt too high) detected at line 147
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [12
+[12
 
 ]
+File: ./images//spitfire.png Graphic file (type bmp)
+<./images//spitfire.png>
+File: ./images//quadcopter_fpv.png Graphic file (type bmp)
+<./images//quadcopter_fpv.png>
+File: ./images//missile.png Graphic file (type bmp)
+<./images//missile.png>
+File: ./images//helicopter_ban.png Graphic file (type bmp)
+<./images//helicopter_ban.png>
+
+Overfull \vbox (35.11263pt too high) detected at line 147
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [13
+[13
 
 ]
+File: ./images//spitfire.png Graphic file (type bmp)
+<./images//spitfire.png>
+File: ./images//quadcopter_fpv.png Graphic file (type bmp)
+<./images//quadcopter_fpv.png>
+File: ./images//missile.png Graphic file (type bmp)
+<./images//missile.png>
+File: ./images//helicopter_ban.png Graphic file (type bmp)
+<./images//helicopter_ban.png>
 
-LaTeX Font Warning: Font shape `TU/phv/b/n' undefined
-(Font)              using `TU/phv/m/n' instead on input line 137.
-
-
-LaTeX Font Warning: Font shape `TU/phv/m/sc' undefined
-(Font)              using `TU/phv/m/n' instead on input line 137.
+Overfull \vbox (35.11263pt too high) detected at line 147
+ []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
 [14
 
 ]
+File: ./images//spitfire.png Graphic file (type bmp)
+<./images//spitfire.png>
+File: ./images//quadcopter_fpv.png Graphic file (type bmp)
+<./images//quadcopter_fpv.png>
+File: ./images//missile.png Graphic file (type bmp)
+<./images//missile.png>
+File: ./images//helicopter_ban.png Graphic file (type bmp)
+<./images//helicopter_ban.png>
+
+Overfull \vbox (35.11263pt too high) detected at line 147
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [15
+[15
 
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1166,19 +1321,37 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
  [21
 
 ]
+
+LaTeX Font Warning: Font shape `TU/phv/b/n' undefined
+(Font)              using `TU/phv/m/n' instead on input line 179.
+
+
+LaTeX Font Warning: Font shape `TU/phv/m/sc' undefined
+(Font)              using `TU/phv/m/n' instead on input line 179.
+
+
+Overfull \vbox (19.5357pt too high) detected at line 179
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [22
+[22
 
 ]
+Overfull \vbox (19.5357pt too high) detected at line 179
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [23
+[23
 
 ]
+Overfull \vbox (19.5357pt too high) detected at line 179
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [24
+[24
 
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1186,9 +1359,25 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
  [25
 
 ]
+
+LaTeX Font Warning: Font shape `TU/ptm/b/n' undefined
+(Font)              using `TU/ptm/m/n' instead on input line 212.
+
+
+Overfull \hbox (14.79779pt too wide) detected at line 212
+[]
+ []
+
+
+Overfull \hbox (16.47191pt too wide) detected at line 212
+[]
+ []
+
+File: ./images//state_eq.png Graphic file (type bmp)
+<./images//state_eq.png>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [26
+[26
 
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1203,8 +1392,7 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
-
-[29
+ [29
 
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1217,27 +1405,78 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
  [31
 
 ]
-File: ./images//dog.jpg Graphic file (type bmp)
-<./images//dog.jpg>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
  [32
 
 ]
-File: ./images//questions.png Graphic file (type bmp)
-<./images//questions.png>
-
-Overfull \vbox (111.84758pt too high) detected at line 247
- []
-
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
-[33
+ [33
 
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
  [34
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [35
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [36
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [37
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [38
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [39
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [40
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+
+[41
+
+]
+File: ./images//dog.jpg Graphic file (type bmp)
+<./images//dog.jpg>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [42
+
+]
+File: ./images//questions.png Graphic file (type bmp)
+<./images//questions.png>
+
+Overfull \vbox (111.84758pt too high) detected at line 310
+ []
+
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+[43
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [44
 
 ]
 \tf@nav=\write6
@@ -1254,15 +1493,15 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `prez.out' has not changed.
-(rerunfilecheck)             Checksum: 9CEEAD2E860E4DD3B3B9F85017CF0DF9;1098.
+(rerunfilecheck)             Checksum: 1F73771E46387F1EADC8CBD36B336F5C;1099.
  ) 
 Here is how much of TeX's memory you used:
- 24492 strings out of 410670
- 509930 string characters out of 2820971
- 830565 words of memory out of 3000000
- 45021 multiletter control sequences out of 15000+600000
+ 24587 strings out of 410670
+ 512426 string characters out of 2820971
+ 830635 words of memory out of 3000000
+ 45106 multiletter control sequences out of 15000+600000
  477002 words of font info for 75 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 128i,14n,122p,419b,504s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 128i,14n,122p,419b,591s stack positions out of 10000i,1000n,20000p,200000b,80000s
 
-Output written on prez.pdf (34 pages).
+Output written on prez.pdf (44 pages).

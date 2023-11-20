@@ -11,6 +11,7 @@
 \setbeamertemplate{section in toc}[sections numbered]
 \setbeamertemplate{subsection in toc}[subsections numbered]
 \usepackage{times}
+\usepackage{amsmath}
 
 \definecolor{quotationcolour}{HTML}{F0F0F0}
 \definecolor{quotationmarkcolour}{HTML}{1F3F81}
@@ -31,7 +32,7 @@
     \parbox{.80\textwidth}{%
     \epiline \vskip 1em {\hugequote} \vskip -.5em
     \parindent 2.2em
-    #1\begin{flushright}\textsc{#2}\end{flushright}
+    #1\vspace{-.25cm}\begin{flushright}\textsc{#2}\end{flushright}
     \epiline
     }
   }
@@ -83,6 +84,46 @@
 		\begin{column}{0.33\textwidth}
 	   	 	\begin{figure}
 	   		 \centering
+	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{logos/warthunder.png}}
+	    		\end{figure}
+	    		\begin{figure}
+	   		 \centering
+	      		 \uncover<3->{\includegraphics[width=0.9\textwidth]{logos/MFS.png}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.33\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<4->{\includegraphics[width=0.9\textwidth]{logos/ardupilot.jpg}}
+	    		\end{figure}
+	    		\begin{figure}
+	   		 \centering
+	      		 \uncover<5->{\includegraphics[width=0.9\textwidth]{logos/betaflight.png}}
+	    		\end{figure}
+	    		\begin{figure}
+	   		 \centering
+	      		 \uncover<6->{\includegraphics[width=0.9\textwidth]{logos/inav.png}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.33\textwidth}
+	    		\begin{figure}
+	   		 \centering
+	      		 \uncover<7->{\includegraphics[width=0.5\textwidth]{logos/JSBSim.png}}
+	    		\end{figure}
+			\begin{figure}
+	   		 \centering
+	      		 \uncover<8->{\includegraphics[width=0.5\textwidth]{logos/VBS.png}}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{Motywacja}
+	\begin{columns}
+		\begin{column}{0.33\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
 	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{spitfire.png}}
 	    		\end{figure}
 		\end{column}
@@ -101,7 +142,7 @@
 	\end{columns}
 	\begin{figure}
 		\hfill
-		\uncover<5->{\includegraphics[width=0.2\textwidth]{helicopter.png}}
+		\uncover<5->{\includegraphics[width=0.2\textwidth]{helicopter_ban.png}}
 	\end{figure}
 \end{frame}
 
@@ -133,7 +174,8 @@
 \section{Wstep teoretyczny}
 \begin{frame}%[allowframebreaks]
 	\frametitle{Wstep teoretyczny}
-	\epigraph{Nie ma osobnej ani teorii, ani praktyki inżynierskiej, jest tylko wspólna sztuka inżynierska}{prof. Jan Oderfeld}
+	 \uncover<2->{\epigraph{There is nothing so practical as a good theory.}{Lewin Kurt}}
+	 \uncover<3->{\epigraph{Nie ma osobnej ani teorii, ani praktyki inżynierskiej, jest tylko wspólna sztuka inżynierska.}{prof. Jan Oderfeld}}
 \end{frame}
 
 
@@ -145,7 +187,28 @@
 
 \begin{frame}[allowframebreaks]
 	\frametitle{Równania stanu}
-	
+	\begin{columns}
+		\begin{column}{0.3\textwidth}
+	      		 	\uncover<1->{\[
+				\begin{cases}
+					\dot{\mathbf{x}} \left(t\right)  = \mathbf{Ax} \left(t\right)  + \mathbf{Bu} \left(t\right) \\
+					\mathbf{y} \left(t\right) = \mathbf{Cx} \left(t\right) + \mathbf{Du} \left(t\right)
+				\end{cases}
+				\]}	
+	      		 	\[
+				\begin{cases}
+					\dot{\mathbf{x}} \left(t\right)  = \mathbf{f} \left(t,\mathbf{x}\left(t\right),\mathbf{u}\left(t\right) \right) \\
+					\mathbf{y} \left(t\right) = \mathbf{g} \left(t,\mathbf{x}\left(t\right),\mathbf{u}\left(t\right) \right)
+				\end{cases}
+				\]	
+		\end{column}
+		\begin{column}{0.7\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \includegraphics[width=0.9\textwidth]{state\_eq.png}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}[allowframebreaks]

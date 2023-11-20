@@ -7,68 +7,70 @@
 \headcommand {\sectionentry {1}{Wprowadzenie}{3}{Wprowadzenie}{0}}
 \headcommand {\beamer@subsectionpages {3}{2}}
 \headcommand {\beamer@subsectionentry {0}{1}{1}{3}{Motywacje}}
-\headcommand {\slideentry {1}{1}{1}{3/7}{Motywacje}{0}}
-\headcommand {\beamer@framepages {3}{7}}
-\headcommand {\beamer@subsectionpages {3}{7}}
-\headcommand {\beamer@subsectionentry {0}{1}{2}{8}{Cel projektu}}
-\headcommand {\slideentry {1}{2}{1}{8/13}{Cel projektu}{0}}
-\headcommand {\beamer@framepages {8}{13}}
-\headcommand {\beamer@sectionpages {3}{13}}
-\headcommand {\beamer@subsectionpages {8}{13}}
-\headcommand {\sectionentry {2}{Wstep teoretyczny}{14}{Wstep teoretyczny}{0}}
-\headcommand {\slideentry {2}{0}{1}{14/14}{}{0}}
-\headcommand {\beamer@framepages {14}{14}}
-\headcommand {\beamer@subsectionpages {14}{14}}
-\headcommand {\beamer@subsectionentry {0}{2}{1}{15}{Dynamika statku powietrznego}}
-\headcommand {\slideentry {2}{1}{1}{15/15}{Dynamika statku powietrznego}{0}}
-\headcommand {\beamer@framepages {15}{15}}
-\headcommand {\slideentry {2}{1}{2}{16/16}{Dynamika statku powietrznego}{0}}
-\headcommand {\beamer@framepages {16}{16}}
-\headcommand {\slideentry {2}{1}{3}{17/17}{Dynamika statku powietrznego}{0}}
-\headcommand {\beamer@framepages {17}{17}}
-\headcommand {\slideentry {2}{1}{4}{18/18}{Dynamika statku powietrznego}{0}}
-\headcommand {\beamer@framepages {18}{18}}
-\headcommand {\slideentry {2}{1}{5}{19/19}{Dynamika statku powietrznego}{0}}
-\headcommand {\beamer@framepages {19}{19}}
-\headcommand {\slideentry {2}{1}{6}{20/20}{Dynamika statku powietrznego}{0}}
-\headcommand {\beamer@framepages {20}{20}}
-\headcommand {\beamer@subsectionpages {15}{20}}
-\headcommand {\beamer@subsectionentry {0}{2}{2}{21}{Sterowanie statkiem powietrznym}}
-\headcommand {\slideentry {2}{2}{1}{21/21}{Sterowanie statkiem powietrznym}{0}}
-\headcommand {\beamer@framepages {21}{21}}
-\headcommand {\slideentry {2}{2}{2}{22/22}{Sterowanie statkiem powietrznym}{0}}
-\headcommand {\beamer@framepages {22}{22}}
-\headcommand {\slideentry {2}{2}{3}{23/23}{Sterowanie statkiem powietrznym}{0}}
-\headcommand {\beamer@framepages {23}{23}}
-\headcommand {\beamer@subsectionpages {21}{23}}
-\headcommand {\beamer@subsectionentry {0}{2}{3}{24}{Grafika komputerowa}}
-\headcommand {\slideentry {2}{3}{1}{24/24}{Grafika komputerowa}{0}}
-\headcommand {\beamer@framepages {24}{24}}
-\headcommand {\slideentry {2}{3}{2}{25/25}{Grafika komputerowa}{0}}
+\headcommand {\slideentry {1}{1}{1}{3/10}{Motywacje}{0}}
+\headcommand {\beamer@framepages {3}{10}}
+\headcommand {\slideentry {1}{1}{2}{11/15}{Motywacje}{0}}
+\headcommand {\beamer@framepages {11}{15}}
+\headcommand {\beamer@subsectionpages {3}{15}}
+\headcommand {\beamer@subsectionentry {0}{1}{2}{16}{Cel projektu}}
+\headcommand {\slideentry {1}{2}{1}{16/21}{Cel projektu}{0}}
+\headcommand {\beamer@framepages {16}{21}}
+\headcommand {\beamer@sectionpages {3}{21}}
+\headcommand {\beamer@subsectionpages {16}{21}}
+\headcommand {\sectionentry {2}{Wstep teoretyczny}{22}{Wstep teoretyczny}{0}}
+\headcommand {\slideentry {2}{0}{1}{22/24}{}{0}}
+\headcommand {\beamer@framepages {22}{24}}
+\headcommand {\beamer@subsectionpages {22}{24}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{25}{Dynamika statku powietrznego}}
+\headcommand {\slideentry {2}{1}{1}{25/25}{Dynamika statku powietrznego}{0}}
 \headcommand {\beamer@framepages {25}{25}}
-\headcommand {\slideentry {2}{3}{3}{26/26}{Grafika komputerowa}{0}}
+\headcommand {\slideentry {2}{1}{2}{26/26}{Dynamika statku powietrznego}{0}}
 \headcommand {\beamer@framepages {26}{26}}
-\headcommand {\slideentry {2}{3}{4}{27/27}{Grafika komputerowa}{0}}
+\headcommand {\slideentry {2}{1}{3}{27/27}{Dynamika statku powietrznego}{0}}
 \headcommand {\beamer@framepages {27}{27}}
-\headcommand {\slideentry {2}{3}{5}{28/28}{Grafika komputerowa}{0}}
+\headcommand {\slideentry {2}{1}{4}{28/28}{Dynamika statku powietrznego}{0}}
 \headcommand {\beamer@framepages {28}{28}}
-\headcommand {\slideentry {2}{3}{6}{29/29}{Grafika komputerowa}{0}}
+\headcommand {\slideentry {2}{1}{5}{29/29}{Dynamika statku powietrznego}{0}}
 \headcommand {\beamer@framepages {29}{29}}
-\headcommand {\slideentry {2}{3}{7}{30/30}{Grafika komputerowa}{0}}
+\headcommand {\slideentry {2}{1}{6}{30/30}{Dynamika statku powietrznego}{0}}
 \headcommand {\beamer@framepages {30}{30}}
-\headcommand {\beamer@sectionpages {14}{30}}
-\headcommand {\beamer@subsectionpages {24}{30}}
-\headcommand {\sectionentry {3}{Demo}{31}{Demo}{0}}
-\headcommand {\slideentry {3}{0}{1}{31/31}{}{0}}
+\headcommand {\beamer@subsectionpages {25}{30}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{31}{Sterowanie statkiem powietrznym}}
+\headcommand {\slideentry {2}{2}{1}{31/31}{Sterowanie statkiem powietrznym}{0}}
 \headcommand {\beamer@framepages {31}{31}}
-\headcommand {\slideentry {3}{0}{2}{32/32}{}{0}}
+\headcommand {\slideentry {2}{2}{2}{32/32}{Sterowanie statkiem powietrznym}{0}}
 \headcommand {\beamer@framepages {32}{32}}
-\headcommand {\slideentry {3}{0}{3}{33/33}{}{0}}
+\headcommand {\slideentry {2}{2}{3}{33/33}{Sterowanie statkiem powietrznym}{0}}
 \headcommand {\beamer@framepages {33}{33}}
-\headcommand {\slideentry {3}{0}{4}{34/34}{}{0}}
+\headcommand {\beamer@subsectionpages {31}{33}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{34}{Grafika komputerowa}}
+\headcommand {\slideentry {2}{3}{1}{34/34}{Grafika komputerowa}{0}}
 \headcommand {\beamer@framepages {34}{34}}
-\headcommand {\beamer@partpages {1}{34}}
-\headcommand {\beamer@subsectionpages {31}{34}}
-\headcommand {\beamer@sectionpages {31}{34}}
-\headcommand {\beamer@documentpages {34}}
-\headcommand {\gdef \inserttotalframenumber {25}}
+\headcommand {\slideentry {2}{3}{2}{35/35}{Grafika komputerowa}{0}}
+\headcommand {\beamer@framepages {35}{35}}
+\headcommand {\slideentry {2}{3}{3}{36/36}{Grafika komputerowa}{0}}
+\headcommand {\beamer@framepages {36}{36}}
+\headcommand {\slideentry {2}{3}{4}{37/37}{Grafika komputerowa}{0}}
+\headcommand {\beamer@framepages {37}{37}}
+\headcommand {\slideentry {2}{3}{5}{38/38}{Grafika komputerowa}{0}}
+\headcommand {\beamer@framepages {38}{38}}
+\headcommand {\slideentry {2}{3}{6}{39/39}{Grafika komputerowa}{0}}
+\headcommand {\beamer@framepages {39}{39}}
+\headcommand {\slideentry {2}{3}{7}{40/40}{Grafika komputerowa}{0}}
+\headcommand {\beamer@framepages {40}{40}}
+\headcommand {\beamer@sectionpages {22}{40}}
+\headcommand {\beamer@subsectionpages {34}{40}}
+\headcommand {\sectionentry {3}{Demo}{41}{Demo}{0}}
+\headcommand {\slideentry {3}{0}{1}{41/41}{}{0}}
+\headcommand {\beamer@framepages {41}{41}}
+\headcommand {\slideentry {3}{0}{2}{42/42}{}{0}}
+\headcommand {\beamer@framepages {42}{42}}
+\headcommand {\slideentry {3}{0}{3}{43/43}{}{0}}
+\headcommand {\beamer@framepages {43}{43}}
+\headcommand {\slideentry {3}{0}{4}{44/44}{}{0}}
+\headcommand {\beamer@framepages {44}{44}}
+\headcommand {\beamer@partpages {1}{44}}
+\headcommand {\beamer@subsectionpages {41}{44}}
+\headcommand {\beamer@sectionpages {41}{44}}
+\headcommand {\beamer@documentpages {44}}
+\headcommand {\gdef \inserttotalframenumber {26}}
