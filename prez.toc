@@ -3,6 +3,6 @@
 \beamer@subsectionintoc {1}{2}{Cel projektu}{16}{0}{1}
 \beamer@sectionintoc {2}{Wstep teoretyczny}{22}{0}{2}
 \beamer@subsectionintoc {2}{1}{Dynamika statku powietrznego}{25}{0}{2}
-\beamer@subsectionintoc {2}{2}{Sterowanie statkiem powietrznym}{31}{0}{2}
-\beamer@subsectionintoc {2}{3}{Grafika komputerowa}{34}{0}{2}
-\beamer@sectionintoc {3}{Demo}{41}{0}{3}
+\beamer@subsectionintoc {2}{2}{Sterowanie statkiem powietrznym}{41}{0}{2}
+\beamer@subsectionintoc {2}{3}{Grafika komputerowa}{50}{0}{2}
+\beamer@sectionintoc {3}{Demo}{57}{0}{3}

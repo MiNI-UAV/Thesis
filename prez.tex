@@ -12,6 +12,9 @@
 \setbeamertemplate{subsection in toc}[subsections numbered]
 \usepackage{times}
 \usepackage{amsmath}
+\usepackage{bm}
+
+\usefonttheme[onlymath]{serif}
 
 \definecolor{quotationcolour}{HTML}{F0F0F0}
 \definecolor{quotationmarkcolour}{HTML}{1F3F81}
@@ -180,40 +183,76 @@
 
 
 \subsection{Dynamika statku powietrznego}
-\begin{frame}[allowframebreaks]
+\begin{frame}%[allowframebreaks]
 	\frametitle{Dynamika lotu}
-	
+	\begin{columns}
+		\begin{column}{0.55\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<2->{\includegraphics[width=1.05\textwidth]{frames.png}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.45\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<3->{\includegraphics[width=1.05\textwidth]{RPY.png}}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
 \end{frame}
 
-\begin{frame}[allowframebreaks]
+\begin{frame}%[allowframebreaks]
 	\frametitle{Równania stanu}
 	\begin{columns}
 		\begin{column}{0.3\textwidth}
 	      		 	\uncover<1->{\[
 				\begin{cases}
-					\dot{\mathbf{x}} \left(t\right)  = \mathbf{Ax} \left(t\right)  + \mathbf{Bu} \left(t\right) \\
-					\mathbf{y} \left(t\right) = \mathbf{Cx} \left(t\right) + \mathbf{Du} \left(t\right)
+					\dot{\bm{x}} \left(t\right)  = \bm{Ax} \left(t\right)  + \bm{Bu} \left(t\right) \\
+					\bm{y} \left(t\right) = \bm{Cx} \left(t\right) + \bm{Du} \left(t\right)
 				\end{cases}
 				\]}	
 	      		 	\[
 				\begin{cases}
-					\dot{\mathbf{x}} \left(t\right)  = \mathbf{f} \left(t,\mathbf{x}\left(t\right),\mathbf{u}\left(t\right) \right) \\
-					\mathbf{y} \left(t\right) = \mathbf{g} \left(t,\mathbf{x}\left(t\right),\mathbf{u}\left(t\right) \right)
+					\dot{\bm{x}} \left(t\right)  = \bm{f} \left(t,\bm{x}\left(t\right),\bm{u}\left(t\right) \right) \\
+					\bm{y} \left(t\right) = \bm{g} \left(t,\bm{x}\left(t\right),\bm{u}\left(t\right) \right)
 				\end{cases}
 				\]	
 		\end{column}
 		\begin{column}{0.7\textwidth}
 	   	 	\begin{figure}
 	   		 \centering
-	      		 \includegraphics[width=0.9\textwidth]{state\_eq.png}
+	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{state\_eq.png}}
 	    		\end{figure}
 		\end{column}
 	\end{columns}
 \end{frame}
 
-\begin{frame}[allowframebreaks]
+\begin{frame}%[allowframebreaks]
 	\frametitle{Równania różniczkowe}
-	
+	\begin{itemize}
+	  \item{
+	    Przed zastosowaniem algorytmu obniżyć rząd równania różniczkowego.
+	    \pause
+	  }
+	  \item {   
+	    Skorzystać z algorytmu jawnego lub niejawnego algorytmu całkowania RR
+	    \pause
+	  }
+	  % Można ustalić kiedy dany element ma się pojawić, używając <n->:
+	  \item {
+	    Algorytmy jawne:
+	    \pause
+	    \begin{itemize}
+		  \item{
+		    Euler: $\bm{x}\left(t + \Delta t\right) = \bm{x}\left(t\right) + \Delta t \cdot \bm{\dot{x}} $
+		    \pause
+		  }
+		  \item {   
+		    Rugge-Kutty 4 rzędu
+		  }
+	     \end{itemize}
+	  }
+ 	 \end{itemize}
 \end{frame}
 
 \begin{frame}[allowframebreaks]
@@ -226,24 +265,129 @@
 	
 \end{frame}
 
-\begin{frame}[allowframebreaks]
+\begin{frame}%[allowframebreaks]
 	\frametitle{Odrzut}
+	\uncover<2->{Zasada zachowania pędu $\vec{\bm{p}}$ i zasada zachowania momentu pędu (krętu) $\vec{\bm{L}}$}.
+	\uncover<3->{
+	\[
+		\begin{bmatrix}
+		\vec{\bm{p}}_{przed}\\
+		\vec{\bm{L}}_{przed}
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+		\vec{\bm{p}}_{po}\\
+		\vec{\bm{L}}_{po}
+		\end{bmatrix}
+		+	
+		\begin{bmatrix}
+		\vec{\bm{p}}_{pocisku}\\
+		\vec{\bm{L}}_{pocisku}
+		\end{bmatrix}	
+	\]}
+	\uncover<4->{
+	\[
+		\bm{M}
+		\begin{bmatrix}
+		\vec{\bm{v}}_{przed}\\
+		\vec{\bm{\omega}}_{przed}
+		\end{bmatrix}
+		=
+		\bm{M}
+		\begin{bmatrix}
+		\vec{\bm{v}}_{po}\\
+		\vec{\bm{\omega}}_{po}
+		\end{bmatrix}
+		+
+		\begin{bmatrix}
+		\vec{\bm{v}}_{pocisku}\\
+		\vec{\bm{r}}_{pocisku} \times  \vec{\bm{v}}_{pocisku}
+		\end{bmatrix}	
+	\]}
 	
 \end{frame}
 
 \subsection{Sterowanie statkiem powietrznym}
-\begin{frame}[allowframebreaks]
+
+\begin{frame}
 	\frametitle{Sterowanie statkiem powietrznym}
+	\begin{figure}
+	   		 \centering
+	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{uk\_reg.jpg}}
+	\end{figure}
+\end{frame}
+\begin{frame}
+	\frametitle{Sterowanie statkiem powietrznym}
+	\begin{figure}
+	   		 \centering
+	      		\includegraphics[width=\textwidth]{controller.png}
+	\end{figure}
 \end{frame}
 
-\begin{frame}[allowframebreaks]
+\begin{frame}%[allowframebreaks]
+	\frametitle{Regulator PID}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<2->{\includegraphics[width=\textwidth]{pid.png}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<3->{\includegraphics[width=\textwidth]{pid\_graph.png}}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
+	
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Sterowanie statkiem powietrznym}
+	\begin{figure}
+	   		 \centering
+	      		 \includegraphics[width=1.05\textwidth]{pid\_cascade.jpg}
+	\end{figure}
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
 	\frametitle{Nawigacja}
-	
-\end{frame}
-
-\begin{frame}[allowframebreaks]
-	\frametitle{Regulatory PID}
-	
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+	   	 	 Czujniki:
+	   	 	 \begin{itemize}
+			  \item{
+			    Żyroskop
+			  }
+			  \item {   
+			    Akcelerometer
+			  }
+			  \item {   
+			    Barometer
+			  }
+			  \item {   
+			    Czujnik prędkości powietrza
+			  }
+			  \item {   
+			    Nawigacja satelitarna
+			  }
+			  \item {   
+			    Radar, sonar, lidar
+			  }
+	     \end{itemize}
+	     \pause
+	   	 	
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			Filtr Kalmana:
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \includegraphics[width=0.8\textwidth]{kalman.png}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \subsection{Grafika komputerowa}
@@ -307,6 +451,15 @@
 		\centering
 		\includegraphics[width=0.7\textwidth]{questions.png}
 	\end{figure}
+\end{frame}
+
+\begin{frame}{Literatura}
+\begin{thebibliography}{10}
+\beamertemplatebookbibitems
+\bibitem{en15197136}[Energies, 2022] Quadrotor Model for Energy Consumption Analysis
+   \newblock  Jacewicz, Mariusz and Żugaj, Marcin and Głębocki, Robert and Bibik, Przemysław
+
+\end{thebibliography}
 \end{frame}
 
 \begin{frame}
