@@ -111,13 +111,17 @@
 	    		\end{figure}
 		\end{column}
 		\begin{column}{0.33\textwidth}
+			\begin{figure}
+	   		 \centering
+	      		 \uncover<7->{\includegraphics[width=0.35\textwidth]{logos/matlab.png}}
+	    		\end{figure}
 	    		\begin{figure}
 	   		 \centering
-	      		 \uncover<7->{\includegraphics[width=0.5\textwidth]{logos/JSBSim.png}}
+	      		 \uncover<8->{\includegraphics[width=0.35\textwidth]{logos/JSBSim.png}}
 	    		\end{figure}
 			\begin{figure}
 	   		 \centering
-	      		 \uncover<8->{\includegraphics[width=0.5\textwidth]{logos/VBS.png}}
+	      		 \uncover<9->{\includegraphics[width=0.35\textwidth]{logos/VBS.png}}
 	    		\end{figure}
 		\end{column}
 	\end{columns}
@@ -178,7 +182,7 @@
 	  }
 	  % Można ustalić kiedy dany element ma się pojawić, używając <n->:
 	  \item<3-> {
-	    Bogate narzędzia dla analityków.
+	    Bogate narzędzie dla analityków i developerów
 	  }
 	  \item<4-> {
 	    Licencja open-source.
@@ -217,23 +221,23 @@
 	\frametitle{Równania stanu}
 	\begin{columns}
 		\begin{column}{0.3\textwidth}
-	      		 	\uncover<1->{\[
+	      		 	\uncover<2->{\[
 				\begin{cases}
 					\dot{\bm{x}} \left(t\right)  = \bm{Ax} \left(t\right)  + \bm{Bu} \left(t\right) \\
 					\bm{y} \left(t\right) = \bm{Cx} \left(t\right) + \bm{Du} \left(t\right)
 				\end{cases}
-				\]}	
-	      		 	\[
+				\]}
+				\uncover<3->{\[
 				\begin{cases}
 					\dot{\bm{x}} \left(t\right)  = \bm{f} \left(t,\bm{x}\left(t\right),\bm{u}\left(t\right) \right) \\
 					\bm{y} \left(t\right) = \bm{g} \left(t,\bm{x}\left(t\right),\bm{u}\left(t\right) \right)
 				\end{cases}
-				\]	
+				\]}	
 		\end{column}
 		\begin{column}{0.7\textwidth}
 	   	 	\begin{figure}
 	   		 \centering
-	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{state\_eq.png}}
+	      		 \uncover<4->{\includegraphics[width=0.9\textwidth]{state\_eq.png}}
 	    		\end{figure}
 		\end{column}
 	\end{columns}
@@ -260,7 +264,16 @@
 		    \pause
 		  }
 		  \item {   
-		    Rugge-Kutty 4 rzędu
+		    Runge-Kutty 4 rzędu
+		    \pause
+		  }
+		  \item {   
+		    Adams–Bashforth
+		    \pause
+		  }
+		  \item {   
+		    BFD (Backward differentiation formula)
+		    \pause
 		  }
 	     \end{itemize}
 	     \pause
@@ -356,13 +369,13 @@
 			  \item<3-> {   
 			    Ciąg silników i moment oporowy  $\bm{f_R}$
 			   }
-			    \item<3-> {   
+			    \item<4-> {   
 			    Ciąg silników marszowych  $\bm{f_J}$
 			   }
-			    \item<4-> {   
+			    \item<5-> {   
 			    Oddziaływanie aerodynamiczne $\bm{f_A}$
 			   }
-			    \item<5-> {   
+			    \item<6-> {   
 			   Siły zewnętrzne $\bm{f_{OUT}}$
 			   }
 			\end{itemize}
@@ -371,7 +384,7 @@
 \begin{frame}%[allowframebreaks]
 	\frametitle{Model matematyczny statku powietrznego IV}
 	Ciąg silnika i moment oporowy:
-	\begin{columns}
+	\begin{columns}[T]
 		\begin{column}{0.5\textwidth}
 	   	 	\begin{figure}
 	   		 \centering
@@ -382,16 +395,17 @@
 			 \uncover<3->{
 	      		 \[
 	      		 	M = k_M \rho S R^3 \omega^2
-	      		\]} 
+	      		\]}
+	      		 \uncover<4->{ 
+	      		 \[
+	      		 	T \frac{d\omega}{dt} + \omega = \omega_{ZADANA}
+	      		 \]}
 	    		\end{figure}
 		\end{column}
 		\begin{column}{0.5\textwidth}
 	   	 	\begin{figure}
 	   		 \centering
-	      		 \uncover<4->{ 
-	      		 \[
-	      		 	T \frac{d\omega}{dt} + \omega = \omega_{ZADANA}
-	      		 \]}
+	      		 \uncover<5->{\includegraphics[width=1\textwidth]{step.png}}
 	    		\end{figure}
 		\end{column}
 	\end{columns}
@@ -407,7 +421,7 @@
 \end{frame}
 
 \begin{frame}%[allowframebreaks]
-	\frametitle{Model matematyczny statku powietrznego V}
+	\frametitle{Model matematyczny statku powietrznego VI}
 	Oddziaływanie aerodynamiczne:
 	\begin{columns}
 		\begin{column}{0.4\textwidth}
@@ -425,7 +439,7 @@
 	   		 \centering
 	      		 \uncover<4->{ 
 	      		 \[
-	      		 	 \bm{C} \approx \bm{C0} + \frac{d\bm{C}}{d\alpha}\alpha + \frac{d\bm{C}}{d\beta}\beta + \frac{d\bm{C}}{d\beta}\beta + \frac{d\bm{C}}{d\bm{x}}\bm{x} + \frac{d\bm{C}}{d\bm{\delta}}\bm{\delta}
+	      		 	 \bm{C} \approx \bm{C0} + \frac{d\bm{C}}{d\alpha}\alpha + \frac{d\bm{C}}{d\beta}\beta + \frac{d\bm{C}}{d\bm{x}}\bm{x} + \frac{d\bm{C}}{d\bm{\delta}}\bm{\delta}
 	      		 \]}
 	    		\end{figure}
 		\end{column}
@@ -562,7 +576,7 @@
 	
 \end{frame}
 
-\subsection{Sterowanie statkiem powietrznym}
+\subsection{Sterowanie statkiem powietrznym I}
 
 \begin{frame}
 	\frametitle{Sterowanie statkiem powietrznym}
@@ -571,8 +585,9 @@
 	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{uk\_reg.jpg}}
 	\end{figure}
 \end{frame}
+
 \begin{frame}
-	\frametitle{Sterowanie statkiem powietrznym}
+	\frametitle{Sterowanie statkiem powietrznym II}
 	\begin{figure}
 	   		 \centering
 	      		\includegraphics[width=\textwidth]{controller.png}
@@ -600,7 +615,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sterowanie statkiem powietrznym}
+	\frametitle{Sterowanie statkiem powietrznym III}
 	\begin{figure}
 	   		 \centering
 	      		 \includegraphics[width=1.05\textwidth]{pid\_cascade.jpg}
@@ -619,6 +634,10 @@
 			  }
 			  \item {   
 			    Akcelerometer
+			    \pause
+			  }
+			   \item {   
+			    Magnetometr
 			    \pause
 			  }
 			  \item {   
