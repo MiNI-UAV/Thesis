@@ -22,6 +22,8 @@ jobs:
           # The root LaTeX file to be compiled
           root_file: prez.tex
           latexmk_use_xelatex: true
+          extra_fonts: |
+            ./fonts/*.otf
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:

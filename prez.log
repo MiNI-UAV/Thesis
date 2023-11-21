@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.3) (preloaded format=xelatex 2022.8.14)  20 NOV 2023 22:05
+This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.3) (preloaded format=xelatex 2022.8.14)  21 NOV 2023 11:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -741,210 +741,44 @@ X
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 )
 (d:\Program Files\MiKTeX\tex/latex/fontspec\fontspec.cfg)))
-(C:\Users\Wojtek\AppData\Roaming\MiKTeX\tex/latex/carlito\carlito.sty
-Package: carlito 2022/10/05 (Bob Tennent) Supports Carlito fonts for LaTeX, pdf
-LaTeX, luaLaTeX and xeLaTeX.
 
-(d:\Program Files\MiKTeX\tex/generic/iftex\ifxetex.sty
-Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
-)
-(d:\Program Files\MiKTeX\tex/generic/iftex\ifluatex.sty
-Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
-)
-(d:\Program Files\MiKTeX\tex/latex/xkeyval\xkeyval.sty
-Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+Package fontspec Info: Could not resolve font "Adagio_Slab/BI" (it probably
+(fontspec)             doesn't exist).
 
-(d:\Program Files\MiKTeX\tex/generic/xkeyval\xkeyval.tex
-(d:\Program Files\MiKTeX\tex/generic/xkeyval\xkvutils.tex
-\XKV@toks=\toks45
-\XKV@tempa@toks=\toks46
-)
-\XKV@depth=\count348
-File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
-))
-(d:\Program Files\MiKTeX\tex/latex/base\textcomp.sty
-Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
-)
 
-Package fontspec Info: Font family 'Carlito(0)' created for font 'Carlito'
-(fontspec)             with options [Ligatures = TeX,Scale = 1,Extension =
-(fontspec)             .ttf,Ligatures=TeX,Numbers =
-(fontspec)             {OldStyle,Proportional},UprightFont =
-(fontspec)             *-Regular,ItalicFont = *-Italic,BoldFont =
-(fontspec)             *-Bold,BoldItalicFont = *-BoldItalic].
+Package fontspec Info: Could not resolve font "Adagio_Slab/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: Could not resolve font "Adagio_Slab/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: Font family 'Adagio_Slab(0)' created for font
+(fontspec)             'Adagio_Slab' with options [Ligatures=TeX].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Regular.ttf]/OT:script=latn;language=d
-flt;+onum;+pnum;mapping=tex-text;"
+(fontspec)             <->"Adagio_Slab/OT:script=latn;language=dflt;mapping=tex
+-text;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Bold.ttf]/OT:script=latn;language=dflt
-;+onum;+pnum;mapping=tex-text;"
-(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Italic.ttf]/OT:script=latn;language=df
-lt;+onum;+pnum;mapping=tex-text;"
-(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-BoldItalic.ttf]/OT:script=latn;languag
-e=dflt;+onum;+pnum;mapping=tex-text;"
-(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
-
-LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 84.
-
-Package fontspec Info: Font family 'Carlito(1)' created for font 'Carlito'
-(fontspec)             with options [Ligatures = TeX,Scale = 1,Extension =
-(fontspec)             .ttf,Numbers = {OldStyle,Proportional},UprightFont =
-(fontspec)             *-Regular,ItalicFont = *-Italic,BoldFont =
-(fontspec)             *-Bold,BoldItalicFont = *-BoldItalic].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Regular.ttf]/OT:script=latn;language=d
-flt;+onum;+pnum;mapping=tex-text;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Bold.ttf]/OT:script=latn;language=dflt
-;+onum;+pnum;mapping=tex-text;"
-(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Italic.ttf]/OT:script=latn;language=df
-lt;+onum;+pnum;mapping=tex-text;"
-(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-BoldItalic.ttf]/OT:script=latn;languag
-e=dflt;+onum;+pnum;mapping=tex-text;"
-(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
 
 
-Package fontspec Info: Font family 'Carlito(2)' created for font 'Carlito'
-(fontspec)             with options [Ligatures = TeX,Scale = 1,Extension =
-(fontspec)             .ttf,Numbers = {Proportional,OldStyle},UprightFont =
-(fontspec)             *-Regular,ItalicFont = *-Italic,BoldFont =
-(fontspec)             *-Bold,BoldItalicFont = *-BoldItalic].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Regular.ttf]/OT:script=latn;language=d
-flt;+pnum;+onum;mapping=tex-text;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Bold.ttf]/OT:script=latn;language=dflt
-;+pnum;+onum;mapping=tex-text;"
-(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Italic.ttf]/OT:script=latn;language=df
-lt;+pnum;+onum;mapping=tex-text;"
-(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-BoldItalic.ttf]/OT:script=latn;languag
-e=dflt;+pnum;+onum;mapping=tex-text;"
-(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
-
-
-Package fontspec Info: Font family 'Carlito(3)' created for font 'Carlito'
-(fontspec)             with options [Ligatures = TeX,Scale = 1,Extension =
-(fontspec)             .ttf,Numbers = {Proportional,Lining},UprightFont =
-(fontspec)             *-Regular,ItalicFont = *-Italic,BoldFont =
-(fontspec)             *-Bold,BoldItalicFont = *-BoldItalic].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Regular.ttf]/OT:script=latn;language=d
-flt;+pnum;+lnum;mapping=tex-text;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Bold.ttf]/OT:script=latn;language=dflt
-;+pnum;+lnum;mapping=tex-text;"
-(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Italic.ttf]/OT:script=latn;language=df
-lt;+pnum;+lnum;mapping=tex-text;"
-(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-BoldItalic.ttf]/OT:script=latn;languag
-e=dflt;+pnum;+lnum;mapping=tex-text;"
-(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
-
-
-Package fontspec Info: Font family 'Carlito(4)' created for font 'Carlito'
-(fontspec)             with options [Ligatures = TeX,Scale = 1,Extension =
-(fontspec)             .ttf,Numbers = {Monospaced, Lining},UprightFont =
-(fontspec)             *-Regular,ItalicFont = *-Italic,BoldFont =
-(fontspec)             *-Bold,BoldItalicFont = *-BoldItalic].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Regular.ttf]/OT:script=latn;language=d
-flt;+tnum;+lnum;mapping=tex-text;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Bold.ttf]/OT:script=latn;language=dflt
-;+tnum;+lnum;mapping=tex-text;"
-(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Italic.ttf]/OT:script=latn;language=df
-lt;+tnum;+lnum;mapping=tex-text;"
-(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-BoldItalic.ttf]/OT:script=latn;languag
-e=dflt;+tnum;+lnum;mapping=tex-text;"
-(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
-
-
-Package fontspec Info: Font family 'Carlito(5)' created for font 'Carlito'
-(fontspec)             with options [Ligatures = TeX,Scale = 1,Extension =
-(fontspec)             .ttf,Numbers = {Monospaced, OldStyle},UprightFont =
-(fontspec)             *-Regular,ItalicFont = *-Italic,BoldFont =
-(fontspec)             *-Bold,BoldItalicFont = *-BoldItalic].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Regular.ttf]/OT:script=latn;language=d
-flt;+tnum;+onum;mapping=tex-text;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Bold.ttf]/OT:script=latn;language=dflt
-;+tnum;+onum;mapping=tex-text;"
-(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-Italic.ttf]/OT:script=latn;language=df
-lt;+tnum;+onum;mapping=tex-text;"
-(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->s*[1]"[Carlito-BoldItalic.ttf]/OT:script=latn;languag
-e=dflt;+tnum;+onum;mapping=tex-text;"
-(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
-
-LaTeX Info: Redefining \textin on input line 152.
-)
 (C:\Users\Wojtek\AppData\Roaming\MiKTeX\tex/latex/polski\polski.sty
 Package: polski 2021/08/25 v1.3.6 Polish language package
 )
 (d:\Program Files\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks47
-\inpenc@posthook=\toks48
+\inpenc@prehook=\toks45
+\inpenc@posthook=\toks46
 
 
 Package inputenc Warning: inputenc package ignored with utf8 based engines.
 
 )
-\c@proposition=\count349
+\c@proposition=\count348
 
 (C:\Users\Wojtek\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerfontthemeprofess
 ionalfonts.sty))
@@ -960,12 +794,12 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen302
 \cmidrulekern=\dimen303
 \defaultaddspace=\dimen304
-\@cmidla=\count350
-\@cmidlb=\count351
+\@cmidla=\count349
+\@cmidlb=\count350
 \@aboverulesep=\dimen305
 \@belowrulesep=\dimen306
-\@thisruleclass=\count352
-\@lastruleclass=\count353
+\@thisruleclass=\count351
+\@lastruleclass=\count352
 \@thisrulewidth=\dimen307
 )
 (C:\Users\Wojtek\AppData\Roaming\MiKTeX\tex/latex/psnfss\times.sty
@@ -1679,7 +1513,7 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 File: ./images//uk_reg.jpg Graphic file (type bmp)
 <./images//uk_reg.jpg>
 
-Overfull \vbox (13.13525pt too high) detected at line 318
+Overfull \vbox (13.13525pt too high) detected at line 319
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1690,7 +1524,7 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 File: ./images//uk_reg.jpg Graphic file (type bmp)
 <./images//uk_reg.jpg>
 
-Overfull \vbox (13.13525pt too high) detected at line 318
+Overfull \vbox (13.13525pt too high) detected at line 319
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1701,7 +1535,7 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 File: ./images//controller.png Graphic file (type bmp)
 <./images//controller.png>
 
-Overfull \vbox (11.75027pt too high) detected at line 325
+Overfull \vbox (11.75027pt too high) detected at line 326
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1739,12 +1573,12 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 File: ./images//pid_cascade.jpg Graphic file (type bmp)
 <./images//pid_cascade.jpg>
 
-Overfull \hbox (18.4954pt too wide) in paragraph at lines 353--353
+Overfull \hbox (18.4954pt too wide) in paragraph at lines 354--354
  [] 
  []
 
 
-Overfull \vbox (27.59377pt too high) detected at line 353
+Overfull \vbox (27.59377pt too high) detected at line 354
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1816,7 +1650,7 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 File: ./images//questions.png Graphic file (type bmp)
 <./images//questions.png>
 
-Overfull \vbox (111.84758pt too high) detected at line 454
+Overfull \vbox (111.84758pt too high) detected at line 455
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1855,12 +1689,12 @@ Package rerunfilecheck Info: File `prez.out' has not changed.
 (rerunfilecheck)             Checksum: 0D8286E85B5E9EFBA6761558B018608B;1099.
  ) 
 Here is how much of TeX's memory you used:
- 25381 strings out of 410670
- 529957 string characters out of 2820971
- 845491 words of memory out of 3000000
- 45847 multiletter control sequences out of 15000+600000
- 484118 words of font info for 102 fonts, out of 8000000 for 9000
+ 24905 strings out of 410670
+ 519460 string characters out of 2820971
+ 834858 words of memory out of 3000000
+ 45390 multiletter control sequences out of 15000+600000
+ 484102 words of font info for 100 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 128i,14n,125p,419b,676s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 128i,14n,122p,419b,608s stack positions out of 10000i,1000n,20000p,200000b,80000s
 
 Output written on prez.pdf (61 pages).
