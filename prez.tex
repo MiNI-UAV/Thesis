@@ -144,8 +144,22 @@
 		\end{column}
 	\end{columns}
 	\begin{figure}
-		\hfill
-		\uncover<5->{\includegraphics[width=0.2\textwidth]{helicopter_ban.png}}
+	\begin{columns}
+		\begin{column}{0.33\textwidth}
+		\end{column}
+		\begin{column}{0.33\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<5->{\includegraphics[width=0.5\textwidth]{cargo.png}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.33\textwidth}
+	    		\begin{figure}
+	   		 \centering
+	      		 \uncover<6->{\includegraphics[width=0.6\textwidth]{helicopter_ban.png}}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
 	\end{figure}
 \end{frame}
 
@@ -251,19 +265,261 @@
 		    Rugge-Kutty 4 rzędu
 		  }
 	     \end{itemize}
+	     \pause
+	  }
+	  \item {   
+	    Algorytmy niejawne
 	  }
  	 \end{itemize}
 \end{frame}
 
-\begin{frame}[allowframebreaks]
-	\frametitle{Model matematyczny statku powietrznego}
-	
+\begin{frame}%[allowframebreaks]
+	\frametitle{Model matematyczny statku powietrznego I}
+	\begin{columns}[T]
+		\begin{column}{0.33\textwidth}
+	   	 	\begin{figure}
+	      		 \uncover<2->{
+	      		 Położenie i orientacja:
+	      		  \begin{center}
+	      		 \[
+	      		 \bm{y} = \begin{bmatrix}x\\y\\z\\ \varphi \\ \Theta \\ \Psi  \end{bmatrix}_{W} \text{lub} \begin{bmatrix}x\\y\\z\\ q_0 \\ q_x \\ q_y \\ q_z  \end{bmatrix}_{W}
+	      		 \]
+	      		  \end{center}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.33\textwidth}
+	   	 	\begin{figure}
+	      		 \uncover<3->{
+	      		 Prędkości:
+	      		  \begin{center}
+	      		 \[
+	      		 \bm{x} = \begin{bmatrix}v_x\\v_y\\v_z\\ P \\ Q \\ R  \end{bmatrix}_{B}
+	      		  \]
+	      		   \end{center}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.33\textwidth}
+	    		\begin{figure}
+	   		 \uncover<4->{
+	   		 Stan układu:
+	   		 \begin{center}
+	      		 \[
+	      		 \begin{bmatrix} \bm{y}\\ \bm{x} \\ \vdots \end{bmatrix}
+	      		 \]
+	      		  \end{center}}
+	    		\end{figure}
+		\end{column}
+	\end{columns}	
 \end{frame}
 
-\begin{frame}[allowframebreaks]
-	\frametitle{Kolizje}
-	
+\begin{frame}%[allowframebreaks]
+	\frametitle{Model matematyczny statku powietrznego II}
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+			 \begin{itemize}
+			  \item<2-> {
+			    Prędkość to pochodna położenia
+			    \vspace{15pt}
+			  }
+			  \item<4-> {   
+			    Zasada zmienności pędu i krętu, czyli uogólniona II zasada dynamiki Newtona
+			    \[
+		              \begin{bmatrix}\frac{d\bm{\vec{p}}}{dt}\\ \frac{d\bm{\vec{L}}}{dt} \end{bmatrix} = \begin{bmatrix}\bm{\vec{F}}\\ \bm{\vec{M}} \end{bmatrix} = \bm{f}
+		              \]
+			    }
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+	   	 	\begin{itemize}
+			  \item<3->[] {
+			   \[
+			   	\bm{\dot{y}} = T(\bm{y}, \bm{x})
+			   \]
+			  }
+			  \vspace{15pt}
+			  
+			  \item<5->[]{   
+			    \[
+			   	\bm{M} \bm{\dot{x}} +  \bm{\Omega} \left( \bm{x} \right) \bm{M} \bm{x} = \bm{f}
+			   \]
+			    }
+			\end{itemize}
+		\end{column}
+	\end{columns}
 \end{frame}
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{Model matematyczny statku powietrznego III}
+	Siły i momenty działające na samolot:
+			 \begin{itemize}
+			  \item<2-> {
+			    Siła grawitacji  $\bm{f_G}$
+			  }
+			  \item<3-> {   
+			    Ciąg silników i moment oporowy  $\bm{f_R}$
+			   }
+			    \item<3-> {   
+			    Ciąg silników marszowych  $\bm{f_J}$
+			   }
+			    \item<4-> {   
+			    Oddziaływanie aerodynamiczne $\bm{f_A}$
+			   }
+			    \item<5-> {   
+			   Siły zewnętrzne $\bm{f_{OUT}}$
+			   }
+			\end{itemize}
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{Model matematyczny statku powietrznego IV}
+	Ciąg silnika i moment oporowy:
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<2->{
+	      		 \[
+	      		 	F = k_F \rho S R^2 \omega^2
+			\]}
+			 \uncover<3->{
+	      		 \[
+	      		 	M = k_M \rho S R^3 \omega^2
+	      		\]} 
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<4->{ 
+	      		 \[
+	      		 	T \frac{d\omega}{dt} + \omega = \omega_{ZADANA}
+	      		 \]}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{Model matematyczny statku powietrznego V}
+	Ciąg silnika marszowego:
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<2->{\includegraphics[width=0.5\textwidth]{jet\_thrust.png}}
+	    		\end{figure}
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{Model matematyczny statku powietrznego V}
+	Oddziaływanie aerodynamiczne:
+	\begin{columns}
+		\begin{column}{0.4\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<2->{
+	      		 \[
+	      		 	\bm{f_A} = \frac{1}{2}\rho V_{T}^2  \bm{S} \bm{C}\left(\alpha, \beta, \bm{x}, \bm{\delta}, ... \right)
+			\]}
+
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.6\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<4->{ 
+	      		 \[
+	      		 	 \bm{C} \approx \bm{C0} + \frac{d\bm{C}}{d\alpha}\alpha + \frac{d\bm{C}}{d\beta}\beta + \frac{d\bm{C}}{d\beta}\beta + \frac{d\bm{C}}{d\bm{x}}\bm{x} + \frac{d\bm{C}}{d\bm{\delta}}\bm{\delta}
+	      		 \]}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{Kolizje I}
+	\begin{columns}
+		\begin{column}{0.45\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<1->{\includegraphics[width=0.8\textwidth]{collision\_plane.png}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.55\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{meshes.png}}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{Kolizje II}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<2->{\includegraphics[width=0.85\textwidth]{prism.png}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<3->{\includegraphics[width=0.9\textwidth]{grid.png}}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{Kolizje III}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{oscillator.png}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<3->{\includegraphics[width=0.9\textwidth]{ball.png}}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{Kolizje IV}
+	\begin{columns}
+		\begin{column}{0.4\textwidth}
+			\begin{figure}
+			\centering
+		      		 \[
+		      		 \bm{\vec{j}} = \int_{t_0}^{t_1} \bm{\vec{F}} dt
+		      		 \]
+		      		\pause
+		      		\[
+		      		j_r \left( \bm{M}, \bm{\vec{v}}, ...  , COR \right)
+		      		\]
+		      		\uncover<5->{
+		      		\[
+		      		j_f \left( \bm{M}, \bm{\vec{v}}, ...  , \mu_s, \mu_d \right)
+		      		\]
+		      		}	 
+			\end{figure}
+		\end{column}
+		\begin{column}{0.6\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<4->{\includegraphics[width=0.9\textwidth]{cor.png}}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
+\end{frame}
+
 
 \begin{frame}%[allowframebreaks]
 	\frametitle{Odrzut}
@@ -355,24 +611,29 @@
 
 \begin{frame}%[allowframebreaks]
 	\frametitle{Nawigacja}
-	\begin{columns}
+	\begin{columns}[T]
 		\begin{column}{0.5\textwidth}
 	   	 	 Czujniki:
 	   	 	 \begin{itemize}
 			  \item{
 			    Żyroskop
+			    \pause
 			  }
 			  \item {   
 			    Akcelerometer
+			    \pause
 			  }
 			  \item {   
 			    Barometer
+			    \pause
 			  }
 			  \item {   
 			    Czujnik prędkości powietrza
+			    \pause
 			  }
 			  \item {   
 			    Nawigacja satelitarna
+			    \pause
 			  }
 			  \item {   
 			    Radar, sonar, lidar
@@ -459,6 +720,9 @@
 \beamertemplatebookbibitems
 \bibitem{en15197136}[Energies, 2022] Quadrotor Model for Energy Consumption Analysis
    \newblock  Jacewicz, Mariusz and Żugaj, Marcin and Głębocki, Robert and Bibik, Przemysław
+   
+ \bibitem{cor} Collision Response and Coulomb Friction
+ \newblock \url{https://gafferongames.com/post/collision_response_and_coulomb_friction/}
 
 \end{thebibliography}
 \end{frame}

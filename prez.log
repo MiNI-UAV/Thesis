@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.3) (preloaded format=xelatex 2022.8.14)  21 NOV 2023 11:10
+This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.3) (preloaded format=xelatex 2022.8.14)  21 NOV 2023 14:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1224,10 +1224,12 @@ File: ./images//quadcopter_fpv.png Graphic file (type bmp)
 <./images//quadcopter_fpv.png>
 File: ./images//missile.png Graphic file (type bmp)
 <./images//missile.png>
+File: ./images//cargo.png Graphic file (type bmp)
+<./images//cargo.png>
 File: ./images//helicopter_ban.png Graphic file (type bmp)
 <./images//helicopter_ban.png>
 
-Overfull \vbox (35.11263pt too high) detected at line 150
+Overfull \vbox (44.38342pt too high) detected at line 164
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1241,10 +1243,12 @@ File: ./images//quadcopter_fpv.png Graphic file (type bmp)
 <./images//quadcopter_fpv.png>
 File: ./images//missile.png Graphic file (type bmp)
 <./images//missile.png>
+File: ./images//cargo.png Graphic file (type bmp)
+<./images//cargo.png>
 File: ./images//helicopter_ban.png Graphic file (type bmp)
 <./images//helicopter_ban.png>
 
-Overfull \vbox (35.11263pt too high) detected at line 150
+Overfull \vbox (44.38342pt too high) detected at line 164
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1258,10 +1262,12 @@ File: ./images//quadcopter_fpv.png Graphic file (type bmp)
 <./images//quadcopter_fpv.png>
 File: ./images//missile.png Graphic file (type bmp)
 <./images//missile.png>
+File: ./images//cargo.png Graphic file (type bmp)
+<./images//cargo.png>
 File: ./images//helicopter_ban.png Graphic file (type bmp)
 <./images//helicopter_ban.png>
 
-Overfull \vbox (35.11263pt too high) detected at line 150
+Overfull \vbox (44.38342pt too high) detected at line 164
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1275,10 +1281,12 @@ File: ./images//quadcopter_fpv.png Graphic file (type bmp)
 <./images//quadcopter_fpv.png>
 File: ./images//missile.png Graphic file (type bmp)
 <./images//missile.png>
+File: ./images//cargo.png Graphic file (type bmp)
+<./images//cargo.png>
 File: ./images//helicopter_ban.png Graphic file (type bmp)
 <./images//helicopter_ban.png>
 
-Overfull \vbox (35.11263pt too high) detected at line 150
+Overfull \vbox (44.38342pt too high) detected at line 164
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1292,10 +1300,12 @@ File: ./images//quadcopter_fpv.png Graphic file (type bmp)
 <./images//quadcopter_fpv.png>
 File: ./images//missile.png Graphic file (type bmp)
 <./images//missile.png>
+File: ./images//cargo.png Graphic file (type bmp)
+<./images//cargo.png>
 File: ./images//helicopter_ban.png Graphic file (type bmp)
 <./images//helicopter_ban.png>
 
-Overfull \vbox (35.11263pt too high) detected at line 150
+Overfull \vbox (44.38342pt too high) detected at line 164
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1303,9 +1313,23 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 [15
 
 ]
+File: ./images//spitfire.png Graphic file (type bmp)
+<./images//spitfire.png>
+File: ./images//quadcopter_fpv.png Graphic file (type bmp)
+<./images//quadcopter_fpv.png>
+File: ./images//missile.png Graphic file (type bmp)
+<./images//missile.png>
+File: ./images//cargo.png Graphic file (type bmp)
+<./images//cargo.png>
+File: ./images//helicopter_ban.png Graphic file (type bmp)
+<./images//helicopter_ban.png>
+
+Overfull \vbox (44.38342pt too high) detected at line 164
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [16
+[16
 
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1333,24 +1357,21 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
  [21
 
 ]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [22
+
+]
 
 LaTeX Font Warning: Font shape `TU/phv/b/n' undefined
-(Font)              using `TU/phv/m/n' instead on input line 182.
+(Font)              using `TU/phv/m/n' instead on input line 196.
 
 
 LaTeX Font Warning: Font shape `TU/phv/m/sc' undefined
-(Font)              using `TU/phv/m/n' instead on input line 182.
+(Font)              using `TU/phv/m/n' instead on input line 196.
 
 
-Overfull \vbox (19.5357pt too high) detected at line 182
- []
-
-File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
-<use img/Znak_podstawowy_PL.pdf>
-[22
-
-]
-Overfull \vbox (19.5357pt too high) detected at line 182
+Overfull \vbox (19.5357pt too high) detected at line 196
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1358,7 +1379,7 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 [23
 
 ]
-Overfull \vbox (19.5357pt too high) detected at line 182
+Overfull \vbox (19.5357pt too high) detected at line 196
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1366,18 +1387,7 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 [24
 
 ]
-File: ./images//frames.png Graphic file (type bmp)
-<./images//frames.png>
-
-Overfull \hbox (10.17253pt too wide) in paragraph at lines 202--202
- [][] 
- []
-
-File: ./images//RPY.png Graphic file (type bmp)
-<./images//RPY.png>
-
-Overfull \hbox (8.32288pt too wide) in paragraph at lines 202--202
- [][] 
+Overfull \vbox (19.5357pt too high) detected at line 196
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1388,14 +1398,14 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 File: ./images//frames.png Graphic file (type bmp)
 <./images//frames.png>
 
-Overfull \hbox (10.17253pt too wide) in paragraph at lines 202--202
- [][][] 
+Overfull \hbox (10.17253pt too wide) in paragraph at lines 216--216
+ [][] 
  []
 
 File: ./images//RPY.png Graphic file (type bmp)
 <./images//RPY.png>
 
-Overfull \hbox (8.32288pt too wide) in paragraph at lines 202--202
+Overfull \hbox (8.32288pt too wide) in paragraph at lines 216--216
  [][] 
  []
 
@@ -1407,15 +1417,15 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 File: ./images//frames.png Graphic file (type bmp)
 <./images//frames.png>
 
-Overfull \hbox (10.17253pt too wide) in paragraph at lines 202--202
+Overfull \hbox (10.17253pt too wide) in paragraph at lines 216--216
  [][][] 
  []
 
 File: ./images//RPY.png Graphic file (type bmp)
 <./images//RPY.png>
 
-Overfull \hbox (8.32288pt too wide) in paragraph at lines 202--202
- [][][] 
+Overfull \hbox (8.32288pt too wide) in paragraph at lines 216--216
+ [][] 
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1423,28 +1433,31 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 [27
 
 ]
-Overfull \hbox (22.74911pt too wide) detected at line 228
-[]
+File: ./images//frames.png Graphic file (type bmp)
+<./images//frames.png>
+
+Overfull \hbox (10.17253pt too wide) in paragraph at lines 216--216
+ [][][] 
  []
 
+File: ./images//RPY.png Graphic file (type bmp)
+<./images//RPY.png>
 
-Overfull \hbox (22.66458pt too wide) detected at line 228
-[]
+Overfull \hbox (8.32288pt too wide) in paragraph at lines 216--216
+ [][][] 
  []
 
-File: ./images//state_eq.png Graphic file (type bmp)
-<./images//state_eq.png>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
 [28
 
 ]
-Overfull \hbox (22.74911pt too wide) detected at line 228
+Overfull \hbox (22.74911pt too wide) detected at line 242
 []
  []
 
 
-Overfull \hbox (22.66458pt too wide) detected at line 228
+Overfull \hbox (22.66458pt too wide) detected at line 242
 []
  []
 
@@ -1455,9 +1468,20 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 [29
 
 ]
+Overfull \hbox (22.74911pt too wide) detected at line 242
+[]
+ []
+
+
+Overfull \hbox (22.66458pt too wide) detected at line 242
+[]
+ []
+
+File: ./images//state_eq.png Graphic file (type bmp)
+<./images//state_eq.png>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [30
+[30
 
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1490,111 +1514,82 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
  [36
 
 ]
-File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
-<use img/Znak_podstawowy_PL.pdf>
- [37
-
-]
-File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
-<use img/Znak_podstawowy_PL.pdf>
- [38
-
-]
-File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
-<use img/Znak_podstawowy_PL.pdf>
- [39
-
-]
-File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
-<use img/Znak_podstawowy_PL.pdf>
- [40
-
-]
-File: ./images//uk_reg.jpg Graphic file (type bmp)
-<./images//uk_reg.jpg>
-
-Overfull \vbox (13.13525pt too high) detected at line 319
+Overfull \vbox (10.70937pt too high) detected at line 313
  []
+
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+[37
+
+]
+Overfull \vbox (10.70937pt too high) detected at line 313
+ []
+
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+[38
+
+]
+Overfull \vbox (10.70937pt too high) detected at line 313
+ []
+
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+[39
+
+]
+Overfull \vbox (10.70937pt too high) detected at line 313
+ []
+
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+[40
+
+]
+
+LaTeX Font Warning: Font shape `TU/ptm/b/n' undefined
+(Font)              using `TU/ptm/m/n' instead on input line 349.
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
 [41
 
 ]
-File: ./images//uk_reg.jpg Graphic file (type bmp)
-<./images//uk_reg.jpg>
-
-Overfull \vbox (13.13525pt too high) detected at line 319
- []
-
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
-[42
+ [42
 
 ]
-File: ./images//controller.png Graphic file (type bmp)
-<./images//controller.png>
-
-Overfull \vbox (11.75027pt too high) detected at line 326
- []
-
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
-[43
+ [43
 
 ]
-File: ./images//pid.png Graphic file (type bmp)
-<./images//pid.png>
-File: ./images//pid_graph.png Graphic file (type bmp)
-<./images//pid_graph.png>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
  [44
 
 ]
-File: ./images//pid.png Graphic file (type bmp)
-<./images//pid.png>
-File: ./images//pid_graph.png Graphic file (type bmp)
-<./images//pid_graph.png>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
  [45
 
 ]
-File: ./images//pid.png Graphic file (type bmp)
-<./images//pid.png>
-File: ./images//pid_graph.png Graphic file (type bmp)
-<./images//pid_graph.png>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
  [46
 
 ]
-File: ./images//pid_cascade.jpg Graphic file (type bmp)
-<./images//pid_cascade.jpg>
-
-Overfull \hbox (18.4954pt too wide) in paragraph at lines 354--354
- [] 
- []
-
-
-Overfull \vbox (27.59377pt too high) detected at line 354
- []
-
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
-[47
+ [47
 
 ]
-File: ./images//kalman.png Graphic file (type bmp)
-<./images//kalman.png>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
  [48
 
 ]
-File: ./images//kalman.png Graphic file (type bmp)
-<./images//kalman.png>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
  [49
@@ -1625,14 +1620,26 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
  [54
 
 ]
+File: ./images//jet_thrust.png Graphic file (type bmp)
+<./images//jet_thrust.png>
+
+Overfull \vbox (53.78343pt too high) detected at line 409
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [55
+[55
 
 ]
+File: ./images//jet_thrust.png Graphic file (type bmp)
+<./images//jet_thrust.png>
+
+Overfull \vbox (53.78343pt too high) detected at line 409
+ []
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [56
+[56
 
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
@@ -1640,36 +1647,366 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
  [57
 
 ]
-File: ./images//dog.jpg Graphic file (type bmp)
-<./images//dog.jpg>
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
  [58
 
 ]
-File: ./images//questions.png Graphic file (type bmp)
-<./images//questions.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [59
 
-Overfull \vbox (111.84758pt too high) detected at line 455
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [60
+
+]
+File: ./images//collision_plane.png Graphic file (type bmp)
+<./images//collision_plane.png>
+File: ./images//meshes.png Graphic file (type bmp)
+<./images//meshes.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [61
+
+]
+File: ./images//collision_plane.png Graphic file (type bmp)
+<./images//collision_plane.png>
+File: ./images//meshes.png Graphic file (type bmp)
+<./images//meshes.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [62
+
+]
+File: ./images//prism.png Graphic file (type bmp)
+<./images//prism.png>
+File: ./images//grid.png Graphic file (type bmp)
+<./images//grid.png>
+
+Overfull \vbox (16.20337pt too high) detected at line 472
  []
 
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
-[59
+[63
+
+]
+File: ./images//prism.png Graphic file (type bmp)
+<./images//prism.png>
+File: ./images//grid.png Graphic file (type bmp)
+<./images//grid.png>
+
+Overfull \vbox (16.20337pt too high) detected at line 472
+ []
+
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+[64
+
+]
+File: ./images//prism.png Graphic file (type bmp)
+<./images//prism.png>
+File: ./images//grid.png Graphic file (type bmp)
+<./images//grid.png>
+
+Overfull \vbox (16.20337pt too high) detected at line 472
+ []
+
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+[65
+
+]
+File: ./images//oscillator.png Graphic file (type bmp)
+<./images//oscillator.png>
+File: ./images//ball.png Graphic file (type bmp)
+<./images//ball.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [66
+
+]
+File: ./images//oscillator.png Graphic file (type bmp)
+<./images//oscillator.png>
+File: ./images//ball.png Graphic file (type bmp)
+<./images//ball.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [67
+
+]
+File: ./images//oscillator.png Graphic file (type bmp)
+<./images//oscillator.png>
+File: ./images//ball.png Graphic file (type bmp)
+<./images//ball.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [68
+
+]
+File: ./images//cor.png Graphic file (type bmp)
+<./images//cor.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [69
+
+]
+File: ./images//cor.png Graphic file (type bmp)
+<./images//cor.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [70
+
+]
+File: ./images//cor.png Graphic file (type bmp)
+<./images//cor.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [71
+
+]
+File: ./images//cor.png Graphic file (type bmp)
+<./images//cor.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [72
+
+]
+File: ./images//cor.png Graphic file (type bmp)
+<./images//cor.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [73
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [74
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [75
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [76
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [77
+
+]
+File: ./images//uk_reg.jpg Graphic file (type bmp)
+<./images//uk_reg.jpg>
+
+Overfull \vbox (13.13525pt too high) detected at line 575
+ []
+
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+[78
+
+]
+File: ./images//uk_reg.jpg Graphic file (type bmp)
+<./images//uk_reg.jpg>
+
+Overfull \vbox (13.13525pt too high) detected at line 575
+ []
+
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+[79
+
+]
+File: ./images//controller.png Graphic file (type bmp)
+<./images//controller.png>
+
+Overfull \vbox (11.75027pt too high) detected at line 582
+ []
+
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+[80
+
+]
+File: ./images//pid.png Graphic file (type bmp)
+<./images//pid.png>
+File: ./images//pid_graph.png Graphic file (type bmp)
+<./images//pid_graph.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [81
+
+]
+File: ./images//pid.png Graphic file (type bmp)
+<./images//pid.png>
+File: ./images//pid_graph.png Graphic file (type bmp)
+<./images//pid_graph.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [82
+
+]
+File: ./images//pid.png Graphic file (type bmp)
+<./images//pid.png>
+File: ./images//pid_graph.png Graphic file (type bmp)
+<./images//pid_graph.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [83
+
+]
+File: ./images//pid_cascade.jpg Graphic file (type bmp)
+<./images//pid_cascade.jpg>
+
+Overfull \hbox (18.4954pt too wide) in paragraph at lines 610--610
+ [] 
+ []
+
+
+Overfull \vbox (27.59377pt too high) detected at line 610
+ []
+
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+[84
+
+]
+File: ./images//kalman.png Graphic file (type bmp)
+<./images//kalman.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [85
+
+]
+File: ./images//kalman.png Graphic file (type bmp)
+<./images//kalman.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [86
+
+]
+File: ./images//kalman.png Graphic file (type bmp)
+<./images//kalman.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [87
+
+]
+File: ./images//kalman.png Graphic file (type bmp)
+<./images//kalman.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [88
+
+]
+File: ./images//kalman.png Graphic file (type bmp)
+<./images//kalman.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [89
+
+]
+File: ./images//kalman.png Graphic file (type bmp)
+<./images//kalman.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [90
+
+]
+File: ./images//kalman.png Graphic file (type bmp)
+<./images//kalman.png>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [91
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [92
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [93
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [94
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [95
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [96
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [97
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [98
+
+]
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+
+[99
+
+]
+File: ./images//dog.jpg Graphic file (type bmp)
+<./images//dog.jpg>
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+ [100
+
+]
+File: ./images//questions.png Graphic file (type bmp)
+<./images//questions.png>
+
+Overfull \vbox (111.84758pt too high) detected at line 716
+ []
+
+File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
+<use img/Znak_podstawowy_PL.pdf>
+[101
 
 ]
 File: beamericonarticle.pdf Graphic file (type pdf)
 <use beamericonarticle.pdf>
 File: beamericonbook.pdf Graphic file (type pdf)
 <use beamericonbook.pdf>
+File: beamericonbook.pdf Graphic file (type pdf)
+<use beamericonbook.pdf>
+LaTeX Font Info:    Trying to load font information for TU+pcr on input line 72
+8.
+LaTeX Font Info:    No file TUpcr.fd. on input line 728.
+
+
+LaTeX Font Warning: Font shape `TU/pcr/m/n' undefined
+(Font)              using `TU/lmr/m/n' instead on input line 728.
+
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [60
+[102
 
 ]
 File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 <use img/Znak_podstawowy_PL.pdf>
- [61
+ [103
 
 ]
 \tf@nav=\write6
@@ -1685,16 +2022,22 @@ File: img/Znak_podstawowy_PL.pdf Graphic file (type pdf)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `prez.out' has not changed.
-(rerunfilecheck)             Checksum: 0D8286E85B5E9EFBA6761558B018608B;1099.
+
+Package rerunfilecheck Warning: File `prez.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `prez.out':
+(rerunfilecheck)             Before: BF7973D4BE03D570AFFBE9A6C0638A23;1099
+(rerunfilecheck)             After:  206A878729EDDFB615243FFEBAE40DEA;1099.
  ) 
 Here is how much of TeX's memory you used:
- 24905 strings out of 410670
- 519460 string characters out of 2820971
- 834858 words of memory out of 3000000
- 45390 multiletter control sequences out of 15000+600000
+ 25029 strings out of 410670
+ 521942 string characters out of 2820971
+ 840326 words of memory out of 3000000
+ 45503 multiletter control sequences out of 15000+600000
  484102 words of font info for 100 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 128i,14n,122p,419b,608s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 128i,14n,122p,419b,726s stack positions out of 10000i,1000n,20000p,200000b,80000s
 
-Output written on prez.pdf (61 pages).
+Output written on prez.pdf (103 pages).

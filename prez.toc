@@ -1,8 +1,8 @@
 \beamer@sectionintoc {1}{Wprowadzenie}{3}{0}{1}
 \beamer@subsectionintoc {1}{1}{Motywacje}{3}{0}{1}
-\beamer@subsectionintoc {1}{2}{Cel projektu}{16}{0}{1}
-\beamer@sectionintoc {2}{Wstep teoretyczny}{22}{0}{2}
-\beamer@subsectionintoc {2}{1}{Dynamika statku powietrznego}{25}{0}{2}
-\beamer@subsectionintoc {2}{2}{Sterowanie statkiem powietrznym}{41}{0}{2}
-\beamer@subsectionintoc {2}{3}{Grafika komputerowa}{50}{0}{2}
-\beamer@sectionintoc {3}{Demo}{57}{0}{3}
+\beamer@subsectionintoc {1}{2}{Cel projektu}{17}{0}{1}
+\beamer@sectionintoc {2}{Wstep teoretyczny}{23}{0}{2}
+\beamer@subsectionintoc {2}{1}{Dynamika statku powietrznego}{26}{0}{2}
+\beamer@subsectionintoc {2}{2}{Sterowanie statkiem powietrznym}{78}{0}{2}
+\beamer@subsectionintoc {2}{3}{Grafika komputerowa}{92}{0}{2}
+\beamer@sectionintoc {3}{Demo}{99}{0}{3}
