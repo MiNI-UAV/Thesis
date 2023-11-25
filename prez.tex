@@ -851,6 +851,12 @@
 	
 	\begin{figure}
 		\centering
+		\includegraphics[width=0.9\textwidth]{geo.png}
+	\end{figure}
+	\framebreak
+	
+	\begin{figure}
+		\centering
 		\includegraphics[width=0.4\textwidth]{cube.png}
 	\end{figure}
 	\framebreak
@@ -873,27 +879,43 @@
 				\begin{bmatrix}
 					1 \cdot \frac{|\vec{l_x}|}{\vec{|l_{xy}}|}, &
 					1 \cdot \frac{|\vec{l_y}|}{\vec{|l_{xy}}|}, &
-					-\sinh(\frac{(x+x_{offset})}{a})
+					-\sinh(\frac{x}{a})
 				\end{bmatrix}^T
 			\end{equation*}
 			\begin{equation*}
 			\vec{n_0} =
 			\begin{bmatrix}
-				\sinh(\frac{(x+x_{offset})}{a}) \cdot \frac{|\vec{l_x}|}{\vec{|l_{xy}}|}, &
-				\sinh(\frac{(x+x_{offset})}{a}) \cdot \frac{|\vec{l_y}|}{\vec{|l_{xy}}|}, &
+				\sinh(\frac{x}{a}) \cdot \frac{|\vec{l_x}|}{\vec{|l_{xy}}|}, &
+				\sinh(\frac{x}{a}) \cdot \frac{|\vec{l_y}|}{\vec{|l_{xy}}|}, &
 				1
 			\end{bmatrix}^T
 			\end{equation*}
+		\end{column}
+	\end{columns}
+	\framebreak
+	
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{figure}
+				\centering
+				\includegraphics[width=1\textwidth]{rope_model.png}
+			\end{figure}
+		\end{column}	
+		
+		\begin{column}{0.5\textwidth}
 			\begin{equation*}
-				M_R = 
+				W_R = 
 				\begin{bmatrix}
 					0 & -\vec{t_z} & \vec{t_y} \\
 					\vec{t_z} & 0 & -\vec{t_x} \\
-					\vec{t_y} & \vec{t_x} & 0 \\
+					-\vec{t_y} & \vec{t_x} & 0 \\
 				\end{bmatrix}
 			\end{equation*}
 			\begin{equation*}
-				\vec{n_i} = 1 \cdot M_R^i
+				M_R = I + sin \left(\frac{2\pi}{k} \right) \cdot W_R + 2\sin^2 \left(\frac{\pi}{k} \right) \cdot W_R^2
+			\end{equation*}
+			\begin{equation*}
+				\forall_{i=1,2,\cdots, k} \hspace{1em} \vec{n_i} = \vec{n_0} \cdot M_R^i
 			\end{equation*}
 		\end{column}
 	\end{columns}
@@ -947,7 +969,7 @@
 
 \begin{frame}
 	  \begin{center}
-	\Huge Dziękuje za uwagę!
+	\Huge Dziękujemy za uwagę!
 	\end{center}
 \end{frame}
 
