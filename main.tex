@@ -728,11 +728,23 @@ Testowanie oprogramowania ma na celu weryfikację opracowanych rozwiązań. Odpo
 
 Metodyka realizacji testów dobrze rozwinięta dla typowych aplikacji webowych, co skutkuje dużym wyborem narzędzi umożliwijących testowanie i "mockowanie" modułów. W przypadku symulacji i gier komputerowych sytuacja jest odmienna. Oprócz sprawdzenia poprawności kodu niezbędna jest walidacja samego symulowanego modelu. Służą do tego specjalne mechanizmy, które wykształciły się w branży lotniczej.\\
 
-Przygotowane testy można podzielić na trzy kategorie: testy jednostkowe, testy integracyjne oraz testy walidujące poprawność symulacji.
+Przygotowane testy można podzielić na cztery kategorie: testy jednostkowe, testy integracyjne, testy end-to-end oraz testy walidujące poprawność symulacji.
 
 \subsection{Testy jednostkowe}
 
+Testy jednostkowe to rodzaj testów oprogramowania, które sprawdzają indywidualne jednostki kodu, takie jak funkcje, metody czy klasy. Ich celem jest sprawdzenie, czy poszczególne fragmenty programu działają poprawnie, zgodnie z oczekiwaniami.
+W programach zawierających elementy fizyki szczególnie ważne jest przetestowanie czy komponenty odpowiedzialne za przedstawienie poszczególnych zjawisk mają sens fizyczny.
+W opracowanej symulacji kompleksowo przetestowane zostały obliczenia fizyczne, klasa ODE, pozwalająca na rozwiązywanie równań różniczkowych, konwertery oraz model atmosfery ISA. 
+
 \subsection{Testy integracyjny}
+
+Testy integracyjne są kolejnym etapem testowania oprogramowania, który koncentruje się na weryfikacji poprawności całościowego działania modułów systemu. Ich celem jest sprawdzenie, czy poszczególne części oprogramowania będą działać w połączeniu ze sobą. Polegają one najczęściej na uruchomieniu wybranego modułu w izolacji i sztucznym wygenerowaniu zapytań i odpowiedzi pochodzących z innych modułów. Rozbudowane testy integracyjne zostały napisane dla modułów UAV\_drop\_physic oraz UAV\_visualization. Fizyka obiektów jest testowana pod względem tworzenia nowych obiektów oraz ich reakcji na fizyczne bodźce. Testowanie wizualizacji przeprowadzone jest za pomocą skryptu w języku Python, który imitując serwer inicjalizuje wizualizację oraz wysyła dane, które tester jest w stanie zweryfikować na podstawie wygenerowanego obrazu.
+
+\subsection{Testy End-to-end}
+
+Testy end-to-end (E2E) są rodzajem testów oprogramowania, które sprawdzają poprawność działania systemu jako całości, od rozpoczęcia działania aż do oczekiwanych wyników. W ramach testów end-to-end przetestowane zostało działanie serwera, który rozpoczyna swoje wywołanie od modułu UAV\_aggregator. Uruchamia on moduły symulacji fizyki i kontrolera, sprawdzając czy zainicjalizowały się poprawnie. 
+Następnie generowana jest komunikacja z wizualizacją, symulująca wejście od użytkownika. Pozwala ona na przetestowanie reakcji systemu na przychodzące wiadomości.
+Ostatecznie serwer wyłącza moduły i weryfikuje poprawne zatrzymanie wszystkich procesów. 
 
 \subsection{Testy walidujące}
 
@@ -745,21 +757,21 @@ Testy walidacyjne moją na celu potwierdzić użyteczność symulacji. To na pod
 \item Walidacja modelu -- sprawdzenie poprawności przygotowanego modelu
 \end{itemize}
 
-Jedną z najpopularniejszych metod walidacji są analiza sensu fizycznego modelu oraz tzw. dowód zgodności. Analiza sensu fizycznego modelu polega na sprawdzeniu czy zachowanie symulowanego modelu w określonych scenariuszach odpowiada przewidywanym odpowiedzą. Do podstawowych badań należy sprawdzenie poprawności zachowania w reakcji na wychylenia powierzchni sterowych i położenia przepustnicy. Dodatkowa analiza kąta natarcia i ślizgu pozwala na porównanie wartości symulowanych z testami tunelowymi. Powyższe testy mają charakter lokalny, badający pewnien podzbiór stanów BSP. W przeciwieństwie do tego na podjęcie całkowitego werdyktu pozwala dowód zgodności. Polega on na pełnym zarejestrowaniu stanu obiektu w locie i symulacji i sprawdzenie czy są one ze sobą zgodne z określoną tolerancją. Tolerancja ta może wynikać ze skończonej dokładności czujników pomiarowych, szumu przetwarzania lub tolerancji Maximum Unnoticeable Added Dynamics, czyli największego dopuszczalnego błedu, który pozostanie przez doświadczonego użytkownika. Ostatni z parameterów jest szczególnie użyteczny w przypadku symulatorów do szkolenia pilotów.\\
+Jedną z najpopularniejszych metod walidacji są analiza sensu fizycznego modelu oraz tzw. dowód zgodności. Analiza sensu fizycznego modelu polega na sprawdzeniu czy zachowanie symulowanego modelu w określonych scenariuszach odpowiada przewidywanym odpowiedziom. Do podstawowych badań należy sprawdzenie poprawności zachowania w reakcji na wychylenia powierzchni sterowych i położenia przepustnicy. Dodatkowa analiza kąta natarcia i ślizgu pozwala na porównanie wartości symulowanych z testami tunelowymi. Powyższe testy mają charakter lokalny, badający pewnien podzbiór stanów BSP. W przeciwieństwie do tego na podjęcie całkowitego werdyktu pozwala dowód zgodności. Polega on na pełnym zarejestrowaniu stanu obiektu w locie i symulacji oraz sprawdzenie czy są one ze sobą zgodne z określoną tolerancją. Tolerancja ta może wynikać ze skończonej dokładności czujników pomiarowych, szumu przetwarzania lub tolerancji Maximum Unnoticeable Added Dynamics, czyli największego dopuszczalnego błedu, który pozostanie niezauważony przez doświadczonego użytkownika. Ostatni z parameterów jest szczególnie użyteczny w przypadku symulatorów do szkolenia pilotów.\\
 
-Ze wzgledu na charakter pracy, budowa symulacji w oparciu o badanie konkretnego modelu możliwa. Przyjęty model stanowi fuzje cech modeli pojawiających się w literaturze, dla których nie wszystkie współczynniki są jasno określone. Zatem z pominięciem powyższych etapów przygotowana symulacja nie odwzorowuje wiernie konkretnego statku. Nie zmienia to faktu, że uniwersalny model również może być weryfikowany, że wzgledu na zachowania które powinny wystąpić zawsze niezależnie od konfiguracji. W ten sposób można zaplanować zbiór testów manualnych które pozwalają szybko potwierdzić poprawność modelu. Przykładowe zachowania, które podlegają sprawdzeniu to:
+Ze względu na charakter pracy, budowa symulacji w oparciu o badanie konkretnego modelu nie jest możliwa. Przyjęty model stanowi fuzję cech modeli pojawiających się w literaturze, dla których nie wszystkie współczynniki są jasno określone. Zatem z pominięciem powyższych etapów przygotowana symulacja nie odwzorowuje wiernie konkretnego statku. Nie zmienia to faktu, że uniwersalny model również może być weryfikowany, ze wzgledu na zachowania, które powinny wystąpić zawsze, niezależnie od konfiguracji. W ten sposób można zaplanować zbiór testów manualnych które pozwalają szybko potwierdzić poprawność modelu. Przykładowe zachowania, które podlegają sprawdzeniu to:
 \begin{itemize}[noitemsep]
 \item BSP poprawnie odpowiada na wychylenia osi joysticka, przynajmniej co do kierunku obrotu.
-\item BSP posiada cechy bryły sztywnej poruszającej się w ośrodku
-\item W przypadku statków stabilnych aerodynamicznie, BSP pozostaje stabilny w trakcie lotu: BSP sam minimalizuje slizg, gasi prędkości kątowe lub limituje je.
+\item BSP posiada cechy bryły sztywnej poruszającej się w powietrzu.
+\item W przypadku statków stabilnych aerodynamicznie, BSP pozostaje stabilny w trakcie lotu: BSP sam minimalizuje ślizg, gasi prędkości kątowe lub je ogranicza.
 \item W przypadku wielowirnikowców poprawnie realizowany jest zawis
-\item W przypadku płatowców, do utrzymania wysokości przy prędkości przelotowej potrzebny jest dodatni kąt natarcia. W locie odwróconym wymagany kąt natarcia jest wiekszy.
+\item W przypadku płatowców, do utrzymania wysokości przy prędkości przelotowej potrzebny jest dodatni kąt natarcia. W locie odwróconym wymagany kąt natarcia jest większy.
 \end{itemize}
 
 
 \color{blue}
 \newpage
-\section{Wydrożenie oprogramowania}
+\section{Wdrożenie oprogramowania}
 \subsection{Dokumentacja wydania}
 Wymagania systemowe, sprzętowe. Wymagane biblioteki
 
@@ -802,9 +814,18 @@ PID, LQR, inne.
 \subsubsection{System nawigacji}
 Czujniki, fuzja pomiarów, Filtr Kalmana
 
-%TODO: zagadnienia z zakresu grafiki komputerowej
-
-
+\subsection{Grafika komputerowa}
+\subsubsection{Procesory graficzne}
+\subsubsection{OpenGL}
+\subsubsection{Potok renderowania}
+\subsubsection{Shadery}
+\subsubsection{Cieniowanie}
+\subsubsection{Model oświetlenia}
+\subsection{Obsługa kontrolerów}
+\subsection{Symulacja liny}
+\subsubsection{Krzywa łańcuchowa}
+\subsubsection{Rysowanie krzywej łańcuchowej}
+\subsection{Wyznaczenie parametrów panelu rotorów}
 
 % TODO: remove later
 \color{black}
