@@ -34,6 +34,33 @@
 \usepackage{comment}
 \usepackage{tocloft}
 
+\definecolor{quotationcolour}{HTML}{F0F0F0}
+\definecolor{quotationmarkcolour}{HTML}{1F3F81}
+
+% Double-line for start and end of epigraph.
+\newcommand{\epiline}{\hrule \vskip -.2em \hrule}
+% Massively humongous opening quotation mark.
+\newcommand{\hugequote}{%
+  \fontsize{42}{48}\selectfont \color{quotationmarkcolour} \textbf{``}
+  \vskip -.5em
+}
+
+% Beautify quotations.
+\newcommand{\epigraph}[2]{%
+  \bigskip
+  \begin{center}
+  \colorbox{quotationcolour}{%
+    \parbox{.80\textwidth}{%
+    \epiline \vskip 1em {\hugequote} \vskip -.5em
+    \parindent 2.2em
+    #1\vspace{-.25cm}\begin{flushright}\textsc{#2}\end{flushright}
+    \epiline
+    }
+  }
+  \end{center}
+  \bigskip
+}
+
 \setmainfont{Verdana}
 
 \addtolength{\cftsubsecnumwidth}{10pt}
@@ -730,8 +757,57 @@ Ze wzgledu na charakter pracy, budowa symulacji w oparciu o badanie konkretnego 
 \end{itemize}
 
 
+\color{blue}
+\newpage
+\section{Wydrożenie oprogramowania}
+\subsection{Dokumentacja wydania}
+Wymagania systemowe, sprzętowe. Wymagane biblioteki
+
+\subsection{Instrukcja instalacji}
+\subsubsection{Instalacja serwera z wykorzystaniem Docker}
+\subsubsection{Instalacja klienta z wykorzystaniem archiwum JAR}
+\subsubsection{Samodzielna budowa kodu serwera i natywna instalacja w systemie Ubuntu}
+\subsubsection{Samodzielna budowa kodu klienta i instalacja z wykorzystaniem Gradle}
+
+\subsection{Dokumentacja techniczna}
+Opis komunikacji klient-serwer, szablony wiadomości odpowiedzi, strumienie.
+
+\subsection{Instrukcja obsługi}
+Uruchom i lataj, opis plików z wynikami analizy, dodawanie nowego trybu sterowania.
+
+\newpage
+\section{Dodatek A: wprowadzenie teoretyczne}
+
+\epigraph{There is nothing so practical as a good theory.}{Lewin Kurt}
+\epigraph{Nie ma osobnej ani teorii, ani praktyki inżynierskiej, jest tylko wspólna sztuka inżynierska.}{prof. Jan Oderfeld}
+
+\subsection{Preliminaria?}
+\subsubsection{Równania stanu}
+\subsubsection{Metody numerycznego całkowania równań różniczkowych}
+\subsection{Dynamika lotu BSP}
+\subsubsection{Opis stanu BSP}
+\subsubsection{Model matematyczny BSP}
+\subsubsection{Siły i momenty działające na BSP}
+\subsubsection{Model atmosfery ISA, wiatr}
+\subsubsection{Kolizje}
+\subsubsection{Odrzut}
+\subsubsection{Przenoszenie ładunku}
+\subsection{Sterowanie BSP}
+\subsubsection{Regulacja i sterowanie}
+
+\subsubsection{System sterowania BSP}
+Regulacja i sterowanie, sterowanie w pętli zamknietej z ujemnym sprzeżeniem zwrotnym, model sterowania, drabina pidów
+\subsubsection{Regulatory}
+PID, LQR, inne.
+\subsubsection{System nawigacji}
+Czujniki, fuzja pomiarów, Filtr Kalmana
+
+%TODO: zagadnienia z zakresu grafiki komputerowej
 
 
+
+% TODO: remove later
+\color{black}
 \newpage
 \section{Załączniki}
 
