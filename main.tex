@@ -699,7 +699,7 @@ Pozytywne & Negatywne\\
 
 Testowanie oprogramowania ma na celu weryfikację opracowanych rozwiązań. Odpowiednio przygotowane testy pozwalają na szybką detekcje błędu, a także rozwiązanie jego przyczyny. W zależności od przyjętej ideologi, testy oprogramowania przygotowywane są przed lub po opracowaniu własciwego kodu programu. Szczególnym przypadkiem testów pisanych po zakończeniu implementacji są testy pisane nigdy.\\
 
-Metodyka realizacji testów dobrze rozwinięta dla typowych aplikacji webowych, co skutkuje dużym wyborem narzędzi umożliwijących testowanie i "mockowanie" modułów. W przypadku symulacji i gier komputerowych sytuacja jest odmienna. Oprócz sprawdzenia poprawności kodu niezbędna jest walidacja samego symulowanego modelu. Służą do tego specjalne mechanizmy, które wykształciły się w branży lotniczej.
+Metodyka realizacji testów dobrze rozwinięta dla typowych aplikacji webowych, co skutkuje dużym wyborem narzędzi umożliwijących testowanie i "mockowanie" modułów. W przypadku symulacji i gier komputerowych sytuacja jest odmienna. Oprócz sprawdzenia poprawności kodu niezbędna jest walidacja samego symulowanego modelu. Służą do tego specjalne mechanizmy, które wykształciły się w branży lotniczej.\\
 
 Przygotowane testy można podzielić na trzy kategorie: testy jednostkowe, testy integracyjne oraz testy walidujące poprawność symulacji.
 
@@ -708,6 +708,29 @@ Przygotowane testy można podzielić na trzy kategorie: testy jednostkowe, testy
 \subsection{Testy integracyjny}
 
 \subsection{Testy walidujące}
+
+Testy walidacyjne moją na celu potwierdzić użyteczność symulacji. To na podstawie ich wyniku podjęta zostaje decyzja, czy wyniki symulacji są wiarygodne i mogą zostać wykorzyste w analizach. W praktyce przygotowywania symulatorów lotniczych walidacja stanowi ostatni etap metody 4M, której poszczególnymi etapami są:
+\begin{itemize}[noitemsep]
+\item Manoeuvre -- zaplanowanie i wykonanie eksperymentu
+\item Measurement -- pomiar i rejestracja stanu statku powietrznego
+\item Method -- dobór odpowiedniej metody identyfikacji i estymacja
+\item Model -- symulacja przygotowanego modelu matematycznego
+\item Walidacja modelu -- sprawdzenie poprawności przygotowanego modelu
+\end{itemize}
+
+Jedną z najpopularniejszych metod walidacji są analiza sensu fizycznego modelu oraz tzw. dowód zgodności. Analiza sensu fizycznego modelu polega na sprawdzeniu czy zachowanie symulowanego modelu w określonych scenariuszach odpowiada przewidywanym odpowiedzą. Do podstawowych badań należy sprawdzenie poprawności zachowania w reakcji na wychylenia powierzchni sterowych i położenia przepustnicy. Dodatkowa analiza kąta natarcia i ślizgu pozwala na porównanie wartości symulowanych z testami tunelowymi. Powyższe testy mają charakter lokalny, badający pewnien podzbiór stanów BSP. W przeciwieństwie do tego na podjęcie całkowitego werdyktu pozwala dowód zgodności. Polega on na pełnym zarejestrowaniu stanu obiektu w locie i symulacji i sprawdzenie czy są one ze sobą zgodne z określoną tolerancją. Tolerancja ta może wynikać ze skończonej dokładności czujników pomiarowych, szumu przetwarzania lub tolerancji Maximum Unnoticeable Added Dynamics, czyli największego dopuszczalnego błedu, który pozostanie przez doświadczonego użytkownika. Ostatni z parameterów jest szczególnie użyteczny w przypadku symulatorów do szkolenia pilotów.\\
+
+Ze wzgledu na charakter pracy, budowa symulacji w oparciu o badanie konkretnego modelu możliwa. Przyjęty model stanowi fuzje cech modeli pojawiających się w literaturze, dla których nie wszystkie współczynniki są jasno określone. Zatem z pominięciem powyższych etapów przygotowana symulacja nie odwzorowuje wiernie konkretnego statku. Nie zmienia to faktu, że uniwersalny model również może być weryfikowany, że wzgledu na zachowania które powinny wystąpić zawsze niezależnie od konfiguracji. W ten sposób można zaplanować zbiór testów manualnych które pozwalają szybko potwierdzić poprawność modelu. Przykładowe zachowania, które podlegają sprawdzeniu to:
+\begin{itemize}[noitemsep]
+\item BSP poprawnie odpowiada na wychylenia osi joysticka, przynajmniej co do kierunku obrotu.
+\item BSP posiada cechy bryły sztywnej poruszającej się w ośrodku
+\item W przypadku statków stabilnych aerodynamicznie, BSP pozostaje stabilny w trakcie lotu: BSP sam minimalizuje slizg, gasi prędkości kątowe lub limituje je.
+\item W przypadku wielowirnikowców poprawnie realizowany jest zawis
+\item W przypadku płatowców, do utrzymania wysokości przy prędkości przelotowej potrzebny jest dodatni kąt natarcia. W locie odwróconym wymagany kąt natarcia jest wiekszy.
+\end{itemize}
+
+
+
 
 \newpage
 \section{Załączniki}
