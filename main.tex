@@ -783,6 +783,8 @@ Ze względu na charakter pracy, budowa symulacji w oparciu o badanie konkretnego
 \subsection{Dokumentacja wydania}
 Wymagania systemowe, sprzętowe. 
 
+Uruchomienie klienta wymaga posiadania systemu operacyjnego z powłoką graficzna opartą na oknach oraz obsługującego monitory i wirtualną maszynę Java. Ponadto maszyna powinna mieć procesor graficzny i obsługiwać interfejs OpenGL. Aplikacja wykorzystuje  m.in. biblioteki LWJGL, JOML oraz JeroMQ.  
+
 \subsubsection{Wymagane biblioteki} \label{libraries}
 
 \subsection{Instrukcja instalacji}
@@ -808,6 +810,21 @@ Po uruchomieniu w wierszu poleceń pojawią się informację dotyczące pracy sy
 Prace serwera można zakończyć poprzez wysłałanie do niego sygnału SIGINT. Można to zrobić skrótem klawiszowym \keys{\ctrl + C}. Jeśli serwer został uruchomiony w tle do zatrzymania należy wykorzystać własciwe polecenia Docker.
 
 \subsubsection{Instalacja klienta z wykorzystaniem archiwum JAR}
+\label{javaInst}
+
+Klient może zostać uruchomiony na każdej platformie obsługującej maszynę wirtualną Java. 
+Maszyna, na której zostanie zbudowany klient musi mieć zainstalowane Java Runtime Environment (JRE). Polecenie \texttt{java --version} pozwoli to sprawdzić. Informacja o wersji JRE znajduje się w drugiej linijce wyjścia. Instrukcja instalacji najnowszej wersji znajduje się na oficjalnej stronie projektu \cite{java}. iniejsza instrukcja została sprawdzona dla JRE w wersji 17. \\
+
+Instalację klienta należy rozpocząć od pobrania lub skopiowania na maszynę archiwum z aplikacją. Jest ono dostępne za pośrednictwem witryny GitHub na stronie \url{https://github.com/MiNI-UAV/UAV\_visualization/releases}. Archiwum powinno nazywać się \texttt{mini-uav-x.y.z}. Po jego rozpakowaniu należy wybrać katalog odpowiadający systemowi operacyjnemu i rozpakować do katalogu docelowego tam zawarte archiwum. \\
+
+Przed uruchomieniem aplikacji warto zapoznać się z konfiguracją zawartą w pliku \texttt{config.yaml}. Jeżeli chcemy skonfigurować kontroler przed rozpoczęciem symulacji to pole \texttt{bindingsConfig.generateOnStartUp} powinno być ustawione na \texttt{true}. \\
+
+W przypadku systemu Windows włączenie aplikacji polega na uruchomieniu pliku wykonywalnego \texttt{MiniUAV.exe}. Na systemie Linux uruchomić aplikację można za pomocą następującego polecenia :
+
+\begin{lstlisting}[language=bash]
+	$ java -jar MiniUAV.jar
+\end{lstlisting}
+
 \subsubsection{Samodzielna budowa kodu serwera i natywna instalacja w systemie Ubuntu}
 
 Serwer może zostać skompilowany natywnie i uruchomiony na maszynie z systemem UNIX. Na czas pisania tej instrukcji działanie serwera zostało przetestowanie z pozytywnym rezultatem na maszynach z zainstalowanym Ubuntu 22.04 oraz Pop! OS 22.04. Oba z testowanych systemów wykorzystują APT i w tej instrukcji opisany zostanie sposób pobrania bibliotek przy pomocy tego własnie systemu zarządzania pakietami. W celu pobrania bibliotek opisanych w rozdziale (\ref{libraries}) należy wykonać poniższe polecenie instalujące niezbędne narzędzia:
@@ -860,6 +877,27 @@ W tym momecie wszystkie moduły potrzebne do pracy serwera zostały własciwie z
 Analogicznie jak w rozdziale (\ref{docker_server}) serwer został uruchomiony i czeka na klientów. W celu zamknięcia serwera należy wysłać sygnał SIGINT (\keys{\ctrl + C}). Wszystkie moduły zostaną zamknięte automatycznie.
 
 \subsubsection{Samodzielna budowa kodu klienta i instalacja z wykorzystaniem Gradle}
+ 
+Maszyna, na której zostanie zbudowany klient musi mieć zainstalowane Java Development Kit (JDK). Polecenie \texttt{java --version} pozwoli to sprawdzić. Informacja o wersji JDK znajduje się w pierwszej linijce wyjścia. Instrukcja instalacji najnowszej wersji znajduje się na oficjalnej stronie Oracle \cite{javaDown}. Ponadto maszyna powinna mieć zainstalowany program \texttt{Gradle}. To czy jest on zainstalowany sprawdzić można za pomocą polecenia \texttt{gradle --version}. Jego instalacja jest omówiona na stronie projektu \cite{gradle}. Niniejsza instrukcja została sprawdzona dla JDK w wersji 17 i Gradle w wersji 8.1.1 \\
+
+
+Instalację klienta należy rozpocząć od pobrania lub skopiowania na maszynę repozytorium \textbf{UAV\_visualization}. Repozytorium zostało udostępnione m.in. w serwisie GitHub. Jeżeli maszyna ma zainstalowany program \texttt{git} to repozytorium może zostać pobrane za pomocą poniższego polecenia:
+
+\begin{lstlisting}[language=bash]
+	$  git clone https://github.com/MiNI-UAV/UAV_visualization.git 
+\end{lstlisting}
+
+W celu zbudowania projektu należy w katalogu repozytorium wykonać polecenie:
+
+\begin{lstlisting}[language=bash]
+	$  gradle build
+\end{lstlisting} 
+
+Po skonfigurowaniu aplikacji jak opisano w rozdziale \ref{javaInst} i uruchomieniu serwera aplikację można uruchomić za pomocą następującego polecenia:
+
+\begin{lstlisting}[language=bash]
+	$  gradle run 
+\end{lstlisting}  
 
 
 \subsection{Instrukcja obsługi} \label{manual}
