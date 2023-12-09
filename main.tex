@@ -28,11 +28,18 @@
 \usepackage{booktabs}
 \usepackage{wasysym}
 \usepackage{xcolor}
-\usepackage{listings}
 \usepackage{pdfpages}
 \usepackage{fontspec}
 \usepackage{comment}
 \usepackage{tocloft}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily, columns=fullflexible}
+
+\usepackage{regexpatch}
+\usepackage[os=mac]{menukeys}
+\renewmenumacro{\keys}[+]{shadowedroundedkeys}
+\renewmenumacro{\menu}[>]{angularmenus}
+\xpatchcmd*{\SPACE}{2em}{1em}{}{}
 
 \definecolor{quotationcolour}{HTML}{F0F0F0}
 \definecolor{quotationmarkcolour}{HTML}{1F3F81}
@@ -211,6 +218,8 @@ Nr rewizji & Data & Autor & Opis \\
   1.2 & 5.11.23 & Wojciech Gajda \newline Igor Faliszewski & Wydanie zgłoszone do L2 \\
 \hline
   1.3 & 5.12.23 & Wojciech Gajda \newline Igor Faliszewski & Wydanie zgłoszone do L3/L4 \\
+\hline
+  1.4 & 10.12.23 & Wojciech Gajda \newline Igor Faliszewski & Wydanie zgłoszone do L5 \\
 \hline
 \end{tabular}
 \caption{Historia zmian}
@@ -769,24 +778,94 @@ Ze względu na charakter pracy, budowa symulacji w oparciu o badanie konkretnego
 \end{itemize}
 
 
-\color{blue}
 \newpage
 \section{Wdrożenie oprogramowania}
 \subsection{Dokumentacja wydania}
-Wymagania systemowe, sprzętowe. Wymagane biblioteki
+Wymagania systemowe, sprzętowe. 
+
+\subsubsection{Wymagane biblioteki} \label{libraries}
 
 \subsection{Instrukcja instalacji}
-\subsubsection{Instalacja serwera z wykorzystaniem Docker}
+\subsubsection{Instalacja serwera z wykorzystaniem Docker} \label{docker_server}
+
+Serwer symulacji może zostać uruchomiony na dowolnej maszynie wspierającej kontenery Docker. Obraz zawierający najnowszą wersje serwera wraz ze wszystkimi wchodzącymi w jego skład modułami został zamieszony na platformie Docker Hub. Platforma gwarantuje utrzymanie obrazu przez conajmniej 6 miesięcy. Ze względu na ulotność tego repozytorium własciwy obraz zostanie również przekazany wraz z dokumentacją.\\
+
+Maszyna na której zostanie uruchomiony serwer musi mieć zainstalowane i dostępne z poziomu wiersza poleceń następujące programy: \texttt{docker} oraz \texttt{docker compose}. Sprawdzenia, czy dana maszyna wspiera kontenery Docker można dokonać poprzez wydanie poleceń: \texttt{docker --version} i \texttt{docker compose version}. Niniejsza instrukcja została sprawdzona dla maszyny z zainstalowanym Docker w wersji 24.0.6 oraz Docker Compose w wersji v2.21.0. Szczegóły dotyczące instalacji Dockera można znaleźć na stronie projektu \cite{docker}\\
+
+Instalację serwera należy rozpocząć od pobrania lub skopiowania na maszynę repozytorium \textbf{UAV\_server}. Repozytorium zostało udostępnione m.in. w serwisie GitHub. Jeśli maszyna na której ma być zainstalowany serwer ma zainstalowany program \texttt{git} to repozytorium może zostać pobrane przy poniższego polecenia:
+\begin{lstlisting}[language=bash]
+  $  git clone https://github.com/MiNI-UAV/UAV_server.git
+\end{lstlisting}
+
+W folderze repozytorium zamieszone zostały skrypty ułatwiające uruchomienie serwera. Przed uruchomieniem serwera należy jednak utworzyć odpowiednią strukture plików i zasobów które będą wykorzystywane przez serwer. Służy do tego skrypt prepareVolume odpowiednio w wersji  \texttt{prepareVolume.sh} dla maszyn systemem z rodziny UNIX i  \texttt{prepareVolume.bat} dla maszyn z systemem Windows. Po uruchomieniu własciwego skryptu w folderze repozytorium utworzony zostanie folder \texttt{data}. Folder zawiera domyślne zasoby, przez zmianę których użytkownik może wpłynąć na działanie serwera mogące zostać.  Wiecej informacji dotyczących zawartości tego folderu zostanie przedstawione w instrukcji obsługi (\ref{manual}).\\
+
+Po zakończeniu konfiguracji serwer można uruchomić poniższym poleceniem wywołanym z folderu repozytorium:
+\begin{lstlisting}[language=bash]
+  $  docker compose up
+\end{lstlisting}
+Po uruchomieniu w wierszu poleceń pojawią się informację dotyczące pracy symulacji. Pierwszą linijką uruchomionej symulacji jest: po zakończeniu uruchamiania serwer jest gotowy na obsługę klientów.\\
+
+Prace serwera można zakończyć poprzez wysłałanie do niego sygnału SIGINT. Można to zrobić skrótem klawiszowym \keys{\ctrl + C}. Jeśli serwer został uruchomiony w tle do zatrzymania należy wykorzystać własciwe polecenia Docker.
+
 \subsubsection{Instalacja klienta z wykorzystaniem archiwum JAR}
 \subsubsection{Samodzielna budowa kodu serwera i natywna instalacja w systemie Ubuntu}
+
+Serwer może zostać skompilowany natywnie i uruchomiony na maszynie z systemem UNIX. Na czas pisania tej instrukcji działanie serwera zostało przetestowanie z pozytywnym rezultatem na maszynach z zainstalowanym Ubuntu 22.04 oraz Pop! OS 22.04. Oba z testowanych systemów wykorzystują APT i w tej instrukcji opisany zostanie sposób pobrania bibliotek przy pomocy tego własnie systemu zarządzania pakietami. W celu pobrania bibliotek opisanych w rozdziale (\ref{libraries}) należy wykonać poniższe polecenie instalujące niezbędne narzędzia:
+\begin{lstlisting}[language=bash]
+  $  sudo apt-get update && sudo apt-get install -y gcc g++ make cmake \ 
+	build-essential curl autoconf automake libtool pkg-config libsodium-dev \
+ 	wget gitlibx11-dev software-properties-common && sudo apt-get update 
+\end{lstlisting}
+
+Następnie przy pomocy poniższych komend należy zainstalować własciwe biblioteki C++:
+\begin{lstlisting}[language=bash]
+  $  sudo apt-get install -y libcxxopts-dev libeigen3-dev libzmq3-dev \
+	librapidxml-dev libgtest-dev 
+  $  wget https://github.com/zeromq/cppzmq/archive/refs/tags/v4.10.0.tar.gz && \
+    	tar -xvf v4.10.0.tar.gz && cd cppzmq-4.10.0 && mkdir build && cd build && \
+    	cmake -DCMAKE_BUILD_TYPE=Release .. && make install && cd ../..
+\end{lstlisting}
+
+Następnie na maszynie należy zainstalować runtime języka Rust. Aktualny opis instalacji można znaleźć na stronie projektu Rust (\cite{rust_getting_started}). Poprawność instalacji języka Rust można sprawdzić przy pomocy polecenia \texttt{cargo --version}. Niniejsza instrukcja została przetestowana cargo w wersji 1.69.0.\\
+ 
+Po zakończeniu instalacji bibliotek należy przejść budowy samego serwera. W trakcie pracy serwer korzysta z wielu modułów, które wzajemnie odnoszą się do swoich zasób. Kluczowym jest zatem, aby odpowiednie moduły znajdowały się w odpowiednim miejscu w hierarchii folderów. Zalecane jest zatem utworzenie pustego folderu (np. o nazwie UAV) w której znajdzie się serwer. W dalszej części instrukcji folder ten bedzie nazywany folderem serwera. Do folderu serwera należy skopiować moduły \textbf{UAV\_physic\_engine}, \textbf{UAV\_controller}, \textbf{UAV\_drop\_physic} oraz \textbf{UAV\_aggregator}. Moduły można również sklonować z repozytorium GitHub przy pomocy poniższych poleceń wywołanych z folderu serwera:
+\begin{lstlisting}[language=bash]
+  $  git clone https://github.com/MiNI-UAV/UAV_aggregator.git 
+  $  git clone https://github.com/MiNI-UAV/UAV_physics_engine.git
+  $  git clone https://github.com/MiNI-UAV/UAV_controller.git
+  $  git clone https://github.com/MiNI-UAV/UAV_drop_physic.git
+\end{lstlisting}
+
+Moduły \textbf{UAV\_physic\_engine}, \textbf{UAV\_controller} oraz \textbf{UAV\_drop\_physic} zostały napisane w języku C++ i do ich zbudowania należy wykorzystać program Cmake. W tym celu należy wejść kolejno do każdego z trzech powyższych folderów i wykonać następujące polecenia:
+\begin{lstlisting}[language=bash]
+  $  mkdir build
+  $  cd build
+  $  cmake ..
+  $  make
+  $  cd ../..
+\end{lstlisting}
+Spowoduje to utworzenie w każdym z modułów folderu build zawierającego plik wykonywany z programem. Należy sprawdzić czy w folderach build znajdują sie pliki wykonywalne odpowiednio o nazwach: \texttt{uav}, \texttt{controller} oraz \texttt{drop}.
+
+Na koniec należy zbudować modułu \textbf{UAV\_aggregator}. Po wejsciu do folderu z modułem należy wykonać poniższe polecenie:
+\begin{lstlisting}[language=bash]
+  $  cargo build
+\end{lstlisting}
+Spowoduje to automatyczne pobranie niezbędnych bibliotek Rust i budowe kodu źródłowego.\\
+
+W tym momecie wszystkie moduły potrzebne do pracy serwera zostały własciwie zbudowane. W celu uruchomienia serwera należy w folderze modułu \textbf{UAV\_aggregator} wykonać następujące polecenie:
+\begin{lstlisting}[language=bash]
+  $  cargo run
+\end{lstlisting}
+
+Analogicznie jak w rozdziale (\ref{docker_server}) serwer został uruchomiony i czeka na klientów. W celu zamknięcia serwera należy wysłać sygnał SIGINT (\keys{\ctrl + C}). Wszystkie moduły zostaną zamknięte automatycznie.
+
 \subsubsection{Samodzielna budowa kodu klienta i instalacja z wykorzystaniem Gradle}
 
-\subsection{Dokumentacja techniczna}
-Opis komunikacji klient-serwer, szablony wiadomości odpowiedzi, strumienie.
 
-\subsection{Instrukcja obsługi}
+\subsection{Instrukcja obsługi} \label{manual}
 Uruchom i lataj, opis plików z wynikami analizy, dodawanie nowego trybu sterowania.
 
+\begin{comment}
 \newpage
 \section{Dodatek A: wprowadzenie teoretyczne}
 
@@ -829,8 +908,8 @@ Czujniki, fuzja pomiarów, Filtr Kalmana
 \subsubsection{Rysowanie radaru}
 \subsubsection{Obsługa kontrolerów}
 
-% TODO: remove later
-\color{black}
+\end{comment}
+
 \newpage
 \section{Załączniki}
 
