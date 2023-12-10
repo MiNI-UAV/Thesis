@@ -783,7 +783,7 @@ Ze względu na charakter pracy, budowa symulacji w oparciu o badanie konkretnego
 \subsection{Dokumentacja wydania}
 Wymagania systemowe, sprzętowe. 
 
-Uruchomienie klienta wymaga posiadania systemu operacyjnego z powłoką graficzna opartą na oknach oraz obsługującego monitory i wirtualną maszynę Java. Ponadto maszyna powinna mieć procesor graficzny i obsługiwać interfejs OpenGL. Aplikacja wykorzystuje  m.in. biblioteki LWJGL, JOML oraz JeroMQ.  
+Uruchomienie klienta wymaga posiadania systemu operacyjnego z powłoką graficzna opartą na oknach oraz obsługującego monitory i wirtualną maszynę Java. Ponadto maszyna powinna mieć procesor graficzny i obsługiwać interfejs OpenGL ES 3.1. Aplikacja wykorzystuje  m.in. biblioteki LWJGL, JOML oraz JeroMQ.
 
 \subsubsection{Wymagane biblioteki} \label{libraries}
 
@@ -813,11 +813,11 @@ Prace serwera można zakończyć poprzez wysłałanie do niego sygnału SIGINT. 
 \label{javaInst}
 
 Klient może zostać uruchomiony na każdej platformie obsługującej maszynę wirtualną Java. 
-Maszyna, na której zostanie zbudowany klient musi mieć zainstalowane Java Runtime Environment (JRE). Polecenie \texttt{java --version} pozwoli to sprawdzić. Informacja o wersji JRE znajduje się w drugiej linijce wyjścia. Instrukcja instalacji najnowszej wersji znajduje się na oficjalnej stronie projektu \cite{java}. iniejsza instrukcja została sprawdzona dla JRE w wersji 17. \\
+Maszyna, na której zostanie zbudowany klient musi mieć zainstalowane Java Runtime Environment (JRE). Polecenie \texttt{java --version} pozwoli to sprawdzić. Informacja o wersji JRE znajduje się w drugiej linijce wyjścia. Instrukcja instalacji najnowszej wersji znajduje się na oficjalnej stronie projektu \cite{java}. Niniejsza instrukcja została sprawdzona dla JRE w wersji 17. \\
 
 Instalację klienta należy rozpocząć od pobrania lub skopiowania na maszynę archiwum z aplikacją. Jest ono dostępne za pośrednictwem witryny GitHub na stronie \url{https://github.com/MiNI-UAV/UAV\_visualization/releases}. Archiwum powinno nazywać się \texttt{mini-uav-x.y.z}. Po jego rozpakowaniu należy wybrać katalog odpowiadający systemowi operacyjnemu i rozpakować do katalogu docelowego tam zawarte archiwum. \\
 
-Przed uruchomieniem aplikacji warto zapoznać się z konfiguracją zawartą w pliku \texttt{config.yaml}. Jeżeli chcemy skonfigurować kontroler przed rozpoczęciem symulacji to pole \texttt{bindingsConfig.generateOnStartUp} powinno być ustawione na \texttt{true}. \\
+Przed uruchomieniem aplikacji warto zapoznać się z instrukcją obsługi zawartą w rozdziale \ref{fastClient}. \\
 
 W przypadku systemu Windows włączenie aplikacji polega na uruchomieniu pliku wykonywalnego \texttt{MiniUAV.exe}. Na systemie Linux uruchomić aplikację można za pomocą następującego polecenia :
 
@@ -893,7 +893,7 @@ W celu zbudowania projektu należy w katalogu repozytorium wykonać polecenie:
   $  gradle build
 \end{lstlisting} 
 
-Po skonfigurowaniu aplikacji jak opisano w rozdziale \ref{javaInst} i uruchomieniu serwera aplikację można uruchomić za pomocą następującego polecenia:
+Po uruchomieniu serwera i skonfigurowaniu aplikacji jak opisano w rozdziale \ref{fastClient} aplikację można uruchomić za pomocą następującego polecenia:
 
 \begin{lstlisting}[language=bash]
   $  gradle run 
@@ -902,6 +902,35 @@ Po skonfigurowaniu aplikacji jak opisano w rozdziale \ref{javaInst} i uruchomien
 
 \subsection{Instrukcja obsługi} \label{manual}
 Uruchom i lataj, opis plików z wynikami analizy, dodawanie nowego trybu sterowania.
+\subsubsection{Konfiguracja klienta}
+\label{fastClient}
+
+Aby skonfigurować aplikację przed pierwszym uruchomieniem należy zmodyfikować plik \texttt{config.yaml}. Zaczynając od góry, w celu skonfigurowania kontrolera należy upewnić się, że zmienna \newline \texttt{bindingsConfig.generateOnStartUp} jest ustawiona na \texttt{true} oraz w {bindingsConfig.source} znajduje się ścieżka względna do pliku, który zostanie utworzony w czasie konfiguracji i będzie zawierał ustawienia kontrolera. Zmienną \texttt{serverSettings.serverAddress} należy ustawić na adres IP serwera, na którym został postawiony serwer. Jeżeli chcemy pobrać assety z repozytorium GitHub, to zmienna \\ \texttt{serverSettings.assetsSourceUrl} powinna być ustawiona na \\ \texttt{https://github.com/MiNI-UAV/UAV\_aggregator/releases/download/}, zmienna \\ \texttt{serverSettings.downloadMissingAssets} na \texttt{true}, a zmienna \texttt{serverSettings.assetsToUse} powinna być zakomentowana. Jeżeli chcemy wykorzystać assety niezależne od tych, które proponuje serwer, to zmienna \texttt{serverSettings.downloadMissingAssets} powinna być ustawiona na  \texttt{false}, a zmienna \texttt{serverSettings.assetsToUse} na nazwę katalogu w folderze \texttt{assets} zawierającego zawartość, z której chcemy skorzystać. Następnie, \texttt{droneSettings.droneConfig} powinno wskazywać na plik w katalogu \texttt{drones}, który zawiera parametry BSP. Zmienna \texttt{droneSettings.modes} jest tablicą mówiąca o tym, jakie tryby kontroli lotu będą dostępne do wysłania serwerowi. Wraz z aplikacją dostępne są domyślne pliki parametrów wraz z utworzonymi dla nich trybami kontroli lotu, które widnieją w tabeli \ref{modesTable}. Wszystkie dostępne tryby kontroli lotu są zdefiniowane przez serwer w katalogu assetów w podfolderze \texttt{data/available\_control\_modes.yaml}. Tak zmodyfikowana konfiguracja powinna być wystarczająca do rozpoczęcia pracy. W konfiguracji znajdują się inne mniej istotne parametry, których opis znajduje się w komentarzach.
+
+\begin{table}[!ht]	
+	\label{modesTable}
+	\begin{center}
+		\begin{tabular}{ |c|c| } 
+			\hline
+			Plik parametrów BSP & Dedykowane tryby kontroli lotu \\
+			\hline
+			\multirow{3}{4em}{quadcopter.xml} 
+			& QPOS \\ & QANGLE \\ & QACRO \\
+			\hline
+			\multirow{3}{4em}{{plane.xml}} 
+			& FANGLE \\ & FACRO \\ & FMANUAL \\
+			\hline
+			\multirow{1}{4em}{{rocket.xml}} 
+			& RMANUAL \\
+			\hline
+		\end{tabular}
+		\caption{Dedykowane tryby kontroli lotu dla domyślnych konfiguracji BSP}
+	\end{center}
+\end{table}
+
+\subsubsection{Konfiguracja kontrolera}
+
+Jeżeli w konfiguracji pole \texttt{bindingsConfig.generateOnStartUp} zostało ustawione na \texttt{true}, to przy uruchomieniu aplikacji zostanie włączony generator konfiguracji. Ma on za zadanie przeprowadzić użytkownika przez proces utworzenia konfiguracji kontrolera. W pierwszej linijce widnieje nazwa pliku, który zostanie utworzony. Jeżeli żaden kontroler nie zostanie wykryty, użytkownik zostanie poproszony o jego podłączenie. Następnie użytkownik zostanie poproszony o ustawienie wszystkich osi oraz przycisków w położeniu domyślnym oraz naciśnięcie klawisza Enter (\keys{\return}). Obecne wartości osi i przycisków zostaną uznane za punkt zero (trim). Następnie generator konfiguracji wejdzie w tryb ustawiania osi sterowania. W drugiej linijce jest wyświetlona obecnie przypisywana oś. Pierwsze cztery osie domyślnie odpowiadają kolejno: ciągowi (throttle), pochyleniu (roll), przechyleniu (pitch) i odchyleniu (yaw). W nadzwyczajnych przypadkach możliwe jest przypisanie większej liczby osi. Przypisanie osi sterowania polega na wybraniu odpowiedniej osi poprzez jej wychylenie do wartości minimalnej i maksymalnej. Wybrana oś widoczna jest w linijce trzeciej, a wychylenia minimalne i maksymalne wraz z punktem zero w linijce czwartej. Po naciśnięciu klawisza Enter użytkownik zostanie poproszony o ustawienie za pomocą strzałek (\keys{\ \arrowkeyleft}, \keys{\arrowkeyright}) deadzone osi oraz następnie czy oś ma być odwrócona. Ostatecznie należy nacisnąć klawisz Enter aby przejść do następnej osi. Po skalibrowaniu przynajmniej czterech domyślnych osi należy nacisnąć klawisz Esc (\keys{\esc}). Wtedy użytkownik zostanie poproszony o przypisanie akcji. Do każdej akcji może zostać przypisana dowolna liczba osi, przycisków i klawiszy. Nazwa obecnie przypisywanej akcji oraz numer przypisania jest wyświetlony w linijce drugiej. Przypisanie klawisza polega na wciśnięciu odpowiedniego klawisza na klawiaturze i naciśnięciu Enter. Wybrany klawisz zostanie wyświetlony w linijce trzeciej. Przypisanie przycisku wygląda analogicznie. Przypisanie osi polega najpierw na wykryciu wybranej osi, naciśnięciu Enter oraz ustawieniu za pomocą strzałek wartości minimalnej i maksymalnej osi przy, której nastąpi aktywacja akcji. Obecna wartość osi jest wyświetlona w linijce trzeciej. Zakończenie przypisania osi następuje po ustawieniu obydwu wartości i naciśnięciu Enter. Po przypisaniu wybranej liczby przypisań do danej akcji, użytkownik może przejść do akcji następnej poprzez naciśnięcie klawisza Esc. Warto zauważyć, że nie jest wymagane ustalenie przypisań dla wszystkich akcji. Ostatnim krokiem konfiguracji kontrolera jest ustawienie przypisań trybów kontroli lotu. Ich numeracja odpowiada kolejności, w której zostały zdefiniowane w konfiguracji klienta w polu \texttt{droneSettings.modes}. Ich przypisanie przechodzi w sposób podobny do akcji, z taką różnicę, że przy pierwszym przypisaniu do trybu klawisz Esc kończy konfigurację trybów, a przy każdym kolejnym przypisaniu do trybu klawisz Esc pozwala przejść do przypisania trybu kolejnego. Wynika z tego to, że tryb powinien mieć co najmniej jedno przypisanie, by móc przypisać tryby następne.
 
 \begin{comment}
 \newpage
