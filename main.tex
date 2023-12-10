@@ -575,7 +575,7 @@ W zasobie znajduje się również tekstura domyślna ładowana w przypadku niezn
 \newpage
 
 
-\subsection{Dobór technologii}
+\subsection{Dobór technologii} \label{technologies}
 
 Do realizacji poszczególnych modułów wybrane zostały następujące narzędzia programistyczne i biblioteki zewnętrzne.\\
 
@@ -781,11 +781,27 @@ Ze względu na charakter pracy, budowa symulacji w oparciu o badanie konkretnego
 \newpage
 \section{Wdrożenie oprogramowania}
 \subsection{Dokumentacja wydania}
-Wymagania systemowe, sprzętowe. 
+\subsubsection{Wymagania systemowe}
+Aplikacja serwera została przygotowana do natywnej pracy na maszynie z systemem UNIX. Mając na uwadze uniwersalność użytych jezyków (C++ oraz Rust) pojęte zostały próby przeniesienia serwera na system Windows, jednak wiązało się to z problemami z dostępnością bibliotek C++. Ostatecznie oficjalnie wspieranymi systemami które pozwalają na natywne uruchomienie serwera są Ubuntu w wersji 22.04 i pochodne. \\
 
-Uruchomienie klienta wymaga posiadania systemu operacyjnego z powłoką graficzna opartą na oknach oraz obsługującego monitory i wirtualną maszynę Java. Ponadto maszyna powinna mieć procesor graficzny i obsługiwać interfejs OpenGL. Aplikacja wykorzystuje  m.in. biblioteki LWJGL, JOML oraz JeroMQ.  
+W celu zapewnienia szerszej zgodności serwera przygotowany został obraz Docker, bazujący na obrazie \texttt{ubuntu:latest}. Tak przygotowany obraz może zostać uruchomiony na dowolnej maszynie wspierającej konteneryzacje Docker. Ceną, którą należy zapłacić za rozszerzoną zgodność jest obniżona wydajność symulacji, będąca wynikiem wirtualizacji. Doświadczenie pokazuje, że wpływ ten jest nie wielki, zwłaszcza w najnowszych wersjach Dockera.\\
+
+ Uruchomienie klienta wymaga posiadania systemu operacyjnego z powłoką graficzna opartą na oknach oraz obsługującego monitory i wirtualną maszynę Java. Docelowa maszyna musi również obsługiwać biliotekę OpenGL.
+
+
+\subsubsection{Wymagania sprzętowe}
+
+Aplikacja serwera realizuje równoległe obliczenia dla każdego z klientów. Oprócz podstawowych wątków serwera, na każdego klienta aplikacji przypada dwa procesy symulujące fizykę i sterowanie. Z tego powodu zaleca się, aby maszyna na której zostanie uruchomiony serwer posiadała dwukrotnie wiecej rdzeni logicznych niż maksymalna liczba podłączonych klientów. Dodatkowo należy zalecane jest zapewnienie conajmniej 8GB pamieci RAM. \\
+
+Do poprawnej pracy klienta wymagane jest, aby procesor graficzny docelowej maszyny był zgodny z interfejsem OpenGL. Najstraszą testowaną wersją był OpenGL w wersji 4.5. Ze względu na wielowątkowość klienta zalecany jest conajmniej 4 rdzeniowy procesor, a ze względu na potencjalnie znaczne rozmiary mapy, conajmniej 8GB pamięci RAM i 2GB pamięci procesora graficznego.
 
 \subsubsection{Wymagane biblioteki} \label{libraries}
+
+Aplikacja serwera wykorzystuje zewnetrzne biblioteki C/C++ oraz Rust. Moduły napisane w języku C++ korzystają z bibliotek standardowych oraz następujących bibliotek zewnętrznych: Eigen 3, cxxopts, rapidXML, ZeroMQ i cppZMQ oraz gtest.
+Moduły napisane w Rust wykorzystują m.in. biblioteki nalgebra, zmq, xmltree, merkletree, sha1 oraz serde\_yaml. Pełna lista wymaganych bibliotek Rust znajduje się w module agregatora w pliku \texttt{Cargo.toml}.
+Aplikacja kliencka wykorzystuje m.in. biblioteki LWJGL, JOML oraz JeroMQ. Pełna lista wymaganych bibliotek Java znajduje się w module wizualizacji w pliku \texttt{build.gradle}.  Zastosowanie poszczególnych bibliotek zostało opisane w rozdziale (\ref{technologies}).
+
+
 
 \subsection{Instrukcja instalacji}
 \subsubsection{Instalacja serwera z wykorzystaniem Docker} \label{docker_server}
@@ -805,7 +821,7 @@ Po zakończeniu konfiguracji serwer można uruchomić poniższym poleceniem wywo
 \begin{lstlisting}[language=bash]
   $  docker compose up
 \end{lstlisting}
-Po uruchomieniu w wierszu poleceń pojawią się informację dotyczące pracy symulacji. Pierwszą linijką uruchomionej symulacji jest: po zakończeniu uruchamiania serwer jest gotowy na obsługę klientów.\\
+Po uruchomieniu w wierszu poleceń pojawią się informację dotyczące pracy symulacji. Pierwszą linijką uruchomionej symulacji jest: \texttt{0.000 [Server] UAV SERVER}. Po zakończeniu uruchamiania serwer jest gotowy na obsługę klientów.\\
 
 Prace serwera można zakończyć poprzez wysłałanie do niego sygnału SIGINT. Można to zrobić skrótem klawiszowym \keys{\ctrl + C}. Jeśli serwer został uruchomiony w tle do zatrzymania należy wykorzystać własciwe polecenia Docker.
 
