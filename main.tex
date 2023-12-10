@@ -287,9 +287,9 @@ Istnieją również rozwiązania typu open-source, realizujące jedynie poszczeg
 
 Celem niniejszej projektu jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje rozbudowany model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem, którego parametry określane są przez konfigurację podaną przez użytkownika. Oprócz lotu system udostępnia dodatkowe funkcjonalności, takie jak możliwość strzału, upuszczenia ładunku, lotu z ładunkiem, rozpoznawania kolizji z otoczeniem.\\
 
-Oprogramowanie ma stanowić zaawansowane narzędzie inżynierskie. Docelowym odbiorcą mają być zespoły R\&D opracowujące nowe konstrukcje latające lub prowadzące prace nad nowatorskimi systemami sterowania. System umożliwia zamodelowanie rzeczywistego modelu latającego i symulację jego lotu przed rzeczywistymi lotami próbnymi, co w rezultacie pozwoli na zminimalizowanie kosztów prototypowania. System rejestruje wiele parametrów lotu umożliwiając późniejszą analizę. Potencjalnymi odbiorcami systemu są uczelnie i instytuty naukowe, a także przedsiębiorstwa prowadzące prace badawczo-rozwojowe. Ze względu na różnorodność zagadnień badanych przez wspomniane zespoły, trudno przygotować oprogramowanie uniwersalne. Z tego powodu system zostanie udostępniony na otwartej licencji MIT, aby umożliwić zespołom dostosowanie go do własnych potrzeb. Dla uławienia dalszego rozwoju projektu duży nacisk położony zostanie na przejrzystą implementację i realizację wzorców możliwych do ponownego użycia.\\
+Oprogramowanie ma stanowić zaawansowane narzędzie inżynierskie. Docelowym odbiorcą mają być zespoły R\&D opracowujące nowe konstrukcje latające lub prowadzące prace nad nowatorskimi systemami sterowania. System umożliwia zamodelowanie rzeczywistego modelu latającego i symulację jego lotu przed rzeczywistymi lotami próbnymi, co w rezultacie pozwoli na zminimalizowanie kosztów prototypowania. System rejestruje wiele parametrów lotu umożliwiając późniejszą analizę. Potencjalnymi odbiorcami systemu są uczelnie i instytuty naukowe, a także przedsiębiorstwa prowadzące prace badawczo-rozwojowe. Ze względu na różnorodność zagadnień badanych przez wspomniane zespoły, trudno przygotować oprogramowanie uniwersalne. Z tego powodu system zostanie udostępniony na otwartej licencji MIT, aby umożliwić zespołom dostosowanie go do własnych potrzeb. Dla ułatwienia dalszego rozwoju projektu duży nacisk położony zostanie na przejrzystą implementację i realizację wzorców możliwych do ponownego użycia.\\
 
-Otwarta licencja umożliwa również wykorzystanie systemu do celów rekreacyjnych i hobbistycznych. Szczególnym przypadkiem są modelarze, posiadający nierzadko znaczną wiedzę domenową i budujący swoje modele ze znaczną dbałością o szczegóły. Projektowany system może stanowić dla nich zamiennik profesjonalnego oprogramowania, które ze względu na koszty licencji pozostawało dla nich niedostępne. Specyfika oprogramowania pozwala na użytkowanie go również w roli gry komputerowej. Oprócz wartości rozrywkowej, korzystanie z symulatora pozwala rozwijać umiejętności pilotażu, co przenosi się na rzeczywiste modele. Planowane jest wprowadzenie kilku funkcjonalności, których rolą jest jedynie polepszenie odczuć użytkownika aplikacji i zwiększenie przyjemności z korzystania z systemu.\\
+Otwarta licencja umożliwia również wykorzystanie systemu do celów rekreacyjnych i hobbistycznych. Szczególnym przypadkiem są modelarze, posiadający nierzadko znaczną wiedzę domenową i budujący swoje modele ze znaczną dbałością o szczegóły. Projektowany system może stanowić dla nich zamiennik profesjonalnego oprogramowania, które ze względu na koszty licencji pozostawało dla nich niedostępne. Specyfika oprogramowania pozwala na użytkowanie go również w roli gry komputerowej. Oprócz wartości rozrywkowej, korzystanie z symulatora pozwala rozwijać umiejętności pilotażu, co przenosi się na rzeczywiste modele. Planowane jest wprowadzenie kilku funkcjonalności, których rolą jest jedynie polepszenie odczuć użytkownika aplikacji i zwiększenie przyjemności z korzystania z systemu.\\
 
 \newpage
 \subsection{Wymagania funkcjonalne}
@@ -584,10 +584,10 @@ Do realizacji poszczególnych modułów wybrane zostały następujące narzędzi
 
 Ze względu na duży nakład obliczeniowy -- symulacja w czasie rzeczywistym z krokiem całkowania rzędu 1ms -- wybrany został język C++. Z uwagi na swoją wydajność i elastyczność stanowi on naturalny wybór w wydajnych symulacjach komputerowych. Dodatkowo wykorzystane zostały następujące biblioteki:
 \begin{itemize}[noitemsep,nolistsep]
-	\item Eigen -- biblioteka zawierająca elementy algebry liniowej: macierze, wektory i~związane z nimi algorytmy. Eigen stawia na wydajność poprzez wykorzystanie rozkadów typu SIMD, przy 		jednoczesnym zachowaniu przejrzystej składni,
+	\item Eigen -- biblioteka zawierająca elementy algebry liniowej: macierze, wektory i~związane z nimi algorytmy. Eigen stawia na wydajność poprzez wykorzystanie rozkładów typu SIMD, przy 		jednoczesnym zachowaniu przejrzystej składni,
 	\item ZeroMQ -- binding biblioteki libzmq dla języka C++. Libzmq jest bazową biblioteką implementującą kolejki ZeroMQ w języku C,
 	\item RapidXML -- biblioteka do parsowania plików XML,
-	\item Cxxopts -- biblitoteka do interpretowania argumentów wejściowych programu.
+	\item Cxxopts -- biblioteka do interpretowania argumentów wejściowych programu.
 \end{itemize}
 \  \\
 \textbf{UAV\_aggregator}\\
@@ -670,7 +670,7 @@ Nazwy użytkowników nad statkami & 04.12.2023 & 10.12.2023 & Igor Faliszewski \
  \hline
 Dodatkowe algorytmy całkowania & 11.12.2023 & 31.12.2023 & Wojciech Gajda \\
  \hline
-Dźwiek gry & 11.12.2023 & 18.12.2023 & Igor Faliszewski \\
+Dźwięk gry & 11.12.2023 & 18.12.2023 & Igor Faliszewski \\
  \hline
 Limit FPS & 19.12.2023 & 23.12.2023 & Igor Faliszewski \\
  \hline
@@ -900,7 +900,7 @@ Serwer może zostać skompilowany natywnie i uruchomiony na maszynie z systemem 
  	wget gitlibx11-dev software-properties-common && sudo apt-get update 
 \end{lstlisting}
 
-Następnie przy pomocy poniższych komend należy zainstalować własciwe biblioteki C++:
+Następnie przy pomocy poniższych komend należy zainstalować właściwe biblioteki C++:
 \begin{lstlisting}[language=bash]
   $  sudo apt-get install -y libcxxopts-dev libeigen3-dev libzmq3-dev \
 	librapidxml-dev libgtest-dev 
@@ -911,7 +911,7 @@ Następnie przy pomocy poniższych komend należy zainstalować własciwe biblio
 
 Następnie na maszynie należy zainstalować runtime języka Rust. Aktualny opis instalacji można znaleźć na stronie projektu Rust (\cite{rust_getting_started}). Poprawność instalacji języka Rust można sprawdzić przy pomocy polecenia \texttt{cargo --version}. Niniejsza instrukcja została przetestowana cargo w wersji 1.69.0.\\
  
-Po zakończeniu instalacji bibliotek należy przejść budowy samego serwera. W trakcie pracy serwer korzysta z wielu modułów, które wzajemnie odnoszą się do swoich zasób. Kluczowym jest zatem, aby odpowiednie moduły znajdowały się w odpowiednim miejscu w hierarchii folderów. Zalecane jest zatem utworzenie pustego folderu (np. o nazwie UAV) w której znajdzie się serwer. W dalszej części instrukcji folder ten bedzie nazywany folderem serwera. Do folderu serwera należy skopiować moduły \textbf{UAV\_physic\_engine}, \textbf{UAV\_controller}, \textbf{UAV\_drop\_physic} oraz \textbf{UAV\_aggregator}. Moduły można również sklonować z repozytorium GitHub przy pomocy poniższych poleceń wywołanych z folderu serwera:
+Po zakończeniu instalacji bibliotek należy przejść budowy samego serwera. W trakcie pracy serwer korzysta z wielu modułów, które wzajemnie odnoszą się do swoich zasób. Kluczowym jest zatem, aby odpowiednie moduły znajdowały się w odpowiednim miejscu w hierarchii folderów. Zalecane jest zatem utworzenie pustego folderu (np. o nazwie UAV) w której znajdzie się serwer. W dalszej części instrukcji folder ten będzie nazywany folderem serwera. Do folderu serwera należy skopiować moduły \textbf{UAV\_physic\_engine}, \textbf{UAV\_controller}, \textbf{UAV\_drop\_physic} oraz \textbf{UAV\_aggregator}. Moduły można również sklonować z repozytorium GitHub przy pomocy poniższych poleceń wywołanych z folderu serwera:
 \begin{lstlisting}[language=bash]
   $  git clone https://github.com/MiNI-UAV/UAV_aggregator.git 
   $  git clone https://github.com/MiNI-UAV/UAV_physics_engine.git
@@ -1053,8 +1053,8 @@ Foldery z lotami noszą nazwy związane z nazwą drona i zawierają dokładnie j
  \begin{itemize}[noitemsep]
 \item \texttt{accelerometer.csv} -- pomiary symulowanego czujnika przyśpieszenia tj. przyśpieszeniomierza,
 \item \texttt{ahrs.csv} -- orientacja BSP estymowana przez system AHRS,
-\item \texttt{aoa.csv} -- charakterystyka pochodnych aerodynamicznych w funcji kąta natarcia,
-\item \texttt{aos.csv} -- charakterystyka pochodnych aerodynamicznych w funcji kąta ślizgu,
+\item \texttt{aoa.csv} -- charakterystyka pochodnych aerodynamicznych w funkcji kąta natarcia,
+\item \texttt{aos.csv} -- charakterystyka pochodnych aerodynamicznych w funkcji kąta ślizgu,
 \item \texttt{atmosphere.csv} -- warunki atmosferyczne zarejestrowane przez BSP,
 \item \texttt{barometer.csv} -- pomiary symulowanego czujnika ciśnienia atmosferycznego tj. barometru,
 \item \texttt{EKF.csv} -- pozycja BSP estymowana przez system nawigacji oparty o rozszerzony filtr Kalmana,
@@ -1070,23 +1070,23 @@ Foldery z lotami noszą nazwy związane z nazwą drona i zawierają dokładnie j
 
 \subsubsection{Dodanie nowego BSP}
 
-Wszystkie parametery dotyczące symulowanego BSP zostały zawarte w pliku XML, którego nazwa odpowiada nazwie konkretnego statku. Plik XML znajdują się po stronie klienta w module \textbf{UAV\_visualization} w folderze \texttt{drones}. Domyślnie do projektu zostały dołączone pliki z parametrami wielowirnikowca, stałopłatowca i rakiety, odpowiednio o nazwach \texttt{quadcopter.xml}, \texttt{plane.xml} oraz \texttt{rocket.xml}. Dodatkowo folder zawiera plik \texttt{aircraft\_template.xml} który nie reprezentuje żadnego konkretnego BSP, ale zwiera wszystkie z możliwych parametrów wraz w właściwymi opisami w komentarzach XML.\\
+Wszystkie parametry dotyczące symulowanego BSP zostały zawarte w pliku XML, którego nazwa odpowiada nazwie konkretnego statku. Plik XML znajdują się po stronie klienta w module \textbf{UAV\_visualization} w folderze \texttt{drones}. Domyślnie do projektu zostały dołączone pliki z parametrami wielowirnikowca, stałopłatowca i rakiety, odpowiednio o nazwach \texttt{quadcopter.xml}, \texttt{plane.xml} oraz \texttt{rocket.xml}. Dodatkowo folder zawiera plik \texttt{aircraft\_template.xml} który nie reprezentuje żadnego konkretnego BSP, ale zwiera wszystkie z możliwych parametrów wraz w właściwymi opisami w komentarzach XML.\\
 
-W celu utworzenia nowego BSP należy skopiować najbardziej zbliżony do oczekiwanego plik XML i zapisać go w folderze \texttt{drones} pod unikatową nazwą i rozszerzeniem XML. Następnie należy zmodyfikować wybrane parametery. Do najważniejszych parametrów należą:
+W celu utworzenia nowego BSP należy skopiować najbardziej zbliżony do oczekiwanego plik XML i zapisać go w folderze \texttt{drones} pod unikatową nazwą i rozszerzeniem XML. Następnie należy zmodyfikować wybrane parametry. Do najważniejszych parametrów należą:
 
  \begin{itemize}[noitemsep]
 \item parametr \texttt{name} -- określający nazwę BSP w symulacji,
 \item parametr \texttt{type} -- określający teksturę i siatkę 3D statku wykorzystywaną w wizualizacji i kolizjach,
-\item parametery z grupy \texttt{initial} -- określają startową pozycję, prędkość i orientację BSP, a także tryb sterowania w chwili uruchomienia,
-\item parametery z grupy \texttt{ineria} -- określają własności masowe BSP,
-\item parametery z grupy \texttt{rotors} -- określają silniki wirnikowe,
-\item parametery z grupy \texttt{jets} -- określają silniki marszowe,
-\item parametery z grupy \texttt{surface} -- określają powierzchnie sterowe,
-\item parametery z grupy \texttt{aero} -- określają własności aerodynamiczne BSP,
-\item parametery z grupy \texttt{controllers} i \texttt{mixers} -- określają regulatory i miksery wykorzystywane przez system sterowania,
-\item parametery z grupy \texttt{navi} -- określają parametery systemu nawigacji,
-\item parametery z grupy \texttt{ammo} -- określają amunicję przenoszoną przez BSP,
-\item parametery z grupy \texttt{cargo} -- określają ładunki przenoszone przez BSP,
+\item parametry z grupy \texttt{initial} -- określają startową pozycję, prędkość i orientację BSP, a także tryb sterowania w chwili uruchomienia,
+\item parametry z grupy \texttt{ineria} -- określają własności masowe BSP,
+\item parametry z grupy \texttt{rotors} -- określają silniki wirnikowe,
+\item parametry z grupy \texttt{jets} -- określają silniki marszowe,
+\item parametry z grupy \texttt{surface} -- określają powierzchnie sterowe,
+\item parametry z grupy \texttt{aero} -- określają własności aerodynamiczne BSP,
+\item parametry z grupy \texttt{controllers} i \texttt{mixers} -- określają regulatory i miksery wykorzystywane przez system sterowania,
+\item parametry z grupy \texttt{navi} -- określają parametry systemu nawigacji,
+\item parametry z grupy \texttt{ammo} -- określają amunicję przenoszoną przez BSP,
+\item parametry z grupy \texttt{cargo} -- określają ładunki przenoszone przez BSP,
 \end{itemize}
 
 Model 3D podany w parametrze \texttt{type} musi być dostępny w zasobach serwera. Jeśli żaden z domyślnych modeli nie odpowiada przygotowywanej konfiguracji, nowy typ może zostać dodany do zasobów serwera w następujący sposób:
@@ -1204,7 +1204,7 @@ Czujniki, fuzja pomiarów, Filtr Kalmana
 
 Symulacje komputerowe dynamiki ruchu  W szczególności w zagadnieniu jakim jest projektowanie systemów sterowania do bezzałogowych statków powietrznych, zastosowanie takich narzędzi pozwala zminimalizować koszty wytworzenia poprawnie działającego systemu i przyśpieszyć jego rozwój i testowanie.
 
-Celem niniejszej pracy jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje podstawowy model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem którego parametery określane są przez konfiguracje. System dzieli się na serwer i aplikacje kliencką. Różnorodność modułów pozwala na realizacje rożnych scenariusz (strzał, upuszczenie ładunku, kolizje, wpływ warunków środowiskowych etc.)
+Celem niniejszej pracy jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje podstawowy model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem którego parametry określane są przez konfiguracje. System dzieli się na serwer i aplikacje kliencką. Różnorodność modułów pozwala na realizacje rożnych scenariusz (strzał, upuszczenie ładunku, kolizje, wpływ warunków środowiskowych etc.)
 
 
 \section{Model dynamiki statku powietrznego}
