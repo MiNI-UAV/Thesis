@@ -743,11 +743,55 @@ Przygotowane testy można podzielić na cztery kategorie: testy jednostkowe, tes
 
 Testy jednostkowe to rodzaj testów oprogramowania, które sprawdzają indywidualne jednostki kodu, takie jak funkcje, metody czy klasy. Ich celem jest sprawdzenie, czy poszczególne fragmenty programu działają poprawnie, zgodnie z oczekiwaniami.
 W programach zawierających elementy fizyki szczególnie ważne jest przetestowanie czy komponenty odpowiedzialne za przedstawienie poszczególnych zjawisk mają sens fizyczny.
-W opracowanej symulacji kompleksowo przetestowane zostały obliczenia fizyczne, klasa ODE, pozwalająca na rozwiązywanie równań różniczkowych, konwertery oraz model atmosfery ISA. 
+W opracowanej symulacji kompleksowo przetestowane zostały obliczenia fizyczne, klasa ODE, pozwalająca na rozwiązywanie równań różniczkowych, konwertery, klasa Controller zawierająca implementacje regulatorów oraz model atmosfery ISA. 
+
+\subsubsection{Testy klasy implementującej model atmosfery ISA}
+
+Model wzorcowy atmosfery ISA (International Standard Atmosphere) to model matematyczny pozwalający na oszacowanie warunków atmosferycznych takich jak temperatura, ciśnienie oraz gęstość powietrza w zależności od wysokości względem przyjętego punktu odniesienia. W bazowej formie pozwala na poprawne oszacowanie parametrów w warstwie przypowierzchniowej tj. troposferze. Testy klasy sprawdzają czy wartości obliczane przez klase są zgodne z wartościami dostępnymi w tablicach. Analiza kilkunastu punktów testowych pozwala z dużym prawdopodobieństwem potwierdzić poprawność implementacji.
+
+\subsubsection{Testy metod całkowania równań różniczkowych}
+
+W klasie ODE znajduje się implementacja algorytmów całkowania równań różniczkowych. Główną funkcją w klasie jest funkcja \texttt{step(...)} wykonująca jeden krok całkowania. Testy dotyczące tej klasy pokrywają kwestie programowe takie jak poprawne tworzenie i dekonstrukcja klasy, ale także mają za zadanie sprawdznie fizycznej poprawności tej klasy. W tym celu sprawdzone zostały następujące scenariusze:
+
+\begin{enumerate}
+\item funkcja prawych stron przyjmuje wartość stałą równą zeru. Sprawdzenie czy całkowana zmienna nie ulega zmianie
+\item funkcja prawych stron przyjmuje wartość stałą. Jako, że każda z metod całkowania powinna być conajmniej pierwszego rzędy, sprawdzane jest czy rozwiązanie jest zgodne z analitycznym.
+\item sprawdzenie liczby wywołań funkcji prawych stron. Każda z metod deklaruje liczbę niezbędnych wywołań funkcji prawych stron. Jako, że wywołania mogą być potencjalnie kosztowne, sprawdzane jest czy liczba wywołań jest zgodna z deklarowaną, optymalną wynikającą z teorii.
+\item całkowanie równań rózniczkowych opisujących oscylator harmoniczny bez tłumienia (masa na spręzynie). W trakcie całkowania w każdym kroku obliczana jest całkowita energia mechaniczna, będąca sumą energii kinetycznej i energii potencjalnej sprężystości. Sprawdzane jest czy całkowita energia nie mieści się w żądanym polu tolerancji, symetrycznym względem energii początkowej układu.
+\end{enumerate}
+ 
+\subsubsection{Testy implementacji regulatorów}
+
+W interfejs Controller definiuje klasy reprezentujące różne regulatory wykorzystywane przez układ sterowania. Główną funkcją w interfejsie jest funkcja \texttt{calc(...)} obliczająca wyjście z regulatora dla przekazanej wartości zadanej i mierzonej zmiennej regulowanej. Do testów przygotowane zostały obiekty regulatorów z doświadczalnie dobranymi nastawami. Testy tej klasy mają na celu potwierdzić poprawność regulacji poprzez realizację następujących scenariuszy:
+
+\begin{enumerate}
+\item sprawdzenie czy znak wyjścia z regulatora jest zgodny ze znakiem uchybu tj. róznicy pomiedzy wartością zadaną, a wartością aktualną.
+\item symulacja regulacji w układzie o jednym stopniu swobody, w którym wartość wyjściowa z regulatora wpływa na pochodną z zmiennej regulowanej. Scenariusz reprezentuje uproszczony model regulacji temperatury w pomieszczeniu z którego ucieka ciepło, a regulator steruje grzejnikiem dostarczającym ciepło. Badane jest czy po odpowiednim czasie ustalenia temperatura w pomieszczeniu utrzymuje się w założonym polu tolerancji. Dodatkowo w trakcie testu logowane są przebiegi wartości regulowanej. Ma to na celu umożliwić organoleptyczną analize poprawności działania regulatora. Przykładowe przebiegi ilustruje rysunek (\ref{controller_plot}).
+\end{enumerate}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{controller_plot.png}
+	\caption{Przebieg testu regulatorów}
+	\label{controller_plot}
+\end{figure}
 
 \subsection{Testy integracyjny}
 
 Testy integracyjne są kolejnym etapem testowania oprogramowania, który koncentruje się na weryfikacji poprawności całościowego działania modułów systemu. Ich celem jest sprawdzenie, czy poszczególne części oprogramowania będą działać w połączeniu ze sobą. Polegają one najczęściej na uruchomieniu wybranego modułu w izolacji i sztucznym wygenerowaniu zapytań i odpowiedzi pochodzących z innych modułów. Rozbudowane testy integracyjne zostały napisane dla modułów UAV\_drop\_physic oraz UAV\_visualization. Fizyka obiektów jest testowana pod względem tworzenia nowych obiektów oraz ich reakcji na fizyczne bodźce. Testowanie wizualizacji przeprowadzone jest za pomocą skryptu w języku Python, który imitując serwer inicjalizuje wizualizację oraz wysyła dane, które tester jest w stanie zweryfikować na podstawie wygenerowanego obrazu.
+
+\subsubsection{Testy modułu UAV\_drop\_physic}
+
+Moduł \textbf{UAV\_drop\_physic} odpowiada za symulację lotu pocisków i ładunków, a wiec obiektów nie posiadających własnego źródła napędu. Testy modułu zawierają sprawdzenie poprawności uruchomienia i zamkniecia modułu i nawiązanie z nim komunikację, ale także sprawdzają poprawność działania przez symulację następujących scenariuszy testowych:
+
+\begin{enumerate}
+\item sprawdzenie mechanizmu dodawania i usuwania obiektów z symulacji. Sprawdzana jest poprawność nadawania id kolejnym obiektom,
+\item symulacja spadku swobodnego bez oporu powietrza. Sprawdzane jest czy zmianie ulega jedynie składowa pionowa prędkości i położenia oraz czy wynik symulacji jest zgodny z rozwiązaniem analitycznym z przyjętą tolerancją.
+\item symulacja spadku swobodnego z silnym oporem powietrza (spadochroniarz). Podobnie jak w powyższym teście sprawdzane jest osiągniecie określonej predkości i położenia po zakładanym czasie.
+\item symulacja wpływu siły zewnętrznej. Do spadającego swobodnie obiektu przyłożona zostaje pozioma siła. Sprawdzane jest czy horyzontalne składowe położenia odpowiadają rozwiązaniu analitycznemu dla ruchu przyspieszonego prostoliniowego.
+\item symulacja odbić od płaszczyzn, wykorzystywana w mechanizmie kolizji. Sprawdzane są odbicie plastyczne, sprężyste i sprężyste z tarciem. W każdym z testów sprawdzane są cechy charakterystyczne położenia i prędkości po odbiciu.
+\item symulacja długotrwałego lotu w silnym wietrze. Dla obiektu na który działa silny wiatr poziomy oczekiwane jest ze po dostatecznie długim czasie osiągnie on prędkość zgodną z działającym wiatrem. 
+\end{enumerate}
 
 \subsection{Testy End-to-end}
 
@@ -1014,7 +1058,7 @@ Foldery z lotami noszą nazwy związane z nazwą drona i zawierają dokładnie j
 
 Wszystkie parametery dotyczące symulowanego BSP zostały zawarte w pliku XML, którego nazwa odpowiada nazwie konkretnego statku. Plik XML znadują się po stronie klienta w module \textbf{UAV\_visualization} w folderze \texttt{drones}. Domyślnie do projektu zostały dołączone pliki z parameterami wielowirnikowca, stałopłatowca i rakiety, odpowiednio o nazwach \texttt{quadcopter.xml}, \texttt{plane.xml} oraz \texttt{rocket.xml}. Dodatkowo folder zawiera plik \texttt{aircraft\_template.xml} który nie reprezentuje żadnego kontretnego BSP, ale zwiera wszystkie z możliwych parameterów wraz w własciwymi opisami w komentarzach XML.\\
 
-W celu utworzenia nowego BSP należy skopiować najbardziej zbliżony do oczekiwanego plik XML i zapisać go w folderze \texttt{drones} pod unikatową nazwą i rozszerzeniem XML. Następnie należy zmodifikować wybrane parametery. Do najważniejszych parametrów należą:
+W celu utworzenia nowego BSP należy skopiować najbardziej zbliżony do oczekiwanego plik XML i zapisać go w folderze \texttt{drones} pod unikatową nazwą i rozszerzeniem XML. Następnie należy zmodyfikować wybrane parametery. Do najważniejszych parametrów należą:
 
  \begin{itemize}[noitemsep]
 \item parameter \texttt{name} -- określający nazwę BSP w symulacji,
