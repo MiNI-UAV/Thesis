@@ -925,7 +925,7 @@ Przed uruchomieniem serwera możliwa jest zmiana ogólnych parameterów symulacj
 
 Po otwarciu pliku \texttt{config.yaml} dowolnym edytorem tekstowym użytkownik ma możliwość zmiany parametrów serwera. Do najważnejszych parameterów należą:
  \begin{itemize}
-\item parametr \texttt{map} pozwala na wybór mapy, na której prowadzona będzie symulacja
+\item parametr \texttt{map} pozwala na wybór mapy, na której prowadzona będzie symulacja. Mapa o podanej nazwie musi być dostępna w zasobach serwera. Wiecej o zarządzaniu mapami zostanie wyjaśnione w rozdziale (\ref{add_map})
 \item parametr \texttt{grid} pozwala na określenie ilości elementów w siatce w osi X, Y oraz Z. Odpowiedni dobór siatki poprawia jakość działania systemu wykrywania kolizji z mapą. Zalecane jest dobranie takiej ilości elementów, aby poszczególne \textit{chunki} były zbliżone do sześcianów o dł. krawędzi równej 30,
 \item parametry \texttt{temperature}, \texttt{pressure}, \texttt{wind\_matrix} oraz \texttt{wind\_bias} pozwalają na skonfigurowanie początkowych warunków atmosferycznych i pola prędkości wiatru. 
 \item parametry \texttt{*\_step\_time} pozwalają na ustawienie kroku obliczeń w poszczególnych modułach symulacji. Krok wyrażony jest w milisekundach.
@@ -979,11 +979,45 @@ Foldery z lotami noszą nazwy związane z nazwą drona i zawierają dokładnie j
 \end{itemize}
 
 
+
 \subsubsection{Dodanie nowego BSP}
 
+Wszystkie parametery dotyczące symulowanego BSP zostały zawarte w pliku XML, którego nazwa odpowiada nazwie konkretnego statku. Plik XML znadują się po stronie klienta w module \textbf{UAV\_visualization} w folderze \texttt{drones}. Domyślnie do projektu zostały dołączone pliki z parameterami wielowirnikowca, stałopłatowca i rakiety, odpowiednio o nazwach \texttt{quadcopter.xml}, \texttt{plane.xml} oraz \texttt{rocket.xml}. Dodatkowo folder zawiera plik \texttt{aircraft\_template.xml} który nie reprezentuje żadnego kontretnego BSP, ale zwiera wszystkie z możliwych parameterów wraz w własciwymi opisami w komentarzach XML.\\
 
-\subsubsection{Dodanie nowej mapy}
+W celu utworzenia nowego BSP należy skopiować najbardziej zbliżony do oczekiwanego plik XML i zapisać go w folderze \texttt{drones} pod unikatową nazwą i rozszerzeniem XML. Następnie należy zmodifikować wybrane parametery. Do najważniejszych parametrów należą:
 
+ \begin{itemize}[noitemsep]
+\item parameter \texttt{name} -- określający nazwę BSP w symulacji,
+\item parameter \texttt{type} -- określający teksture i siatkę 3D statku wykorzystywaną w wizualizacji i kolizjach,
+\item parametery z grupy \texttt{initial} -- określają startową pozycję, prędkość i orientację BSP, a także tryb sterowania w chwili uruchomienia,
+\item parametery z grupy \texttt{ineria} -- określają własności masowe BSP,
+\item parametery z grupy \texttt{rotors} -- określają silniki wirnikowe,
+\item parametery z grupy \texttt{jets} -- określają silniki marszowe,
+\item parametery z grupy \texttt{surface} -- określają powierzchnie sterowe,
+\item parametery z grupy \texttt{aero} -- określają własności aerodynamiczne BSP,
+\item parametery z grupy \texttt{controllers} i \texttt{mixers} -- określają regulatory i miksery wykorzystywane przez system sterowania,
+\item parametery z grupy \texttt{navi} -- określają parametery systemu nawigacji,
+\item parametery z grupy \texttt{ammo} -- określają amunicję przenoszoną przez BSP,
+\item parametery z grupy \texttt{cargo} -- określają ładunki przenoszone przez BSP,
+\end{itemize}
+
+Model 3D podany w parametrze \texttt{type} musi być dostępny w zasobach serwera. Jeśli żaden z domyślnych modeli nie odpowiada przygotowywanej konfiguracji, nowy typ może zostać dodany do zasobów serwera w następujący sposób:
+ %TODO IF
+
+\subsubsection{Dodanie nowej mapy} \label{add_map}
+
+\subsubsection{Aktualizacja zasobów serwera}
+
+Do zapewnienia poprawnej pracy klienta i serwera kluczowe jest aby obie strony dysponowały identycznymi zasobami. Zasoby znajdują się folderze \texttt{assets} w module \textbf{UAV\_aggregator} oraz w podfolderach folderu \texttt{assets} w module \textbf{UAV\_visualization} (wizualizacja moze posiadać kilka zasobów, rozróżnialnych hashem). W trakcie uruchamiania serwer oblicza hash dla wykorzystanych zasobów i przekazuje go do podłączających się wizualizacji. Ponadto w przygotowany został pipeline CICD, który po przesłaniu nowej wersji assetów, wydaje paczki assetów na platformie GitHub. Jeśli klient nie posiada assetów o wskazanej nazwie, bedzie próbował pobrać je własnie z GitHuba.\\
+
+Jeśli program uruchamiany jest lokalnie należy ręcznie skopiować zasoby wykorzystywane przez serwer do klienta. W tym celu należy:
+\begin{enumerate}
+\item uruchomić serwer,
+\item znaleźć w folderze \texttt{configs} plik o nazwie \texttt{assets\_checksum} i odczytać hash zasobów,
+\item skopiować z serwera cały folder \texttt{assets} do folderu \texttt{assets} w module\\ \textbf{UAV\_visualization},
+\item zmienić nazwe folderu na pierwsze 8 znaków odczytanego hasha zasobów,
+\item uruchomić aplikację kliencką.
+\end{enumerate}
 
 \begin{comment}
 \newpage
