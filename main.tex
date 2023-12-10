@@ -749,6 +749,13 @@ W opracowanej symulacji kompleksowo przetestowane zostały obliczenia fizyczne, 
 
 Testy integracyjne są kolejnym etapem testowania oprogramowania, który koncentruje się na weryfikacji poprawności całościowego działania modułów systemu. Ich celem jest sprawdzenie, czy poszczególne części oprogramowania będą działać w połączeniu ze sobą. Polegają one najczęściej na uruchomieniu wybranego modułu w izolacji i sztucznym wygenerowaniu zapytań i odpowiedzi pochodzących z innych modułów. Rozbudowane testy integracyjne zostały napisane dla modułów UAV\_drop\_physic oraz UAV\_visualization. Fizyka obiektów jest testowana pod względem tworzenia nowych obiektów oraz ich reakcji na fizyczne bodźce. Testowanie wizualizacji przeprowadzone jest za pomocą skryptu w języku Python, który imitując serwer inicjalizuje wizualizację oraz wysyła dane, które tester jest w stanie zweryfikować na podstawie wygenerowanego obrazu.
 
+\subsubsection{Testy integracyjne wizualizacji}
+
+Test integracyjny wizualizacji uruchomić można za pomocą skryptu \\ \texttt{visualization\_tests.py}, gdzie argumentami jest ścieżka do pliku wykonywalnego javy, za pomocą której powinien zostać uruchomiony klient, katalog, w którym znajduje się klient, nazwa archiwum JAR klienta oraz suma kontrolna assetów, które wizualizacja ma wykorzystać. \\
+
+
+Test rozpoczyna się od utworzenia wszystkich wymaganych gniazd sieciowych (socket'ów) obsługiwanych przez serwer. Następnie do katalogu klienta przekopiowywane są dane testowe w postaci konfiguracji aplikacji, przypisań kontrolera oraz parametrów drona i uruchamiana jest aplikacja. Skrypt następnie nawiązuje połączenie z aplikacją i testuje proces rozpoczęcia symulacji od pobrania przez klienta danych o serwerze, wysłaniu przez klienta odpowiednich parametrów BSP po jego prośbę o utworzenie statku. Po poprawnej wymianie informacji z aplikacją zmiany wprowadzone przez dane testowe są wycofane. Następnie skrypt przechodzi do wysyłania co 5ms wygenerowanego stanu BSP, który jest widoczny z poziomu ekranu wizualizacji. Rutyna obejmuje poruszanie się oraz obrotu statku we wszystkich osiach oraz fluktuację mocy każdego z silników.  
+
 \subsection{Testy End-to-end}
 
 Testy end-to-end (E2E) są rodzajem testów oprogramowania, które sprawdzają poprawność działania systemu jako całości, od rozpoczęcia działania aż do oczekiwanych wyników. W ramach testów end-to-end przetestowane zostało działanie serwera, który rozpoczyna swoje wywołanie od modułu UAV\_aggregator. Uruchamia on moduły symulacji fizyki i kontrolera, sprawdzając czy zainicjalizowały się poprawnie. 
@@ -956,7 +963,7 @@ Natywnie zbudowany serwer uruchamia się wydając w folderze modułu\\ \textbf{
 
 Analogicznie jak w poprzednim rozdziale serwer został uruchomiony i czeka na klientów. W celu zamknięcia serwera należy wysłać sygnał SIGINT (\keys{\ctrl + C}). Wszystkie moduły zostaną zamknięte automatycznie.
 
-\subsubsection{Konfiguracja klienta}
+\subsubsection{Konfiguracja klienta przed uruchomieniem}
 \label{fastClient}
 
 Aby skonfigurować aplikację przed pierwszym uruchomieniem należy zmodyfikować plik \texttt{config.yaml}. Zaczynając od góry, w celu skonfigurowania kontrolera należy upewnić się, że zmienna \texttt{bindingsConfig.generateOnStartUp} jest ustawiona na \texttt{true} oraz w \texttt{bindingsConfig.source} znajduje się ścieżka względna do pliku, który zostanie utworzony w czasie konfiguracji i będzie zawierał ustawienia kontrolera. Zmienną \texttt{serverSettings.serverAddress} należy ustawić na adres IP serwera, na którym został postawiony serwer. Jeżeli chcemy pobrać assety z repozytorium GitHub, to zmienna \\ \texttt{serverSettings.assetsSourceUrl} powinna być ustawiona na \\ \texttt{https://github.com/MiNI-UAV/UAV\_aggregator/releases/download/}, zmienna \\ \texttt{serverSettings.downloadMissingAssets} na \texttt{true}, a zmienna \texttt{serverSettings.assetsToUse} powinna być zakomentowana. Jeżeli chcemy wykorzystać assety niezależne od tych, które proponuje serwer, to zmienna \texttt{serverSettings.downloadMissingAssets} powinna być ustawiona na  \texttt{false}, a zmienna \texttt{serverSettings.assetsToUse} na nazwę katalogu w folderze \texttt{assets} zawierającego zawartość, z której chcemy skorzystać. Następnie, \texttt{droneSettings.droneConfig} powinno wskazywać na plik w katalogu \texttt{drones}, który zawiera parametry BSP. Zmienna \texttt{droneSettings.modes} jest tablicą mówiąca o tym, jakie tryby kontroli lotu będą dostępne do wysłania serwerowi. Wraz z aplikacją dostępne są domyślne pliki parametrów wraz z utworzonymi dla nich trybami kontroli lotu, które widnieją w tabeli (\ref{modesTable}). Wszystkie dostępne tryby kontroli lotu są zdefiniowane przez serwer w katalogu assetów w podfolderze \texttt{data/available\_control\_modes.yaml}. Tak zmodyfikowana konfiguracja powinna być wystarczająca do rozpoczęcia pracy. W konfiguracji znajdują się inne mniej istotne parametry, których opis znajduje się w komentarzach.
@@ -982,9 +989,17 @@ Aby skonfigurować aplikację przed pierwszym uruchomieniem należy zmodyfikowa�
 	\end{center}
 \end{table}
 
-\subsubsection{Konfiguracja kontrolera}
+\subsubsection{Konfiguracja kontrolera przed uruchomieniem}
 
 Jeżeli w konfiguracji pole \texttt{bindingsConfig.generateOnStartUp} zostało ustawione na \texttt{true}, to przy uruchomieniu aplikacji zostanie włączony generator konfiguracji. Ma on za zadanie przeprowadzić użytkownika przez proces utworzenia konfiguracji kontrolera. W pierwszej linijce widnieje nazwa pliku, który zostanie utworzony. Jeżeli żaden kontroler nie zostanie wykryty, użytkownik zostanie poproszony o jego podłączenie. Następnie użytkownik zostanie poproszony o ustawienie wszystkich osi oraz przycisków w położeniu domyślnym oraz naciśnięcie klawisza Enter (\keys{\return}). Obecne wartości osi i przycisków zostaną uznane za punkt zero (trim). Następnie generator konfiguracji wejdzie w tryb ustawiania osi sterowania. W drugiej linijce jest wyświetlona obecnie przypisywana oś. Pierwsze cztery osie domyślnie odpowiadają kolejno: ciągowi (throttle), pochyleniu (roll), przechyleniu (pitch) i odchyleniu (yaw). W nadzwyczajnych przypadkach możliwe jest przypisanie większej liczby osi. Przypisanie osi sterowania polega na wybraniu odpowiedniej osi poprzez jej wychylenie do wartości minimalnej i maksymalnej. Wybrana oś widoczna jest w linijce trzeciej, a wychylenia minimalne i maksymalne wraz z punktem zero w linijce czwartej. Po naciśnięciu klawisza Enter użytkownik zostanie poproszony o ustawienie za pomocą strzałek (\keys{\ \arrowkeyleft}, \keys{\arrowkeyright}) deadzone osi oraz następnie czy oś ma być odwrócona. Ostatecznie należy nacisnąć klawisz Enter aby przejść do następnej osi. Po skalibrowaniu przynajmniej czterech domyślnych osi należy nacisnąć klawisz Esc (\keys{\esc}). Wtedy użytkownik zostanie poproszony o przypisanie akcji. Do każdej akcji może zostać przypisana dowolna liczba osi, przycisków i klawiszy. Nazwa obecnie przypisywanej akcji oraz numer przypisania jest wyświetlony w linijce drugiej. Przypisanie klawisza polega na wciśnięciu odpowiedniego klawisza na klawiaturze i naciśnięciu Enter. Wybrany klawisz zostanie wyświetlony w linijce trzeciej. Przypisanie przycisku wygląda analogicznie. Przypisanie osi polega najpierw na wykryciu wybranej osi, naciśnięciu Enter oraz ustawieniu za pomocą strzałek wartości minimalnej i maksymalnej osi przy, której nastąpi aktywacja akcji. Obecna wartość osi jest wyświetlona w linijce trzeciej. Zakończenie przypisania osi następuje po ustawieniu obydwu wartości i naciśnięciu Enter. Po przypisaniu wybranej liczby przypisań do danej akcji, użytkownik może przejść do akcji następnej poprzez naciśnięcie klawisza Esc. Warto zauważyć, że nie jest wymagane ustalenie przypisań dla wszystkich akcji. Ostatnim krokiem konfiguracji kontrolera jest ustawienie przypisań trybów kontroli lotu. Ich numeracja odpowiada kolejności, w której zostały zdefiniowane w konfiguracji klienta w polu \texttt{droneSettings.modes}. Ich przypisanie przechodzi w sposób podobny do akcji, z taką różnicę, że przy pierwszym przypisaniu do trybu klawisz Esc kończy konfigurację trybów, a przy każdym kolejnym przypisaniu do trybu klawisz Esc pozwala przejść do przypisania trybu kolejnego. Wynika z tego to, że tryb powinien mieć co najmniej jedno przypisanie, by móc przypisać tryby następne.
+
+\subsubsection{Uruchomienie klienta}
+
+W przypadku systemu Windows włączenie aplikacji polega na uruchomieniu pliku wykonywalnego \texttt{MiniUAV.exe}. Na systemie Linux uruchomić aplikację można za pomocą następującego polecenia :
+
+\begin{lstlisting}[language=bash]
+	$ java -jar MiniUAV.jar
+\end{lstlisting}
 
 \subsubsection{Odczytanie logów z symulacji}
 
@@ -1032,11 +1047,25 @@ W celu utworzenia nowego BSP należy skopiować najbardziej zbliżony do oczekiw
 \end{itemize}
 
 Model 3D podany w parametrze \texttt{type} musi być dostępny w zasobach serwera. Jeśli żaden z domyślnych modeli nie odpowiada przygotowywanej konfiguracji, nowy typ może zostać dodany do zasobów serwera w następujący sposób:
- %TODO IF
+
+\begin{enumerate}
+	\item w katalogu \texttt{drones} utworzyć folder o nazwie zgodnej z zawartością parametru \texttt{type}.
+	\item w nowo utworzonym katalogu dodajemy podfoldery \texttt{model} i \texttt{textures}.
+	\item w folderze \texttt{model} umieszczamy model 3D w formacie GTLF (\texttt{model.gltf}) wraz z odpowiadającym mu plikiem binarnym (\texttt{model.bin}) oraz w formacie OBJ (\texttt{model.obj}).
+	\item W folderze \texttt{textures} powinny znajdować się wszystkie tekstury, do których odnosi się model. Należy upewnić się, że plik GLTF uwzględnia katalog \texttt{textures} w referencjach do tesktur.
+\end{enumerate}
 
 \subsubsection{Dodanie nowej mapy} \label{add_map}
 
- %TODO IF
+ W celu dodania nowej mapy do zasobów należy:
+ 
+ \begin{enumerate}
+ 	\item w katalogu \texttt{maps} utworzyć folder o nazwie, która będzie jednoznacznie identyfikować mapę.
+ 	\item w nowo utworzonym katalogu dodajemy podfoldery \texttt{model} i \texttt{textures}.
+ 	\item w folderze \texttt{model} umieszczamy model 3D mapy w formacie GTLF (\texttt{model.gltf}) wraz z odpowiadającym mu plikiem binarnym (\texttt{model.bin}) oraz w formacie OBJ (\texttt{model.obj}).
+ 	\item w folderze \texttt{model} dodatkowo powinien się znaleźć plik \texttt{minimap.png}, który będzie wykorzystywany podczas wyświetlania minimapy. Ma to być kwadratowa tekstura, gdzie każdy piksel odpowiada jednemu metru kwadratowemu, a jej środek odpowiada koordynatom (0,0).
+ 	\item W folderze \texttt{textures} powinny znajdować się wszystkie tekstury, do których odnosi się model. Należy upewnić się, że plik GLTF uwzględnia katalog \texttt{textures} w referencjach do tesktur.
+ \end{enumerate}
 
 \subsubsection{Aktualizacja zasobów serwera}
 
