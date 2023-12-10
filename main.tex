@@ -575,7 +575,7 @@ W zasobie znajduje się również tekstura domyślna ładowana w przypadku niezn
 \newpage
 
 
-\subsection{Dobór technologii}
+\subsection{Dobór technologii} \label{technologies}
 
 Do realizacji poszczególnych modułów wybrane zostały następujące narzędzia programistyczne i biblioteki zewnętrzne.\\
 
@@ -781,11 +781,27 @@ Ze względu na charakter pracy, budowa symulacji w oparciu o badanie konkretnego
 \newpage
 \section{Wdrożenie oprogramowania}
 \subsection{Dokumentacja wydania}
-Wymagania systemowe, sprzętowe. 
+\subsubsection{Wymagania systemowe}
+Aplikacja serwera została przygotowana do natywnej pracy na maszynie z systemem UNIX. Mając na uwadze uniwersalność użytych jezyków (C++ oraz Rust) pojęte zostały próby przeniesienia serwera na system Windows, jednak wiązało się to z problemami z dostępnością bibliotek C++. Ostatecznie oficjalnie wspieranymi systemami które pozwalają na natywne uruchomienie serwera są Ubuntu w wersji 22.04 i pochodne. \\
 
-Uruchomienie klienta wymaga posiadania systemu operacyjnego z powłoką graficzna opartą na oknach oraz obsługującego monitory i wirtualną maszynę Java. Ponadto maszyna powinna mieć procesor graficzny i obsługiwać interfejs OpenGL. Aplikacja wykorzystuje  m.in. biblioteki LWJGL, JOML oraz JeroMQ.  
+W celu zapewnienia szerszej zgodności serwera przygotowany został obraz Docker, bazujący na obrazie \texttt{ubuntu:latest}. Tak przygotowany obraz może zostać uruchomiony na dowolnej maszynie wspierającej konteneryzacje Docker. Ceną, którą należy zapłacić za rozszerzoną zgodność jest obniżona wydajność symulacji, będąca wynikiem wirtualizacji. Doświadczenie pokazuje, że wpływ ten jest nie wielki, zwłaszcza w najnowszych wersjach Dockera.\\
+
+ Uruchomienie klienta wymaga posiadania systemu operacyjnego z powłoką graficzna opartą na oknach oraz obsługującego monitory i wirtualną maszynę Java. Docelowa maszyna musi również obsługiwać biliotekę OpenGL.
+
+
+\subsubsection{Wymagania sprzętowe}
+
+Aplikacja serwera realizuje równoległe obliczenia dla każdego z klientów. Oprócz podstawowych wątków serwera, na każdego klienta aplikacji przypada dwa procesy symulujące fizykę i sterowanie. Z tego powodu zaleca się, aby maszyna na której zostanie uruchomiony serwer posiadała dwukrotnie wiecej rdzeni logicznych niż maksymalna liczba podłączonych klientów. Dodatkowo należy zalecane jest zapewnienie conajmniej 8GB pamieci RAM. \\
+
+Do poprawnej pracy klienta wymagane jest, aby procesor graficzny docelowej maszyny był zgodny z interfejsem OpenGL. Najstraszą testowaną wersją był OpenGL w wersji 4.5. Ze względu na wielowątkowość klienta zalecany jest conajmniej 4 rdzeniowy procesor, a ze względu na potencjalnie znaczne rozmiary mapy, conajmniej 8GB pamięci RAM i 2GB pamięci procesora graficznego.
 
 \subsubsection{Wymagane biblioteki} \label{libraries}
+
+Aplikacja serwera wykorzystuje zewnetrzne biblioteki C/C++ oraz Rust. Moduły napisane w języku C++ korzystają z bibliotek standardowych oraz następujących bibliotek zewnętrznych: Eigen 3, cxxopts, rapidXML, ZeroMQ i cppZMQ oraz gtest.
+Moduły napisane w Rust wykorzystują m.in. biblioteki nalgebra, zmq, xmltree, merkletree, sha1 oraz serde\_yaml. Pełna lista wymaganych bibliotek Rust znajduje się w module agregatora w pliku \texttt{Cargo.toml}.
+Aplikacja kliencka wykorzystuje m.in. biblioteki LWJGL, JOML oraz JeroMQ. Pełna lista wymaganych bibliotek Java znajduje się w module wizualizacji w pliku \texttt{build.gradle}.  Zastosowanie poszczególnych bibliotek zostało opisane w rozdziale (\ref{technologies}).
+
+
 
 \subsection{Instrukcja instalacji}
 \subsubsection{Instalacja serwera z wykorzystaniem Docker} \label{docker_server}
@@ -805,7 +821,7 @@ Po zakończeniu konfiguracji serwer można uruchomić poniższym poleceniem wywo
 \begin{lstlisting}[language=bash]
   $  docker compose up
 \end{lstlisting}
-Po uruchomieniu w wierszu poleceń pojawią się informację dotyczące pracy symulacji. Pierwszą linijką uruchomionej symulacji jest: po zakończeniu uruchamiania serwer jest gotowy na obsługę klientów.\\
+Po uruchomieniu w wierszu poleceń pojawią się informację dotyczące pracy symulacji. Pierwszą linijką uruchomionej symulacji jest: \texttt{0.000 [Server] UAV SERVER}. Po zakończeniu uruchamiania serwer jest gotowy na obsługę klientów.\\
 
 Prace serwera można zakończyć poprzez wysłałanie do niego sygnału SIGINT. Można to zrobić skrótem klawiszowym \keys{\ctrl + C}. Jeśli serwer został uruchomiony w tle do zatrzymania należy wykorzystać własciwe polecenia Docker.
 
@@ -869,7 +885,7 @@ Na koniec należy zbudować modułu \textbf{UAV\_aggregator}. Po wejsciu do fol
 \end{lstlisting}
 Spowoduje to automatyczne pobranie niezbędnych bibliotek Rust i budowe kodu źródłowego.\\
 
-W tym momecie wszystkie moduły potrzebne do pracy serwera zostały własciwie zbudowane. W celu uruchomienia serwera należy w folderze modułu \textbf{UAV\_aggregator} wykonać następujące polecenie:
+W tym momecie wszystkie moduły potrzebne do pracy serwera zostały własciwie zbudowane. W celu uruchomienia serwera należy w folderze modułu\\ \textbf{UAV\_aggregator} wykonać następujące polecenie:
 \begin{lstlisting}[language=bash]
   $  cargo run
 \end{lstlisting}
@@ -899,9 +915,109 @@ Po skonfigurowaniu aplikacji jak opisano w rozdziale \ref{javaInst} i uruchomien
   $  gradle run 
 \end{lstlisting}  
 
+\newpage
 
 \subsection{Instrukcja obsługi} \label{manual}
-Uruchom i lataj, opis plików z wynikami analizy, dodawanie nowego trybu sterowania.
+
+\subsubsection{Konfiguracja serwera przed uruchomieniem}
+
+Przed uruchomieniem serwera możliwa jest zmiana ogólnych parameterów symulacji przez modyfikację pliku \texttt{config.yaml}. Plik ten znajduje się w foldrze \texttt{configs} w module \textbf{UAV\_aggregator}. Dla wygody użytkowników serwera w wersji Docker, folder ten został połączony jako folder współdzielony z folderem \texttt{configs} znadującym się w folderze \texttt{data} w folderze serwera.
+
+Po otwarciu pliku \texttt{config.yaml} dowolnym edytorem tekstowym użytkownik ma możliwość zmiany parametrów serwera. Do najważnejszych parameterów należą:
+ \begin{itemize}
+\item parametr \texttt{map} pozwala na wybór mapy, na której prowadzona będzie symulacja. Mapa o podanej nazwie musi być dostępna w zasobach serwera. Wiecej o zarządzaniu mapami zostanie wyjaśnione w rozdziale (\ref{add_map})
+\item parametr \texttt{grid} pozwala na określenie ilości elementów w siatce w osi X, Y oraz Z. Odpowiedni dobór siatki poprawia jakość działania systemu wykrywania kolizji z mapą. Zalecane jest dobranie takiej ilości elementów, aby poszczególne \textit{chunki} były zbliżone do sześcianów o dł. krawędzi równej 30,
+\item parametry \texttt{temperature}, \texttt{pressure}, \texttt{wind\_matrix} oraz \texttt{wind\_bias} pozwalają na skonfigurowanie początkowych warunków atmosferycznych i pola prędkości wiatru. 
+\item parametry \texttt{*\_step\_time} pozwalają na ustawienie kroku obliczeń w poszczególnych modułach symulacji. Krok wyrażony jest w milisekundach.
+\item parametry \texttt{*\_ode\_solver} pozwalają na wybór algorytmu całkowania równań różniczkowych wykorzystywanego w poszczególnych modułach.
+\item parametry \texttt{*\_port} pozwalają na zmianę portów wykorzystywanych w komunikacji TCP. UWAGA: do poprawnej pracy zmiana portów wymagana jest również po stronie wizualizacji. Ponadto zmiana portów w serwerze w wersji Docker wymaga również przekierowania nowych portów w pliku \texttt{docker-compose.yml}.
+\end{itemize}
+
+Ponadto w pliku znajdują się inne, mniej istotne parametry. Kompletny opis parametrów znajduje się komentarzach pliku \texttt{config.yaml}.
+
+
+
+\subsubsection{Uruchomienie serwera - Docker}
+
+W celu uruchomienia serwera należy w folderze repozytorium \texttt{UAV\_server} wydać polecenie:
+\begin{lstlisting}[language=bash]
+  $  docker compose up
+\end{lstlisting}
+Po uruchomieniu w wierszu poleceń pojawią się informację dotyczące pracy symulacji. Pierwszą linijką uruchomionej symulacji jest: \texttt{0.000 [Server] UAV SERVER}. Po zakończeniu uruchamiania serwer jest gotowy na obsługę klientów.\\
+
+Prace serwera można zakończyć poprzez wysłałanie do niego sygnału SIGINT. Można to zrobić skrótem klawiszowym \keys{\ctrl + C}. Jeśli serwer został uruchomiony w tle do zatrzymania należy wykorzystać własciwe polecenia Docker.
+
+\subsubsection{Uruchomienie serwera - Ubuntu}
+
+Natywnie zbudowany serwer uruchamia się wydając w folderze modułu\\ \textbf{UAV\_aggregator} następujące polecenie:
+\begin{lstlisting}[language=bash]
+  $  cargo run
+\end{lstlisting}
+
+Analogicznie jak w poprzednim rozdziale serwer został uruchomiony i czeka na klientów. W celu zamknięcia serwera należy wysłać sygnał SIGINT (\keys{\ctrl + C}). Wszystkie moduły zostaną zamknięte automatycznie.
+
+\subsubsection{Odczytanie logów z symulacji}
+
+W trakcie symulacji serwer rejestruje ("loguje") stan poszczególnych BSP oraz ogólny stan symulacji. Wszystkie zarejestrowane informacje znajdują się w folderze \texttt{logs} w module \textbf{UAV\_aggregator}. Dla wygody użytkowników serwera w wersji Docker, folder ten został połączony jako folder współdzielony z folderem \texttt{logs} znadującym się w folderze \texttt{data} w folderze serwera. W folderze logi z poszczególnych symulacji zostały podzielone na foldery, których nazwy odpowiadają nazwą sesji. Nazwą sesji jest liczba będąca datą uruchomienia serwera w postaci Unix Timestamp. W folderze odpowiadającym konkretnej sesji znajdują się: folder \texttt{drop\_physic} zawierający plik \texttt{state.csv}, plik \texttt{server.log} oraz foldery odpowiadające lotom wykonanym w ramach sesji. Plik \texttt{state.csv} zawiera kolejne pozycje i prędkości objektów symulowanych przez moduł \textbf{UAV\_drop\_physic}. Plik \texttt{server.log} zawiera zapis z konsoli serwera. Pojawiją się w nim informacje o rozpoczęciu i zakończoniu lotu, a także komunikaty przekazane wprost z silnika fizyki i modułu sterowania.\\
+
+Foldery z lotami noszą nazwy związane z nazwą drona i zawierają dokładnie jeden lot. Jeśli klient resetował stan BSP, kolejny lot zawarty zostanie w nowym folderze. W każdym z folderów znajdują się pliki CSV z zarejestrowanymi parametrami lotu oraz odpowiadające wygenerowanym charakterystykom. Poniżej przedstawiona została lista ww. plików wraz z opisem:
+
+ \begin{itemize}[noitemsep]
+\item \texttt{accelerometer.csv} -- pomiary symulowanego czujnika przyśpieszenia tj. przyśpieszeniomierza,
+\item \texttt{ahrs.csv} -- orientacja BSP estymowana przez system AHRS,
+\item \texttt{aoa.csv} -- charakterystyka pochodnych aerodymamicznych w funcji kąta natarcia,
+\item \texttt{aos.csv} -- charakterystyka pochodnych aerodymamicznych w funcji kąta ślizgu,
+\item \texttt{atmosphere.csv} -- warunki atmosferyczne zarejestrowane przez BSP,
+\item \texttt{barometer.csv} -- pomiary symulowanego czujnika ciśnienia atmosferycznego tj. barometru,
+\item \texttt{EKF.csv} -- pozycja BSP estymowana przez system nawigacji oparty o rozszerzony filtr Kalmana,
+\item \texttt{env.csv} -- rzeczywisty stan BSP (pozycja, prędkość, orientacja itd.) będący wynikiem symulacji,
+\item \texttt{GPS.csv} -- pozycja BSP wyznaczona przez symulowany system nawigacji satelitarnej,
+\item \texttt{GPSVel.csv} -- prędkość BSP wyznaczona przez symulowany system nawigacji satelitarnej,
+\item \texttt{gyroscope.csv} -- pomiary symulowanego czujnika prędkości kątowej tj. żyroskopu,
+\item \texttt{magnetometer.csv} -- pomiary symulowanego natężenia pola magnetycznego tj. magnetometru,
+\item \texttt{rotors.csv} -- zarejestrowane wartości prędkości kątowe silników rotorowych.
+\end{itemize}
+
+
+
+\subsubsection{Dodanie nowego BSP}
+
+Wszystkie parametery dotyczące symulowanego BSP zostały zawarte w pliku XML, którego nazwa odpowiada nazwie konkretnego statku. Plik XML znadują się po stronie klienta w module \textbf{UAV\_visualization} w folderze \texttt{drones}. Domyślnie do projektu zostały dołączone pliki z parameterami wielowirnikowca, stałopłatowca i rakiety, odpowiednio o nazwach \texttt{quadcopter.xml}, \texttt{plane.xml} oraz \texttt{rocket.xml}. Dodatkowo folder zawiera plik \texttt{aircraft\_template.xml} który nie reprezentuje żadnego kontretnego BSP, ale zwiera wszystkie z możliwych parameterów wraz w własciwymi opisami w komentarzach XML.\\
+
+W celu utworzenia nowego BSP należy skopiować najbardziej zbliżony do oczekiwanego plik XML i zapisać go w folderze \texttt{drones} pod unikatową nazwą i rozszerzeniem XML. Następnie należy zmodifikować wybrane parametery. Do najważniejszych parametrów należą:
+
+ \begin{itemize}[noitemsep]
+\item parameter \texttt{name} -- określający nazwę BSP w symulacji,
+\item parameter \texttt{type} -- określający teksture i siatkę 3D statku wykorzystywaną w wizualizacji i kolizjach,
+\item parametery z grupy \texttt{initial} -- określają startową pozycję, prędkość i orientację BSP, a także tryb sterowania w chwili uruchomienia,
+\item parametery z grupy \texttt{ineria} -- określają własności masowe BSP,
+\item parametery z grupy \texttt{rotors} -- określają silniki wirnikowe,
+\item parametery z grupy \texttt{jets} -- określają silniki marszowe,
+\item parametery z grupy \texttt{surface} -- określają powierzchnie sterowe,
+\item parametery z grupy \texttt{aero} -- określają własności aerodynamiczne BSP,
+\item parametery z grupy \texttt{controllers} i \texttt{mixers} -- określają regulatory i miksery wykorzystywane przez system sterowania,
+\item parametery z grupy \texttt{navi} -- określają parametery systemu nawigacji,
+\item parametery z grupy \texttt{ammo} -- określają amunicję przenoszoną przez BSP,
+\item parametery z grupy \texttt{cargo} -- określają ładunki przenoszone przez BSP,
+\end{itemize}
+
+Model 3D podany w parametrze \texttt{type} musi być dostępny w zasobach serwera. Jeśli żaden z domyślnych modeli nie odpowiada przygotowywanej konfiguracji, nowy typ może zostać dodany do zasobów serwera w następujący sposób:
+ %TODO IF
+
+\subsubsection{Dodanie nowej mapy} \label{add_map}
+
+\subsubsection{Aktualizacja zasobów serwera}
+
+Do zapewnienia poprawnej pracy klienta i serwera kluczowe jest aby obie strony dysponowały identycznymi zasobami. Zasoby znajdują się folderze \texttt{assets} w module \textbf{UAV\_aggregator} oraz w podfolderach folderu \texttt{assets} w module \textbf{UAV\_visualization} (wizualizacja moze posiadać kilka zasobów, rozróżnialnych hashem). W trakcie uruchamiania serwer oblicza hash dla wykorzystanych zasobów i przekazuje go do podłączających się wizualizacji. Ponadto w przygotowany został pipeline CICD, który po przesłaniu nowej wersji assetów, wydaje paczki assetów na platformie GitHub. Jeśli klient nie posiada assetów o wskazanej nazwie, bedzie próbował pobrać je własnie z GitHuba.\\
+
+Jeśli program uruchamiany jest lokalnie należy ręcznie skopiować zasoby wykorzystywane przez serwer do klienta. W tym celu należy:
+\begin{enumerate}
+\item uruchomić serwer,
+\item znaleźć w folderze \texttt{configs} plik o nazwie \texttt{assets\_checksum} i odczytać hash zasobów,
+\item skopiować z serwera cały folder \texttt{assets} do folderu \texttt{assets} w module\\ \textbf{UAV\_visualization},
+\item zmienić nazwe folderu na pierwsze 8 znaków odczytanego hasha zasobów,
+\item uruchomić aplikację kliencką.
+\end{enumerate}
 
 \begin{comment}
 \newpage
