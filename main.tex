@@ -885,7 +885,7 @@ Na koniec należy zbudować modułu \textbf{UAV\_aggregator}. Po wejsciu do fol
 \end{lstlisting}
 Spowoduje to automatyczne pobranie niezbędnych bibliotek Rust i budowe kodu źródłowego.\\
 
-W tym momecie wszystkie moduły potrzebne do pracy serwera zostały własciwie zbudowane. W celu uruchomienia serwera należy w folderze modułu \textbf{UAV\_aggregator} wykonać następujące polecenie:
+W tym momecie wszystkie moduły potrzebne do pracy serwera zostały własciwie zbudowane. W celu uruchomienia serwera należy w folderze modułu\\ \textbf{UAV\_aggregator} wykonać następujące polecenie:
 \begin{lstlisting}[language=bash]
   $  cargo run
 \end{lstlisting}
@@ -915,9 +915,75 @@ Po skonfigurowaniu aplikacji jak opisano w rozdziale \ref{javaInst} i uruchomien
   $  gradle run 
 \end{lstlisting}  
 
+\newpage
 
 \subsection{Instrukcja obsługi} \label{manual}
-Uruchom i lataj, opis plików z wynikami analizy, dodawanie nowego trybu sterowania.
+
+\subsubsection{Konfiguracja serwera przed uruchomieniem}
+
+Przed uruchomieniem serwera możliwa jest zmiana ogólnych parameterów symulacji przez modyfikację pliku \texttt{config.yaml}. Plik ten znajduje się w foldrze \texttt{configs} w module \textbf{UAV\_aggregator}. Dla wygody użytkowników serwera w wersji Docker, folder ten został połączony jako folder współdzielony z folderem \texttt{configs} znadującym się w folderze \texttt{data} w folderze serwera.
+
+Po otwarciu pliku \texttt{config.yaml} dowolnym edytorem tekstowym użytkownik ma możliwość zmiany parametrów serwera. Do najważnejszych parameterów należą:
+ \begin{itemize}
+\item parametr \texttt{map} pozwala na wybór mapy, na której prowadzona będzie symulacja
+\item parametr \texttt{grid} pozwala na określenie ilości elementów w siatce w osi X, Y oraz Z. Odpowiedni dobór siatki poprawia jakość działania systemu wykrywania kolizji z mapą. Zalecane jest dobranie takiej ilości elementów, aby poszczególne \textit{chunki} były zbliżone do sześcianów o dł. krawędzi równej 30,
+\item parametry \texttt{temperature}, \texttt{pressure}, \texttt{wind\_matrix} oraz \texttt{wind\_bias} pozwalają na skonfigurowanie początkowych warunków atmosferycznych i pola prędkości wiatru. 
+\item parametry \texttt{*\_step\_time} pozwalają na ustawienie kroku obliczeń w poszczególnych modułach symulacji. Krok wyrażony jest w milisekundach.
+\item parametry \texttt{*\_ode\_solver} pozwalają na wybór algorytmu całkowania równań różniczkowych wykorzystywanego w poszczególnych modułach.
+\item parametry \texttt{*\_port} pozwalają na zmianę portów wykorzystywanych w komunikacji TCP. UWAGA: do poprawnej pracy zmiana portów wymagana jest również po stronie wizualizacji. Ponadto zmiana portów w serwerze w wersji Docker wymaga również przekierowania nowych portów w pliku \texttt{docker-compose.yml}.
+\end{itemize}
+
+Ponadto w pliku znajdują się inne, mniej istotne parametry. Kompletny opis parametrów znajduje się komentarzach pliku \texttt{config.yaml}.
+
+
+
+\subsubsection{Uruchomienie serwera - Docker}
+
+W celu uruchomienia serwera należy w folderze repozytorium \texttt{UAV\_server} wydać polecenie:
+\begin{lstlisting}[language=bash]
+  $  docker compose up
+\end{lstlisting}
+Po uruchomieniu w wierszu poleceń pojawią się informację dotyczące pracy symulacji. Pierwszą linijką uruchomionej symulacji jest: \texttt{0.000 [Server] UAV SERVER}. Po zakończeniu uruchamiania serwer jest gotowy na obsługę klientów.\\
+
+Prace serwera można zakończyć poprzez wysłałanie do niego sygnału SIGINT. Można to zrobić skrótem klawiszowym \keys{\ctrl + C}. Jeśli serwer został uruchomiony w tle do zatrzymania należy wykorzystać własciwe polecenia Docker.
+
+\subsubsection{Uruchomienie serwera - Ubuntu}
+
+Natywnie zbudowany serwer uruchamia się wydając w folderze modułu\\ \textbf{UAV\_aggregator} następujące polecenie:
+\begin{lstlisting}[language=bash]
+  $  cargo run
+\end{lstlisting}
+
+Analogicznie jak w poprzednim rozdziale serwer został uruchomiony i czeka na klientów. W celu zamknięcia serwera należy wysłać sygnał SIGINT (\keys{\ctrl + C}). Wszystkie moduły zostaną zamknięte automatycznie.
+
+\subsubsection{Odczytanie logów z symulacji}
+
+W trakcie symulacji serwer rejestruje ("loguje") stan poszczególnych BSP oraz ogólny stan symulacji. Wszystkie zarejestrowane informacje znajdują się w folderze \texttt{logs} w module \textbf{UAV\_aggregator}. Dla wygody użytkowników serwera w wersji Docker, folder ten został połączony jako folder współdzielony z folderem \texttt{logs} znadującym się w folderze \texttt{data} w folderze serwera. W folderze logi z poszczególnych symulacji zostały podzielone na foldery, których nazwy odpowiadają nazwą sesji. Nazwą sesji jest liczba będąca datą uruchomienia serwera w postaci Unix Timestamp. W folderze odpowiadającym konkretnej sesji znajdują się: folder \texttt{drop\_physic} zawierający plik \texttt{state.csv}, plik \texttt{server.log} oraz foldery odpowiadające lotom wykonanym w ramach sesji. Plik \texttt{state.csv} zawiera kolejne pozycje i prędkości objektów symulowanych przez moduł \textbf{UAV\_drop\_physic}. Plik \texttt{server.log} zawiera zapis z konsoli serwera. Pojawiją się w nim informacje o rozpoczęciu i zakończoniu lotu, a także komunikaty przekazane wprost z silnika fizyki i modułu sterowania.\\
+
+Foldery z lotami noszą nazwy związane z nazwą drona i zawierają dokładnie jeden lot. Jeśli klient resetował stan BSP, kolejny lot zawarty zostanie w nowym folderze. W każdym z folderów znajdują się pliki CSV z zarejestrowanymi parametrami lotu oraz odpowiadające wygenerowanym charakterystykom. Poniżej przedstawiona została lista ww. plików wraz z opisem:
+
+ \begin{itemize}[noitemsep]
+\item \texttt{accelerometer.csv} -- pomiary symulowanego czujnika przyśpieszenia tj. przyśpieszeniomierza,
+\item \texttt{ahrs.csv} -- orientacja BSP estymowana przez system AHRS,
+\item \texttt{aoa.csv} -- charakterystyka pochodnych aerodymamicznych w funcji kąta natarcia,
+\item \texttt{aos.csv} -- charakterystyka pochodnych aerodymamicznych w funcji kąta ślizgu,
+\item \texttt{atmosphere.csv} -- warunki atmosferyczne zarejestrowane przez BSP,
+\item \texttt{barometer.csv} -- pomiary symulowanego czujnika ciśnienia atmosferycznego tj. barometru,
+\item \texttt{EKF.csv} -- pozycja BSP estymowana przez system nawigacji oparty o rozszerzony filtr Kalmana,
+\item \texttt{env.csv} -- rzeczywisty stan BSP (pozycja, prędkość, orientacja itd.) będący wynikiem symulacji,
+\item \texttt{GPS.csv} -- pozycja BSP wyznaczona przez symulowany system nawigacji satelitarnej,
+\item \texttt{GPSVel.csv} -- prędkość BSP wyznaczona przez symulowany system nawigacji satelitarnej,
+\item \texttt{gyroscope.csv} -- pomiary symulowanego czujnika prędkości kątowej tj. żyroskopu,
+\item \texttt{magnetometer.csv} -- pomiary symulowanego natężenia pola magnetycznego tj. magnetometru,
+\item \texttt{rotors.csv} -- zarejestrowane wartości prędkości kątowe silników rotorowych.
+\end{itemize}
+
+
+\subsubsection{Dodanie nowego BSP}
+
+
+\subsubsection{Dodanie nowej mapy}
+
 
 \begin{comment}
 \newpage
