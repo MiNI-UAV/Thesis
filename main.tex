@@ -769,12 +769,13 @@ Interfejs Controller definiuje klasy reprezentujące różne regulatory wykorzys
 \item symulacja regulacji w układzie o jednym stopniu swobody, w którym wartość wyjściowa z regulatora wpływa na pochodną z zmiennej regulowanej. Scenariusz reprezentuje uproszczony model regulacji temperatury w pomieszczeniu z którego ucieka ciepło, a regulator steruje grzejnikiem dostarczającym ciepło. Badane jest czy po odpowiednim czasie ustalenia temperatura w pomieszczeniu utrzymuje się w założonym polu tolerancji. Dodatkowo w trakcie testu logowane są przebiegi wartości regulowanej. Ma to na celu umożliwić organoleptyczną analizę poprawności działania regulatora. Przykładowe przebiegi ilustruje rysunek (\ref{controller_plot}).
 \end{enumerate}
 
-\begin{figure}[!h]
+\begin{figure}[!th]
 	\centering
 	\includegraphics[width=0.7\textwidth]{controller_plot.png}
 	\caption{Przebieg testu regulatorów}
 	\label{controller_plot}
 \end{figure}
+\newpage
 
 \subsection{Testy integracyjny}
 
@@ -834,7 +835,7 @@ Ze względu na charakter pracy, budowa symulacji w oparciu o badanie konkretnego
 \subsubsection{Wymagania systemowe}
 Aplikacja serwera została przygotowana do natywnej pracy na maszynie z systemem UNIX. Mając na uwadze uniwersalność użytych języków (C++ oraz Rust) pojęte zostały próby przeniesienia serwera na system Windows, jednak wiązało się to z problemami z dostępnością bibliotek C++. Ostatecznie oficjalnie wspieranymi systemami, które pozwalają na natywne uruchomienie serwera są Ubuntu w wersji 22.04 i pochodne. \\
 
-W celu zapewnienia szerszej zgodności serwera przygotowany został obraz Docker, bazujący na obrazie \texttt{ubuntu:latest}. Tak przygotowany obraz może zostać uruchomiony na dowolnej maszynie wspierającej konteneryzacje Docker. Ceną, którą należy zapłacić za rozszerzoną zgodność jest obniżona wydajność symulacji, będąca wynikiem wirtualizacji. Doświadczenie pokazuje, że wpływ ten jest niewielki, zwłaszcza w najnowszych wersjach Dockera.\\
+W celu zapewnienia szerszej zgodności serwera przygotowany został obraz Docker, bazujący na obrazie \texttt{ubuntu:latest}. Tak przygotowany obraz może zostać uruchomiony na dowolnej maszynie wspierającej konteneryzacje Docker. Ceną, którą należy zapłacić za rozszerzoną zgodność jest obniżona wydajność symulacji, ze względu na wirtualizację. Doświadczenie pokazuje, że spadek wydajności jest niewielki, zwłaszcza w najnowszych wersjach Dockera.\\
 
  Uruchomienie klienta wymaga posiadania systemu operacyjnego z powłoką graficzna opartą na oknach oraz obsługującego monitory i wirtualną maszynę Java. Docelowa maszyna musi również obsługiwać bibliotekę OpenGL.
 
@@ -1009,7 +1010,7 @@ Analogicznie jak w poprzednim rozdziale serwer został uruchomiony i czeka na kl
 \subsubsection{Konfiguracja klienta przed uruchomieniem}
 \label{fastClient}
 
-Aby skonfigurować aplikację przed pierwszym uruchomieniem należy zmodyfikować plik \texttt{config.yaml}. Zaczynając od góry, w celu skonfigurowania kontrolera należy upewnić się, że zmienna \texttt{bindingsConfig.generateOnStartUp} jest ustawiona na \texttt{true} oraz w \texttt{bindingsConfig.source} znajduje się ścieżka względna do pliku, który zostanie utworzony w czasie konfiguracji i będzie zawierał ustawienia kontrolera. Zmienną \texttt{serverSettings.serverAddress} należy ustawić na adres IP serwera, na którym został postawiony serwer. Jeżeli chcemy pobrać assety z repozytorium GitHub, to zmienna \\ \texttt{serverSettings.assetsSourceUrl} powinna być ustawiona na \\ \texttt{https://github.com/MiNI-UAV/UAV\_aggregator/releases/download/}, zmienna \\ \texttt{serverSettings.downloadMissingAssets} na \texttt{true}, a zmienna \texttt{serverSettings.assetsToUse} powinna być zakomentowana. Jeżeli chcemy wykorzystać assety niezależne od tych, które proponuje serwer, to zmienna \texttt{serverSettings.downloadMissingAssets} powinna być ustawiona na  \texttt{false}, a zmienna \texttt{serverSettings.assetsToUse} na nazwę katalogu w folderze \texttt{assets} zawierającego zawartość, z której chcemy skorzystać. Następnie, \texttt{droneSettings.droneConfig} powinno wskazywać na plik w katalogu \texttt{drones}, który zawiera parametry BSP. Zmienna \texttt{droneSettings.modes} jest tablicą mówiąca o tym, jakie tryby kontroli lotu będą dostępne do wysłania serwerowi. Wraz z aplikacją dostępne są domyślne pliki parametrów wraz z utworzonymi dla nich trybami kontroli lotu, które widnieją w tabeli (\ref{modesTable}). Wszystkie dostępne tryby kontroli lotu są zdefiniowane przez serwer w katalogu assetów w podfolderze \texttt{data/available\_control\_modes.yaml}. Tak zmodyfikowana konfiguracja powinna być wystarczająca do rozpoczęcia pracy. W konfiguracji znajdują się inne mniej istotne parametry, których opis znajduje się w komentarzach.
+Aby skonfigurować aplikację przed pierwszym uruchomieniem należy zmodyfikować plik \texttt{config.yaml} w module \textbf{UAV\_visualization}. Zaczynając od góry, w celu skonfigurowania kontrolera należy upewnić się, że zmienna \texttt{bindingsConfig.generateOnStartUp} jest ustawiona na \texttt{true} oraz w \texttt{bindingsConfig.source} znajduje się ścieżka względna do pliku, który zostanie utworzony w czasie konfiguracji i będzie zawierał ustawienia kontrolera. Zmienną \texttt{serverSettings.serverAddress} należy ustawić na adres IP serwera, na którym został postawiony serwer. Jeżeli chcemy pobrać assety z repozytorium GitHub, to zmienna \texttt{serverSettings.assetsSourceUrl} powinna być ustawiona na \texttt{https://github.com/MiNI-UAV/UAV\_aggregator/releases/download/}, zmienna \\ \texttt{serverSettings.downloadMissingAssets} na \texttt{true}, a zmienna \texttt{serverSettings.assetsToUse} powinna być zakomentowana. Jeżeli chcemy wykorzystać assety niezależne od tych, które proponuje serwer, to zmienna \texttt{serverSettings.downloadMissingAssets} powinna być ustawiona na  \texttt{false}, a zmienna \texttt{serverSettings.assetsToUse} na nazwę katalogu w folderze \texttt{assets} zawierającego zawartość, z której chcemy skorzystać. Następnie, \texttt{droneSettings.droneConfig} powinno wskazywać na plik w katalogu \texttt{drones}, który zawiera parametry BSP. Zmienna \texttt{droneSettings.modes} jest tablicą mówiąca o tym, jakie tryby kontroli lotu będą dostępne do wysłania serwerowi. Wraz z aplikacją dostępne są domyślne pliki parametrów wraz z utworzonymi dla nich trybami kontroli lotu, które widnieją w tabeli (\ref{modesTable}). Wszystkie dostępne tryby kontroli lotu są zdefiniowane przez serwer w katalogu assetów w podfolderze \texttt{data/available\_control\_modes.yaml}. Tak zmodyfikowana konfiguracja powinna być wystarczająca do rozpoczęcia pracy. W konfiguracji znajdują się inne mniej istotne parametry, których opis znajduje się w komentarzach.
 
 \begin{table}[!ht]	
 	\begin{center}
@@ -1093,8 +1094,8 @@ Model 3D podany w parametrze \texttt{type} musi być dostępny w zasobach serwer
 
 \begin{enumerate}
 	\item w katalogu \texttt{drones} utworzyć folder o nazwie zgodnej z zawartością parametru \texttt{type}.
-	\item w nowo utworzonym katalogu dodajemy podfoldery \texttt{model} i \texttt{textures}.
-	\item w folderze \texttt{model} umieszczamy model 3D w formacie GTLF (\texttt{model.gltf}) wraz z odpowiadającym mu plikiem binarnym (\texttt{model.bin}) oraz w formacie OBJ (\texttt{model.obj}).
+	\item w nowo utworzonym katalogu dodać podfoldery \texttt{model} i \texttt{textures}.
+	\item w folderze \texttt{model} umieścić model 3D w formacie GTLF (\texttt{model.gltf}) wraz z odpowiadającym mu plikiem binarnym (\texttt{model.bin}) oraz w formacie OBJ (\texttt{model.obj}). Układ współrzędnych powinien znajdować w środku masy BSP i być układem NED.
 	\item W folderze \texttt{textures} powinny znajdować się wszystkie tekstury, do których odnosi się model. Należy upewnić się, że plik GLTF uwzględnia katalog \texttt{textures} w referencjach do tekstur.
 \end{enumerate}
 
@@ -1104,8 +1105,8 @@ Model 3D podany w parametrze \texttt{type} musi być dostępny w zasobach serwer
  
  \begin{enumerate}
  	\item w katalogu \texttt{maps} utworzyć folder o nazwie, która będzie jednoznacznie identyfikować mapę.
- 	\item w nowo utworzonym katalogu dodajemy podfoldery \texttt{model} i \texttt{textures}.
- 	\item w folderze \texttt{model} umieszczamy model 3D mapy w formacie GTLF (\texttt{model.gltf}) wraz z odpowiadającym mu plikiem binarnym (\texttt{model.bin}) oraz w formacie OBJ (\texttt{model.obj}).
+ 	\item w nowo utworzonym katalogu dodać podfoldery \texttt{model} i \texttt{textures}.
+ 	\item w folderze \texttt{model} umieścić model 3D mapy w formacie GTLF (\texttt{model.gltf}) wraz z odpowiadającym mu plikiem binarnym (\texttt{model.bin}) oraz w formacie OBJ (\texttt{model.obj}). Przyjętym układem współrzędnych jest układ NED.
  	\item w folderze \texttt{model} dodatkowo powinien się znaleźć plik \texttt{minimap.png}, który będzie wykorzystywany podczas wyświetlania minimapy. Ma to być kwadratowa tekstura, gdzie każdy piksel odpowiada jednemu metru kwadratowemu, a jej środek odpowiada koordynatom (0,0).
  	\item W folderze \texttt{textures} powinny znajdować się wszystkie tekstury, do których odnosi się model. Należy upewnić się, że plik GLTF uwzględnia katalog \texttt{textures} w referencjach do tekstur.
  \end{enumerate}
