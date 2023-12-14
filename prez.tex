@@ -56,10 +56,10 @@
 % lub wybrać sobie kolor z pakietu xcolor
 \colorlet{title_color}{grafitowy}
 
-\title{Opracowanie wirtualnego środowiska\\do symulacji dynamiki lotu\\ bezzałogowych statków powietrznych}
-%\subtitle{Podtytuł consectetur adispiscing elit}
-\author{Wojciech Gajda \and  Igor Faliszewski}
-\date{28 listopada 2023} % można tam wpisać datę jaką się chce lub zakomentować dla daty dzisiejszej
+\title{Zastosowanie sterowania optymalnego\\ w statkach powietrznych}
+\subtitle{Regulatory LQR w wielowirnikowcach}
+\author{Wojciech Gajda}
+\date{18 grudnia 2023} % można tam wpisać datę jaką się chce lub zakomentować dla daty dzisiejszej
 
 
 
@@ -81,209 +81,7 @@
     ]
 \end{frame}
 
-\section{Wprowadzenie}
-\subsection{Motywacje}
-\begin{frame}%[allowframebreaks]
-	\frametitle{Motywacja}
-	\begin{columns}
-		\begin{column}{0.33\textwidth}
-			\begin{figure}
-	   		 \centering
-	      		 \uncover<2->{\includegraphics[width=0.35\textwidth]{logos/matlab.png}}
-	    		\end{figure}
-	    		\begin{figure}
-	   		 \centering
-	      		 \uncover<3->{\includegraphics[width=0.35\textwidth]{logos/JSBSim.png}}
-	    		\end{figure}
-			\begin{figure}
-	   		 \centering
-	      		 \uncover<4->{\includegraphics[width=0.35\textwidth]{logos/VBS.png}}
-	    		\end{figure}
-		\end{column}
-		\begin{column}{0.33\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<5->{\includegraphics[width=0.9\textwidth]{logos/warthunder.png}}
-	    		\end{figure}
-	    		\begin{figure}
-	   		 \centering
-	      		 \uncover<6->{\includegraphics[width=0.9\textwidth]{logos/MFS.png}}
-	    		\end{figure}
-		\end{column}
-		\begin{column}{0.33\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<7->{\includegraphics[width=0.9\textwidth]{logos/ardupilot.jpg}}
-	    		\end{figure}
-	    		\begin{figure}
-	   		 \centering
-	      		 \uncover<8->{\includegraphics[width=0.9\textwidth]{logos/betaflight.png}}
-	    		\end{figure}
-	    		\begin{figure}
-	   		 \centering
-	      		 \uncover<9->{\includegraphics[width=0.9\textwidth]{logos/inav.png}}
-	    		\end{figure}
-		\end{column}
-	\end{columns}
-\end{frame}
-
-
-\subsection{Cel projektu}
-\begin{frame}%[allowframebreaks]
-	\frametitle{Cel projektu I}
-	\begin{columns}
-		\begin{column}{0.33\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{spitfire.png}}
-	    		\end{figure}
-		\end{column}
-		\begin{column}{0.33\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<3->{\includegraphics[width=0.9\textwidth]{quadcopter_fpv.png}}
-	    		\end{figure}
-		\end{column}
-		\begin{column}{0.33\textwidth}
-	    		\begin{figure}
-	   		 \centering
-	      		 \uncover<4->{\includegraphics[width=0.9\textwidth]{missile.png}}
-	    		\end{figure}
-		\end{column}
-	\end{columns}
-	\begin{figure}
-	\begin{columns}
-		\begin{column}{0.33\textwidth}
-		\end{column}
-		\begin{column}{0.33\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<5->{\includegraphics[width=0.5\textwidth]{cargo.png}}
-	    		\end{figure}
-		\end{column}
-		\begin{column}{0.33\textwidth}
-	    		\begin{figure}
-	   		 \centering
-	      		 \uncover<6->{\includegraphics[width=0.6\textwidth]{helicopter_ban.png}}
-	    		\end{figure}
-		\end{column}
-	\end{columns}
-	\end{figure}
-\end{frame}
-
-\begin{frame}%[allowframebreaks]
-	\frametitle{Cel projektu II}
-	  \begin{itemize}
-	  \item {
-	    Kompleksowa symulacja fizyki.
-	    \pause % Tu nastąpi pauza
-	  }
-	  \item {   
-	    Wysoka konfigurowalność BSP, środowiska i symulacji.
-	  }
-	  % Można ustalić kiedy dany element ma się pojawić, używając <n->:
-	  \item<3-> {
-	    Bogate narzędzie dla analityków i developerów
-	  }
-	  \item<4-> {
-	    Licencja open-source.
-	  }
- 	 \end{itemize}
-\end{frame}
-
-\section{Wstep teoretyczny}
-\begin{frame}%[allowframebreaks]
-	\frametitle{Wstep teoretyczny}
-	 \uncover<2->{\epigraph{There is nothing so practical as a good theory.}{Lewin Kurt}}
-	 \uncover<3->{\epigraph{Nie ma osobnej ani teorii, ani praktyki inżynierskiej, jest tylko wspólna sztuka inżynierska.}{prof. Jan Oderfeld}}
-\end{frame}
-
-
-\subsection{Dynamika statku powietrznego}
-\begin{frame}%[allowframebreaks]
-	\frametitle{Dynamika lotu}
-	\begin{columns}
-		\begin{column}{0.55\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<2->{\includegraphics[width=1.05\textwidth]{frames.png}}
-	    		\end{figure}
-		\end{column}
-		\begin{column}{0.45\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<3->{\includegraphics[width=1.05\textwidth]{RPY.png}}
-	    		\end{figure}
-		\end{column}
-	\end{columns}
-\end{frame}
-
-\begin{frame}%[allowframebreaks]
-	\frametitle{Równania stanu}
-	\begin{columns}
-		\begin{column}{0.3\textwidth}
-	      		 	\uncover<2->{\[
-				\begin{cases}
-					\dot{\bm{x}} \left(t\right)  = \bm{Ax} \left(t\right)  + \bm{Bu} \left(t\right) \\
-					\bm{y} \left(t\right) = \bm{Cx} \left(t\right) + \bm{Du} \left(t\right)
-				\end{cases}
-				\]}
-				\uncover<3->{\[
-				\begin{cases}
-					\dot{\bm{x}} \left(t\right)  = \bm{f} \left(t,\bm{x}\left(t\right),\bm{u}\left(t\right) \right) \\
-					\bm{y} \left(t\right) = \bm{g} \left(t,\bm{x}\left(t\right),\bm{u}\left(t\right) \right)
-				\end{cases}
-				\]}	
-		\end{column}
-		\begin{column}{0.7\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<4->{\includegraphics[width=0.9\textwidth]{state\_eq.png}}
-	    		\end{figure}
-		\end{column}
-	\end{columns}
-\end{frame}
-
-\begin{frame}%[allowframebreaks]
-	\frametitle{Równania różniczkowe}
-	\begin{itemize}
-	  \item{
-	    Przed zastosowaniem algorytmu obniżyć rząd równania różniczkowego.
-	    \pause
-	  }
-	  \item {   
-	    Skorzystać z algorytmu jawnego lub niejawnego algorytmu całkowania RR
-	    \pause
-	  }
-	  % Można ustalić kiedy dany element ma się pojawić, używając <n->:
-	  \item {
-	    Algorytmy jawne:
-	    \pause
-	    \begin{itemize}
-		  \item{
-		    Euler: $\bm{x}\left(t + \Delta t\right) = \bm{x}\left(t\right) + \Delta t \cdot \bm{\dot{x}} $
-		    \pause
-		  }
-		  \item {   
-		    Runge-Kutty 4 rzędu
-		    \pause
-		  }
-		  \item {   
-		    Adams–Bashforth
-		    \pause
-		  }
-		  \item {   
-		    BFD (Backward differentiation formula)
-		    \pause
-		  }
-	     \end{itemize}
-	     \pause
-	  }
-	  \item {   
-	    Algorytmy niejawne
-	  }
- 	 \end{itemize}
-\end{frame}
+\section{Obiekt sterowany}
 
 \begin{frame}%[allowframebreaks]
 	\frametitle{Model matematyczny statku powietrznego I}
@@ -370,14 +168,9 @@
 			  \item<3-> {   
 			    Ciąg silników i moment oporowy  $\bm{f_R}$
 			   }
+		
 			    \item<4-> {   
-			    Ciąg silników marszowych  $\bm{f_J}$
-			   }
-			    \item<5-> {   
 			    Oddziaływanie aerodynamiczne $\bm{f_A}$
-			   }
-			    \item<6-> {   
-			   Siły zewnętrzne $\bm{f_{OUT}}$
 			   }
 			\end{itemize}
 \end{frame}
@@ -392,21 +185,24 @@
 	      		 \uncover<2->{
 	      		 \[
 	      		 	F = k_F \rho S R^2 \omega^2
-			\]}
-			 \uncover<3->{
+			\]
 	      		 \[
 	      		 	M = k_M \rho S R^3 \omega^2
 	      		\]}
-	      		 \uncover<4->{ 
+	      		 \uncover<3->{
 	      		 \[
-	      		 	T \frac{d\omega}{dt} + \omega = \omega_{ZADANA}
-	      		 \]}
+	      		 	I = I(\bm{\omega}, \bm{\omega}^2, \bm{\dot{\omega}})
+			\]}
 	    		\end{figure}
 		\end{column}
 		\begin{column}{0.5\textwidth}
+			 \uncover<4->{ 
+	      		 \[
+	      		 	T \frac{d\omega}{dt} + \omega = \omega_{ZADANA}
+	      		 \]}
 	   	 	\begin{figure}
 	   		 \centering
-	      		 \uncover<5->{\includegraphics[width=1\textwidth]{step.png}}
+	      		 \uncover<4->{\includegraphics[width=0.8\textwidth]{step.png}}
 	    		\end{figure}
 		\end{column}
 	\end{columns}
@@ -414,15 +210,6 @@
 
 \begin{frame}%[allowframebreaks]
 	\frametitle{Model matematyczny statku powietrznego V}
-	Ciąg silnika marszowego:
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<2->{\includegraphics[width=0.5\textwidth]{jet\_thrust.png}}
-	    		\end{figure}
-\end{frame}
-
-\begin{frame}%[allowframebreaks]
-	\frametitle{Model matematyczny statku powietrznego VI}
 	Oddziaływanie aerodynamiczne:
 	\begin{columns}
 		\begin{column}{0.4\textwidth}
@@ -447,143 +234,42 @@
 	\end{columns}
 \end{frame}
 
-
 \begin{frame}%[allowframebreaks]
-	\frametitle{Kolizje I}
-	\begin{columns}
-		\begin{column}{0.45\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<1->{\includegraphics[width=0.8\textwidth]{collision\_plane.png}}
-	    		\end{figure}
-		\end{column}
-		\begin{column}{0.55\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{meshes.png}}
-	    		\end{figure}
-		\end{column}
-	\end{columns}
-\end{frame}
-
-\begin{frame}%[allowframebreaks]
-	\frametitle{Kolizje II}
+	\frametitle{Linearyzacja równań stanu}
 	\begin{columns}
 		\begin{column}{0.5\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<2->{\includegraphics[width=0.85\textwidth]{prism.png}}
-	    		\end{figure}
+				\uncover<2->{\[
+						\bm{u} = \begin{bmatrix}\omega_1 \quad \omega_2 \quad ... \quad \omega_n\end{bmatrix}^T
+					\]
+					\[
+						\bm{C} = \bm{I} \hspace{10pt} \bm{D} = \bm{0}
+					\]}
+				\uncover<3->{\[
+				\begin{cases}
+					\dot{\bm{x}} \left(t\right)  = \bm{f} \left(t,\bm{x}\left(t\right),\bm{u}\left(t\right) \right) \\
+					\bm{y} \left(t\right) = \bm{g} \left(t,\bm{x}\left(t\right),\bm{u}\left(t\right) \right)
+				\end{cases}
+				\]}	
 		\end{column}
 		\begin{column}{0.5\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<3->{\includegraphics[width=0.9\textwidth]{grid.png}}
-	    		\end{figure}
+	   	 	\uncover<4->{\[
+				\begin{cases}
+					\dot{\bm{x}} \left(t\right)  = \bm{Ax} \left(t\right)  + \bm{Bu} \left(t\right) \\
+					\bm{y} \left(t\right) = \bm{Cx} \left(t\right) + \bm{Du} \left(t\right)
+				\end{cases}
+				\]}
 		\end{column}
 	\end{columns}
 \end{frame}
 
 
-\begin{frame}%[allowframebreaks]
-	\frametitle{Kolizje III}
-	\begin{columns}
-		\begin{column}{0.5\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{oscillator.png}}
-	    		\end{figure}
-		\end{column}
-		\begin{column}{0.5\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<3->{\includegraphics[width=0.9\textwidth]{ball.png}}
-	    		\end{figure}
-		\end{column}
-	\end{columns}
-\end{frame}
-
-
-\begin{frame}%[allowframebreaks]
-	\frametitle{Kolizje IV}
-	\begin{columns}
-		\begin{column}{0.4\textwidth}
-			\begin{figure}
-			\centering
-		      		 \[
-		      		 \bm{\vec{j}} = \int_{t_0}^{t_1} \bm{\vec{F}} dt
-		      		 \]
-		      		\pause
-		      		\[
-		      		j_r \left( \bm{M}, \bm{\vec{v}}, ...  , COR \right)
-		      		\]
-		      		\uncover<5->{
-		      		\[
-		      		j_f \left( \bm{M}, \bm{\vec{v}}, ...  , \mu_s, \mu_d \right)
-		      		\]
-		      		}	 
-			\end{figure}
-		\end{column}
-		\begin{column}{0.6\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<4->{\includegraphics[width=0.9\textwidth]{cor.png}}
-	    		\end{figure}
-		\end{column}
-	\end{columns}
-\end{frame}
-
-
-\begin{frame}%[allowframebreaks]
-	\frametitle{Odrzut}
-	\uncover<2->{Zasada zachowania pędu $\vec{\bm{p}}$ i zasada zachowania momentu pędu (krętu) $\vec{\bm{L}}$}.
-	\uncover<3->{
-	\[
-		\begin{bmatrix}
-		\vec{\bm{p}}_{przed}\\
-		\vec{\bm{L}}_{przed}
-		\end{bmatrix}
-		=
-		\begin{bmatrix}
-		\vec{\bm{p}}_{po}\\
-		\vec{\bm{L}}_{po}
-		\end{bmatrix}
-		+	
-		\begin{bmatrix}
-		\vec{\bm{p}}_{pocisku}\\
-		\vec{\bm{L}}_{pocisku}
-		\end{bmatrix}	
-	\]}
-	\uncover<4->{
-	\[
-		\bm{M}
-		\begin{bmatrix}
-		\vec{\bm{v}}_{przed}\\
-		\vec{\bm{\omega}}_{przed}
-		\end{bmatrix}
-		=
-		\bm{M}
-		\begin{bmatrix}
-		\vec{\bm{v}}_{po}\\
-		\vec{\bm{\omega}}_{po}
-		\end{bmatrix}
-		+
-		m_{pocisku}
-		\begin{bmatrix}
-		\vec{\bm{v}}_{pocisku}\\
-		\vec{\bm{r}}_{pocisku} \times  \vec{\bm{v}}_{pocisku}
-		\end{bmatrix}	
-	\]}
-	
-\end{frame}
-
-\subsection{Sterowanie statkiem powietrznym}
+\section{Klasyczne metody sterowania wielowirnikowcem}
 
 \begin{frame}
-	\frametitle{Sterowanie statkiem powietrznym I}
+	\frametitle{Sterowanie statkiem powietrznym}
 	\begin{figure}
 	   		 \centering
-	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{uk\_reg.jpg}}
+	      		\includegraphics[width=\textwidth]{controller.png}
 	\end{figure}
 \end{frame}
 
@@ -591,356 +277,48 @@
 	\frametitle{Sterowanie statkiem powietrznym II}
 	\begin{figure}
 	   		 \centering
-	      		\includegraphics[width=\textwidth]{controller.png}
-	\end{figure}
-\end{frame}
-
-\begin{frame}%[allowframebreaks]
-	\frametitle{Regulator PID}
-	\begin{columns}
-		\begin{column}{0.5\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<2->{\includegraphics[width=\textwidth]{pid.png}}
-	    		\end{figure}
-		\end{column}
-		\begin{column}{0.5\textwidth}
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \uncover<3->{\includegraphics[width=\textwidth]{pid\_graph.png}}
-	    		\end{figure}
-		\end{column}
-	\end{columns}
-	
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Sterowanie statkiem powietrznym III}
-	\begin{figure}
-	   		 \centering
 	      		 \includegraphics[width=1.05\textwidth]{pid\_cascade.jpg}
 	\end{figure}
 \end{frame}
 
-\begin{frame}%[allowframebreaks]
-	\frametitle{Nawigacja}
-	\begin{columns}[T]
-		\begin{column}{0.5\textwidth}
-	   	 	 Czujniki:
-	   	 	 \begin{itemize}
-			  \item{
-			    Żyroskop
-			    \pause
-			  }
-			  \item {   
-			    Akcelerometer
-			    \pause
-			  }
-			   \item {   
-			    Magnetometr
-			    \pause
-			  }
-			  \item {   
-			    Barometer
-			    \pause
-			  }
-			  \item {   
-			    Czujnik prędkości powietrza
-			    \pause
-			  }
-			  \item {   
-			    Nawigacja satelitarna
-			    \pause
-			  }
-			  \item {   
-			    Radar, sonar, lidar
-			  }
-	     \end{itemize}
-	     \pause
-	   	 	
-		\end{column}
-		\begin{column}{0.5\textwidth}
-			Filtr Kalmana:
-	   	 	\begin{figure}
-	   		 \centering
-	      		 \includegraphics[width=0.8\textwidth]{kalman.png}
-	    		\end{figure}
-		\end{column}
-	\end{columns}
-\end{frame}
 
-\subsection{Grafika komputerowa}
-
-% Wprowadzając grafikę komputerową, nie można nie wpsomnieć o GPU, a więc procesorach graficznych. Jak nazwa wskazuje zostały one początkowo wprowadzone na rynek by programy były sobie w stanie radzić z wykonywaniem rzędy wielkości operacji więcej niż to co jest możliwe na zwykłym procesorze. 
-\begin{frame}
-\frametitle{GPU}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.8\textwidth]{gpu.png}
-	\end{figure}
-\end{frame}
-
-% OpenGL czyli Open Graphics Libraru, jest uniwersalnym interfejsem do renderowania grafiki werktorowej 2D i 3D wykorzystującym GPU. Za specyfikację OpenGL odpowiada Khronos Group, a za implementację funkcji najczęściej producenci kart graficznych. W praktyce jest to olbrzymia maszyna stanu, która definiuje sposób działania OpenGL. Aby stan zmieniać operujemy na obiektach, które przypisujemy do kontekstu. [Opisać obrazek]
-\begin{frame}
-\frametitle{OpenGL}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.9\textwidth]{OpenGL_example.png}
-	\end{figure}
-\end{frame}
-
-% Przetwarzanie wierzchołków
-% Każdy obiekt w scenie składa się z wierzchołków. Atrybuty tych wierzchołków (np. położenie) poddawane są przekształceniom. []Narysować dwa obiekty takie same jak przechodzą na płaszczyznę ekran]. (Mamy na to wpływ w Vertex Shader)
-% Łączenie w prymitywy
-% [Pokazać trójkąty]
-% Przycinanie
-% Rasteryzacja
-% Tworzone są fragmenty, czyli próbki powierzchni prytmitywu, któremu odpowiada piksel bufora klatki. Może być wiele fragmentów na jeden piksel. W tym momencie dane wierzchołka są interpolowane, w przypadku trójkąta, z trzech wierzchołków. 
-% Przetwarzanie fragmentów.
-% Dodawanie tekstury, oświetlenie. (Mamy na to wpływ w Fragment Shader)
-% Przetwarzanie piksli
-% Tutaj zachodzi test głębokości, alpha blending czyli przezroczystość i antialiasing.
-
-% Teraz opiszemy to na co mamy wpływ, a więc dane, przetwarzanie wierzchołków i fragmentów.
-\begin{frame}
-\frametitle{Potok renderowania}
-		\begin{figure}
-			\centering
-			\includegraphics[width=0.7\textwidth]{graphics_pipeline.png}
-		\end{figure}
-\end{frame}
-
-% Porozumiewanie się z procesrowem graficznym wymaga jednak własnego języka. W przypadku OpenGLa, jest nim GLSL ,,OpenGl Shading Language''. Został on zaprojektowany na bazie C, nakładając duży poziom abstrakcji na operacje wykonywane na GPU. Pisząc shadery właściwie się nie myśli o równoległości. [Opis języka]
-\begin{frame}[allowframebreaks]
-	\frametitle{Shadery}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.8\textwidth]{vertex_attributes.png}
-	\end{figure}
-	\framebreak
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.8\textwidth]{vertex.png}
-	\end{figure}
-	\framebreak
-	
-	\begin{columns}
-		\begin{column}{0.5\textwidth}
-			\begin{figure}
-				\centering
-				\includegraphics[width=0.9\textwidth]{vertex_shader.png}
-			\end{figure}
-		\end{column}	
-		
-		\begin{column}{0.5\textwidth}
-			\begin{figure}
-				\centering
-				\includegraphics[width=0.9\textwidth]{fragment_shader.png}
-			\end{figure}
-		\end{column}
-	\end{columns}
-	\framebreak
-	
-	\begin{figure}
-	\centering
-	\includegraphics[width=0.6\textwidth]{shader_result.png}
-	\end{figure}
-\end{frame}
-
-% Cieniowanie w grafice komputerowej możemy wykonywać na różne sposoby. 
-% Od lewej mamy:
-% Kolorowanie płaskie - tutaj oświetlenie ustalamy na poziomie prymitywu.
-% KOlorwanie Gourauda - Tutaj ustalamy oświetlenie na poziomie wierzchołków i je interpolujemy.
-% Kolorowanie Phonga - Tutaj interpolujemy wektory normalne. Obliczenie koloru następuje dla każdego fragmentu.
-\begin{frame}[allowframebreaks]
-	\frametitle{Cieniowanie i model oświetlenia}	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.7\textwidth]{shading.jpg}
-	\end{figure}
-	\framebreak
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.9\textwidth]{phong.png}
-	\end{figure}
-\end{frame}
-
-% \begin{frame}[allowframebreaks]
-% 	\frametitle{Renderowanie interfejsu}
-%	
-% \end{frame}
-
-% Istotnym elementem symulacji jest również interakcja z użytkownikiem.
-% W naszym przypadku większość komunikacji odbywa się za pomocą kontrolera.
-% System interpretuje każdy kontroler jako tablicę stanów przycisków, osi oraz hatów (d-padów).
-% Niestety za jakie przyciski odpowiadają jakie indeksy, nie wiadomo. Zależy to od producenta kontrolera i trudno jest o jakiś standard w przypadku tylu różnych możliwości układu przycisków. 
-% Są bazy danych, które pozwalają na mapowanie znanych modeli kontrolerów do konkretnych akcji, ale my chcemy umożliwić wykrozystanie najróżniejszych sprzętów. Od zwykłego pada do xboxa, po dedykowany kontroler do BSP.
-% Rozwiązanie tego problemu nie jest takie trudne, chociaż pracochłonne. Wystarczy stworzyć interaktywną konfigurację, z której pomocą użytkownik sam będzie w stanie ustawić dedykowane bindingi.
-\begin{frame}[allowframebreaks]
-	\frametitle{Obsługa kontrolera}
-	
-	\begin{columns}
-		\begin{column}{0.33\textwidth}
-			\begin{figure}
-				\centering
-				\includegraphics[width=0.7\textwidth]{xobx.png}
-			\end{figure}
-		\end{column}
-		\begin{column}{0.33\textwidth}
-			\begin{figure}
-				\centering
-				\includegraphics[width=0.7\textwidth]{joysticke.png}
-			\end{figure}
-		\end{column}
-		\begin{column}{0.33\textwidth}
-			\begin{figure}
-				\centering
-				\includegraphics[width=0.7\textwidth]{taranis.png}
-			\end{figure}
-		\end{column}
-	\end{columns}
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.8\textwidth]{bindings.png}
-	\end{figure}
-\end{frame}
-
-\begin{frame}[allowframebreaks]
-	\frametitle{Krzywa łańcuchowa}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.7\textwidth]{catenary.jpg}
-	\end{figure}
-	$$\text{cat}(x) = a\cdot \cosh \left(\frac{x}{a}\right).$$
-	
-	\framebreak
-	
-	Wyznaczenie współczynnika krzywej łańcuchowej $a_c$ między punktami $A = (x_1,y_1)$, $B = (x_2,y_2)$ i danego $l < \lVert B - A \rVert$, to rozwiązanie równania:
-	\begin{equation}
-		\label{cat}
-		\frac{1}{h} \sqrt{l^2-v^2} = \frac{2a_c}{h} \sinh\left( \frac{h}{2a_c} \right),
-	\end{equation}
-	gdzie:
-	$$
-	v = x_2 - x_1,
-	$$
-	$$
-	h = y_2 - y_1.
-	$$
-	
-	\framebreak
-	Dla $l \geq \lVert B - A \rVert$ stosowany jest wzór na współczynnik kierunkowy prostej
-	\begin{equation}
-		\label{line}
-		a_l = \frac{y_2 - y_1}{x_2 - x_1}.
-	\end{equation}
-	
-	
-	\framebreak
-	Ostatecznie, dla danej długości liny $l \in \mathbb{R}$ oraz punktów $A$, $B  \in \mathbb{R}^2$ funkcja liny $f_l$ ma postać:
-	$$f_l(x) = 
-	\begin{cases}
-		a_c \cdot \cosh\left( \frac{x}{a_c} \right), & l < \lVert B - A \rVert \\
-		a_l \cdot x, & l \geq \lVert B - A \rVert 
-	\end{cases},$$
-	gdzie $a_c$ oraz $a_l$ są wyznaczone z równań \ref{cat} oraz \ref{line} dla punktów $A$ i $B$.
-	
-	\framebreak
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.9\textwidth]{geo.png}
-	\end{figure}
-	\framebreak
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.4\textwidth]{cube.png}
-	\end{figure}
-	\framebreak
-	
-	
-	\begin{columns}
-		\begin{column}{0.5\textwidth}
-			\begin{figure}
-				\centering
-				\includegraphics[width=1\textwidth]{rope_model.png}
-			\end{figure}
-		\end{column}	
-		
-		\begin{column}{0.5\textwidth}
-				\begin{equation*}
-				\frac{d}{dx} \text{cat}(x) = \frac{d}{dx} \left( a\cdot \cosh\left( \frac{x}{a} \right) \right) = \sinh\left( \frac{x}{a} \right)
-			\end{equation*}
-			\begin{equation*}
-				\vec{t} =
-				\begin{bmatrix}
-					1 \cdot \frac{|\vec{l_x}|}{\vec{|l_{xy}}|}, &
-					1 \cdot \frac{|\vec{l_y}|}{\vec{|l_{xy}}|}, &
-					-\sinh(\frac{x}{a})
-				\end{bmatrix}^T
-			\end{equation*}
-			\begin{equation*}
-			\vec{n_0} =
-			\begin{bmatrix}
-				\sinh(\frac{x}{a}) \cdot \frac{|\vec{l_x}|}{\vec{|l_{xy}}|}, &
-				\sinh(\frac{x}{a}) \cdot \frac{|\vec{l_y}|}{\vec{|l_{xy}}|}, &
-				1
-			\end{bmatrix}^T
-			\end{equation*}
-		\end{column}
-	\end{columns}
-	\framebreak
-	
-	\begin{columns}
-		\begin{column}{0.5\textwidth}
-			\begin{figure}
-				\centering
-				\includegraphics[width=1\textwidth]{rope_model.png}
-			\end{figure}
-		\end{column}	
-		
-		\begin{column}{0.5\textwidth}
-			\begin{equation*}
-				W_R = 
-				\begin{bmatrix}
-					0 & -\vec{t_z} & \vec{t_y} \\
-					\vec{t_z} & 0 & -\vec{t_x} \\
-					-\vec{t_y} & \vec{t_x} & 0 \\
-				\end{bmatrix}
-			\end{equation*}
-			\begin{equation*}
-				M_R = I + sin \left(\frac{2\pi}{k} \right) \cdot W_R + 2\sin^2 \left(\frac{\pi}{k} \right) \cdot W_R^2
-			\end{equation*}
-			\begin{equation*}
-				\forall_{i=1,2,\cdots, k} \hspace{1em} \vec{n_i} = \vec{n_0} \cdot M_R^i
-			\end{equation*}
-		\end{column}
-	\end{columns}
-	\framebreak
-	
-\end{frame}
-
-\section{Demo}
+\section{Wykorzystanie regulatora LQR}
 
 \begin{frame}
-	  \begin{center}
-	\Huge Demo
-	\end{center}
+	\frametitle{Regulator LQR}
+	\uncover<2->{
+	\[
+		Q = \int_{t_0}^{\infty} \left(  \bm{x}^T \bm{Q} \bm{x} + \bm{u}^T \bm{R} \bm{u} \right) dt
+	\]}
+	\uncover<3->{\[
+		\bm{u} = - \bm{K} \bm{x}
+	\]}
+	\uncover<3->{\[
+		\bm{K} = - \bm{R}^{-1} \bm{B}^T \bm{P}
+	\]
+	\[
+		\bm{A}^T \bm{P} + \bm{P}\bm{A} -  \bm{P}\bm{B} \bm{R}^{-1}\bm{B}^T \bm{P} + \bm{Q}
+	\]}
 \end{frame}
-
 
 \begin{frame}
-	\frametitle{Testy $\alpha$} %JOKE
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.7\textwidth]{dog.jpg}
-	\end{figure}
+	\frametitle{Wizualizacja}
+	\href{https://jordan787878.github.io/firstweb/6dofQuadcopter/6dofQuad_LQR.html}{\beamergotobutton{Link}}
 \end{frame}
 
+\begin{frame}{Literatura}
+\begin{thebibliography}{10}
+\beamertemplatebookbibitems
+\bibitem{en15197136}[Energies, 2022] Quadrotor Model for Energy Consumption Analysis
+   \newblock  Jacewicz, Mariusz and Żugaj, Marcin and Głębocki, Robert and Bibik, Przemysław
+ \bibitem{ICIEV}[2013] PID, LQR and LQR-PID on a quadcopter platform.
+ \newblock  Argentim, Lucas and Rezende, W.C. and Santos, Paulo and Aguiar, Renato.
+  \bibitem{bbb} Quadcopter Control System Design and Implementation with LQR assisted by Kalman Filter: An Experimental Study
+\newblock LUDWIG HORVATH and MARTIN PETRÉ
+\bibitem{ccc} Design and Development of Optimal Control System (...)
+\newblock Zaid Tahir, Mohsin Jamil, Saad Ali Liaqat, Lubva Mubarak, Waleed Tahir and Syed Omer Gilani
+\end{thebibliography}
+\end{frame}
 
 \begin{frame}
 	\frametitle{Dyskusja}
@@ -950,27 +328,9 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Literatura}
-\begin{thebibliography}{10}
-\beamertemplatebookbibitems
-\bibitem{en15197136}[Energies, 2022] Quadrotor Model for Energy Consumption Analysis
-   \newblock  Jacewicz, Mariusz and Żugaj, Marcin and Głębocki, Robert and Bibik, Przemysław
-   
- \bibitem{cor} Collision Response and Coulomb Friction
- \newblock \url{https://gafferongames.com/post/collision_response_and_coulomb_friction/}
- 
-  \bibitem{openGL} Learn OpenGL
- \newblock \url{ https://learnopengl.com/}
- 
-  \bibitem{krzywa} Statyka cięgna
- \newblock \url{ https://chodor-projekt.net/encyclopedia/statyka-ciegna/}
-
-\end{thebibliography}
-\end{frame}
-
 \begin{frame}
 	  \begin{center}
-	\Huge Dziękujemy za uwagę!
+	\Huge Dziękuję za uwagę!
 	\end{center}
 \end{frame}
 
