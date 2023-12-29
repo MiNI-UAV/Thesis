@@ -1,0 +1,106 @@
+\section{Wprowadzenie teoretyczne}
+
+\epigraph{There is nothing so practical as a good theory.}{Lewin Kurt}
+\epigraph{Nie ma osobnej ani teorii, ani praktyki inżynierskiej, jest tylko wspólna sztuka inżynierska.}{prof. Jan Oderfeld}
+
+\subsection{Preliminaria?}
+\subsubsection{Równania stanu}
+\subsubsection{Metody numerycznego całkowania równań różniczkowych}
+\subsection{Dynamika lotu BSP}
+\subsubsection{Opis stanu BSP}
+\subsubsection{Model matematyczny BSP}
+\subsubsection{Siły i momenty działające na BSP}
+\subsubsection{Model atmosfery ISA, wiatr}
+\subsubsection{Kolizje}
+\subsubsection{Odrzut}
+\subsubsection{Przenoszenie ładunku}
+\subsection{Sterowanie BSP}
+\subsubsection{Regulacja i sterowanie}
+
+\subsubsection{System sterowania BSP}
+Regulacja i sterowanie, sterowanie w pętli zamkniętej z ujemnym sprzężeniem zwrotnym, model sterowania, drabina pidów
+\subsubsection{Regulatory}
+PID, LQR, inne.
+\subsubsection{System nawigacji}
+Czujniki, fuzja pomiarów, Filtr Kalmana
+
+\subsection{Grafika komputerowa}
+% Fit the following in the main chapter
+%\subsubsection{Procesory graficzne}
+%\subsubsection{OpenGL}
+%\subsubsection{Potok renderowania}
+%\subsubsection{Shadery}
+%\subsubsection{Cieniowanie}
+%\subsubsection{Model oświetlenia}
+\subsubsection{Rysowanie oblamówki modelu za ścianą}
+\subsubsection{Ślad po wystrzelonym pocisku}
+\subsubsection{Rysowanie liny}
+\subsubsection{Wyznaczenie parametrów panelu rotorów}
+\subsubsection{Rysowanie radaru}
+\subsubsection{Obsługa kontrolerów}
+
+\begin{comment}
+
+Symulacje komputerowe dynamiki ruchu  W szczególności w zagadnieniu jakim jest projektowanie systemów sterowania do bezzałogowych statków powietrznych, zastosowanie takich narzędzi pozwala zminimalizować koszty wytworzenia poprawnie działającego systemu i przyśpieszyć jego rozwój i testowanie.
+
+Celem niniejszej pracy jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje podstawowy model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem którego parametry określane są przez konfiguracje. System dzieli się na serwer i aplikacje kliencką. Różnorodność modułów pozwala na realizacje rożnych scenariusz (strzał, upuszczenie ładunku, kolizje, wpływ warunków środowiskowych etc.)
+
+
+\section{Model dynamiki statku powietrznego}
+
+\begin{equation}
+\begin{cases}
+\dot{Y} =  T(Y) \cdot X + stabilizacja\\ 
+A \cdot \dot{X} + \Omega (X) \cdot A \cdot X = F_g + F_a + F_d + F_o
+\end{cases}
+\end{equation}
+
+gdzie:
+\begin{itemize}
+\item $Y$ - wektor pozycji i orientacji wyrażony w układzie globalnym
+\item $X$ - wektor prędkości postępowej i kątowej w układzie związanym ze statkiem powietrznym
+\item $A$ - macierz masowa
+\item $\Omega$ - macierz gyroskopowa
+\item $F_g$ - siła i moment pochodząca od siły grawitacji wyrażone w układzie związanym ze statkiem powietrznym
+\item $F_a$ - siła i moment aerodynamiczny wyrażone w układzie związanym ze statkiem powietrznym
+\item $F_d$ - siła i moment zespołów napędowych wyrażone w układzie związanym ze statkiem powietrznym
+\item $F_o$ - siła i moment oddziaływań zewnętrznych napędowych wyrażone w układzie związanym ze statkiem powietrznym
+\end{itemize}
+
+\begin{equation}
+Y = \begin{bmatrix}
+x_{NED}\\
+y_{NED}\\
+z_{NED}\\
+q_0\\
+q_x\\
+q_y\\
+q_z
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+X = \begin{bmatrix}
+\dot{x}_b\\
+\dot{y}_b\\
+\dot{z}_b\\
+P_b\\
+Q_b\\
+R_b
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+F_g = R_{nb}(Y) \cdot  \begin{bmatrix}
+0\\
+0\\
+g
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+F_a = \frac{1}{2}\rho \cdot V_{tot}^2 S R_{wb} C_F \\
+M_a = \frac{1}{2}\rho \cdot V_{tot}^2 S d R_{wb} C_F
+\end{equation}
+
+\end{comment}
