@@ -48,7 +48,7 @@
 %\fancyhead[RE]{\nouppercase{\scshape \leftmark}}
 %\fancyhead[LO]{\nouppercase{\scshape \rightmark}}
 \fancyhead[LE]{\@class}
-%\fancyhead[LO]{\@title}
+\fancyhead[LO]{Wojciech Gajda, Igor Faliszewski}
 \fancyhead[R]{}
 \fancyfoot[LO,RE]{\thepage}
 \pagestyle{fancy}
