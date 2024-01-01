@@ -278,6 +278,21 @@ Model 3D podany w parametrze \texttt{type} musi być dostępny w zasobach serwer
  	\item w folderze \texttt{model} dodatkowo powinien się znaleźć plik \texttt{minimap.png}, który będzie wykorzystywany podczas wyświetlania minimapy. Ma to być kwadratowa tekstura, gdzie każdy piksel odpowiada jednemu metru kwadratowemu, a jej środek odpowiada koordynatom (0,0).
  	\item W folderze \texttt{textures} powinny znajdować się wszystkie tekstury, do których odnosi się model. Należy upewnić się, że plik GLTF uwzględnia katalog \texttt{textures} w referencjach do tekstur.
  \end{enumerate}
+ 
+\subsubsection{Generowanie mapy na podstawie danych geograficznych}
+
+Oprócz ręcznego przygotowania plików mapy możliwe jest skorzystanie generatora map. W repozytorium \textbf{UAV\_map\_generator} przygotowany został skrypt automatyzujący proces generowania mapy na podstawie danych geograficznych, pobranych z portalu OpenStreetMap.
+
+W celu wygenerowania nowej mapy należy:
+
+ \begin{enumerate}
+ 	\item pobrać z repozytorium \textbf{UAV\_map\_generator} najnowsze wydanie generatora map,
+ 	\item zainstalować wszystkie niezbędne zależności, wynikające z pliku \texttt{README.md}
+ 	\item otworzyć w trybie edycji plik \texttt{\_\_main\_\_.py}
+ 	\item zmienna \texttt{bbox\_coordinates} zawiera współrzędne obszaru, którego mapa ma zostać wygenerowana. Obszar ma kształt prostokąta i jest ograniczony przez dwa południki i dwa równoleżniki. W tablicy należy podać kolejno: długość geog. lewego boku, szerokość geog. dolnego boku, długość geograficzną prawego boku, szerokość geog. lewego boku.
+ 	\item zmienna \texttt{target\_coordinetes} pozwala na konwersję współrzędnych geograficznych dowolnego punktu na współrzędne w wygenerowanej mapie. W generowanej mapie punkt (0,0) odpowiada punktowi w środku wskazanego prostokąta.
+ 	\item po zmodyfikowaniu zmiennych należy zapisać plik i uruchomić skrypt wywołując w folderze z repozytorium polecenie \texttt{python .}
+ \end{enumerate}
 
 \subsubsection{Aktualizacja zasobów serwera}
 

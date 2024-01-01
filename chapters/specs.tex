@@ -34,7 +34,8 @@ Wyróżniono trzech aktorów korzystających z systemu: Użytkownika, Analityka 
 \begin{itemize}[noitemsep,nolistsep]
 	\item może przygotować nową konfigurację drona,
 	\item może analizować logi z wykonanych lotów,
-	\item może zaplanować otoczenie symulacji, wybrać mapę i ustalić warunki atmosferyczne.
+	\item może zaplanować otoczenie symulacji, wybrać mapę i ustalić warunki atmosferyczne,
+	\item może wygenerować nową mapą w oparciu o dane geograficzne.
 \end{itemize}
 \ \\
 
@@ -117,6 +118,8 @@ System został podzielony na moduły. Poszczególne moduły odpowiadają obiekto
 \textbf{UAV\_server} -- definicja wirtualnego kontenera, odpowiedzialna zabudowanie wszystkich modułów składających się na serwer, tj. wszystkie z wyłączeniem wizualizacji. Ze zbudowanych modułów budowany jest obraz kontenera. Umożliwia to uruchomienie serwera na dowolnej maszynie wspierającej daną konteneryzację.\\
 
 \textbf{UAV\_visualization} -- moduł odpowiedzialny za wyświetlenie  interfejsu użytkownika oraz obecnego stanu symulacji. Przekazuje dane wejściowe z kontrolera do systemu. Stanowi interfejs komunikacji użytkownika z systemem. \\
+
+\textbf{UAV\_map\_generator} -- skrypt automatyzujący proces generowania mapy, w oparciu o dane geograficzne. \\
 
 \newpage
 
@@ -312,7 +315,7 @@ Ze względu na duży nakład obliczeniowy -- symulacja w czasie rzeczywistym z k
 
 Do realizacji modułu agregatora wykorzystany zostanie język Rust. Pozwala on na tworzenie wydajnego i kompilowanego kodu przy jednoczesnym zachowaniu przenośności między systemami. Natywnie wspiera zarządzanie innymi procesami i udostępnia wiele bibliotek. Wykorzystane zostały następujące biblioteki:
 \begin{itemize}[noitemsep,nolistsep]
-	\item nalgebra -- biblioteka zawierająca do elementy algebry liniowej, odpowiednik biblioteki Eigen dla języka Rust,
+	\item nalgebra -- biblioteka zawierająca elementy algebry liniowej, odpowiednik biblioteki Eigen dla języka Rust,
 	\item zmq -- binding biblioteki libzmq dla języka Rust.
 	\item xmltree -- biblioteka do parsowania plików XML,
 	\item merkletree -- biblioteka wykorzystana do hashowania drzewa plików,
@@ -336,6 +339,20 @@ Do zrealizowania wizualizacji zostanie wykorzystany język Java. Obiektowość j
 	\item Jackson -- Biblioteka do parsowania plików XML i JSON,
 	\item Project Lombok -- Biblioteka ułatwiająca pisanie kodu, pozwalając na zastępowanie powtarzalnych fragmentów adnotacjami.
 \end{itemize}
+\  \\
+\textbf{UAV\_map\_generator}\\
+
+Do zrealizowania skryptu automatyzującego został wykorzystany język Python. Skrypt łączy wywołania zewnętrznych programów, niezbędnych do przygotowania mapy na podstawie danych geograficznych pobranych z serwisu OpenSteetMap. W skrypcie zostały wykorzystane m.in.:
+\begin{itemize}[noitemsep,nolistsep]
+	\item numpy -- moduł zawierający elementy algebry liniowej,
+	\item requests -- moduł umożliwiający wykonanie zapytania HTTP,
+	\item subprocess -- moduł umożliwiający uruchamianie zewnętrznych programów,
+	\item cairosvg -- moduł umożliwiający konwersje plików graficznych,
+	\item pygltflib -- moduł służący do modyfikowania plików GLTF,
+	\item OSM2World -- program umożliwiające konwersje danych geograficznych do plików zawierających modele 3D,
+	\item gltf-pipeline -- moduł NodeJS umożliwiający konwersję plików GLTF.
+\end{itemize}
+
 \ \\ 
 Każdy z modułów znajduje się w oddzielnym repozytorium Git na platformie Github. Dla ułatwienia pracy z wykorzystaniem Github Actions przygotowane zostały odpowiednie mechanizmy CI/CD.
 
