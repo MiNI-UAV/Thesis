@@ -567,7 +567,7 @@ gdzie: $K_p$, $K_i$ oraz $K_d$ to nastawy regulatora. Dzięki połączeniu trzec
 
 Na rysunku (\ref{pid_respose}) przedstawiono odpowiedzi układów z regulatorami P, PI oraz PID. Odpowiedz układu z regulatorem P pokazuje, że samo zastosowanie składowej proporcjonalnej powoduje duże oscylacje, przesterowanie i błąd statyczny. Zastosowanie członu I niweluje błąd statyczny, ale jednocześnie obniża dynamikę układu. Dopiero kompletny regulator PID jest w stanie zapewnić szybkie osiągniecie wartości ustalonej.\\
 
-W przypadku regulatora PID implementowanego programowo, dodatkową trudność stanowi obliczenie pochodnej i całki numerycznej. Wejściowe dane są nierzadko zaszumione co dodatkowo utrudnia obliczenia. O ile całkowanie nie jest aż tak czułe na szybką zmianę wartości, tak pojedyncza próbka, mocno odbiegająca do rzeczywistej wartości może silnie zaburzyć stabilność układu, gdyż obliczana pochodna będzie niewymiernie duża. Z tego powodu w układach sterowania BSP nierzadko rezygnuje się z członu D.\\
+W przypadku regulatora PID implementowanego programowo, dodatkową trudność stanowi obliczenie pochodnej i całki numerycznej. Wejściowe dane są nierzadko zaszumione co dodatkowo utrudnia obliczenia. O ile całkowanie nie jest aż tak czułe na szybką zmianę wartości, tak pojedyncza próbka, mocno odbiegająca do rzeczywistej wartości może silnie zaburzyć stabilność układu, gdyż obliczana pochodna będzie niewymiernie duża. Z tego powodu w układach sterowania BSP nierzadko rezygnuje się z członu D \cite{piff} .\\
 
 \textbf{Regulator PIFF} to regulator zbliżony do regulatora PID, w którym człon D został zastąpiony członem sprzężenia w przód (feed-forward). Sprzężenie w przód polega na dodaniu do sygnału wyjściowego odpowiednio przeskalowanej wartości zadanej. W praktyce, w systemach regulacji często występuje pewna zależność między wartością zadaną a wyjściem w stanie ustalonym. Przykładowo, dla samochodu utrzymującego prędkość 60 km/h, silnik musi obracać się z prędkością $2000 \frac{\text{obr}}{\text{min}}$, a dla prędkości 90 km/h - $3000 \frac{\text{obr}}{\text{min}}$. Ta zależność jest zazwyczaj liniowa. W trakcie jazdy mogą jednak występować różne czynniki, takie jak podmuchy wiatru, które powodują, że rzeczywiste wartości nie zawsze idealnie korespondują z zadanymi. Wykorzystanie członu FF pozwala na zgrubne oszacowanie wyjścia z regulatora, co gwarantuje oczekiwaną odpowiedź systemu. W takim przypadku rola członów P i I ogranicza się do skorygowania ewentualnych błędów. \\
 
@@ -591,7 +591,7 @@ Należy zaznaczyć, że jedynie barometr i nawigacja satelitarna pozwalają uzys
 
 Czujniki pomiarowe mają jednak szereg wad. Pomiar nie jest wykonywany natychmiastowo, a wartości mogą być mierzone tylko z określoną częstotliwością nie większą niż częstotliwość maksymalna czujnika. Ze względu na swoją niedoskonałość wartość mierzona przez czujniki obarczona jest błędem losowym i biasem. Aby temu zapobiec w systemach nawigacji, liczba czujników jest nieraz wielokrotnie większa niż to niezbędne. Redundancja nie tylko zabezpiecza przed uszkodzeniem pojedynczego czujnika, ale także pozwala zminimalizować błąd pomiaru poprzez odpowiednie połączenie wyników z różnych czujników. Łączenie pomiaru z wielu czujników w celu uzyskania kompletnej estymaty parametrów nazywane jest fuzją czujników.\\
 
-Istnieje wiele metod fuzji czujników. Do wyznaczenia orientacji na podstawie pomiarów z akcelerometru, żyroskopu i magnetometru można wykorzystać metodę DCM lub metodę filtra komplementarnego. Jednak od wielu lat dominującą i uniwersalną metodą określania orientacji jest zastosowanie rozszerzonego filtra Kalmana.\\
+Istnieje wiele metod fuzji czujników. Do wyznaczenia orientacji na podstawie pomiarów z akcelerometru, żyroskopu i magnetometru można wykorzystać metodę DCM lub metodę filtra komplementarnego. Jednak od wielu lat dominującą i uniwersalną metodą określania orientacji jest zastosowanie rozszerzonego filtra Kalmana \cite{ekf_poor}.\\
 
 Filtr Kalmana jest matematyczną metodą estymacji, umożliwiającą efektywne śledzenie stanu dynamicznego systemu oraz filtrację danych pomiarowych obarczonych szumem.
 Opiera się na modelowaniu systemu za pomocą równań stanu i równań pomiarowych. Równania stanu opisują ewolucję stanu systemu w czasie, podczas gdy równania pomiarowe reprezentują zależność między stanem systemu a danymi pomiarowymi. Matematycznie można to przedstawić w postaci równań:
@@ -616,7 +616,20 @@ gdzie:
   \item $v_k$ -- wektor szumu pomiarowego.
 \end{itemize}
 
-Przedstawione powyżej równania są niejako równaniami stanu układu z dodanym szumem białym. Idea działania filtra opiera się na znalezieniu stanu, który ze statystycznego punktu widzenia jest najbardziej prawdopodobnym, dla zarejestrowanych pomiarów.\\
+Przedstawione powyżej równania są niejako równaniami stanu układu z dodanym szumem białym. Idea działania filtra opiera się na znalezieniu stanu, który ze statystycznego punktu widzenia jest najbardziej prawdopodobnym, dla zarejestrowanych pomiarów. Wadą powyższego zapisu, podobnie jak w równaniach stanu jest wymóg liniowości. Analogicznie rozwiązaniem tego ograniczenia jest zastosowanie Rozszerzonego Filtru Kalmana (EKF). Równanie stanu EKF prezentują się w następujący sposób:
+\[
+  x_k =  f \left( x_{k-1},  u_k \right) + w_k
+\]
+
+\[
+  z_k = h \left(x_k \right) + v_k
+\]
+
+gdzie:
+\begin{itemize}
+  \item $ f \left( x_{k-1},  u_k \right)$ -- funkcja stanu, 
+  \item $h \left(x_k \right)$ -- funkcja pomiaru.
+\end{itemize}
 
 Filtr Kalmana działa w dwóch głównych krokach: predykcji i korekcji. W kroku predykcji, prognozowany jest nowy stan systemu oraz jego kowariancja. W kroku korekcji, na podstawie nowych pomiarów, dokonywane jest dostosowanie prognozy, uwzględniając błędy pomiarowe i poprawiając estymację stanu systemu. Filtr zwłaszcza w swojej rozszerzonej wersji stanowi kluczowy narzędzie w dziedzinie sterowania i nawigacji, umożliwiając systemom utrzymanie precyzji pomiarów w dynamicznych warunkach i poprawę jakości estymacji parametrów systemu.\\
 
@@ -640,3 +653,13 @@ Faza korekcji:
 \]
 
 gdzie: $H_k = \frac{\partial h}{\partial x}\Bigr|_{\hat{x}_k^-}$, a $R_k$ to macierz kowariancji szumu pomiarowego
+
+Zastosowanie EKF do nawigacji BSP wymaga określenia składowych wektora stanu i określenia wpływu poszczególnych pomiarów na stan filtra. W fazie predykcji wykorzystane powinny zostać czujniki o dużej częstotliwości próbkowania i te, których pomiary wymagają całkowania. Faza korekcji, która może być wykonywana rzadziej, powinna wykorzystywać czujniki nie posiadające tendencji do kumulowania błędu. W dalszej części rozdziału przedstawiony zostanie zarys zastosowania EKF do określenia pozycji, prędkości i orientacji BSP.\\
+
+Stanem filtru pozwalającego na określenie orientacji BSP w najprostszej wersji może być sam kwaternion orientacji. Filtr startuje z początkową orientacją uzyskaną w dowolnie inny sposób, np. z metody DCM. Wektorem sterowania filtra jest pomiar z żyroskopu, tj. pomiary prędkości kątowych. W trakcie swojej pracy filtr całkuje kolejne pomiary w celu ustalenia aktualnej orientacji. Faza korekty oparta jest natomiast o akcelerometr i magnetometr. Akcelerometr oprócz właściwego przyśpieszanie BSP rejestruje również wektor przyśpieszenia grawitacyjnego. W czasie, gdy BSP nie wykonuje gwałtownych manewrów składowa ta dominuje i pozwala skorygować filtr informacją gdzie znajduje się Ziemia. Analogiczne pomiar z magnetometru, po uwzględnieniu kąta inklinacji i deklinacji pozwala określić kierunek północny.\\
+
+W celu zastosowania filtra do określenia położenia i prędkości minimalnym stanem jest wektor złożony z 3 składowych położenia i 3 składowych prędkości. W fazie predykcji wykorzystywane są dane z przyśpieszeniomierza, które należy wstępnie obrócić do układu globalnego i pozbawić składowej związanej z przyśpieszeniem grawitacyjnym. Całkując jednokrotnie przyśpieszenia uzyskujemy prędkości, a dwukrotnie położenie. W fazie korekcji wykorzystuje się pomiary z nawigacji satelitarnej i barometru. Nawigacja satelitarna ma relatywnie małą częstotliwość próbkowania, ale pozwala w sposób bezwzględny i określić pozycję BSP. Wiele systemów nawigacji satelitarnej wykorzystuje również efekt Dopplera do określenia prędkości odbiornika. Barometr natomiast pozwala na oszacowanie wysokości, porównując zmierzoną wartość do wartości referencyjnej. Wysokość określana na podstawie wskazań barometru nazywana wysokością barometryczną do dziś znajduje zastosowanie w lotnictwie.\\
+
+Zarys przedstawiony powyżej stanowi jedynie podstawowe wariant wykorzystywany w nawigacji. W rzeczywistych zastosowaniach stan filtra jest znacznie rozszerzony, uwzględniając w sobie m.in. biasy czujników oraz estymatę warunków atmosferycznych, jak np. prędkość i kierunek wiatru, a pomiary z czujników są wstępnie filtrowane.
+
+
