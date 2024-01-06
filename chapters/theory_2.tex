@@ -46,7 +46,6 @@ Model mikropowierzchni został po raz pierwszy zaproponowany przez Roberta Cooka
 
 $$
 	h= \frac{l + v}{\|l + v\|}.
-	\label{halfway}
 $$
 
 	
@@ -116,9 +115,9 @@ gdzie $v$ oznacza wektor w kierunku obserwatora. Efekt funkcji jest widoczny na 
 
 Ostatnia z trzech funkcji, czerpiąca z równania Fresnela, które określają fenomen, w którym każda płaszczyzna wydaje się odbijać światło, jeżeli jest widziana pod dostatecznie dużym kątem. W naszej implementacji zostanie wykorzystana aproksymacja Schlick'a:
 
-\begin{equation}
+\[
 	F_{Schlick}(h, v, F_0) = F_0 + (1-F_0)(1-(h\cdot v))^5.
-\end{equation}
+\]
 
 $F_0$ w powyższym równaniu oznacza podstawowy współczynnik odbicia, który aproksymuje się zazwyczaj jako trójkę $(0.04,0.04,0.04)$. Jeżeli dodatkowo materiał jest metalem, to interpolujemy tą wartość z kolorem bazowym materiału na podstawie parametru metaliczności. Tą metodą otrzymujemy dostatecznie realistyczne efekty bez dużego komplikowania ciężkimi obliczeniami. Na rysunku (\ref{fresnel}) można zaobserwować jak wygląda przykładowy efekt równania fresnela.
 \\
@@ -266,18 +265,16 @@ Przy implementacji pocisków zauważono, że małe pociski przy odpowiednio wyso
 	\label{gui_game4}
 \end{figure}
 
-Krzywa łańcuchowa, wyrażona za pomocą wzoru przeskalowanego cosinusa hiperbolicznego (\ref{cosh}), określa kształt jaki przyjmuje doskonale nierozciągliwa lina o jednakowo rozłożonej niezerowej masie, zawieszona między dwoma punktami w jednorodnym polu grawitacyjnym.
+Krzywa łańcuchowa, wyrażona za pomocą wzoru przeskalowanego cosinusa hiperbolicznego, określa kształt jaki przyjmuje doskonale nierozciągliwa lina o jednakowo rozłożonej niezerowej masie, zawieszona między dwoma punktami w jednorodnym polu grawitacyjnym. Wzór ten przyjmuje postać:
 
-\begin{equation}
-	\label{cosh}
+\[
 	y = a \cosh \left( \frac{x}{a} \right).
-\end{equation}
+\]
 
 Wyznaczenie współczynnika krzywej łańcuchowej $a_c$ między punktami $A = (x_1,y_1)$, $B = (x_2,y_2)$ i danego $l < \lVert B - A \rVert$, to rozwiązanie równania:
-\begin{equation}
-	\label{cat}
+\[
 	\frac{1}{h} \sqrt{l^2-v^2} = \frac{2a_c}{h} \sinh\left( \frac{h}{2a_c} \right),
-\end{equation}
+\]
 gdzie:
 $$
 h = x_2 - x_1,
@@ -294,10 +291,9 @@ Powyższe równanie nie posiada rozwiązania analitycznego, więc musi ono być 
 
 Aby zapewnić stabilne wyznaczenie współczynnika możemy zastosować rozwiązanie zaproponowane w \cite{1002996}. Polega ono na przekształceniu równania do następującej postaci:
 
-\begin{equation}
-	\label{goodCatenary}
+\[
 	\left( \frac{\sqrt{l^2 - v^2}}{h} \right)^{-1/2} = \left( 2b\sinh\frac{1}{2b} - 1 \right)^{-1/2},
-\end{equation}
+\]
 gdzie:
 $$
 b = \frac{a}{h}.
@@ -308,22 +304,22 @@ Wykreślenie prawej strony powyższego równania w zależności od $b$ na rysunk
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{solvingCatenary.png}
-	\caption{Wykreślone równanie \ref{goodCatenary}. Pozwala zauważyć, że funkcja jest w przybliżeniu liniowa na dużym zakresie argumentów (\cite{1002996}).}
+	\caption{Wykreślone równanie. Pozwala zauważyć, że funkcja jest w przybliżeniu liniowa na dużym zakresie argumentów (\cite{1002996}).}
 	\label{solvingCatenary}
 \end{figure}
 
 Przenosząc lewą stronę na prawo jesteśmy w stanie wykorzystać dowolny algorytm znajdowania miejsc zerowych. 
 
 
-\begin{equation}
+\[
 	\left( 2b\sinh\frac{1}{2b} - 1 \right)^{-1/2} - \left( \frac{\sqrt{l^2 - v^2}}{h} \right)^{-1/2} = 0.
-\end{equation}
+\]
 
 Wybraną metodą została metoda Newtona-Raphsona. Jest to algorytm iteracyjny pozwalający na znalezienie miejsca zerowego funkcji, która na danym przedziale ma tylko jeden pierwiastek, ma różne znaki na końcach przedziału oraz pierwsza i druga pochodna mają stały znak w tym przedziale. Algorytm rozpoczyna się od wybrania wartości początkowej $x_1$, która będzie pierwszym przybliżeniem rozwiązania. Aby obliczyć następne przybliżenie, należy wyznaczyć wartość funkcji oraz jej pochodnej dla $x_1$ i zastosować następujący wzór:
 
-\begin{equation}
+\[
 	x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)},
-\end{equation}
+\]
 gdzie $k \in \mathbb{N}$ jest krokiem iteracji .
 \\
 
