@@ -1,0 +1,311 @@
+\section{Wdrożenie oprogramowania}
+\subsection{Dokumentacja wydania}
+\subsubsection{Wymagania systemowe}
+Aplikacja serwera została przygotowana do natywnej pracy na maszynie z systemem UNIX. Mając na uwadze uniwersalność użytych języków (C++ oraz Rust) pojęte zostały próby przeniesienia serwera na system Windows, jednak wiązało się to z problemami z dostępnością bibliotek C++. Ostatecznie oficjalnie wspieranymi systemami, które pozwalają na natywne uruchomienie serwera są Ubuntu w wersji 22.04 i pochodne. \\
+
+W celu zapewnienia szerszej zgodności serwera przygotowany został obraz Docker, bazujący na obrazie \texttt{ubuntu:latest}. Tak przygotowany obraz może zostać uruchomiony na dowolnej maszynie wspierającej konteneryzacje Docker. Ceną, którą należy zapłacić za rozszerzoną zgodność jest obniżona wydajność symulacji, ze względu na wirtualizację. Doświadczenie pokazuje, że spadek wydajności jest niewielki, zwłaszcza w najnowszych wersjach Dockera.\\
+
+ Uruchomienie klienta wymaga posiadania systemu operacyjnego z powłoką graficzna opartą na oknach oraz obsługującego monitory i wirtualną maszynę Java. Docelowa maszyna musi również obsługiwać bibliotekę OpenGL.
+
+
+\subsubsection{Wymagania sprzętowe}
+
+Aplikacja serwera realizuje równoległe obliczenia dla każdego z klientów. Oprócz podstawowych wątków serwera, na każdego klienta aplikacji przypada dwa procesy symulujące fizykę i sterowanie. Z tego powodu zaleca się, aby maszyna, na której zostanie uruchomiony serwer posiadała dwukrotnie więcej rdzeni logicznych niż maksymalna liczba podłączonych klientów. Dodatkowo należy zalecane jest zapewnienie co najmniej 8GB pamięci RAM. \\
+
+Do poprawnej pracy klienta wymagane jest, aby procesor graficzny docelowej maszyny był zgodny z interfejsem OpenGL. Najstarszą testowaną wersją był OpenGL w wersji 4.5. Ze względu na wielowątkowość klienta zalecany jest co najmniej 4 rdzeniowy procesor, a ze względu na potencjalnie znaczne rozmiary mapy, co najmniej 8GB pamięci RAM i 2GB pamięci procesora graficznego.
+\\
+
+Interakcja z symulacją wymaga również podłączenia kontrolera obsługującego co najmniej cztery osie.
+
+\subsubsection{Wymagane biblioteki} \label{libraries}
+
+Aplikacja serwera wykorzystuje zewnętrzne biblioteki C/C++ oraz Rust. Moduły napisane w języku C++ korzystają z bibliotek standardowych oraz następujących bibliotek zewnętrznych: Eigen 3, cxxopts, rapidXML, ZeroMQ i cppZMQ oraz gtest.
+Moduły napisane w Rust wykorzystują m.in. biblioteki nalgebra, zmq, xmltree, merkletree, sha1 oraz serde\_yaml. Pełna lista wymaganych bibliotek Rust znajduje się w module agregatora w pliku \texttt{Cargo.toml}.
+Aplikacja kliencka wykorzystuje m.in. biblioteki LWJGL, JOML oraz JeroMQ. Pełna lista wymaganych bibliotek Java znajduje się w module wizualizacji w pliku \texttt{build.gradle}.  Zastosowanie poszczególnych bibliotek zostało opisane w rozdziale (\ref{technologies}).
+
+
+
+\subsection{Instrukcja instalacji}
+\subsubsection{Instalacja serwera z wykorzystaniem Docker} \label{docker_server}
+
+Serwer symulacji może zostać uruchomiony na dowolnej maszynie wspierającej kontenery Docker. Obraz zawierający najnowszą wersję serwera wraz ze wszystkimi wchodzącymi w jego skład modułami został zamieszony na platformie Docker Hub. Platforma gwarantuje utrzymanie obrazu przez co najmniej 6 miesięcy. Ze względu na ulotność tego repozytorium właściwy obraz zostanie również przekazany wraz z dokumentacją.\\
+
+Maszyna, na której zostanie uruchomiony serwer musi mieć zainstalowane i dostępne z poziomu wiersza poleceń następujące programy: \texttt{docker} oraz \texttt{docker compose}. Sprawdzenia, czy dana maszyna wspiera kontenery Docker można dokonać poprzez wydanie poleceń: \texttt{docker --version} i \texttt{docker compose version}. Niniejsza instrukcja została sprawdzona dla maszyny z zainstalowanym Docker w wersji 24.0.6 oraz Docker Compose w wersji v2.21.0. Szczegóły dotyczące instalacji Dockera można znaleźć na stronie projektu \cite{docker}\\
+
+Instalację serwera należy rozpocząć od pobrania lub skopiowania na maszynę repozytorium \textbf{UAV\_server}. Repozytorium zostało udostępnione m.in. w serwisie GitHub. Jeśli maszyna na której ma być zainstalowany serwer ma zainstalowany program \texttt{git} to repozytorium może zostać pobrane przy poniższego polecenia:
+\begin{lstlisting}[language=bash]
+  $  git clone https://github.com/MiNI-UAV/UAV_server.git
+\end{lstlisting}
+
+W folderze repozytorium zamieszone zostały skrypty ułatwiające uruchomienie serwera. Przed uruchomieniem serwera należy jednak utworzyć odpowiednią strukturę plików i zasobów które będą wykorzystywane przez serwer. Służy do tego skrypt prepareVolume odpowiednio w wersji  \texttt{prepareVolume.sh} dla maszyn systemem z rodziny UNIX i  \texttt{prepareVolume.bat} dla maszyn z systemem Windows. Po uruchomieniu właściwego skryptu w folderze repozytorium utworzony zostanie folder \texttt{data}. Folder zawiera domyślne zasoby, przez zmianę których użytkownik może wpłynąć na działanie serwera mogące zostać.  Więcej informacji dotyczących zawartości tego folderu zostanie przedstawione w instrukcji obsługi (\ref{manual}).\\
+
+Po zakończeniu konfiguracji serwer można uruchomić poniższym poleceniem wywołanym z folderu repozytorium:
+\begin{lstlisting}[language=bash]
+  $  docker compose up
+\end{lstlisting}
+Po uruchomieniu w wierszu poleceń pojawią się informację dotyczące pracy symulacji. Pierwszą linijką uruchomionej symulacji jest: \texttt{0.000 [Server] UAV SERVER}. Po zakończeniu uruchamiania serwer jest gotowy na obsługę klientów.\\
+
+Prace serwera można zakończyć poprzez wysłanie do niego sygnału SIGINT. Można to zrobić skrótem klawiszowym \keys{\ctrl + C}. Jeśli serwer został uruchomiony w tle do zatrzymania należy wykorzystać właściwe polecenia Docker.
+
+\subsubsection{Instalacja klienta z wykorzystaniem archiwum JAR}
+\label{javaInst}
+
+Klient może zostać uruchomiony na każdej platformie obsługującej maszynę wirtualną Java. 
+Maszyna, na której zostanie zbudowany klient musi mieć zainstalowane Java Runtime Environment (JRE). Polecenie \texttt{java --version} pozwoli to sprawdzić. Informacja o wersji JRE znajduje się w drugiej linijce wyjścia. Instrukcja instalacji najnowszej wersji znajduje się na oficjalnej stronie projektu \cite{java}. Niniejsza instrukcja została sprawdzona dla JRE w wersji 17. \\
+
+Instalację klienta należy rozpocząć od pobrania lub skopiowania na maszynę archiwum z aplikacją. Jest ono dostępne za pośrednictwem witryny GitHub na stronie \url{https://github.com/MiNI-UAV/UAV\_visualization/releases}. Archiwum powinno nazywać się \texttt{mini-uav-x.y.z}. Po jego rozpakowaniu należy wybrać katalog odpowiadający systemowi operacyjnemu i rozpakować do katalogu docelowego tam zawarte archiwum. \\
+
+Przed uruchomieniem aplikacji warto zapoznać się z instrukcją obsługi zawartą w rozdziale \ref{fastClient}. \\
+
+W przypadku systemu Windows włączenie aplikacji polega na uruchomieniu pliku wykonywalnego \texttt{MiniUAV.exe}. Na systemie Linux uruchomić aplikację można za pomocą następującego polecenia :
+
+\begin{lstlisting}[language=bash]
+  $ java -jar MiniUAV.jar
+\end{lstlisting}
+
+\subsubsection{Samodzielna budowa kodu serwera i natywna instalacja w systemie Ubuntu}
+
+Serwer może zostać skompilowany natywnie i uruchomiony na maszynie z systemem UNIX. Na czas pisania tej instrukcji działanie serwera zostało przetestowanie z pozytywnym rezultatem na maszynach z zainstalowanym Ubuntu 22.04 oraz Pop! OS 22.04. Oba z testowanych systemów wykorzystują APT i w tej instrukcji opisany zostanie sposób pobrania bibliotek przy pomocy tego właśnie systemu zarządzania pakietami. W celu pobrania bibliotek opisanych w rozdziale (\ref{libraries}) należy wykonać poniższe polecenie instalujące niezbędne narzędzia:
+\begin{lstlisting}[language=bash]
+  $  sudo apt-get update && sudo apt-get install -y gcc g++ make cmake \ 
+	build-essential curl autoconf automake libtool pkg-config libsodium-dev \
+ 	wget gitlibx11-dev software-properties-common && sudo apt-get update 
+\end{lstlisting}
+
+Następnie przy pomocy poniższych komend należy zainstalować właściwe biblioteki C++:
+\begin{lstlisting}[language=bash]
+  $  sudo apt-get install -y libcxxopts-dev libeigen3-dev libzmq3-dev \
+	librapidxml-dev libgtest-dev 
+  $  wget https://github.com/zeromq/cppzmq/archive/refs/tags/v4.10.0.tar.gz && \
+    	tar -xvf v4.10.0.tar.gz && cd cppzmq-4.10.0 && mkdir build && cd build && \
+    	cmake -DCMAKE_BUILD_TYPE=Release .. && make install && cd ../..
+\end{lstlisting}
+
+Następnie na maszynie należy zainstalować runtime języka Rust. Aktualny opis instalacji można znaleźć na stronie projektu Rust (\cite{rust_getting_started}). Poprawność instalacji języka Rust można sprawdzić przy pomocy polecenia \texttt{cargo --version}. Niniejsza instrukcja została przetestowana cargo w wersji 1.69.0.\\
+ 
+Po zakończeniu instalacji bibliotek należy przejść budowy samego serwera. W trakcie pracy serwer korzysta z wielu modułów, które wzajemnie odnoszą się do swoich zasób. Kluczowym jest zatem, aby odpowiednie moduły znajdowały się w odpowiednim miejscu w hierarchii folderów. Zalecane jest zatem utworzenie pustego folderu (np. o nazwie UAV) w której znajdzie się serwer. W dalszej części instrukcji folder ten będzie nazywany folderem serwera. Do folderu serwera należy skopiować moduły \textbf{UAV\_physic\_engine}, \textbf{UAV\_controller}, \textbf{UAV\_drop\_physic} oraz \textbf{UAV\_aggregator}. Moduły można również sklonować z repozytorium GitHub przy pomocy poniższych poleceń wywołanych z folderu serwera:
+\begin{lstlisting}[language=bash]
+  $  git clone https://github.com/MiNI-UAV/UAV_aggregator.git 
+  $  git clone https://github.com/MiNI-UAV/UAV_physics_engine.git
+  $  git clone https://github.com/MiNI-UAV/UAV_controller.git
+  $  git clone https://github.com/MiNI-UAV/UAV_drop_physic.git
+\end{lstlisting}
+
+Moduły \textbf{UAV\_physic\_engine}, \textbf{UAV\_controller} oraz \textbf{UAV\_drop\_physic} zostały napisane w języku C++ i do ich zbudowania należy wykorzystać program Cmake. W tym celu należy wejść kolejno do każdego z trzech powyższych folderów i wykonać następujące polecenia:
+\begin{lstlisting}[language=bash]
+  $  mkdir build
+  $  cd build
+  $  cmake ..
+  $  make
+  $  cd ../..
+\end{lstlisting}
+Spowoduje to utworzenie w każdym z modułów folderu build zawierającego plik wykonywany z programem. Należy sprawdzić czy w folderach build znajdują się pliki wykonywalne odpowiednio o nazwach: \texttt{uav}, \texttt{controller} oraz \texttt{drop}.
+
+Na koniec należy zbudować modułu \textbf{UAV\_aggregator}. Po wejściu do folderu z modułem należy wykonać poniższe polecenie:
+\begin{lstlisting}[language=bash]
+  $  cargo build
+\end{lstlisting}
+Spowoduje to automatyczne pobranie niezbędnych bibliotek Rust i budowę kodu źródłowego.\\
+
+W tym momencie wszystkie moduły potrzebne do pracy serwera zostały właściwie zbudowane. W celu uruchomienia serwera należy w folderze modułu\\ \textbf{UAV\_aggregator} wykonać następujące polecenie:
+\begin{lstlisting}[language=bash]
+  $  cargo run
+\end{lstlisting}
+
+Analogicznie jak w rozdziale (\ref{docker_server}) serwer został uruchomiony i czeka na klientów. W celu zamknięcia serwera należy wysłać sygnał SIGINT (\keys{\ctrl + C}). Wszystkie moduły zostaną zamknięte automatycznie.
+
+\subsubsection{Samodzielna budowa kodu klienta i instalacja z wykorzystaniem Gradle}
+ 
+Maszyna, na której zostanie zbudowany klient musi mieć zainstalowane Java Development Kit (JDK). Polecenie \texttt{java --version} pozwoli to sprawdzić. Informacja o wersji JDK znajduje się w pierwszej linijce wyjścia. Instrukcja instalacji najnowszej wersji znajduje się na oficjalnej stronie Oracle \cite{javaDown}. Ponadto maszyna powinna mieć zainstalowany program \texttt{Gradle}. To czy jest on zainstalowany sprawdzić można za pomocą polecenia \texttt{gradle --version}. Jego instalacja jest omówiona na stronie projektu \cite{gradle}. Niniejsza instrukcja została sprawdzona dla JDK w wersji 17 i Gradle w wersji 8.1.1 \\
+
+
+Instalację klienta należy rozpocząć od pobrania lub skopiowania na maszynę repozytorium \textbf{UAV\_visualization}. Repozytorium zostało udostępnione m.in. w serwisie GitHub. Jeżeli maszyna ma zainstalowany program \texttt{git} to repozytorium może zostać pobrane za pomocą poniższego polecenia:
+
+\begin{lstlisting}[language=bash]
+  $  git clone https://github.com/MiNI-UAV/UAV_visualization.git 
+\end{lstlisting}
+
+W celu zbudowania projektu należy w katalogu repozytorium wykonać polecenie:
+
+\begin{lstlisting}[language=bash]
+  $  gradle build
+\end{lstlisting} 
+
+Po uruchomieniu serwera i skonfigurowaniu aplikacji jak opisano w rozdziale \ref{fastClient} aplikację można uruchomić za pomocą następującego polecenia:
+
+\begin{lstlisting}[language=bash]
+  $  gradle run 
+\end{lstlisting}  
+
+\newpage
+
+\subsection{Instrukcja obsługi} \label{manual}
+
+\subsubsection{Konfiguracja serwera przed uruchomieniem}
+
+Przed uruchomieniem serwera możliwa jest zmiana ogólnych parametrów symulacji przez modyfikację pliku \texttt{config.yaml}. Plik ten znajduje się w folderze \texttt{configs} w module \textbf{UAV\_aggregator}. Dla wygody użytkowników serwera w wersji Docker, folder ten został połączony jako folder współdzielony z folderem \texttt{configs} znajdującym się w folderze \texttt{data} w folderze serwera.
+
+Po otwarciu pliku \texttt{config.yaml} dowolnym edytorem tekstowym użytkownik ma możliwość zmiany parametrów serwera. Do najważniejszych parametrów należą:
+ \begin{itemize}
+\item parametr \texttt{map} pozwala na wybór mapy, na której prowadzona będzie symulacja. Mapa o podanej nazwie musi być dostępna w zasobach serwera. Więcej o zarządzaniu mapami zostanie wyjaśnione w rozdziale (\ref{add_map})
+\item parametr \texttt{grid} pozwala na określenie ilości elementów w siatce w osi X, Y oraz Z. Odpowiedni dobór siatki poprawia jakość działania systemu wykrywania kolizji z mapą. Zalecane jest dobranie takiej ilości elementów, aby poszczególne \textit{chunki} były zbliżone do sześcianów o dł. krawędzi równej 30,
+\item parametry \texttt{temperature}, \texttt{pressure}, \texttt{wind\_matrix} oraz \texttt{wind\_bias} pozwalają na skonfigurowanie początkowych warunków atmosferycznych i pola prędkości wiatru. 
+\item parametry \texttt{*\_step\_time} pozwalają na ustawienie kroku obliczeń w poszczególnych modułach symulacji. Krok wyrażony jest w milisekundach.
+\item parametry \texttt{*\_ode\_solver} pozwalają na wybór algorytmu całkowania równań różniczkowych wykorzystywanego w poszczególnych modułach.
+\item parametry \texttt{*\_port} pozwalają na zmianę portów wykorzystywanych w komunikacji TCP. UWAGA: do poprawnej pracy zmiana portów wymagana jest również po stronie wizualizacji. Ponadto zmiana portów w serwerze w wersji Docker wymaga również przekierowania nowych portów w pliku \texttt{docker-compose.yml}.
+\end{itemize}
+
+Ponadto w pliku znajdują się inne, mniej istotne parametry. Kompletny opis parametrów znajduje się komentarzach pliku \texttt{config.yaml}.
+
+
+
+\subsubsection{Uruchomienie serwera - Docker}
+
+W celu uruchomienia serwera należy w folderze repozytorium \texttt{UAV\_server} wydać polecenie:
+\begin{lstlisting}[language=bash]
+  $  docker compose up
+\end{lstlisting}
+Po uruchomieniu w wierszu poleceń pojawią się informację dotyczące pracy symulacji. Pierwszą linijką uruchomionej symulacji jest: \texttt{0.000 [Server] UAV SERVER}. Po zakończeniu uruchamiania serwer jest gotowy na obsługę klientów.\\
+
+Prace serwera można zakończyć poprzez wysłanie do niego sygnału SIGINT. Można to zrobić skrótem klawiszowym \keys{\ctrl + C}. Jeśli serwer został uruchomiony w tle do zatrzymania należy wykorzystać własciwe polecenia Docker.
+
+\subsubsection{Uruchomienie serwera - Ubuntu}
+
+Natywnie zbudowany serwer uruchamia się wydając w folderze modułu\\ \textbf{UAV\_aggregator} następujące polecenie:
+\begin{lstlisting}[language=bash]
+  $  cargo run
+\end{lstlisting}
+
+Analogicznie jak w poprzednim rozdziale serwer został uruchomiony i czeka na klientów. W celu zamknięcia serwera należy wysłać sygnał SIGINT (\keys{\ctrl + C}). Wszystkie moduły zostaną zamknięte automatycznie.
+
+\subsubsection{Konfiguracja klienta przed uruchomieniem}
+\label{fastClient}
+
+Aby skonfigurować aplikację przed pierwszym uruchomieniem należy zmodyfikować plik \texttt{config.yaml} w module \textbf{UAV\_visualization}. Zaczynając od góry, w celu skonfigurowania kontrolera należy upewnić się, że zmienna \texttt{bindingsConfig.generateOnStartUp} jest ustawiona na \texttt{true} oraz w \texttt{bindingsConfig.source} znajduje się ścieżka względna do pliku, który zostanie utworzony w czasie konfiguracji i będzie zawierał ustawienia kontrolera. Zmienną \texttt{serverSettings.serverAddress} należy ustawić na adres IP serwera, na którym został postawiony serwer. Jeżeli chcemy pobrać assety z repozytorium GitHub, to zmienna \texttt{serverSettings.assetsSourceUrl} powinna być ustawiona na \texttt{https://github.com/MiNI-UAV/UAV\_aggregator/releases/download/}, zmienna \\ \texttt{serverSettings.downloadMissingAssets} na \texttt{true}, a zmienna \texttt{serverSettings.assetsToUse} powinna być zakomentowana. Jeżeli chcemy wykorzystać assety niezależne od tych, które proponuje serwer, to zmienna \texttt{serverSettings.downloadMissingAssets} powinna być ustawiona na  \texttt{false}, a zmienna \texttt{serverSettings.assetsToUse} na nazwę katalogu w folderze \texttt{assets} zawierającego zawartość, z której chcemy skorzystać. Następnie, \texttt{droneSettings.droneConfig} powinno wskazywać na plik w katalogu \texttt{drones}, który zawiera parametry BSP. Zmienna \texttt{droneSettings.modes} jest tablicą mówiąca o tym, jakie tryby kontroli lotu będą dostępne do wysłania serwerowi. Wraz z aplikacją dostępne są domyślne pliki parametrów wraz z utworzonymi dla nich trybami kontroli lotu, które widnieją w tabeli (\ref{modesTable}). Wszystkie dostępne tryby kontroli lotu są zdefiniowane przez serwer w katalogu assetów w podfolderze \texttt{data/available\_control\_modes.yaml}. Tak zmodyfikowana konfiguracja powinna być wystarczająca do rozpoczęcia pracy. W konfiguracji znajdują się inne mniej istotne parametry, których opis znajduje się w komentarzach.
+
+\begin{table}[!ht]	
+	\begin{center}
+		\begin{tabular}{ |c|c| } 
+			\hline
+			Plik parametrów BSP & Dedykowane tryby kontroli lotu \\
+			\hline
+			\multirow{3}{10em}{quadcopter.xml} 
+			& QPOS \\ & QANGLE \\ & QACRO \\
+			\hline
+			\multirow{3}{10em}{{plane.xml}} 
+			& FANGLE \\ & FACRO \\ & FMANUAL \\
+			\hline
+			\multirow{4}{10em}{{rocket.xml}} 
+			& RMANUAL \\ & RANGLE \\ & RGUIDED \\ & RAUTOLAUNCH \\
+			\hline
+		\end{tabular}
+		\caption{Dedykowane tryby kontroli lotu dla domyślnych konfiguracji BSP}
+		\label{modesTable}
+	\end{center}
+\end{table}
+
+\subsubsection{Konfiguracja kontrolera przed uruchomieniem}
+
+Jeżeli w konfiguracji pole \texttt{bindingsConfig.generateOnStartUp} zostało ustawione na \texttt{true}, to przy uruchomieniu aplikacji zostanie włączony generator konfiguracji. Ma on za zadanie przeprowadzić użytkownika przez proces utworzenia konfiguracji kontrolera. W pierwszej linijce widnieje nazwa pliku, który zostanie utworzony. Jeżeli żaden kontroler nie zostanie wykryty, użytkownik zostanie poproszony o jego podłączenie. Następnie użytkownik zostanie poproszony o ustawienie wszystkich osi oraz przycisków w położeniu domyślnym oraz naciśnięcie klawisza Enter (\keys{\return}). Obecne wartości osi i przycisków zostaną uznane za punkt zero (trim). Następnie generator konfiguracji wejdzie w tryb ustawiania osi sterowania. W drugiej linijce jest wyświetlona obecnie przypisywana oś. Pierwsze cztery osie domyślnie odpowiadają kolejno: ciągowi (throttle), pochyleniu (roll), przechyleniu (pitch) i odchyleniu (yaw). W nadzwyczajnych przypadkach możliwe jest przypisanie większej liczby osi. Przypisanie osi sterowania polega na wybraniu odpowiedniej osi poprzez jej wychylenie do wartości minimalnej i maksymalnej. Wybrana oś widoczna jest w linijce trzeciej, a wychylenia minimalne i maksymalne wraz z punktem zero w linijce czwartej. Po naciśnięciu klawisza Enter użytkownik zostanie poproszony o ustawienie za pomocą strzałek (\keys{\ \arrowkeyleft}, \keys{\arrowkeyright}) deadzone osi oraz następnie czy oś ma być odwrócona. Ostatecznie należy nacisnąć klawisz Enter, aby przejść do następnej osi. Po skalibrowaniu przynajmniej czterech domyślnych osi należy nacisnąć klawisz Esc (\keys{\esc}). Wtedy użytkownik zostanie poproszony o przypisanie akcji. Do każdej akcji może zostać przypisana dowolna liczba osi, przycisków i klawiszy. Nazwa obecnie przypisywanej akcji oraz numer przypisania jest wyświetlony w linijce drugiej. Przypisanie klawisza polega na wciśnięciu odpowiedniego klawisza na klawiaturze i naciśnięciu Enter. Wybrany klawisz zostanie wyświetlony w linijce trzeciej. Przypisanie przycisku wygląda analogicznie. Przypisanie osi polega najpierw na wykryciu wybranej osi, naciśnięciu Enter oraz ustawieniu za pomocą strzałek wartości minimalnej i maksymalnej osi przy, której nastąpi aktywacja akcji. Obecna wartość osi jest wyświetlona w linijce trzeciej. Zakończenie przypisania osi następuje po ustawieniu obydwu wartości i naciśnięciu Enter. Po przypisaniu wybranej liczby przypisań do danej akcji użytkownik może przejść do akcji następnej poprzez naciśnięcie klawisza Esc. Warto zauważyć, że nie jest wymagane ustalenie przypisań dla wszystkich akcji. Ostatnim krokiem konfiguracji kontrolera jest ustawienie przypisań trybów kontroli lotu. Ich numeracja odpowiada kolejności, w której zostały zdefiniowane w konfiguracji klienta w polu \texttt{droneSettings.modes}. Ich przypisanie przechodzi w sposób podobny do akcji, z taką różnicę, że przy pierwszym przypisaniu do trybu klawisz Esc kończy konfigurację trybów, a przy każdym kolejnym przypisaniu do trybu klawisz Esc pozwala przejść do przypisania trybu kolejnego. Wynika z tego to, że tryb powinien mieć co najmniej jedno przypisanie, by móc przypisać tryby następne.
+
+\subsubsection{Uruchomienie klienta}
+
+W przypadku systemu Windows włączenie aplikacji polega na uruchomieniu pliku wykonywalnego \texttt{MiniUAV.exe}. Na systemie Linux uruchomić aplikację można za pomocą następującego polecenia :
+
+\begin{lstlisting}[language=bash]
+	$ java -jar MiniUAV.jar
+\end{lstlisting}
+
+\subsubsection{Odczytanie logów z symulacji}
+
+W trakcie symulacji serwer rejestruje ("loguje") stan poszczególnych BSP oraz ogólny stan symulacji. Wszystkie zarejestrowane informacje znajdują się w folderze \texttt{logs} w module \textbf{UAV\_aggregator}. Dla wygody użytkowników serwera w wersji Docker folder ten został połączony jako folder współdzielony z folderem \texttt{logs} znajdującym się w folderze \texttt{data} w folderze serwera. W folderze logi z poszczególnych symulacji zostały podzielone na foldery, których nazwy odpowiadają nazwą sesji. Nazwą sesji jest liczba będąca datą uruchomienia serwera w postaci Unix Timestamp. W folderze odpowiadającym konkretnej sesji znajdują się: folder \texttt{drop\_physic} zawierający plik \texttt{state.csv}, plik \texttt{server.log} oraz foldery odpowiadające lotom wykonanym w ramach sesji. Plik \texttt{state.csv} zawiera kolejne pozycje i prędkości obiektów symulowanych przez moduł \textbf{UAV\_drop\_physic}. Plik \texttt{server.log} zawiera zapis z konsoli serwera. Pojawią się w nim informacje o rozpoczęciu i zakończaniu lotu, a także komunikaty przekazane wprost z silnika fizyki i modułu sterowania.\\
+
+Foldery z lotami noszą nazwy związane z nazwą drona i zawierają dokładnie jeden lot. Jeśli klient resetował stan BSP, kolejny lot zawarty zostanie w nowym folderze. W każdym z folderów znajdują się pliki CSV z zarejestrowanymi parametrami lotu oraz odpowiadające wygenerowanym charakterystykom. Poniżej przedstawiona została lista ww. plików wraz z opisem:
+
+ \begin{itemize}[noitemsep]
+\item \texttt{accelerometer.csv} -- pomiary symulowanego czujnika przyśpieszenia tj. przyśpieszeniomierza,
+\item \texttt{ahrs.csv} -- orientacja BSP estymowana przez system AHRS,
+\item \texttt{aoa.csv} -- charakterystyka pochodnych aerodynamicznych w funkcji kąta natarcia,
+\item \texttt{aos.csv} -- charakterystyka pochodnych aerodynamicznych w funkcji kąta ślizgu,
+\item \texttt{atmosphere.csv} -- warunki atmosferyczne zarejestrowane przez BSP,
+\item \texttt{barometer.csv} -- pomiary symulowanego czujnika ciśnienia atmosferycznego tj. barometru,
+\item \texttt{EKF.csv} -- pozycja BSP estymowana przez system nawigacji oparty o rozszerzony filtr Kalmana,
+\item \texttt{env.csv} -- rzeczywisty stan BSP (pozycja, prędkość, orientacja itd.) będący wynikiem symulacji,
+\item \texttt{GPS.csv} -- pozycja BSP wyznaczona przez symulowany system nawigacji satelitarnej,
+\item \texttt{GPSVel.csv} -- prędkość BSP wyznaczona przez symulowany system nawigacji satelitarnej,
+\item \texttt{gyroscope.csv} -- pomiary symulowanego czujnika prędkości kątowej tj. żyroskopu,
+\item \texttt{magnetometer.csv} -- pomiary symulowanego natężenia pola magnetycznego tj. magnetometru,
+\item \texttt{rotors.csv} -- zarejestrowane wartości prędkości kątowe silników rotorowych.
+\end{itemize}
+
+
+
+\subsubsection{Dodanie nowego BSP}
+
+Wszystkie parametry dotyczące symulowanego BSP zostały zawarte w pliku XML, którego nazwa odpowiada nazwie konkretnego statku. Plik XML znajdują się po stronie klienta w module \textbf{UAV\_visualization} w folderze \texttt{drones}. Domyślnie do projektu zostały dołączone pliki z parametrami wielowirnikowca, stałopłatowca i rakiety, odpowiednio o nazwach \texttt{quadcopter.xml}, \texttt{plane.xml} oraz \texttt{rocket.xml}. Dodatkowo folder zawiera plik \texttt{aircraft\_template.xml} który nie reprezentuje żadnego konkretnego BSP, ale zwiera wszystkie z możliwych parametrów wraz w właściwymi opisami w komentarzach XML.\\
+
+W celu utworzenia nowego BSP należy skopiować najbardziej zbliżony do oczekiwanego plik XML i zapisać go w folderze \texttt{drones} pod unikatową nazwą i rozszerzeniem XML. Następnie należy zmodyfikować wybrane parametry. Do najważniejszych parametrów należą:
+
+ \begin{itemize}[noitemsep]
+\item parametr \texttt{name} -- określający nazwę BSP w symulacji,
+\item parametr \texttt{type} -- określający teksturę i siatkę 3D statku wykorzystywaną w wizualizacji i kolizjach,
+\item parametry z grupy \texttt{initial} -- określają startową pozycję, prędkość i orientację BSP, a także tryb sterowania w chwili uruchomienia,
+\item parametry z grupy \texttt{ineria} -- określają własności masowe BSP,
+\item parametry z grupy \texttt{rotors} -- określają silniki wirnikowe,
+\item parametry z grupy \texttt{jets} -- określają silniki marszowe,
+\item parametry z grupy \texttt{surface} -- określają powierzchnie sterowe,
+\item parametry z grupy \texttt{aero} -- określają własności aerodynamiczne BSP,
+\item parametry z grupy \texttt{controllers} i \texttt{mixers} -- określają regulatory i miksery wykorzystywane przez system sterowania,
+\item parametry z grupy \texttt{navi} -- określają parametry systemu nawigacji,
+\item parametry z grupy \texttt{ammo} -- określają amunicję przenoszoną przez BSP,
+\item parametry z grupy \texttt{cargo} -- określają ładunki przenoszone przez BSP,
+\end{itemize}
+
+Model 3D podany w parametrze \texttt{type} musi być dostępny w zasobach serwera. Jeśli żaden z domyślnych modeli nie odpowiada przygotowywanej konfiguracji, nowy typ może zostać dodany do zasobów serwera w następujący sposób:
+
+\begin{enumerate}
+	\item w katalogu \texttt{drones} utworzyć folder o nazwie zgodnej z zawartością parametru \texttt{type}.
+	\item w nowo utworzonym katalogu dodać podfoldery \texttt{model} i \texttt{textures}.
+	\item w folderze \texttt{model} umieścić model 3D w formacie GTLF (\texttt{model.gltf}) wraz z odpowiadającym mu plikiem binarnym (\texttt{model.bin}) oraz w formacie OBJ (\texttt{model.obj}). Układ współrzędnych powinien znajdować w środku masy BSP i być układem NED.
+	\item W folderze \texttt{textures} powinny znajdować się wszystkie tekstury, do których odnosi się model. Należy upewnić się, że plik GLTF uwzględnia katalog \texttt{textures} w referencjach do tekstur.
+\end{enumerate}
+
+\subsubsection{Dodanie nowej mapy} \label{add_map}
+
+ W celu dodania nowej mapy do zasobów należy:
+ 
+ \begin{enumerate}
+ 	\item w katalogu \texttt{maps} utworzyć folder o nazwie, która będzie jednoznacznie identyfikować mapę.
+ 	\item w nowo utworzonym katalogu dodać podfoldery \texttt{model} i \texttt{textures}.
+ 	\item w folderze \texttt{model} umieścić model 3D mapy w formacie GTLF (\texttt{model.gltf}) wraz z odpowiadającym mu plikiem binarnym (\texttt{model.bin}) oraz w formacie OBJ (\texttt{model.obj}). Przyjętym układem współrzędnych jest układ NED.
+ 	\item w folderze \texttt{model} dodatkowo powinien się znaleźć plik \texttt{minimap.png}, który będzie wykorzystywany podczas wyświetlania minimapy. Ma to być kwadratowa tekstura, gdzie każdy piksel odpowiada jednemu metru kwadratowemu, a jej środek odpowiada koordynatom (0,0).
+ 	\item W folderze \texttt{textures} powinny znajdować się wszystkie tekstury, do których odnosi się model. Należy upewnić się, że plik GLTF uwzględnia katalog \texttt{textures} w referencjach do tekstur.
+ \end{enumerate}
+ 
+\subsubsection{Generowanie mapy na podstawie danych geograficznych}
+
+Oprócz ręcznego przygotowania plików mapy możliwe jest skorzystanie generatora map. W repozytorium \textbf{UAV\_map\_generator} przygotowany został skrypt automatyzujący proces generowania mapy na podstawie danych geograficznych, pobranych z portalu OpenStreetMap.
+
+W celu wygenerowania nowej mapy należy:
+
+ \begin{enumerate}
+ 	\item pobrać z repozytorium \textbf{UAV\_map\_generator} najnowsze wydanie generatora map,
+ 	\item zainstalować wszystkie niezbędne zależności, wynikające z pliku \texttt{README.md}
+ 	\item otworzyć w trybie edycji plik \texttt{\_\_main\_\_.py}
+ 	\item zmienna \texttt{bbox\_coordinates} zawiera współrzędne obszaru, którego mapa ma zostać wygenerowana. Obszar ma kształt prostokąta i jest ograniczony przez dwa południki i dwa równoleżniki. W tablicy należy podać kolejno: długość geog. lewego boku, szerokość geog. dolnego boku, długość geograficzną prawego boku, szerokość geog. lewego boku.
+ 	\item zmienna \texttt{target\_coordinetes} pozwala na konwersję współrzędnych geograficznych dowolnego punktu na współrzędne w wygenerowanej mapie. W generowanej mapie punkt (0,0) odpowiada punktowi w środku wskazanego prostokąta.
+ 	\item po zmodyfikowaniu zmiennych należy zapisać plik i uruchomić skrypt wywołując w folderze z repozytorium polecenie \texttt{python .}
+ \end{enumerate}
+
+\subsubsection{Aktualizacja zasobów serwera}
+
+Do zapewnienia poprawnej pracy klienta i serwera kluczowe jest, aby obie strony dysponowały identycznymi zasobami. Zasoby znajdują się folderze \texttt{assets} w module \textbf{UAV\_aggregator} oraz w podfolderach folderu \texttt{assets} w module \textbf{UAV\_visualization} (wizualizacja może posiadać kilka zasobów, rozróżnialnych hashem). W trakcie uruchamiania serwer oblicza hash dla wykorzystanych zasobów i przekazuje go do podłączających się wizualizacji. Ponadto w przygotowany został pipeline CICD, który po przesłaniu nowej wersji assetów, wydaje paczki assetów na platformie GitHub. Jeśli klient nie posiada assetów o wskazanej nazwie, bedzie próbował pobrać je właśnie z GitHuba.\\
+
+Jeśli program uruchamiany jest lokalnie należy ręcznie skopiować zasoby wykorzystywane przez serwer do klienta. W tym celu należy:
+\begin{enumerate}
+\item uruchomić serwer,
+\item znaleźć w folderze \texttt{configs} plik o nazwie \texttt{assets\_checksum} i odczytać hash zasobów,
+\item skopiować z serwera cały folder \texttt{assets} do folderu \texttt{assets} w module\\ \textbf{UAV\_visualization},
+\item zmienić nazwę folderu na pierwsze 8 znaków odczytanego hasha zasobów,
+\item uruchomić aplikację kliencką.
+\end{enumerate}

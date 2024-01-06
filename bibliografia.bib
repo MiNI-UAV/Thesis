@@ -29,6 +29,8 @@ author = {Stroustrup, Bjarne},
 keywords = {programowanie; techniki programowania},
 }
 
+@inbook{Routh_2013, place={Cambridge}, series={Cambridge Library Collection - Mathematics}, title={ON STRINGS}, booktitle={A Treatise on Analytical Statics: With Numerous Examples}, publisher={Cambridge University Press}, author={Routh, Edward John}, year={2013}, pages={292–347}, collection={Cambridge Library Collection - Mathematics}}
+
 
 @Article{energies,
 AUTHOR = {Jacewicz, Mariusz and Żugaj, Marcin and Głębocki, Robert and Bibik, Przemysław},
@@ -70,6 +72,60 @@ doi = {10.15632/ML2022/89-102}
  keywords={bomb, flight dynamics, guided munition},
 }
 
+@Article{quaterion,
+ author={Głębocki, Robert and Żugaj, Marcin and Jacewicz, Mariusz},
+ volume={vol. 70},
+ number={No 1},
+ pages={151-178},
+ journal={Archive of Mechanical Engineering},
+ howpublished={online},
+ year={2023},
+ publisher={Polish Academy of Sciences, Committee on Machine Building},
+ type={Article accepted},
+ title={Validation of the energy consumption model for a quadrotor using Monte-Carlo simulation},
+ URL={http://journals.pan.pl/Content/125283/PDF/AME_2023_144075.pdf},
+ doi={10.24425/ame.2022.144075},
+ keywords={quadrotor, flight tests, energy consumption, battery},
+}
+
+@article{shadowmapping,
+	author = {Williams, Lance},
+	year = {1978},
+	month = {08},
+	pages = {270-274},
+	title = {Casting Curved Shadows on Curved Surfaces},
+	volume = {12},
+	journal = {ACM SIGGRAPH Computer Graphics},
+	doi = {10.1145/965139.807402}
+}
+
+@article{cookTorrance,
+	author = {Cook, Robert and Torrance, Kenneth},
+	year = {1982},
+	month = {01},
+	pages = {7-24},
+	title = {A Reflectance Model for Computer Graphics},
+	volume = {1},
+	journal = {ACM Trans. Graph.},
+	doi = {10.1145/965161.806819}
+}
+
+@article{Nicodemus,
+	author = {Fred E. Nicodemus},
+	journal = {Appl. Opt.},
+	keywords = {Diffuse reflectance; Emissivity; Opacity; Optical constants; Refractive index; Transmittance},
+	number = {7},
+	pages = {767--775},
+	publisher = {Optica Publishing Group},
+	title = {Directional Reflectance and Emissivity of an Opaque Surface},
+	volume = {4},
+	month = {Jul},
+	year = {1965},
+	url = {https://opg.optica.org/ao/abstract.cfm?URI=ao-4-7-767},
+	doi = {10.1364/AO.4.000767},
+	abstract = {Concepts, terminology, and symbols are presented for specifying and relating directional variations in reflectance and emissivity of an opaque surface element. Their relationship to more familiar concepts, including those of perfectly diffuse and specular reflectance, is given, and they are applied to illustrative examples. It is shown that, when the usual reciprocity relationship holds, the reflectance for a ray incident on an opaque surface element is related by Kirchhoff's law to the emissivity of that element for a ray emitted along the same line in the opposite sense.},
+}
+
 @online{opengl,
 	title        = {OpenGL},
 	organization = {The Khronos Group},
@@ -84,18 +140,39 @@ doi = {10.15632/ML2022/89-102}
 	urldate  	 = {2023-10-16}
 }
 
-@online{learnopengl,
+@online{glfw,
 	title        = {GLFW},
 	organization = {The GLFW authors},
 	url          = {https://www.glfw.org/},
 	urldate  	 = {2023-10-16}
 }
 
-@online{learnopengl,
+@online{lwjgl,
 	title        = {LWJGL},
 	organization = {The LWJGL authors},
 	url          = {https://www.lwjgl.org/},
 	urldate  	 = {2023-10-16}
+}
+
+@online{javaDown,
+	title        = {Java Downloads},
+	organization = {Oracle},
+	url          = {https://www.oracle.com/java/technologies/downloads/},
+	urldate  	 = {2023-12-09}
+}
+
+@online{java,
+title        = {Java},
+organization = {Oracle},
+url          = {https://www.java.com},
+urldate  	 = {2023-12-09}
+}
+
+@online{gradle,
+title        = {Gradle},
+organization = {Gradle team},
+url          = {https://gradle.org/},
+urldate  	 = {2023-12-09}
 }
 
 @online{zmqguide,
@@ -112,11 +189,85 @@ doi = {10.15632/ML2022/89-102}
 	urldate  = {2023-10-16}
 }
 
-@online{ekf_poor,
+@online{impulse_collision,
 	title        = {Collision response -- Impulse-based contact model},
 	organization = {Wikipedia},
 	url          = {https://en.wikipedia.org/wiki/Collision_response/},
 	urldate  = {2023-10-16}
+}
+
+@online{docker,
+	title        = {Docker},
+	organization = {Docker Inc.},
+	url          = {https://www.docker.com/},
+	urldate  = {2023-12-09}
+}
+
+@online{rust_getting_started,
+	title        = {Rust. Getting started},
+	organization = {Rust},
+	url          = {https://www.rust-lang.org/learn/get-started},
+	urldate  = {2023-12-09}
+}
+
+@online{mw,
+	title        = {Wykład z przedmiotu Podstawy Robotyki},
+	author = {dr hab. Marek Wojtyra, prof. uczelni},
+	organization = {Wydział Mechaniczny Energetyki i Lotnictwa, Politechnika Warszawska},
+}
+
+@online{met_num_szum,
+	title        = {Wykład z przedmiotu Metody Numeryczne},
+	author = {prof. dr hab. inż. Jacek Szumbarski},
+	organization = {Wydział Mechaniczny Energetyki i Lotnictwa, Politechnika Warszawska},
+}
+
+
+@online{ray_intersaction,
+	title        = {Möller–Trumbore intersection algorithm},
+	organization = {Wikipedia},
+	url          = {https://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm},
+	urldate  = {2023-12-31}
+}
+
+@MISC{1002996,
+	TITLE = {Finding the catenary curve with given arclength through two given points},
+	AUTHOR = {MvG (https://math.stackexchange.com/users/35416/mvg)},
+	HOWPUBLISHED = {Mathematics Stack Exchange},
+	NOTE = {URL:https://math.stackexchange.com/q/1002996 (version: 2017-05-23)},
+	EPRINT = {https://math.stackexchange.com/q/1002996},
+	URL = {https://math.stackexchange.com/q/1002996}
+}
+
+@online{piff,
+	title        = {INAV 1.6: Fixed Wing PIFF Controller},
+	organization = {QuadMeUp, Paweł Spychalski},
+	url          = {https://quadmeup.com/inav-1-6-fixed-wing-piff-controller/},
+	urldate  = {2023-12-31}
+}
+
+@article{dcm,
+author = {Premerlani, William and Bizard, Paul},
+year = {2009},
+month = {01},
+pages = {},
+title = {Direction Cosine Matrix IMU: Theory},
+journal = {DIY DRONE: USA}
+}
+
+@Article{complementary,
+AUTHOR = {Narkhede, Parag and Poddar, Shashi and Walambe, Rahee and Ghinea, George and Kotecha, Ketan},
+TITLE = {Cascaded Complementary Filter Architecture for Sensor Fusion in Attitude Estimation},
+JOURNAL = {Sensors},
+VOLUME = {21},
+YEAR = {2021},
+NUMBER = {6},
+ARTICLE-NUMBER = {1937},
+URL = {https://www.mdpi.com/1424-8220/21/6/1937},
+PubMedID = {33801865},
+ISSN = {1424-8220},
+ABSTRACT = {Attitude estimation is the process of computing the orientation angles of an object with respect to a fixed frame of reference. Gyroscope, accelerometer, and magnetometer are some of the fundamental sensors used in attitude estimation. The orientation angles computed from these sensors are combined using the sensor fusion methodologies to obtain accurate estimates. The complementary filter is one of the widely adopted techniques whose performance is highly dependent on the appropriate selection of its gain parameters. This paper presents a novel cascaded architecture of the complementary filter that employs a nonlinear and linear version of the complementary filter within one framework. The nonlinear version is used to correct the gyroscope bias, while the linear version estimates the attitude angle. The significant advantage of the proposed architecture is its independence of the filter parameters, thereby avoiding tuning the filter&rsquo;s gain parameters. The proposed architecture does not require any mathematical modeling of the system and is computationally inexpensive. The proposed methodology is applied to the real-world datasets, and the estimation results were found to be promising compared to the other state-of-the-art algorithms.},
+DOI = {10.3390/s21061937}
 }
 
 
