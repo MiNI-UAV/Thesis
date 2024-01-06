@@ -13,8 +13,8 @@ Poniżej opisane zostaną podejścia wykorzystane do wyświetlenia trójwymiarow
 Renderowanie oparte na fizyce (ang. Physically Based Rendering, PBR) to podejście wykorzystywane w renderowaniu grafiki, które ma na celu wierne odwzorowanie zachowania światła oraz różnych materiałów.
 \\
 
-Przed wyłożeniem teorii warto się skupić na jakim wejściu operować będzie nasz model. Z racji, że chcemy przybliżyć zachowanie światła zgodne z fizyką, to chcielibyśmy określać materiały za pomocą ich fizycznych właściwości. Zaimplementowany nami model oświetlenia obsługuje tekstury albedo, metaliczności, chropowatości, ambient occlusion oraz modyfikację wektorów normalnych.
-Albedo, a więc kolor podstawowy, określa barwę jaką światło będzie mieć po rozproszeniu na powierzchni materiału. Chropowatość mówi o tym jak bardzo światło jest rozpraszane, a  metaliczność o tym jaki udział mają efekty ciała dielektrycznego, a jakie przewodnika. Ambient occlusion oznacza poziom wystawienia powierzchni na oświetlenie otoczenia pozwalając na imitację gorzej doświetlonych szczelin. Wykorzystanie map normalnych pozwala natomiast na uzyskanie złudzenia większej złożoności modelu trójwymiarowego przy mniejszej liczbie wielokątów. Wektory normalne przed rozpoczęciem obliczeń dla każdego fragmentu są modyfikowane na podstawie tej mapy.
+Przed wyłożeniem teorii warto się skupić, na jakim wejściu operować będzie nasz model. Z racji, że chcemy przybliżyć zachowanie światła zgodne z fizyką, to chcielibyśmy określać materiały za pomocą ich fizycznych właściwości. Zaimplementowany nami model oświetlenia obsługuje tekstury albedo, metaliczności, chropowatości, ambient occlusion oraz modyfikację wektorów normalnych.
+Albedo, a więc kolor podstawowy, określa barwę, jaką światło będzie mieć po rozproszeniu na powierzchni materiału. Chropowatość mówi o tym, jak bardzo światło jest rozpraszane, a  metaliczność o tym, jaki udział mają efekty ciała dielektrycznego, a jakie przewodnika. Ambient occlusion oznacza poziom wystawienia powierzchni na oświetlenie otoczenia pozwalając na imitację gorzej doświetlonych szczelin. Wykorzystanie map normalnych pozwala natomiast na uzyskanie złudzenia większej złożoności modelu trójwymiarowego przy mniejszej liczbie wielokątów. Wektory normalne przed rozpoczęciem obliczeń dla każdego fragmentu są modyfikowane na podstawie tej mapy.
 \\
 
 Powyżej wymienione materiały są reprezentowane przez tekstury UV, gdzie każdy teksel koduje za pomocą trójki RGB wartość parametru dla konkretnego obszaru trójwymiarowego modelu. Na rysunku (\ref{pbrMaterial}) zaprezentowana jest przykładowa tekstura gdzie ambient occlusion jest zakodowane w kanale czerwonym, chropowatość w zielonym, a metaliczność w niebieskim. Obok, na rysunku (\ref{pbrNormal}) widnieje mapa normalnych w przestrzeni stycznej, na której trójki RGB zawierają informacje o odchyleniu względem wektora normalnego określonego przez geometrię modelu. 
@@ -39,7 +39,7 @@ Powyżej wymienione materiały są reprezentowane przez tekstury UV, gdzie każd
 Jednym z problemów podejścia PBR jest wymóg zapewnienia dodatkowych tekstur określających parametry fizyczne. Ich brak może doprowadzić do dysonansu między modelami bardziej i mniej dopracowanymi.
 \\
 
-W przypadku naszej implementacji napisanej na podstawie \cite{learnopengl} założono, że będzie ono opierało się na modelu mikropowierzchni, zasady zachowania energii, wykorzystywało funkcję BRDF bazującą na fizyce oraz tym co będzie to wszystko spajało, a więc równanie renderowania (ang. rendering equation). 
+W przypadku naszej implementacji napisanej na podstawie \cite{learnopengl} założono, że będzie ono opierało się na modelu mikropowierzchni, zasady zachowania energii, wykorzystywało funkcję BRDF bazującą na fizyce oraz tym, co będzie to wszystko spajało, a więc równanie renderowania (ang. rendering equation). 
 \\
 
 Model mikropowierzchni został po raz pierwszy zaproponowany przez Roberta Cooka i Kennetha Torrance'a w 1982 roku \cite{cookTorrance}. Zakłada on, że każda powierzchnia w mikroskopijnej skali może zostać opisana poprzez zestaw małych doskonałych zwierciadeł ustawionych pod różnymi kątami nazywanych mikropowierzchniami. Wtedy, gładkość powierzchni materiału może zostać opisana poprzez proporcję mikropowierzchni, które w przybliżeniu są ustawione zgodnie z pewnym wektorem $h$. Tym wektorem jest wektor połowicznej drogi (ang. halfway vector) między wektorem światła $l$ oraz wektorem obserwatora $v$, który wyznacza się zgodnie z równaniem:
@@ -65,10 +65,10 @@ $$
 f_r(\omega_i, \omega_o) = k_d \frac{c}{\pi} + k_s\frac{D \cdot F \cdot G}{4\left(\omega_o \cdot n \right) \left( \omega_i \cdot n \right)}
 $$
 
-Suma składa się z dwóch składowych: składowej rozproszonej i zwierciadlanej. $\frac{c}{\pi}$ odpowiada znormalizowanemu odbiciu lambertowskiemu, gdzie $c$ oznacza albedo, a więc zdolność odbijania światła przez daną powierzchnię. Jest to kolor jaki miałaby idealnie matowa powierzchnia. Składowa zwierciadlana bierze pod uwagę trzy czynniki, które normalizuje w mianowniku. Są nimi:
+Suma składa się z dwóch składowych: składowej rozproszonej i zwierciadlanej. $\frac{c}{\pi}$ odpowiada znormalizowanemu odbiciu lambertowskiemu, gdzie $c$ oznacza albedo, a więc zdolność odbijania światła przez daną powierzchnię. Jest to kolor, jaki miałaby idealnie matowa powierzchnia. Składowa zwierciadlana bierze pod uwagę trzy czynniki, które normalizuje w mianowniku. Są nimi:
 \begin{enumerate}
 	\item $D$ -- Funkcja rozkładu wektorów normalnych aproksymująca liczbę mikropowierzchni, które są zgodne z wektorem $h$,
-	\item $G$ -- Funkcja geometrii opisująca jak bardzo mikropowierzchnie zasłaniają siebie nawzajem blokując światło przychodzące i wychodzące,
+	\item $G$ -- Funkcja geometrii opisująca jak bardzo mikropowierzchnie zasłaniają siebie nawzajem, blokując światło przychodzące i wychodzące,
 	\item $F$ -- Równanie Fresnela opisujące odbicie światła, gdy pada ono na granicę między różnymi ośrodkami optycznymi.
 \end{enumerate}
 
@@ -114,7 +114,7 @@ gdzie $v$ oznacza wektor w kierunku obserwatora. Efekt funkcji jest widoczny na 
 	\label{geometry}
 \end{figure}
 
-Ostatnia z trzech funkcji czerpiąca z równania Fresnela, które określają fenomen, w którym każda płaszczyzna wydaje się odbijać światło jeżeli jest widziana pod dostatecznie dużym kątem. W naszej implementacji zostanie wykorzystana aproksymacja Schlick'a:
+Ostatnia z trzech funkcji, czerpiąca z równania Fresnela, które określają fenomen, w którym każda płaszczyzna wydaje się odbijać światło, jeżeli jest widziana pod dostatecznie dużym kątem. W naszej implementacji zostanie wykorzystana aproksymacja Schlick'a:
 
 \begin{equation}
 	F_{Schlick}(h, v, F_0) = F_0 + (1-F_0)(1-(h\cdot v))^5.
@@ -139,7 +139,7 @@ $$
 L_o(p, \omega_o) = \int_\Omega f_r(p, \omega_o, \omega_i)L_i(p, \omega_i) \hspace{0.5em} n \cdot \omega_i d\omega_i,
 $$ 
 
-Równanie to opisuje radiancję, która wychodzi z analizowanego punktu w kierunku obserwatora, na podstawie irradiancji, która na ten punkt pada. Z racji, że nie planujemy obsługi IBL (ang. Image-based Lighting), oraz naszymi jedynymi źródłami światła są światła punktowe, to irradiancję można wyznaczyć jako sumę radiancji wszystkich świateł. Podstawiając pod $f_r$ wcześniej omówioną funkcję BRDF Cooka-Torrace'a, mamy wszystko co potrzebujemy do zaimplementowania modelu. Z racji, że nasz model wciąż jest lokalnym modelem oświetlenia, do wyniku dodana została składowa symulująca światło otoczenia pomnożona przez wartość ambient occlusion.
+Równanie to opisuje radiancję, która wychodzi z analizowanego punktu w kierunku obserwatora, na podstawie irradiancji, która na ten punkt pada. Z racji, że nie planujemy obsługi IBL (ang. Image-based Lighting), oraz naszymi jedynymi źródłami światła są światła punktowe, to irradiancję można wyznaczyć jako sumę radiancji wszystkich świateł. Podstawiając pod $f_r$ wcześniej omówioną funkcję BRDF Cooka-Torrace'a, mamy wszystko co potrzebujemy do zaimplementowania modelu. Z racji, że nasz model wciąż jest lokalnym modelem oświetlenia, do wyniku dodana została składowa symulująca światło otoczenia, pomnożona przez wartość ambient occlusion.
 \\
 
 Efekt uzyskany dzięki metodzie PBR zwizualizowano na rysunkach (\ref{phongCom}) i (\ref{pbrCom}), gdzie porównano go z prostszym, powszechnie używanym modelem oświetlenia Blinna-Phonga.
@@ -186,7 +186,7 @@ Następnie dla każdej klatki, przed wyrenderowaniem domyślnej sceny, wykonywan
 \\
 
 Wygenerowana mapa cieni jest następnie przekazywana do głównego shadera. Tam, dla każdego fragmentu, próbkowana jest wartość tekstury dla odpowiednio zmapowanych współrzędnych. W ten sposób determinowane jest czy dany fragment zostanie oświetlony czy nie. 
-Aby uniknąć efektu tzw. shadow acne, a więc sytuacji spowodowanej ograniczoną rozdzielczością mapy cieni. Niektóre fragmenty, na które światło pada pod większym kątem, mogą próbkować tą samą wartość teksela. Jednocześnie jedne z nich test głębokości przejdą, a drugie nie. Z tego powodu można otrzymać efekt, który został zilustrowany na rysunku (\ref{shadow_mapping_acne_diagram}). Aby temu zaradzić, jednym z rozwiązań jest zwiększenie błędu testu dla powierzchni, których wektor normalny jest pod większym kątem w stosunku do źródła światła co daje rezultat jak na rysunku (\ref{shadow_mapping_acne_bias})
+Aby uniknąć efektu tzw. shadow acne, a więc sytuacji spowodowanej ograniczoną rozdzielczością mapy cieni. Niektóre fragmenty, na które światło pada pod większym kątem, mogą próbkować tą samą wartość teksela. Jednocześnie jedne z nich test głębokości przejdą, a drugie nie. Z tego powodu można otrzymać efekt, który został zilustrowany na rysunku (\ref{shadow_mapping_acne_diagram}). Aby temu zaradzić, jednym z rozwiązań jest zwiększenie błędu testu dla powierzchni, których wektor normalny jest pod większym kątem w stosunku do źródła światła, co daje rezultat jak na rysunku (\ref{shadow_mapping_acne_bias})
 \\
 
 \begin{figure}[h]
@@ -203,7 +203,7 @@ Aby uniknąć efektu tzw. shadow acne, a więc sytuacji spowodowanej ograniczon�
 \label{shadow_mapping_acne_bias}
 \end{figure}
 
-Ostatecznie, w celu uniknięcia ostrych krawędzi cieni, zdecydowano się na zastosowanie metody PCF (ang. percentage-closer filtering), która próbkuje dodatkowo 8 tekseli mapy cieni wokół analizowanego fragmentu. Wartości te następnie są uśredniane uzyskując tym samym częściowe zacienienie.
+Ostatecznie, w celu uniknięcia ostrych krawędzi cieni, zdecydowano się na zastosowanie metody PCF (ang. percentage-closer filtering), która próbkuje dodatkowo 8 tekseli mapy cieni wokół analizowanego fragmentu. Wartości te następnie są uśredniane, uzyskując tym samym częściowe zacienienie.
 
 \subsubsection{Rysowanie obwódki modelu za ścianą}
 
@@ -211,13 +211,13 @@ Jednym z pierwszych problemów wizualizacji był brak widoczności modelu BSP u�
 \\
 
 Bufor szablonowy (ang. stencil buffer) umożliwia selektywne wyświetlanie wybranych pikseli obrazu. Gdy bufor szablonowy jest włączony, to to czy piksel zostanie narysowany determinuje funkcja testu na odpowiadającej mu wartości bufora. Do funkcji należą porównania z wykorzystaniem relacji równości i nierówności oraz funkcje, które przechodzą zawsze lub nigdy.
-Dodatkowo, każdy fragment może wpłynąć na bufor. Programista może wybrać operację jaka ma zostać wykonana w trzech przypadkach: test szablonu nie przeszedł pomyślnie, test szablonu powiódł się, ale nie test głębokości oraz gdy obydwa testy się powiodły. Do operacji należą wyzerowanie wartości, zanegowanie, zinkrementowanie bądź zdekrementowanie, ustalenie jej na konkretną wartość lub pozostawienie bez zmian. Domyślną operacją dla wszystkich przypadków jest pozostawienie wartości bez zmian. Dodatkowe możliwości daje też maska bitowa, która decyduje o tym, jakie bity pikselu bufora będą sprawdzane i modyfikowane. 
+Dodatkowo, każdy fragment może wpłynąć na bufor. Programista może wybrać operację, jaka ma zostać wykonana w trzech przypadkach: test szablonu nie przeszedł pomyślnie, test szablonu powiódł się, ale nie test głębokości oraz gdy obydwa testy się powiodły. Do operacji należą wyzerowanie wartości, zanegowanie, zinkrementowanie bądź zdekrementowanie, ustalenie jej na konkretną wartość lub pozostawienie bez zmian. Domyślną operacją dla wszystkich przypadków jest pozostawienie wartości bez zmian. Dodatkowe możliwości daje też maska bitowa, która decyduje o tym, jakie bity pikselu bufora będą sprawdzane i modyfikowane. 
 \\
 
 Zatem, aby otrzymać efekt jak na rysunku (\ref{outline}), należy wyrenderować środowisko, narysować obwódkę tylko tam, gdzie BSP użytkownika jest zasłonięty przez obiekty środowiska i ostatecznie narysować sam statek. Samo zastosowanie odwróconego testu głębokości nie jest wystarczające, ponieważ obwódka po wyrenderowaniu będzie miała taki sam poziom głębokości jak statek przez co zostanie nadpisana. Aby temu uniknąć, wykorzystany zostanie bufor szablonowy, który pozwoli na wykluczenie fragmentów należących do obwódki w drugim renderowaniu.
 \\
 
-Pierwszym krokiem wybranego podejścia jest aktywacja testu buforu szablonowego w OpenGL oraz utworzenie tekstury maski o rozmiarze ekranu i podpięcie jej pod dedykowany bufor ramki. Następnie inicjalizowane są shadery. Shader maski jest prostym programem, który przekształca model do przestrzeni rzutowej i koloruje wszystkie fragmenty na jednolity kolor. Shader obwódki jest bardziej skomplikowany. Po przekształceniu wierzchołków do przestrzeni rzutowej, próbkowane są wartości tekseli maski wokół obecnie przetwarzanego fragmentu. Wartości te porównywane są z wartością maski, w miejscu, na który mapuje się fragment i znajdowana jest największa różnica. Gdy różnica przekracza ustaloną granicę, w przypadku naszej implementacji $0.2$, to fragment staje się częścią obwódki i jest kolorowany na zielono.
+Pierwszym krokiem wybranego podejścia jest aktywacja testu buforu szablonowego w OpenGL oraz utworzenie tekstury maski o rozmiarze ekranu i podpięcie jej pod dedykowany bufor ramki. Następnie inicjalizowane są shadery. Shader maski jest prostym programem, który przekształca model do przestrzeni rzutowej i koloruje wszystkie fragmenty na jednolity kolor. Shader obwódki jest bardziej skomplikowany. Po przekształceniu wierzchołków do przestrzeni rzutowej próbkowane są wartości tekseli maski wokół obecnie przetwarzanego fragmentu. Wartości te porównywane są z wartością maski, w miejscu, na który mapuje się fragment i znajdowana jest największa różnica. Gdy różnica przekracza ustaloną granicę, w przypadku naszej implementacji $0.2$, to fragment staje się częścią obwódki i jest kolorowany na zielono.
 \\
 
 Proces renderowania obwódki dla każdej klatki obrazu rozpoczyna się od wyczyszczenia buforu maski i wygenerowania nowej na podstawie wyłącznie modelu obecnie kontrolowanego BSP. Wynikiem tej operacji jest jednokolorowy obraz statku w przestrzeni rzutu na czarnym tle. 
@@ -225,7 +225,7 @@ Następnie, obok buforu koloru i głębokości, czyszczony jest bufor szablonowy
 Najpierw rysowane jest symulowane środowisko z wyzerowaną maską buforu szablonowego. Uniemożliwia to wpłynięcie na jego zawartość. 
 Maska jest przywracana do maksymalnej wartości, funkcja buforu jest ustawiana na test przechodzący zawsze, operacja zamiany na ustalenie wartości $1$ gdy obydwa testy przechodzą pomyślnie. Test głębokości został ustawiony na pomyślny, gdy testowana wartość jest większa od obecnej. Z taką konfiguracją rysowany jest BSP użytkownika z wykorzystaniem shadera obramówki. 
 Efektem jest zielona obramówka na ekranie tam, gdzie statek jest obecne zakryty, bufor głębokości środowiska zmodyfikowany o głębokość statku za ścianą oraz bufor szablonowy z wartościami $1$ tamże.
-Statek jest rysowany ponownie za pomocą domyślnego shadera, z funkcją przechodzącą wtedy gdy wartość bufora szablonowego jest równa $0$, wyłączoną modyfikacją tego buforu i domyślnym testem głębokości. W rezultacie otrzymany zostanie poprawnie narysowany statek z obwódką za przeszkodami. Ostatecznie bufor szablonowy jest wyłączany do momentu rozpoczęcia przetwarzania następnej klatki, a reszta sceny jest renderowana bez zmian.
+Statek jest rysowany ponownie za pomocą domyślnego shadera, z funkcją przechodzącą, wtedy gdy wartość bufora szablonowego jest równa $0$, wyłączoną modyfikacją tego buforu i domyślnym testem głębokości. W rezultacie otrzymany zostanie poprawnie narysowany statek z obwódką za przeszkodami. Ostatecznie bufor szablonowy jest wyłączany do momentu rozpoczęcia przetwarzania następnej klatki, a reszta sceny jest renderowana bez zmian.
 
 \begin{figure}[h]
 	\centering
@@ -245,7 +245,7 @@ Statek jest rysowany ponownie za pomocą domyślnego shadera, z funkcją przecho
 
 \subsubsection{Ślad po wystrzelonym pocisku}
 
-Przy implementacji pocisków zauważono, że małe pociski przy odpowiednio wysokiej prędkości są praktycznie niezauważalne. Dotyczy to na przykład nabojów wystrzelonych z broni palnej. Sam model pojawia się na ekranie wyłącznie przez kilka klatek. Aby zaradzić temu zdecydowano się na dodanie śladu podąrzającego za pociskami. Jest to oddzielny shader operujący bez bufora wierzchołkowego. Shader jest uruchamiany dla każdego pocisku i wykorzystuje $n$ ostatnio zapisanych pozycji. Na ich podstawie shader geometrii tworzy line strip rozpoczynający się od obecnej pozycji pocisku i kończący na ostatnim zapisanym punkcie zwiększając w każdym węźle przezroczystość linii. Dzięki zastosowaniu śladu pocisku, użytkownik jest w stanie lepiej zorientować się w jakim kierunku pocisk poleciał, a nawet zauważyć potencjalne rykoszety związane z mechanizmem wykrywania kolizji jak widać na rysnku (\ref{rykoszet}).
+Przy implementacji pocisków zauważono, że małe pociski przy odpowiednio wysokiej prędkości są praktycznie niezauważalne. Dotyczy to na przykład nabojów wystrzelonych z broni palnej. Sam model pojawia się na ekranie wyłącznie przez kilka klatek. Aby temu zaradzić, zdecydowano się na dodanie śladu podążającego za pociskami. Jest to oddzielny shader operujący bez bufora wierzchołkowego. Shader jest uruchamiany dla każdego pocisku i wykorzystuje $n$ ostatnio zapisanych pozycji. Na ich podstawie shader geometrii tworzy line strip rozpoczynający się od obecnej pozycji pocisku i kończący na ostatnim zapisanym punkcie zwiększając w każdym węźle przezroczystość linii. Dzięki zastosowaniu śladu pocisku użytkownik jest w stanie lepiej zorientować się, w jakim kierunku pocisk poleciał, a nawet zauważyć potencjalne rykoszety związane z mechanizmem wykrywania kolizji jak widać na rysunku (\ref{rykoszet}).
 
 \begin{figure}[h]
 	\centering
@@ -256,7 +256,7 @@ Przy implementacji pocisków zauważono, że małe pociski przy odpowiednio wyso
 
 \subsubsection{Rysowanie liny}
 
-Ładunek zrzucany przez BSP początkowo jest umocowany na linie. Serwer jest odpowiedzialny za jej fizykę przekazując wizualizacji informacje o tym, gdzie w danej chwili znajdują się końce liny oraz jej długość. Z taką ilością informacji zdecydowano się na zamodelowanie obiektu trójwymiarowego za pomocą krzywej łańcuchowej. Efekty podejścia można zobaczyć na rysunku (\ref{gui_game4})
+Ładunek zrzucany przez BSP początkowo jest umocowany na linie. Serwer jest odpowiedzialny za jej fizykę, przekazując wizualizacji informacje o tym, gdzie w danej chwili znajdują się końce liny oraz jej długość. Z taką ilością informacji zdecydowano się na zamodelowanie obiektu trójwymiarowego za pomocą krzywej łańcuchowej. Efekty podejścia można zobaczyć na rysunku (\ref{gui_game4})
 \\
 
 \begin{figure}[!h]
@@ -427,12 +427,12 @@ Dzięki temu, że wizualizacja opiera się na modelach w formacie glTF, możliwe
 \begin{enumerate}
 	\item modele śmigieł, które przypisane są kolejnym śmigłom BSP w kolejności alfabetycznej. Obracają się one z prędkością liczby obrotów na minutę oryginalnych śmigieł,
 	\item modele steru kierunku, wysokości oraz lotki, które są przypisane do odpowiadających osi kontrolera,
-	\item oraz modele ładunków, które są przypisane do ładunku znajdującego się w konfiguracji statku. Gdy zostanie on wystrzelony, bądź opuszczony, skala modelu zostaje ustawiona na $0$, w efekcie sprawiając, że model staje się niewidzialny.
+	\item oraz modele ładunków, które są przypisane do ładunku znajdującego się w konfiguracji statku. Gdy zostanie on wystrzelony bądź opuszczony, skala modelu zostaje ustawiona na $0$, w efekcie sprawiając, że model staje się niewidzialny.
 \end{enumerate}
 
 \subsection{Graficzny interfejs użytkownika}
 
-Graficzny interfejs użytkownika został zaprojektowany z myślą o zaprezentowaniu jak największej ilości informacji nie tracąc na przejrzystości przekazu.
+Graficzny interfejs użytkownika został zaprojektowany z myślą o zaprezentowaniu jak największej ilości informacji, nie tracąc na przejrzystości przekazu.
 \\
 
 Został on zaimplementowany z wykorzystaniem czterech shaderów. Wszystkie z nich rysują płaski obraz bez testu głębokości. Shader sprite'ów umożliwia rysowanie tekstury na prostokącie (ang. quad) poddanej pewnym transformacjom oraz o danym poziomie transparentności. Z jego pomocą rysowane są bardziej skomplikowane elementy niewymagające złożonych transformacji. Shader pozwala na rysowanie dowolnej płaskiej geometrii w jednolitym kolorze. Jest on wykorzystywany do prostokątów, trójkątów oraz kół. Shader wycinka koła jest specjalizacją shadera wektorowego, która pozwala dodatkowo ustawić kąt, w którym wycinek się rozpoczyna oraz kończy. Przyjmuje on na wejściu koło odrzucając fragmenty niespełniające predykatu. Shader tekstu umożliwia wyświetlenie dowolnego ciągu znaków za pomocą wybranego fontu TrueType. Każdy glif jest wyświetlany na prostokącie dopasowanym do jego rozmiarów. Z aplikacją dostępny jest font FreeSans.
@@ -465,7 +465,7 @@ Najważniejszym komponentem interfejsu jest sztuczny horyzont widoczny na rysunk
 Panel śmigieł jest komponentem pomagającym na zorientowanie się w prędkości obrotowej każdego z rotorów BSP. Pokazana jest dokładna liczba obrotów na minutę wraz z wizualizacją przedstawiającą prędkość względem prędkości maksymalnej. Ponadto uwzględnione jest czy śmigło obraca się zgodnie, czy przeciwnie do wskazówek zegara. Wygląd panelu jest pokazany na rysunku (\ref{smigla}). Położenie śmigieł na panelu jest generowane proceduralnie na podstawie konfiguracji BSP podczas inicjalizacji aplikacji. Algorytm bierze pod uwagę konfigurację panelu w postaci marginesu oraz paddingu poszczególnych śmigieł oraz wysokość i minimalną szerokość okna tekstu. Zwraca uwagę również na odległości względne śmigieł w konfiguracji statku. Na rysunku (\ref{smiglaDebug}) został zaprezentowany podgląd deweloperski panelu, który koloruje poszczególne jego części, a na rysunku (\ref{smiglaDebugRandom}) pokazane są możliwości algorytmu dla losowego rozmieszczenia śmigieł na BSP.
 \\
 
-Początkowo próbowano znaleźć parametry panelu za pomocą równań matematycznych. Z powodu skomplikowanych zależności zdecydowano się na podejście iteracyjne, które byłoby uruchamiane raz podczas inicjalizacji aplikacji. Zaprojektowany algorytm wykorzystuje podejście dziel i zwyciężaj szukając rozwiązanie w pikselach na przedziale $[1,\text{canvasSize}/2]$. Program bierze środkowy element obecnie analizowanego przedziału i sprawdza czy wybrany promień się mieści w ustalonych ograniczeniach. Jeżeli się udaje, to próbuje promień większy w podprzedziale z prawej strony elementu, w przeciwnym wypadku rozmiar mniejszy w podprzedziale z lewej strony.
+Początkowo próbowano znaleźć parametry panelu za pomocą równań matematycznych. Z powodu skomplikowanych zależności zdecydowano się na podejście iteracyjne, które byłoby uruchamiane raz podczas inicjalizacji aplikacji. Zaprojektowany algorytm wykorzystuje podejście "dziel i zwyciężaj" szukając rozwiązanie w pikselach na przedziale $[1,\text{canvasSize}/2]$. Program bierze środkowy element obecnie analizowanego przedziału i sprawdza, czy wybrany promień się mieści w ustalonych ograniczeniach. Jeżeli się udaje, to próbuje promień większy w podprzedziale z prawej strony elementu, w przeciwnym wypadku rozmiar mniejszy w podprzedziale z lewej strony.
 
 
 \begin{figure}[h]
@@ -492,7 +492,7 @@ Początkowo próbowano znaleźć parametry panelu za pomocą równań matematycz
 
 \subsubsection{Panel komunikatów}
 
-W aplikacji znajdują się dwa panele komunikatów. Panel komunikatów krytycznych wyświetlany jest na środku ekranu dużą czcionką, pokazując wyłącznie najnowszy komunikat z danej kategorii. Obsługuje on ostrzeżenia, na które pilot musi niezwłocznie zareagować. Jest wykorzystywany przez serwer do informowania użytkownika o rozpoczęciu lotu, kolizjach i przekroczeniu bezpiecznej wartości przeciążenia. Ostrzega również o zbliżaniu się do granicy terenu symulacji oraz informuje o usunięciu statku gdy ten poza teren wyleci. Jest on zaprezentowany na rysunku (\ref{fig:critical}).
+W aplikacji znajdują się dwa panele komunikatów. Panel komunikatów krytycznych wyświetlany jest na środku ekranu dużą czcionką, pokazując wyłącznie najnowszy komunikat z danej kategorii. Obsługuje on ostrzeżenia, na które pilot musi niezwłocznie zareagować. Jest wykorzystywany przez serwer do informowania użytkownika o rozpoczęciu lotu, kolizjach i przekroczeniu bezpiecznej wartości przeciążenia. Ostrzega również o zbliżaniu się do granicy terenu symulacji oraz informuje o usunięciu statku, gdy ten poza teren wyleci. Jest on zaprezentowany na rysunku (\ref{fig:critical}).
 \\
 
 \begin{figure}
@@ -533,7 +533,7 @@ Radar umożliwia użytkownikowi zorientować się w obecności innych BSP w najb
 
 \subsubsection{Ekran ładowania oraz ekran generatora przypisań kontrolera}
 	
-Ekran ładowania wyświetlany jest w momencie uruchomienia aplikacji i ma za zadanie poinformować użytkownika o postępie ładowania zawartości. Spełnia on również dodatkową rolę upewniając użytkownika, że program się nie zawiesił, ponieważ w zależności od wagi wczytywanych tesktur, ładownie może trwać do kilkunastu sekund. Przykład został pokazany na rysunku (\ref{gui_loading}).
+Ekran ładowania wyświetlany jest w momencie uruchomienia aplikacji i ma za zadanie poinformować użytkownika o postępie ładowania zawartości. Spełnia on również dodatkową rolę, upewniając użytkownika, że program się nie zawiesił, ponieważ w zależności od wagi wczytywanych tesktur, ładownie może trwać do kilkunastu sekund. Przykład został pokazany na rysunku (\ref{gui_loading}).
 
 \begin{figure}[!h]
 	\centering
@@ -553,7 +553,7 @@ Ekran generatora przypisań kontrolera pojawia się gdy użytkownik ustawił odp
 
 \subsubsection{Reszta widżetów}
 
-Użytkownik ma możliwość otworzenia mapy, która ilustruje teren wokół BSP. Można z niej odczytać położenie oraz orientację horyzontalną kontrolowanego statku patrząc na białą ikonę jak i te zadane przez tryb kontroli lotu patrząc na czerwoną. Ponadto widoczne są kierunek oraz względna wartość prędkości w postaci żółtego wektora. Przykład wyświetlonej mapy zaprezentowano na rysunku (\ref{map})
+Użytkownik ma możliwość otworzenia mapy, która ilustruje teren wokół BSP. Można z niej odczytać położenie oraz orientację horyzontalną kontrolowanego statku patrząc na białą ikonę, jak i te zadane przez tryb kontroli lotu patrząc na czerwoną. Ponadto widoczne są kierunek oraz względna wartość prędkości w postaci żółtego wektora. Przykład wyświetlonej mapy zaprezentowano na rysunku (\ref{map})
 \\
 
 \begin{figure}[h]
@@ -585,10 +585,10 @@ Do widżetów należy również opcjonalny panel deweloperski pozwalający na po
 
 \subsection{Udźwiękowienie}
 
-Udźwiękowienie symulatora zostało zrealizowane za pomocą implementacji standardu OpenAL. Dzieli się ono na muzykę oraz dźwięk śmigieł. Muzyka, która jest odtwarzana w tle, jest pobierana z katalogu wyznaczonego przez użytkownika losowo wybierając utwory w momencie gdy poprzedni się zakończy. Użytkownik również odpowiada za uzupełnienie folderu plikami o formacie OGG, które będą odtwarzane. Dźwięk śmigieł natomiast jest częścią symulacji i wykorzystuje bardziej zaawansowane funkcjonalności OpenAL. 
+Udźwiękowienie symulatora zostało zrealizowane za pomocą implementacji standardu OpenAL. Dzieli się ono na muzykę oraz dźwięk śmigieł. Muzyka, która jest odtwarzana w tle, jest pobierana z katalogu wyznaczonego przez użytkownika losowo wybierając utwory w momencie, gdy poprzedni się zakończy. Użytkownik również odpowiada za uzupełnienie folderu plikami o formacie OGG, które będą odtwarzane. Dźwięk śmigieł natomiast jest częścią symulacji i wykorzystuje bardziej zaawansowane funkcjonalności OpenAL. 
 \\
 
-Każdy dźwięk w OpenAL może być reprezentowany przez jego położenie, prędkość, głośność oraz wysokość. W ten sposób każde śmigło może wygenerować swój własny dźwięk. Ma on swoje położenie wyznaczane z wykorzystaniem parametru przesunięcia śmigła względem środka BSP i pozycji samego BSP we świecie oraz prędkość, która dla uproszczenia jest prędkością statku. Uznano, że głośność oraz wysokość dźwięku śmigła jest proporcjonalna do liczby obrotów na sekundę, gdzie dźwięk jest tym głośniejszy i wyższy, im szybciej śmigło się obraca. Z racji, że głośności różnych źródeł dźwięku się sumują, zdecydowano się, w celu zwiększenia komfortu pracy, na znormalizowanie głośności poprzez podzielenie jej przez liczbę rotorów BSP. 
+Każdy dźwięk w OpenAL może być reprezentowany przez jego położenie, prędkość, głośność oraz wysokość. W ten sposób każde śmigło może wygenerować swój własny dźwięk. Ma on swoje położenie wyznaczane z wykorzystaniem parametru przesunięcia śmigła względem środka BSP i pozycji samego BSP w świecie oraz prędkość, która dla uproszczenia jest prędkością statku. Uznano, że głośność oraz wysokość dźwięku śmigła jest proporcjonalna do liczby obrotów na sekundę, gdzie dźwięk jest tym głośniejszy i wyższy, im szybciej śmigło się obraca. Z racji, że głośności różnych źródeł dźwięku się sumują, zdecydowano się, w celu zwiększenia komfortu pracy, na znormalizowanie głośności poprzez podzielenie jej przez liczbę rotorów BSP. 
 \\
 
 W OpenAL istnieje również koncept słuchacza, który tak samo jak źródło ma swoją pozycję oraz prędkość. Jest ona zawsze ustawiana na obecne położenie oraz prędkość kamery. Dzięki temu głośność dźwięku słyszanego przez użytkownika jest odwrotnie proporcjonalna do odległości kamery od źródła oraz zaobserwować można efekt stereo, co jest najbardziej odczuwalne w kamerze pierwszosobowej, jak i efekt Dopplera.
