@@ -1,4 +1,57 @@
 \section{Organizacja pracy}
+
+\subsection{Podział zadań w projekcie}
+
+Realizacja projektu została podzielona między jego autorów. Do zadań poszczególnych autorów pracy należało:\\
+
+\begin{itemize}[noitemsep,nolistsep]
+\item Igor Faliszewski:
+	\begin{itemize}
+	\item realizacja trójwymiarowej wizualizacji symulacji,
+	\item implementacja graficznego interfejsu użytkownika,
+	\item obsługa interakcji z użytkownikiem,
+	\item wyposażenie aplikacji w zawartość,
+	\item udźwiękowienie aplikacji.
+	\end{itemize}
+\ \\
+\item Wojciech Gajda:
+	\begin{itemize}
+	\item przygotowanie silnika dynamiki lotu BSP,
+	\item przygotowanie silnika dynamiki obiektów niesterowalnych,
+	\item przygotowanie systemu sterowania BSP,
+	\item przygotowanie agregatora procesów i serwera symulacji,
+	\item przygotowanie kontenera Docker z symulacją,
+	\item przygotowanie generatora map.
+	\end{itemize}
+\end{itemize}
+\ \\
+Tabela (\ref{rep_rep}) prezentuje osoby odpowiedzialne za poszczególne repozytoria.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[!h]
+\centering
+\begin{tabular}{|m{0.4\textwidth}|m{0.55\textwidth}|} 
+\hline
+\rowcolor{Gray}
+Repozytorium &  Osoba odpowiedzialna \\
+\multirow{1}{15em}{Igor Faliszewski} 
+& UAV\_visualization \\
+\hline
+\multirow{7}{15em}{{Wojciech Gajda}} 
+& UAV\_aggregator \\
+& UAV\_physics\_engine\\
+& UAV\_controller \\
+& UAV\_drop\_physic \\
+& UAV\_server \\
+& UAV\_map\_generator \\
+& UAV\_common \\
+\hline
+\end{tabular}
+\caption{Osoby odpowiedzialne za repozytoria}
+\label{rep_rep}
+\end{table}
+
+\newpage
 \subsection{Harmonogram projektu}
 
 Prace nad projektem zostały rozpoczęte 13.03.2023. Początkowe wersje modułów były rozwijane w lokalnych repozytoriach autorów. W czerwcu 2023 rozpoczęto integrację modułu, a zagadnienia zostały opisane w programie Jira. Rysunek (\ref{zamkniete_jira}) prezentuje zagadnienia zamknięte do 15.10.2023.
