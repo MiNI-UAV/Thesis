@@ -13,6 +13,9 @@ W celu zapewnienia szerszej zgodności serwera przygotowany został obraz Docker
 Aplikacja serwera realizuje równoległe obliczenia dla każdego z klientów. Oprócz podstawowych wątków serwera, na każdego klienta aplikacji przypada dwa procesy symulujące fizykę i sterowanie. Z tego powodu zaleca się, aby maszyna na której zostanie uruchomiony serwer posiadała dwukrotnie więcej rdzeni logicznych niż maksymalna liczba podłączonych klientów. Dodatkowo należy zalecane jest zapewnienie co najmniej 8GB pamięci RAM. \\
 
 Do poprawnej pracy klienta wymagane jest, aby procesor graficzny docelowej maszyny był zgodny z interfejsem OpenGL. Najstarszą testowaną wersją był OpenGL w wersji 4.5. Ze względu na wielowątkowość klienta zalecany jest co najmniej 4 rdzeniowy procesor, a ze względu na potencjalnie znaczne rozmiary mapy, co najmniej 8GB pamięci RAM i 2GB pamięci procesora graficznego.
+\\
+
+Interakcja z symulacją wymaga również podłączenia kontrolera obsługującego co najmniej cztery osie.
 
 \subsubsection{Wymagane biblioteki} \label{libraries}
 
