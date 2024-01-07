@@ -71,7 +71,7 @@
 \begin{document}
 \sloppy
 
-% Slajd tytułowy
+% Slajd tytułowy WG
 {
 \maketitleframe 
 }
@@ -140,26 +140,28 @@
 	\end{columns}
 \end{frame}
 
+% IF
 \begin{frame}
 	\frametitle{Wymagania niefunkcjonalne}
 	\begin{itemize}
-	\item<1-> Używalność
-	\item<2-> Dokładność
-	\item<3-> Wydajność
-	\item<4-> Utrzymywalność
+	\item<2-> Używalność
+	\item<3-> Dokładność
+	\item<4-> Wydajność
+	\item<5-> Utrzymywalność
 	\end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame} % WG
 	\frametitle{Architektura I}
 	\begin{itemize}
-	\item<1-> UAV\_visualization
-	\item<2-> UAV\_physic\_engine
-	\item<3-> UAV\_controller
-	\item<4-> UAV\_drop\_physic
-	\item<5-> UAV\_common
-	\item<6-> UAV\_server
-	\item<7-> UAV\_map\_generator
+	\item<2-> UAV\_visualization
+	\item<3-> UAV\_physic\_engine
+	\item<4-> UAV\_physic\_engine
+	\item<5-> UAV\_controller
+	\item<6-> UAV\_drop\_physic
+	\item<7-> UAV\_common
+	\item<8-> UAV\_server
+	\item<9-> UAV\_map\_generator
 	\end{itemize}
 \end{frame}
 
@@ -171,8 +173,8 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Dobór technologi} % loga róznorakie
+\begin{frame} % IF
+    \frametitle{Dobór technologii} % loga róznorakie
     
     \begin{columns}
         \begin{column}{0.33\textwidth}
@@ -221,17 +223,6 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Testy oprogramowania} % testy fizyczne
-	\begin{itemize}
-	\item<2-> Maximal unnoticeable added dynamics -- \\
-		odpowiednik testu Turinga dla symulatorów lotu
-	\item<3-> Badania tunelowe
-	\item<4-> Porównanie wyników z rzeczywistą platformą
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame}
 	\frametitle{Wymagania systemowe i sprzętowe}
 	\begin{itemize}
 	\item<2-> Serwer:
@@ -245,6 +236,16 @@
 		\item<7-> GPU z obsługą OpenGL 4.5,
 		\item<8-> 4 rdzenie logiczne, 8GB RAM, 2GB VRAM 
 		\end{itemize}	
+	\end{itemize}
+\end{frame}
+
+\begin{frame} %WG
+	\frametitle{Testy oprogramowania} % testy fizyczne
+	\begin{itemize}
+	\item<2-> Maximal unnoticeable added dynamics -- \\
+		odpowiednik testu Turinga dla symulatorów lotu
+	\item<3-> Badania tunelowe
+	\item<4-> Porównanie wyników z rzeczywistą platformą
 	\end{itemize}
 \end{frame}
 

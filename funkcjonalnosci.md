@@ -15,11 +15,11 @@
 
 # Plan lotu
 
-1. Plane na City
 1. Quadcopter na Construction
+1. Plane na City
 1. Rocket na City
-1. Quadcopter na kampusem
-1. Pokazać multiplayer, dwa drony na mapie De_dust2
+1. Quadcopter na Kampusem
+1. Pokazać multiplayer, dwa drony na mapie Kampus
 
 # Funcjonalności aplikacji:
 
