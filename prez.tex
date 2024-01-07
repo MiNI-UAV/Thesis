@@ -14,6 +14,9 @@
 \usepackage{amsmath}
 \usepackage{bm}
 
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+
 \usefonttheme[onlymath]{serif}
 
 \definecolor{quotationcolour}{HTML}{F0F0F0}
@@ -81,25 +84,82 @@
     ]
 \end{frame}
 
+
+\section{Specyfikacja}
+
+\section{Demonstracja}
+
 \begin{frame}
 	\frametitle{Wymagania funkcjonalne}
-	Role, aktorzy, funkcjonalności
+	\begin{columns}[T]
+	  \begin{column}{.33\textwidth}
+	  \uncover<2->{
+	    \begin{figure}
+	      \includegraphics[width=0.95\textwidth]{pilot.png}
+	      %\caption{Użytkownik -- operator}
+	    \end{figure}
+	    }
+	  \end{column}
+	
+	  \begin{column}{.33\textwidth}
+	  \uncover<3->{
+	    \begin{figure}
+	      \includegraphics[width=\textwidth]{scientist.jpg}
+	      %\caption{Analityk}
+	    \end{figure}
+	    }
+	  \end{column}
+	
+	  \begin{column}{.33\textwidth}
+	  \uncover<4->{
+	    \begin{figure}
+	      \includegraphics[width=0.9\textwidth]{dev.png}
+	      %\caption{Developer}
+	    \end{figure}
+	    }
+	  \end{column}
+	\end{columns}
+	
+	\vspace{8pt}
+	
+	\begin{columns}[T]
+	  \begin{column}{.33\textwidth}
+	   \centering
+	   \uncover<2->{Użytkownik -- operator}
+	  \end{column}
+	
+	  \begin{column}{.33\textwidth}
+	  \centering
+	      \uncover<3->{ Analityk}
+	  \end{column}
+	
+	  \begin{column}{.33\textwidth}
+	   \centering
+	  \uncover<4->{Developer}
+	  \end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Wymagania niefunkcjonalne}
+	\begin{itemize}
+	\item<1-> Używalność
+	\item<2-> Dokładność
+	\item<3-> Wydajność
+	\item<4-> Utrzymywalność
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Architektura I}
 	\begin{itemize}
-	\item UAV\_visualization
-	\item UAV\_physic\_engine
-	\item UAV\_controller
-	\item UAV\_drop\_physic
-	\item UAV\_common
-	\item UAV\_server
-	\item UAV\_map\_generator
+	\item<1-> UAV\_visualization
+	\item<2-> UAV\_physic\_engine
+	\item<3-> UAV\_controller
+	\item<4-> UAV\_drop\_physic
+	\item<5-> UAV\_common
+	\item<6-> UAV\_server
+	\item<7-> UAV\_map\_generator
 	\end{itemize}
 \end{frame}
 
@@ -112,16 +172,80 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Dobór technologi} % loga róznorakie
+    \frametitle{Dobór technologi} % loga róznorakie
+    
+    \begin{columns}
+        \begin{column}{0.33\textwidth}
+            \begin{figure}
+                \centering
+                \uncover<2->{\includegraphics[height=0.2\textheight]{logos/cpp.png}}
+            \end{figure}
+            \begin{figure}
+            \centering
+            \uncover<5->{\includegraphics[height=0.2\textheight]{logos/eigen.png}}
+            \end{figure}
+            \begin{figure}
+            \centering
+            \uncover<8->{\includegraphics[height=0.2\textheight]{logos/lwjgl.png}}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.33\textwidth}
+            \begin{figure}
+                \centering
+                \uncover<3->{\includegraphics[height=0.2\textheight]{logos/java.png}}
+            \end{figure}
+            \begin{figure}
+                \centering
+                \uncover<6->{\includegraphics[height=0.2\textheight]{logos/zmq.png}}
+            \end{figure}
+            \begin{figure}
+            \centering
+            \uncover<9->{\includegraphics[height=0.2\textheight]{logos/python.png}}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.33\textwidth}
+            \begin{figure}
+                \centering
+                \uncover<4->{\includegraphics[height=0.2\textheight]{logos/rust.png}}
+            \end{figure}
+            \begin{figure}
+                \centering
+                \uncover<7->{\includegraphics[height=0.2\textheight]{logos/opengl.png}}
+            \end{figure}
+            \begin{figure}
+                \centering
+                \uncover<10->{\includegraphics[height=0.2\textheight]{logos/osm.png}}
+            \end{figure}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Testy oprogramowania} % testy fizyczne
+	\begin{itemize}
+	\item<2-> Maximal unnoticeable added dynamics -- \\
+		odpowiednik testu Turinga dla symulatorów lotu
+	\item<3-> Badania tunelowe
+	\item<4-> Porównanie wyników z rzeczywistą platformą
+	\end{itemize}
 \end{frame}
 
 
 \begin{frame}
 	\frametitle{Wymagania systemowe i sprzętowe}
+	\begin{itemize}
+	\item<2-> Serwer:
+		\begin{itemize}
+		\item<3-> natywnie pracuje na Linux, możliwy Docker,
+		\item<4-> 2 rdzenie logiczne na jednego klienta, 8GB RAM 
+		\end{itemize}
+	\item<5-> Wizualizacja:
+		\begin{itemize}
+		\item<6-> maszyna wirtualna Javy,
+		\item<7-> GPU z obsługą OpenGL 4.5,
+		\item<8-> 4 rdzenie logiczne, 8GB RAM, 2GB VRAM 
+		\end{itemize}	
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -135,18 +259,6 @@
 	\Huge Konfiguracja
 	\end{center}
 \end{frame}
-
-% pokazujemy ogólnie ze to dziala samolot nad city, dron na constructoon, rakieta na city, quadcopter na kampusie.
-% konfigurowalność wizualizacji
-% konfigurowalność serwera
-% plik konfiguracyjny bsp
-% z listą nietypowych funkcjonalnosci
-%	 pokazac multiplayer
-%	 qui
-%	konfiguracje drona cargo ammo, tryby, init,
-%	dzwiek, muzyka
-
-
 
 \begin{frame}
 	\frametitle{Dyskusja}
