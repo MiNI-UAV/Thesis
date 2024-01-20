@@ -13,7 +13,7 @@ Poniżej opisane zostaną podejścia wykorzystane do wyświetlenia trójwymiarow
 Renderowanie oparte na fizyce (ang. Physically Based Rendering, PBR) to podejście wykorzystywane w renderowaniu grafiki, które ma na celu wierne odwzorowanie zachowania światła oraz różnych materiałów.
 \\
 
-Przed wyłożeniem teorii warto się skupić, na jakim wejściu operować będzie nasz model. Z racji, że chcemy przybliżyć zachowanie światła zgodne z fizyką, to chcielibyśmy określać materiały za pomocą ich fizycznych właściwości. Zaimplementowany nami model oświetlenia obsługuje tekstury albedo, metaliczności, chropowatości, ambient occlusion oraz modyfikację wektorów normalnych.
+Przed wyłożeniem teorii warto się skupić, na jakim wejściu operować będzie nasz model. Z racji, że chcemy przybliżyć zachowanie światła zgodne z fizyką, to chcielibyśmy określać materiały za pomocą ich fizycznych właściwości. Zaimplementowany model oświetlenia obsługuje tekstury albedo, metaliczności, chropowatości, ambient occlusion oraz modyfikację wektorów normalnych.
 Albedo, a więc kolor podstawowy, określa barwę, jaką światło będzie mieć po rozproszeniu na powierzchni materiału. Chropowatość mówi o tym, jak bardzo światło jest rozpraszane, a  metaliczność o tym, jaki udział mają efekty ciała dielektrycznego, a jakie przewodnika. Ambient occlusion oznacza poziom wystawienia powierzchni na oświetlenie otoczenia pozwalając na imitację gorzej doświetlonych szczelin. Wykorzystanie map normalnych pozwala natomiast na uzyskanie złudzenia większej złożoności modelu trójwymiarowego przy mniejszej liczbie wielokątów. Wektory normalne przed rozpoczęciem obliczeń dla każdego fragmentu są modyfikowane na podstawie tej mapy.
 \\
 
@@ -184,21 +184,20 @@ Pierwszym krokiem w wybranym podejściu jest inicjalizacja tekstury oraz buforu 
 Następnie dla każdej klatki, przed wyrenderowaniem domyślnej sceny, wykonywany jest shading pass, a więc renderowanie obiektów na scenie z perspektywy światła na odrębną teksturę. Shader cienia wykonuje wyłącznie transformację do perspektywy ortograficznej, a shader fragmentowy jest wyłączony. Przekształcenie ortograficzne należy dostosować do mapy poprzez zmianę głębokości, która zostanie objęta, ponieważ większe, dalej położone obiekty mogą zostać obcięte z tekstury i przestać rzucać cień. Z powodu ograniczenia na rozmiar tekstury mapa porusza się wraz ze BSP użytkownika. 
 \\
 
-Wygenerowana mapa cieni jest następnie przekazywana do głównego shadera. Tam, dla każdego fragmentu, próbkowana jest wartość tekstury dla odpowiednio zmapowanych współrzędnych. W ten sposób determinowane jest czy dany fragment zostanie oświetlony czy nie. 
-Aby uniknąć efektu tzw. shadow acne, a więc sytuacji spowodowanej ograniczoną rozdzielczością mapy cieni. Niektóre fragmenty, na które światło pada pod większym kątem, mogą próbkować tą samą wartość teksela. Jednocześnie jedne z nich test głębokości przejdą, a drugie nie. Z tego powodu można otrzymać efekt, który został zilustrowany na rysunku (\ref{shadow_mapping_acne_diagram}). Aby temu zaradzić, jednym z rozwiązań jest zwiększenie błędu testu dla powierzchni, których wektor normalny jest pod większym kątem w stosunku do źródła światła, co daje rezultat jak na rysunku (\ref{shadow_mapping_acne_bias})
+Wygenerowana mapa cieni jest następnie przekazywana do głównego shadera. Tam, dla każdego fragmentu, próbkowana jest wartość tekstury dla odpowiednio zmapowanych współrzędnych. W ten sposób determinowane jest czy dany fragment zostanie oświetlony czy nie. Z powodu ograniczonej rozdzielczości mapy niektóre fragmenty, na które światło pada pod większym kątem, mogą próbkować tą samą wartość teksela. Wtedy jedne z nich test głębokości przejdą, a drugie nie. Z tego powodu można otrzymać efekt, który został zilustrowany na rysunku (\ref{shadow_mapping_acne_diagram}) nazywany ,,shadow acne". Aby temu zaradzić, jednym z rozwiązań jest zwiększenie błędu testu dla powierzchni, których wektor normalny jest pod większym kątem w stosunku do źródła światła, co daje rezultat jak na rysunku (\ref{shadow_mapping_acne_bias})
 \\
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.6\textwidth]{shadow_mapping_acne_diagram.png}
-	\caption{Schemat przedstawiający problem tzw. shadow acne, podczas implementacji metody shadow mappingu \cite{learnopengl}.}
+	\caption{Schemat przedstawiający problem tzw. ,,shadow acne", podczas implementacji metody shadow mappingu \cite{learnopengl}.}
 	\label{shadow_mapping_acne_diagram}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.6\textwidth]{shadow_mapping_acne_bias.png}
-\caption{Schemat rozwiązania problemu shadow acne z wykorzystaniem większego błędu testu głębokości dla powierzchni o większym nachyleniu w stosunku do światła \cite{learnopengl}.}
+\caption{Schemat rozwiązania problemu ,,shadow acne" z wykorzystaniem większego błędu testu głębokości dla powierzchni o większym nachyleniu w stosunku do światła \cite{learnopengl}.}
 \label{shadow_mapping_acne_bias}
 \end{figure}
 
