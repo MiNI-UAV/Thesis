@@ -1,10 +1,12 @@
-\section{Wstęp}
+\chapter{Wstęp}
+%\markboth{}{Wstęp}
+%\addcontentsline{toc}{chapter}{Wstęp}
 
-\subsection{O projekcie}
+\section{O projekcie}
 
 Symulacje komputerowe dynamiki ruchu stanowią użyteczne narzędzie w pracach inżynierskich. Pozwalają na analizę poprawności działania układu mechanicznego przed jego wyprodukowaniem. W szczególności w zagadnieniu jakim jest projektowanie bezzałogowych statków powietrznych, zastosowanie symulacji pozwala zminimalizować koszty wytworzenia poprawnie działającego systemu.
 
-\subsection{Przegląd istniejących rozwiązań}
+\section{Przegląd istniejących rozwiązań}
 
 Historia symulatorów lotu sięga lat 30. XX wieku. Pierwotnie zastosowanie symulatorów sprowadzało się do szkolenia pilotów cywilnych i wojskowych. W znanej obecnie formie kompletne symulatory lotu stanowią rozbudowane systemy integrujące wysokiej klasy oprogramowanie z peryferiami mającymi wierne odwzorowanie kokpitu kierowanej maszyny. Symulatory wykorzystywane do treningu pilotów podlegają rygorystycznym regulacjom prawnym i na ogół ich zadaniem jest odwzorowanie jednej konkretnej maszyny. Równolegle uproszczone wersje symulatorów zaczęły zyskiwać popularność w zastosowaniu cywilnym, jako element rozrywki. W szczególności gry komputerowe związane z lotem bardzo często poświęcały zgodność z rzeczywistością na rzecz lepszych odczuć użytkownika.\\
 
@@ -24,7 +26,7 @@ Istnieją również rozwiązania typu open-source, realizujące jedynie poszczeg
 \item Ardupilot, INAV, Betaflight - kompletne systemy sterowania dla modeli zdalnie sterowanych.
 \end{itemize}
 
-\subsection{Cel projektu}
+\section{Cel projektu}
 
 Celem niniejszej projektu jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje rozbudowany model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem, którego parametry określane są przez konfigurację podaną przez użytkownika. Oprócz lotu system udostępnia dodatkowe funkcjonalności, takie jak możliwość strzału, upuszczenia ładunku, lotu z ładunkiem, rozpoznawania kolizji z otoczeniem.\\
 
@@ -33,7 +35,7 @@ Oprogramowanie ma stanowić zaawansowane narzędzie inżynierskie. Docelowym odb
 Otwarta licencja umożliwia również wykorzystanie systemu do celów rekreacyjnych i hobbistycznych. Szczególnym przypadkiem są modelarze, posiadający nierzadko znaczną wiedzę domenową i budujący swoje modele ze znaczną dbałością o szczegóły. Projektowany system może stanowić dla nich zamiennik profesjonalnego oprogramowania, które ze względu na koszty licencji pozostawało dla nich niedostępne. Specyfika oprogramowania pozwala na użytkowanie go również w roli gry komputerowej. Oprócz wartości rozrywkowej korzystanie z symulatora pozwala rozwijać umiejętności pilotażu, co przenosi się na rzeczywiste modele. Planowane jest wprowadzenie kilku funkcjonalności, których rolą jest jedynie polepszenie odczuć użytkownika aplikacji i zwiększenie przyjemności z korzystania z systemu.\\
 
 \newpage
-\subsection{Wymagania funkcjonalne}
+\section{Wymagania funkcjonalne}
 
 Wyróżniono trzech aktorów korzystających z systemu: Użytkownika, Analityka i Developera. Użytkownik to osoba o najmniejszej wiedzy domenowej. Korzysta z systemu odpowiednio skonfigurowanego i przygotowanego. Rolą Użytkownika jest wykonywanie lotów i realizacja określonej misji. Można porównać go do gracza. Użytkownik korzysta z systemu, aby nauczyć się pilotować określony BSP lub aby trenować zaawansowane manewry, np. atak na poruszający się cel lub precyzyjne upuszczenie ładunku. Analityk to osoba posiadająca rozbudowaną wiedzę teoretyczną z zakresu lotnictwa. Odpowiedzialny jest za identyfikacje i wprowadzenie parametrów modelu BSP i przygotowanie konfiguracji do lotu. Po odbytym locie może zwalidować poszczególne aspekty lotu poprzez analizę zarejestrowanych logów. Developer to osoba posiadająca podstawową wiedzę domenową i rozumie kod źródłowy systemu. Rolą developera jest dostosowanie systemu na potrzeby swojego przedsiębiorstwa. Zakłada się, że główną modyfikacją jest implementacja własnych algorytmów sterowania. Developer ma dostęp do całego kodu źródłowego, przez co jego możliwości są nieograniczone.\\
 
@@ -51,7 +53,6 @@ Wyróżniono trzech aktorów korzystających z systemu: Użytkownika, Analityka 
 	\item może zmienić widok z kamery,
 	\item może uruchomić radio w grze.
 \end{itemize}
-\ \\
 
 \textbf{Analityk:}
 \begin{itemize}[noitemsep,nolistsep]
@@ -60,25 +61,22 @@ Wyróżniono trzech aktorów korzystających z systemu: Użytkownika, Analityka 
 	\item może zaplanować otoczenie symulacji, wybrać mapę i ustalić warunki atmosferyczne,
 	\item może wygenerować nową mapą w oparciu o dane geograficzne.
 \end{itemize}
-\ \\
 
 \textbf{Developer:}
 \begin{itemize}[noitemsep,nolistsep]
 	\item może dodać i zarządzać istniejącymi algorytmami sterowania,
 	\item implementować nowe funkcjonalności systemu.
 \end{itemize}
-\ \\
-
 
 \newpage
-\subsection{Wymaganie niefunkcjonalne}
+\section{Wymaganie niefunkcjonalne}
 
 W tabeli (\ref{non_func}) przedstawiono wymagania niefunkcjonalne, które musi spełniać oprogramowanie.
 
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.2}
 \begin{table}[!h]
 	\centering
-	\begin{tabular}{|m{0.03\textwidth}|m{0.21\textwidth}|m{0.025\textwidth}|m{0.68\textwidth}|} 
+	\begin{tabular}{|m{0.03\textwidth}|m{0.18\textwidth}|m{0.02\textwidth}|m{0.65\textwidth}|} 
 		\hline
 		\rowcolor{Gray}		\multicolumn{2}{|c|}{Wymagania} & No. & Opis \\
 		\hline
@@ -127,7 +125,7 @@ W tabeli (\ref{non_func}) przedstawiono wymagania niefunkcjonalne, które musi s
 \end{table}
 
 \newpage
-\subsection{Ocena ryzyka -- analiza SWOT}
+\section{Ocena ryzyka -- analiza SWOT}
 
 \begin{table}[!h]
 	\begin{tikzpicture}

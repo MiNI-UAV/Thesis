@@ -1,4 +1,4 @@
-\section{Wprowadzenie teoretyczne}
+\chapter{Wprowadzenie teoretyczne}
 
 \epigraph{There is nothing so practical as a good theory.}{Lewin Kurt}
 %\epigraph{Nie ma osobnej ani teorii, ani praktyki inżynierskiej, jest tylko wspólna sztuka inżynierska.}{prof. Jan Oderfeld}
@@ -7,11 +7,11 @@ Przygotowując się do projektu o charakterze fizycznym, ważne jest, aby przed 
 
 Celem tego rozdziału jest przybliżenie wiedzy domenowej, która została wykorzystana podczas realizacji tego projektu. Szczegółowo omówiony został model dynamiki BSP, sterowanie BSP oraz nawigacja. Drugą część rozdziału stanowi teoretyczny opis elementów grafiki komputerowej, wykorzystanych podczas implementacji wizualizacji. Przedstawione zagadnienia zostaną zaprezentowane w sposób umożliwiający ich zrozumienie oraz późniejszą implementację, lecz bez dowodów poprawności. Brak formalności zostanie natomiast zrekompensowany poprzez wskazanie odpowiednich źródeł naukowych.
 
-\subsection{Dynamika lotu BSP}
+\section{Dynamika lotu BSP}
 
 Przedmiotem zainteresowań dynamiki jest zależność pomiędzy siłami działającymi na analizowany układ a ruchem tego układu \cite{mw}.  Do opisu dynamiki można skorzystać z różnych narzędzi matematycznych, w zależności od zastosowania oraz własnych preferencji. Najbardziej uniwersalny opis uzyskuje się przez przedstawienie zależności jako układ równań różniczkowych. W publikacjach z zakresu analizy lotu najczęściej można spotkać się właśnie z takim opisem \cite{energies}\cite{quaterion}. Często jednak równania te, ze względu na stopień skomplikowania nie mają analitycznego rozwiązania, co rodzi potrzebę efektywnego ich rozwiązywania przy pomocy metod numerycznych. Zbliżonym podejściem posługują się osoby związane z robotyką, które do opisu dynamiki wykorzystują równania stanu, tj. usystematyzowany macierzowy sposób reprezentacji układów równań różniczkowych i algebraicznych. Sprowadzenie równań różniczkowych do wspomnianej formy umożliwia skorzystanie z wielu metod opracowanych właśnie do analizy równań stanu. Warto zasygnalizować, że w rozumieniu robotyków BSP stanowi nic innego jak latającego robota mobilnego, których analiza jest często poruszana w tej dziedzinie wiedzy.
 
-\subsubsection{Metody numerycznego rozwiązywania równań różniczkowych}
+\subsection{Metody numerycznego rozwiązywania równań różniczkowych}
 
 Metody numeryczne rozwiązywania równań różniczkowych to metody pozwalające na znalezienie przybliżonego rozwiązania tzw. zagadnienia początkowego. Zagadnieniem początkowy nazywamy układ równań różniczkowych wraz ze zbiorem warunków początkowych, pozwalającym na uzyskanie jednoznacznego rozwiązania w funkcji zmiennej niezależnej. Dla symulacji naturalnym wyborem dla zmiennej niezależnej będzie czas \texttt{t}, a warunki początkowe będą związane z początkowymi parametrami BSP (pozycją, orientacją itd.).
 
@@ -78,7 +78,7 @@ Schemat metody rzędu 4 wygląda następująco:
 
 Przedstawione metody są metodami wielokrokowymi, co powoduje że do swojej pracy wymagają informacji o wartości funkcji prawych stron w poprzednich chwilach czasowych. Powoduje to, że dla zdefiniowanego powyżej zagadnienia początkowego nie pozwalają na policzenie $n-1$ pierwszych kroków całkowania. Rozwiązanie stanowi wykorzystanie algorytmu jednokrokowego do wystartowania metody. Warto również zauważyć, że obliczenie funkcji prawych stron może być kosztowne obliczeniowo, a~dzięki właściwej implementacji można liczbę wywołań znacząco zredukować. W projekcie implementacja metod zakłada użycie bufora cyklicznego do przechowywania wartości funkcji $\bm{f}$ z poprzednich punktów czasowych.
 
-\subsubsection{Równania stanu}
+\subsection{Równania stanu}
 
 Równania stanu to ujednolicona macierzowa postać zapisu dynamiki układu. Równania stanu łączą zestaw równań różniczkowych zwyczajnych z równaniami algebraicznymi. W postaci ogólnej liniowej równania stanu prezentują się następująco:
 \[
@@ -88,7 +88,7 @@ Równania stanu to ujednolicona macierzowa postać zapisu dynamiki układu. Rów
 	\end{cases},
 \]
 gdzie:
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
 \item $\bm{x}$ - wektor stanu układu,
 \item $\bm{u}$ - wektor sterowania,
 \item $\bm{y}$ - wektor wyjść,
@@ -121,7 +121,7 @@ Znaczącym ograniczeniem przedstawionej postaci jest wymóg opisania układu prz
 
 Obie przedstawione postacie są ze sobą ściśle powiązane. Postać liniową można bez straty ogólności sprowadzić do postaci nieliniowej, a poprzez linearyzację w otoczeniu przyjętego punktu równowagi można sprowadzić postać nieliniową do jej aproksymacji liniowej. Po zlinearyzowaniu macierze występujące w liniowym równaniu stanu są właściwymi macierzami pochodnych Jacobiego.
 
-\subsubsection{Opis stanu BSP}
+\subsection{Opis stanu BSP}
 
 Opis stanu układu to zbiór zmiennych zależnych opisujących układ. Przy wyborze zmiennych dobrą praktyką jest wybór minimalnej liczby pozwalającej na jednoznaczny opis. W literaturze funkcjonuje wiele opisów stanu BSP, wykorzystujące od 2 do 4 różnych układów współrzędnych. Liczba zmiennych zależy od zaawansowania modelu, a także od obejmowanych zjawisk. W projekcie przyjęty został stan uwzględniający położenie i orientację BSP, jego prędkość liniową oraz kątową, a także prędkość obrotową silników. W celu łatwiejszego zdefiniowania równań ruchu powyższe składowe stanu BSP powinny być wyrażone w odpowiednich układach współrzędnych.\\
 
@@ -174,7 +174,7 @@ Finalnie wszystkie z przedstawionych wektorów ujęte zostają w zbiorczy wektor
 Po całościowym zdefiniowaniu wektora stanu układu należy poruszyć temat przyjętych jednostek. W projekcie zostało przyjęte założenie o wyrażeniu stanu układu przy pomocy jednostek SI (MKS). Położenie wyrażone jest zatem w metrach, do opisu kątów zastosowane zostały radiany. Prędkości liniowe zostały wyrażone w~metrach na sekundę, a prędkości kątowe w radianach na sekundę.
 Co warto zaznaczyć, do wektora stanu mogłyby zostać dodane również inne elementy opisane równaniami różniczkowymi takie jak powierzchnie sterowe bądź inne elementy mechaniczne. W opracowywanym modelu bezwładność tych elementów została jednak pominięta.
 
-\subsubsection{Model matematyczny BSP}
+\subsection{Model matematyczny BSP}
 
 W poprzednim rozdziale zdefiniowany został stan BSP. W tym rozdziale przedstawione zostanie, według jakich praw zmienia się stan układu i co ma na niego wpływ. Zakłada się, że BSP można traktować jako bryłę sztywną, a do zapisania zależności wykorzystane zostaną następujące prawa i twierdzenia:
 
@@ -260,7 +260,7 @@ gdzie $\omega_{ZADANA}$ to prędkości kątowe zadane przez układ sterowania.
 
 Dla zilustrowania zachowania silnika na rysunku (\ref{rotor_step}) przedstawiono wykres prędkości kątowej silnika w funkcji czasu. W chwili początkowej silnikowi zadana została znormalizowana wartość prędkości wynosząca 1. W 5 sekundzie ruchu wartość zadana została zmieniona na 0.5. Należy zwrócić uwagę, że stała T ma dokładną interpretację fizyczną i jest to czas, po którym spoczywający układ osiągnie 63.5\% wartości zadanej. Przy okazji warto wspomnieć, że $\omega_{ZADANA}$ stanowi zasadniczą cześć sterowania BSP.
 
-\subsubsection{Siły i momenty działające na BSP}
+\subsection{Siły i momenty działające na BSP}
 
 Przedstawiony w poprzednim rozdziale model przyjmował, że na układ działa uogólnione oddziaływanie $\bm{\vec{f}}$. W tym rozdziale omówione zostaną poszczególne składowe, które sumują się na to oddziaływanie.\\
 
@@ -336,7 +336,7 @@ Przedstawiony model pozwala na uzyskanie zadowalających wyników jedynie w otoc
 
 \textbf{Siły zewnętrzne $\bm{f_{OUT}}$} to pozostałe siły działające na BSP. Mogą to być dowolne siły i momenty zredukowane do oddziaływania przyłożonego w środku masy BSP. W projekcie oddziaływaniami zewnętrznymi działającymi na BSP są siła i moment pochodzące od liny łączącej BSP z ładunkiem.
 
-\subsubsection{Warunki atmosferyczne. Model atmosfery ISA}
+\subsection{Warunki atmosferyczne. Model atmosfery ISA}
 
 W przedstawionym modelu dynamiki pojawiają się odniesienia do warunków atmosferycznych, w których wykonywany jest lot. Siła i moment generowany przez silniki zależą m.in. od gęstości powietrza. Oddziaływania aerodynamiczne zależą m.in. od prędkości wiatru i gęstości powietrza. Z tego względu kolejną częścią modelu jest zaplanowanie, w jaki sposób zdefiniować potrzebne warunki atmosferyczne.\\
 
@@ -357,7 +357,7 @@ W przypadku skalarnych parametrów atmosferycznych takich jak temperatura, ciśn
 \]
 gdzie $g$ to przyśpieszenie grawitacyjne (9.8067 $\frac{m}{s^2}$), a $R$ to indywidualna stała gazowa powietrza (287.052874  $\frac{J}{kg \cdot K}$). Zakres stosowalności powyższych wzorów obejmuje wysokości do ok. 11000 m.n.p.m.
 
-\subsubsection{Kolizje}
+\subsection{Kolizje}
 
 W trakcie lotu BSP może zderzyć się z otoczeniem, innym BSP lub wystrzelonym obiektem. W rzeczywistości takie zderzenie powoduje odbicie, nierzadko połączone ze zniszczeniem statku. Zakres pojęcia kolizji można również uogólnić, uznając, że każde lądowanie jest swoistą kolizją BSP z otoczeniem. Z tego powodu, dla zachowania odpowiedniego realizmu w symulacji, istotne jest wykrywanie kolizji w trakcie lotu i skuteczna reakcja na nie.\\
 
@@ -402,7 +402,7 @@ W metodzie oddzielnie rozpatruje się impuls związany z reakcją normalną\\ $j
 \]
 gdzie: $\bm{\vec{t}}$ to wektor styczny do powierzchni i przeciwny do rzutu wektora prędkości na powierzchnię.
 
-\subsubsection{Odrzut}
+\subsection{Odrzut}
 
 Kiedy z BSP wystrzelony zostaje pocisk o niezerowej prędkości względnej, statek doznaje zjawiska odrzutu. Odrzut to skokowa zmiana prędkości BSP na skutek oddzielania się części jego masy (w postaci pocisku) będąca następstwem zasady zachowania pędu. Głosi ona, że w układzie izolowanym, pęd i kręt pozostają stałe. W przypadku wystrzelenia pocisku zasadę tą można sformułować jako:
 \[
@@ -465,7 +465,7 @@ Dla kompletności poniższe wzory pozwalają na obliczenie położenia i prędko
 
 
 
-\subsubsection{Przenoszenie ładunku}
+\subsection{Przenoszenie ładunku}
 
 Głównym zastosowaniem niektórych BSP jest przenoszenie ładunku. Ładunek może być zlokalizowany wewnątrz statku, pozostając z nim sztywno połączonym, lub znajdować się na zewnątrz BSP. Najczęściej do połączenia ładunku ze statkiem stosuje się różnego rodzaju liny lub sztywne cięgna. Takie połączenie zostaje rozpięte pomiędzy wybranym punktem BSP a wybranym punktem ładunku. Jeśli ładunek traktowany jest jako punkt masowy, to wybór mocowania ładunku staje się jednoznaczny.\\
 
@@ -487,14 +487,14 @@ Z III zasady dynamiki Newtona wynika natomiast, że siła działająca w drugim 
 \]
 
 
-\subsection{Sterowanie BSP}
+\section{Sterowanie BSP}
 
 Sterowanie statkiem powietrznym to proces kontroli ruchu, trajektorii i orientacji statku. Jest to zatem sposób na wymuszenie na BSP określonego zachowania. Historycznie sterowanie statkami powietrznymi (wtedy tylko płatowcami) sprowadzało się do wychylenia odpowiednich powierzchni sterowych, które przy pomocy cięgien były spięte ze sterem i pedałami. Z biegiem lat pojawiły się bardziej zaawansowane rozwiązania, co w rezultacie niemal całkowicie uzależniło sterowanie od wbudowanych systemów sterowania. Wiele konstrukcji byłoby praktycznie niemożliwych do pilotowania, gdyby nie zostały wyposażone w odpowiedni układ sterowania.\\
 
 
 Celem tego rozdziału jest przedstawienie podstawowych pojęć związanych ze sterowaniem. W rozdziale zostaną wprowadzone podstawy teorii sterowania, a także zaprezentowane zostanie wykorzystanie tej wiedzy w kontekście sterowania statkiem powietrznym. Omówione zostaną również podstawy nawigacji, która stanowi nieodłączny element procesu sterowania.
 
-\subsubsection{Regulacja i sterowanie}
+\subsection{Regulacja i sterowanie}
 
 Przed rozpoczęciem projektowania systemu sterowania BSP należy przybliżyć podstawy wynikające z teorii sterowania. Z definicji, sterowanie to proces mający na celu takie oddziaływanie na sterowany obiekt, aby ten zachowywał się w określony, zaplanowany sposób. W sterowaniu głównym zadaniem jest taki dobór sygnałów sterujących, aby spowodować zmianę aktualnego stanu obiektu na oczekiwany, przy jednoczesnym spełnieniu istniejących ograniczeń. Regulacja natomiast to proces mający na celu odtworzenie i utrzymanie zadanej wartości, danej przez pewien wzorzec.\\
 
@@ -509,11 +509,11 @@ Na rysunku (\ref{reg}) przestawiono klasyczny układ regulacji.  Wejście do uk�
       	\label{reg}
 \end{figure}
 
-\subsubsection{System sterowania BSP}
+\subsection{System sterowania BSP}
 System sterowania BSP jest układem regulacji, w którym wartością regulowaną są parametry lotu. Do najważniejszych parametrów lotu zaliczyć można prędkość i~kierunek lotu, wysokość, orientację BSP oraz jego położenie w przestrzeni. Obiektem sterowanym jest BSP. Układy wykonawcze stanowią silniki i powierzchnie sterowe. Układ pomiarowy stanowi układ nawigacji, zamontowany na BSP. Wartość zadana jest wprowadzana przez operatora.
 
  Ze względu na poziom automatyzacji dokonuje się podziału systemów sterowania na trzy następujące po sobie segmenty:
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
 \item system stablizacji,
 \item autopilot,
 \item system zarządzania lotem (generator trajektorii).
@@ -542,7 +542,7 @@ Na rysunku (\ref{control_3_stage}) przedstawiono układ sterowania BSP z uwzglę
 
 Ważnym wnioskiem dotyczącym systemów sterowania jest to, że jednym ze sposobów ich projektowania jest kaskadowe łączenie ze sobą kolejnych, elementarnych regulatorów. Umożliwia to opracowanie łatwego w obsłudze interfejsu służącego do ich definiowania i łączenia. Przykładem takie rozwiązania jest toolbox Symulink, będący częścią pakietu MATLAB.
 
-\subsubsection{Regulatory}
+\subsection{Regulatory}
 
 W poprzednim rozdziale pokazane zostało, że układ sterowania BSP można zbudować, łącząc ze sobą regulatory jednej wartości. W tym rozdziale zdefiniowane zostanie czym jest regulator, a także przedstawione zostaną przykłady takich regulatorów.\\
 
@@ -573,7 +573,7 @@ W przypadku regulatora PID implementowanego programowo dodatkową trudność sta
 
 Oprócz przedstawionych nastaw rzeczywiste regulatory posiadają znacznie szerszy zbiór parametrów. Ze względu na ograniczenia sprzętowe wartość wyjściowa z regulatora powinna być ograniczona pomiędzy pewnym minimum i maksimum. Co więcej, jeśli regulator z włączonym członem I przez długi czas nie mógłby osiągnąć zadanej wartości to duża skumulowana wartość w członie całkującym mogłaby doprowadzić do zjawiska Wind-up'u i utraty stabilności. Z tego względu regulatory mają ograniczenie na składową I i specjalne algorytmy zapobiegające temu zjawisku. 
 
-\subsubsection{System nawigacji}
+\subsection{System nawigacji}
 
 W systemie sterowania jednym z niezbędnych elementów jest układ pomiarowy. Systemy pomiarowe służące do określania parametrów BSP, takich jak położenie i~orientacja, nazywane są systemami nawigacji. System nawigacji montowany jest na pokładzie statku. W trakcie pracy systemy nawigacji gromadzą dane z wielu różnych czujników i na ich podstawie określają interesujące ich parametry. Wiele z tych parametrów wyznaczanych jest pośrednio, z wykorzystaniem odpowiednich przekształceń.\\
 

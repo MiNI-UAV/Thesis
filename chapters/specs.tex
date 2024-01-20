@@ -1,6 +1,6 @@
-\section{Specyfikacja techniczna}
+\chapter{Specyfikacja techniczna}
 
-\subsection{Architektura}
+\section{Architektura}
 
 System został podzielony na moduły. Poszczególne moduły odpowiadają obiektom z domeny projektu i realizują następujące zadania:\\
 
@@ -18,9 +18,7 @@ System został podzielony na moduły. Poszczególne moduły odpowiadają obiekto
 
 \textbf{UAV\_map\_generator} -- skrypt automatyzujący proces generowania mapy, w oparciu o dane geograficzne. \\
 
-\newpage
-
-\subsection{Opis działania systemu}
+\section{Opis działania systemu}
 
 W centralnym punkcie aplikacji znajduje się moduł agregatora. Stanowi on główną część serwera, jest aplikacją konsolową i nie posiada interfejsu graficznego. Jest zawsze uruchamiany jako pierwszy. Po rozpoczęciu pracy agregatora uruchamiany jest moduł "drop physic" jako podproces, a agregator nawiązuje z nim połączenie. Oba moduły pozostają w stanie bezczynności do momentu podłączenia się pierwszego użytkownika. Nowy użytkownik dodawany jest przez uruchomienie wizualizacji. Po uruchomieniu wizualizacji, komunikuje się ona z serwerem i prosi o~utworzenie nowego statku powietrznego. W odpowiedzi na to żądanie, agregator uruchamia jako swoje podprocesy "physic engine" i "controller".Następnie para procesów synchronizuje się ze sobą i rozpoczyna symulację. Każdemu symulowanemu statkowi powietrznemu odpowiada para procesów "physic engine" i "controller". Ponadto każdy statek jest kontrolowany z poziomu konkretnej wizualizacji.\\
 
@@ -29,13 +27,13 @@ W trakcie pracy systemu agregator pełni rolę pośrednika w komunikacji między
 Po odłączeniu się wizualizacji od serwera, procesy związane z danym statkiem są zamykane.
 
 
-\subsection{Opis komponentów}
+\section{Opis komponentów}
 
 Kod poszczególnych modułów systemu został w całości opisany z wykorzystaniem narzędzi do dokumentowania kodu: Doxygen, JavaDoc i Rust Doc. Dla poszczególnych modułów wygenerowane zostały opisy klas oraz funkcji i załączone do pracy jako dokumenty PDF lub strony HTML.
 
 \newpage
 
-\subsection{Komunikacja}
+\section{Komunikacja}
 
 Moduły komunikują się między sobą poprzez kolejki ZeroMQ\cite{zmqguide}. ZeroMQ to uniwersalna implementacja różnych wzorów komunikacji niezależna od języka i warstwy transportowej. Istnieją oficjalne biblioteki ZeroMQ przeznaczone do wykorzystania w projektach w językach  C++, Rust, Java, Python i wielu innych. Jako warstwa transportowa wykorzystane mogą być mechanizmy komunikacji wewnątrzprocesowej, międzyprocesowej i protokół TCP/IP oraz dowolne ich kombinację. Wzorami dostępnymi w kolejkach ZeroMQ, które zostaną wykorzystane w projekcie są:
 
@@ -61,7 +59,7 @@ Rysunek (\ref{comm}) prezentuje poszczególne moduły oraz kanały komunikacji. 
 
 \newpage
 
-\subsection{Graficzny interfejs użytkownika}
+\section{Graficzny interfejs użytkownika}
 
 Graficzny interfejs użytkownika składa się z interfejsu serwera oraz interfejsu wizualizacji. 
 
@@ -141,7 +139,7 @@ Graficzny interfejs użytkownika w wizualizacji składa się z widoku jednej z k
 \end{figure}
 
 \newpage
-\subsection{Interfejs zewnętrzny}
+\section{Interfejs zewnętrzny}
 
 Konfiguracja systemu przed uruchomieniem odbywa się poprzez modyfikację plików konfiguracyjnych i zasobów (asset'ów). Pliki konfiguracyjne dotyczą:
 
@@ -193,7 +191,7 @@ W zasobie znajduje się również tekstura domyślna ładowana w przypadku niezn
 \newpage
 
 
-\subsection{Dobór technologii} \label{technologies}
+\section{Dobór technologii} \label{technologies}
 
 Do realizacji poszczególnych modułów wybrane zostały następujące narzędzia programistyczne i biblioteki zewnętrzne.\\
 

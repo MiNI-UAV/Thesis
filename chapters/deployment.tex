@@ -1,5 +1,5 @@
-\section{Wdrożenie oprogramowania}
-\subsection{Dokumentacja wydania}
+\chapter{Wdrożenie oprogramowania}
+\section{Dokumentacja wydania}
 \subsubsection{Wymagania systemowe}
 Aplikacja serwera została przygotowana do natywnej pracy na maszynie z systemem UNIX. Mając na uwadze uniwersalność użytych języków (C++ oraz Rust) pojęte zostały próby przeniesienia serwera na system Windows, jednak wiązało się to z problemami z dostępnością bibliotek C++. Ostatecznie oficjalnie wspieranymi systemami, które pozwalają na natywne uruchomienie serwera są Ubuntu w wersji 22.04 i pochodne. \\
 
@@ -24,8 +24,7 @@ Moduły napisane w Rust wykorzystują m.in. biblioteki nalgebra, zmq, xmltree, m
 Aplikacja kliencka wykorzystuje m.in. biblioteki LWJGL, JOML oraz JeroMQ. Pełna lista wymaganych bibliotek Java znajduje się w module wizualizacji w pliku \texttt{build.gradle}.  Zastosowanie poszczególnych bibliotek zostało opisane w rozdziale (\ref{technologies}).
 
 
-
-\subsection{Instrukcja instalacji}
+\section{Instrukcja instalacji}
 \subsubsection{Instalacja serwera z wykorzystaniem Docker} \label{docker_server}
 
 Serwer symulacji może zostać uruchomiony na dowolnej maszynie wspierającej kontenery Docker. Obraz zawierający najnowszą wersję serwera wraz ze wszystkimi wchodzącymi w jego skład modułami został zamieszony na platformie Docker Hub. Platforma gwarantuje utrzymanie obrazu przez co najmniej 6 miesięcy. Ze względu na ulotność tego repozytorium właściwy obraz zostanie również przekazany wraz z dokumentacją.\\
@@ -139,7 +138,7 @@ Po uruchomieniu serwera i skonfigurowaniu aplikacji jak opisano w rozdziale \ref
 
 \newpage
 
-\subsection{Instrukcja obsługi} \label{manual}
+\section{Instrukcja obsługi} \label{manual}
 
 \subsubsection{Konfiguracja serwera przed uruchomieniem}
 
@@ -189,13 +188,13 @@ Aby skonfigurować aplikację przed pierwszym uruchomieniem należy zmodyfikowa�
 			\hline
 			Plik parametrów BSP & Dedykowane tryby kontroli lotu \\
 			\hline
-			\multirow{3}{10em}{quadcopter.xml} 
+			\multirow{3}{8em}{quadcopter.xml} 
 			& QPOS \\ & QANGLE \\ & QACRO \\
 			\hline
-			\multirow{3}{10em}{{plane.xml}} 
+			\multirow{3}{8em}{{plane.xml}} 
 			& FANGLE \\ & FACRO \\ & FMANUAL \\
 			\hline
-			\multirow{4}{10em}{{rocket.xml}} 
+			\multirow{4}{8em}{{rocket.xml}} 
 			& RMANUAL \\ & RANGLE \\ & RGUIDED \\ & RAUTOLAUNCH \\
 			\hline
 		\end{tabular}
