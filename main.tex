@@ -70,13 +70,13 @@
 {\normalfont\Large \bfseries}
 {\thechapter.}{1ex}{\Large}
 
-\titleformat{\chapter}
+\titleformat{\section}
 {\normalfont\large\bfseries}
 {\thesection.}{1ex}{}
 \titlespacing{\chapter}{0pt}{30pt}{20pt} 
 %%\titlespacing{\co}{akapit}{ile przed}{ile po} 
 
-\titleformat{\section}
+\titleformat{\subsection}
 {\normalfont \bfseries}
 {\thesubsection.}{1ex}{}
 
@@ -213,14 +213,14 @@
 	\tableofcontents
 	%\thispagestyle{empty}
 	
-	%\newpage % JEŻELI SPIS TREŚCI MA PARZYSTĄ LICZBĘ STRON, ZAKOMENTOWAĆ
+	\newpage % JEŻELI SPIS TREŚCI MA PARZYSTĄ LICZBĘ STRON, ZAKOMENTOWAĆ
 	% ALBO JAK KTOŚ WOLI WTEDY DWIE STRONY ODSTĘPU, DODAĆ \null\newpage
 	
 	% -------------- 5. ZASADNICZA CZĘŚĆ PRACY --------------------
 	\null\thispagestyle{empty}\newpage
 	\pagestyle{fancy}
 	\pagenumbering{arabic}
-	\setcounter{page}{9} % JEŻELI Z POWODU DUŻEJ ILOŚCI STRON W SPISIE TREŚCI SIĘ NIE ZGADZA, TRZEBA ZMODYFIKOWAĆ RĘCZNIE
+	\setcounter{page}{11} % JEŻELI Z POWODU DUŻEJ ILOŚCI STRON W SPISIE TREŚCI SIĘ NIE ZGADZA, TRZEBA ZMODYFIKOWAĆ RĘCZNIE
 	
 \include{chapters/work\_split}
 

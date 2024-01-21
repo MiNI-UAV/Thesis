@@ -76,7 +76,7 @@ Wykorzystaną funkcją rozkładu wektorów normalnych jest Trowbridge-Reitz GGX,
 $$
 NDF_{GGXTR}(n,h,\alpha) = \frac{\alpha^2}{\pi\left( (n\cdot h)^2 (\alpha^2 - 1) + 1 \right)^2 },
 $$
-gdzie $\alpha$ oznacza miarę chropowatości powierzchni. Na rysunku (\ref{normaldistribution}) pokazany został efekt funkcji w zależności od chropowatości.
+gdzie $\alpha$ oznacza miarę chropowatości powierzchni. Na rysunku (\ref{normaldistribution}) pokazany został efekt funkcji w~zależności od chropowatości.
 
 
 \begin{figure}[h]
@@ -151,9 +151,9 @@ Efekt uzyskany dzięki metodzie PBR zwizualizowano na rysunkach (\ref{phongCom})
 		& 
 		\includegraphics[width=0.45\textwidth]{pbrComparison.png}
 		\\
-		\caption{Model oświetlony z wykorzystaniem modelu Blinna-Phonga.}
+		\caption{Model oświetlony z~wykorzystaniem modelu Blinna-Phonga.}
 		\label{phongCom}
-		&   \caption{Model oświetlony z wykorzystaniem podejścia PBR.}
+		&   \caption{Model oświetlony z~wykorzystaniem podejścia PBR.}
 		\label{pbrCom}
 	\end{tabular}
 \end{figure}
@@ -184,7 +184,7 @@ Pierwszym krokiem w wybranym podejściu jest inicjalizacja tekstury oraz buforu 
 Następnie dla każdej klatki, przed wyrenderowaniem domyślnej sceny, wykonywany jest shading pass, a więc renderowanie obiektów na scenie z perspektywy światła na odrębną teksturę. Shader cienia wykonuje wyłącznie transformację do perspektywy ortograficznej, a shader fragmentowy jest wyłączony. Przekształcenie ortograficzne należy dostosować do mapy poprzez zmianę głębokości, która zostanie objęta, ponieważ większe, dalej położone obiekty mogą zostać obcięte z tekstury i przestać rzucać cień. Z powodu ograniczenia na rozmiar tekstury mapa porusza się wraz ze BSP użytkownika. 
 \\
 
-Wygenerowana mapa cieni jest następnie przekazywana do głównego shadera. Tam, dla każdego fragmentu, próbkowana jest wartość tekstury dla odpowiednio zmapowanych współrzędnych. W ten sposób determinowane jest czy dany fragment zostanie oświetlony czy nie. 
+Wygenerowana mapa cieni jest następnie przekazywana do głównego shadera. Tam, dla każdego fragmentu, próbkowana jest wartość tekstury dla odpowiednio zmapowanych współrzędnych. W~ten sposób determinowane jest czy dany fragment zostanie oświetlony czy nie. 
 Aby uniknąć efektu tzw. shadow acne, a więc sytuacji spowodowanej ograniczoną rozdzielczością mapy cieni. Niektóre fragmenty, na które światło pada pod większym kątem, mogą próbkować tą samą wartość teksela. Jednocześnie jedne z nich test głębokości przejdą, a drugie nie. Z tego powodu można otrzymać efekt, który został zilustrowany na rysunku (\ref{shadow_mapping_acne_diagram}). Aby temu zaradzić, jednym z rozwiązań jest zwiększenie błędu testu dla powierzchni, których wektor normalny jest pod większym kątem w stosunku do źródła światła, co daje rezultat jak na rysunku (\ref{shadow_mapping_acne_bias})
 \\
 
@@ -206,7 +206,7 @@ Ostatecznie, w celu uniknięcia ostrych krawędzi cieni, zdecydowano się na zas
 
 \subsection{Rysowanie obwódki modelu za ścianą}
 
-Jednym z pierwszych problemów wizualizacji był brak widoczności modelu BSP użytkownika gdy między nim, a kamerą znajdowała się przeszkoda. Zdecydowano się na rozwiązanie tego problemu za pomocą zielonej obwódki wokół modelu jak widać na rysunku (\ref{outline}). Efekt ten został osiągnięty z wykorzystaniem dodatkowej maski widocznej na rysunku (\ref{outlineDebug}) oraz manipulacji buforu głębokości oraz buforu szablonowego.
+Jednym z pierwszych problemów wizualizacji był brak widoczności modelu BSP użytkownika gdy między nim, a kamerą znajdowała się przeszkoda. Zdecydowano się na rozwiązanie tego problemu za pomocą zielonej obwódki wokół modelu jak widać na rysunku (\ref{outline}). Efekt ten został osiągnięty z~wykorzystaniem dodatkowej maski widocznej na rysunku (\ref{outlineDebug}) oraz manipulacji buforu głębokości oraz buforu szablonowego.
 \\
 
 Bufor szablonowy (ang. stencil buffer) umożliwia selektywne wyświetlanie wybranych pikseli obrazu. Gdy bufor szablonowy jest włączony, to to czy piksel zostanie narysowany determinuje funkcja testu na odpowiadającej mu wartości bufora. Do funkcji należą porównania z wykorzystaniem relacji równości i nierówności oraz funkcje, które przechodzą zawsze lub nigdy.
@@ -415,7 +415,7 @@ Następnym krokiem obliczania modelu liny jest wyznaczenie wierzchołków bryły
 	\forall_{i=1,2,\cdots, k} \hspace{1em} \vec{n_i} = \vec{n_0} \cdot M_R^i
 \end{equation*}
 
-Ostatecznie każde uruchomienie shadera geometrii tworzy siatkę trójkątów utworzonych z $2(k+1)$ punktów wokół punktów $p_n$ i $p_{n+1}$ formatu $p_n^{(i)} = p_n + n_i$, gdzie $p_n$ to punkt rozpoczynający n-ty fragment modelu. Są one następnie przekształcane do przetrzeni rzutowej i standardowo cieniowane w etapie shadera fragmentowego.
+Ostatecznie każde uruchomienie shadera geometrii tworzy siatkę trójkątów utworzonych z $2(k+1)$ punktów wokół punktów $p_n$ i $p_{n+1}$ formatu $p_n^{(i)} = p_n + n_i$, gdzie $p_n$ to punkt rozpoczynający n-ty fragment modelu. Są one następnie przekształcane do przetrzeni rzutowej i standardowo cieniowane w~etapie shadera fragmentowego.
 
 \subsection{Animacja modelu}
 
@@ -436,7 +436,7 @@ Został on zaimplementowany z wykorzystaniem czterech shaderów. Wszystkie z nic
 
 \subsection{Sztuczny horyzont}
 
-Najważniejszym komponentem interfejsu jest sztuczny horyzont widoczny na rysunkach (\ref{horizon1}) i (\ref{horizon2}). Jego wygląd i działanie odpowiada typowemu wyposażeniu statków powietrznych w standardzie NATO, gdzie symbol statku jest nieruchomy, a wyświetlany horyzont utrzymuje się zgodnie z horyzontem naturalnym widocznym z perspektywy pilota. Z widżetu możemy się dowiedzieć o obecnym przechyleniu, pochyleniu oraz odchyleniu statku w stopniach, o jego prędkości poziomej na panelu po lewej stronie i wysokości po prawej jak i o jego położeniu oraz prędkości wznoszenia (ang. climb rate). Ponadto w lewym górnym rogu widnieje informacja o obecnym trybie kontroli lotu. Tryb ten warunkuje jakie wartości z wyżej wymienionych są przez niego narzucane, a więc i wyświetlane w postaci odpowiedniej nakładki jak na rysunku (\ref{horizon2}).
+Najważniejszym komponentem interfejsu jest sztuczny horyzont widoczny na rysunkach (\ref{horizon1}) i~(\ref{horizon2}). Jego wygląd i działanie odpowiada typowemu wyposażeniu statków powietrznych w standardzie NATO, gdzie symbol statku jest nieruchomy, a wyświetlany horyzont utrzymuje się zgodnie z horyzontem naturalnym widocznym z perspektywy pilota. Z widżetu możemy się dowiedzieć o obecnym przechyleniu, pochyleniu oraz odchyleniu statku w stopniach, o jego prędkości poziomej na panelu po lewej stronie i wysokości po prawej jak i o jego położeniu oraz prędkości wznoszenia (ang. climb rate). Ponadto w lewym górnym rogu widnieje informacja o obecnym trybie kontroli lotu. Tryb ten warunkuje jakie wartości z wyżej wymienionych są przez niego narzucane, a więc i wyświetlane w postaci odpowiedniej nakładki jak na rysunku (\ref{horizon2}).
 
 
 
@@ -550,7 +550,7 @@ Ekran generatora przypisań kontrolera pojawia się gdy użytkownik ustawił odp
 
 \subsection{Reszta widżetów}
 
-Użytkownik ma możliwość otworzenia mapy, która ilustruje teren wokół BSP. Można z niej odczytać położenie oraz orientację horyzontalną kontrolowanego statku patrząc na białą ikonę, jak i te zadane przez tryb kontroli lotu patrząc na czerwoną. Ponadto widoczne są kierunek oraz względna wartość prędkości w postaci żółtego wektora. Przykład wyświetlonej mapy zaprezentowano na rysunku (\ref{map})
+Użytkownik ma możliwość otworzenia mapy, która ilustruje teren wokół BSP. Można z niej odczytać położenie oraz orientację horyzontalną kontrolowanego statku patrząc na białą ikonę, jak i~te zadane przez tryb kontroli lotu patrząc na czerwoną. Ponadto widoczne są kierunek oraz względna wartość prędkości w postaci żółtego wektora. Przykład wyświetlonej mapy zaprezentowano na rysunku (\ref{map})
 \\
 
 \begin{figure}[h]
