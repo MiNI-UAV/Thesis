@@ -1,4 +1,4 @@
-\chapter{Wdrożenie oprogramowania}
+\chapter{Wdrożenie oprogramowania} \label{wzdrozenie}
 \section{Dokumentacja wydania}
 \subsection{Wymagania systemowe}
 Aplikacja serwera została przygotowana do natywnej pracy na maszynie z systemem UNIX. Mając na uwadze uniwersalność użytych języków (C++ oraz Rust) pojęte zostały próby przeniesienia serwera na system Windows, jednak wiązało się to z problemami z dostępnością bibliotek C++. Ostatecznie oficjalnie wspieranymi systemami, które pozwalają na natywne uruchomienie serwera są Ubuntu w~wersji 22.04 i pochodne. \\
@@ -67,17 +67,18 @@ W przypadku systemu Windows włączenie aplikacji polega na uruchomieniu pliku w
 Serwer może zostać skompilowany natywnie i uruchomiony na maszynie z systemem UNIX. Na czas pisania tej instrukcji działanie serwera zostało przetestowanie z pozytywnym rezultatem na maszynach z zainstalowanym Ubuntu 22.04 oraz Pop! OS 22.04. Oba z testowanych systemów wykorzystują APT i~w~tej instrukcji opisany zostanie sposób pobrania bibliotek przy pomocy tego właśnie systemu zarządzania pakietami. W celu pobrania bibliotek opisanych w rozdziale (\ref{libraries}) należy wykonać poniższe polecenie instalujące niezbędne narzędzia:
 \begin{lstlisting}[language=bash]
   $  sudo apt-get update && sudo apt-get install -y gcc g++ make cmake \ 
-	build-essential curl autoconf automake libtool pkg-config libsodium-dev \
- 	wget gitlibx11-dev software-properties-common && sudo apt-get update 
+	build-essential curl autoconf automake libtool pkg-config \ libsodium-dev wget gitlibx11-dev software-properties-common \ 
+	&& sudo apt-get update 
 \end{lstlisting}
 
 Następnie przy pomocy poniższych komend należy zainstalować właściwe biblioteki C++:
 \begin{lstlisting}[language=bash]
   $  sudo apt-get install -y libcxxopts-dev libeigen3-dev libzmq3-dev \
 	librapidxml-dev libgtest-dev 
-  $  wget https://github.com/zeromq/cppzmq/archive/refs/tags/v4.10.0.tar.gz && \
-    	tar -xvf v4.10.0.tar.gz && cd cppzmq-4.10.0 && mkdir build && cd build && \
-    	cmake -DCMAKE_BUILD_TYPE=Release .. && make install && cd ../..
+  $  wget https://github.com/zeromq/cppzmq/archive/refs/tags/v4.10.0.tar.gz \
+  && tar -xvf v4.10.0.tar.gz \
+  && cd cppzmq-4.10.0  && mkdir build && cd build \
+  && cmake -DCMAKE_BUILD_TYPE=Release .. && make install && cd ../..
 \end{lstlisting}
 
 Następnie na maszynie należy zainstalować runtime języka Rust. Aktualny opis instalacji można znaleźć na stronie projektu Rust (\cite{rust_getting_started}). Poprawność instalacji języka Rust można sprawdzić przy pomocy polecenia \texttt{cargo --version}. Niniejsza instrukcja została przetestowana cargo w wersji 1.69.0.\\

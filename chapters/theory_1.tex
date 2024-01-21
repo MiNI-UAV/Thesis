@@ -1,4 +1,4 @@
-\chapter{Wprowadzenie teoretyczne}
+\chapter{Wprowadzenie teoretyczne} \label{theory}
 
 \epigraph{There is nothing so practical as a good theory.}{Lewin Kurt}
 %\epigraph{Nie ma osobnej ani teorii, ani praktyki inżynierskiej, jest tylko wspólna sztuka inżynierska.}{prof. Jan Oderfeld}
@@ -7,7 +7,7 @@ Przygotowując się do projektu o charakterze fizycznym, ważne jest, aby przed 
 
 Celem tego rozdziału jest przybliżenie wiedzy domenowej, która została wykorzystana podczas realizacji tego projektu. Szczegółowo omówiony został model dynamiki BSP, sterowanie BSP oraz nawigacja. Drugą część rozdziału stanowi teoretyczny opis elementów grafiki komputerowej, wykorzystanych podczas implementacji wizualizacji. Przedstawione zagadnienia zostaną zaprezentowane w sposób umożliwiający ich zrozumienie oraz późniejszą implementację, lecz bez dowodów poprawności. Brak formalności zostanie natomiast zrekompensowany poprzez wskazanie odpowiednich źródeł naukowych.
 
-\section{Dynamika lotu BSP}
+\section{Dynamika lotu BSP} \label{dynamika_lot}
 
 Przedmiotem zainteresowań dynamiki jest zależność pomiędzy siłami działającymi na analizowany układ a ruchem tego układu \cite{mw}.  Do opisu dynamiki można skorzystać z różnych narzędzi matematycznych, w zależności od zastosowania oraz własnych preferencji. Najbardziej uniwersalny opis uzyskuje się przez przedstawienie zależności jako układ równań różniczkowych. W publikacjach z zakresu analizy lotu najczęściej można spotkać się właśnie z takim opisem \cite{energies}\cite{quaterion}. Często jednak równania te, ze względu na stopień skomplikowania nie mają analitycznego rozwiązania, co rodzi potrzebę efektywnego ich rozwiązywania przy pomocy metod numerycznych. Zbliżonym podejściem posługują się osoby związane z robotyką, które do opisu dynamiki wykorzystują równania stanu, tj. usystematyzowany macierzowy sposób reprezentacji układów równań różniczkowych i algebraicznych. Sprowadzenie równań różniczkowych do wspomnianej formy umożliwia skorzystanie z wielu metod opracowanych właśnie do analizy równań stanu. Warto zasygnalizować, że w rozumieniu robotyków BSP stanowi nic innego jak latającego robota mobilnego, których analiza jest często poruszana w tej dziedzinie wiedzy.
 
@@ -71,8 +71,8 @@ W projekcie wykorzystane zostały tylko schematy jawne: metoda Eulera, metoda He
 Schemat metody rzędu 4 wygląda następująco:
 \[
 	\begin{aligned}
-	\bm{\hat{y}}_{k+1} & = \bm{y}_{k} + \frac{55}{24} \cdot h \cdot  \bm{f} \left( t_{k}, \bm{y}_{k} \right) - \frac{59}{24} \cdot h \cdot  \bm{f} \left( t_{k-1}, \bm{y}_{k-1} \right)  + \frac{37}{24} \cdot h \cdot  \bm{f} \left( t_{k-2}, \bm{y}_{k-2} \right)  - \frac{9}{24} \cdot h \cdot  \bm{f} \left( t_{k-3}, \bm{y}_{k-3} \right) \\
-	\bm{y}_{k+1} & = \bm{y}_{k} +   \frac{9}{24} \cdot h \cdot \bm{f} \left( t_{k} + h, \bm{\hat{y}}_{k+1} \right) + \frac{19}{24} \cdot h \cdot  \bm{f} \left( t_{k}, \bm{y}_{k} \right) - \frac{5}{24} \cdot h \cdot  \bm{f} \left( t_{k-1}, \bm{y}_{k-1} \right)  + \frac{1}{24} \cdot h \cdot  \bm{f} \left( t_{k-2}, \bm{y}_{k-2} \right)
+	\bm{\hat{y}}_{k+1} & = \bm{y}_{k} + \frac{55}{24}  h   \bm{f} \left( t_{k}, \bm{y}_{k} \right) - \frac{59}{24}  h   \bm{f} \left( t_{k-1}, \bm{y}_{k-1} \right)  + \frac{37}{24}  h   \bm{f} \left( t_{k-2}, \bm{y}_{k-2} \right)  - \frac{9}{24}  h   \bm{f} \left( t_{k-3}, \bm{y}_{k-3} \right) \\
+	\bm{y}_{k+1} & = \bm{y}_{k} +   \frac{9}{24}  h  \bm{f} \left( t_{k} + h, \bm{\hat{y}}_{k+1} \right) + \frac{19}{24}  h   \bm{f} \left( t_{k}, \bm{y}_{k} \right) - \frac{5}{24}  h   \bm{f} \left( t_{k-1}, \bm{y}_{k-1} \right)  + \frac{1}{24}  h   \bm{f} \left( t_{k-2}, \bm{y}_{k-2} \right)
 	\end{aligned}.
 \]
 
@@ -487,7 +487,7 @@ Z III zasady dynamiki Newtona wynika natomiast, że siła działająca w drugim 
 \]
 
 
-\section{Sterowanie BSP}
+\section{Sterowanie BSP} \label{sterowanie}
 
 Sterowanie statkiem powietrznym to proces kontroli ruchu, trajektorii i orientacji statku. Jest to zatem sposób na wymuszenie na BSP określonego zachowania. Historycznie sterowanie statkami powietrznymi (wtedy tylko płatowcami) sprowadzało się do wychylenia odpowiednich powierzchni sterowych, które przy pomocy cięgien były spięte ze sterem i pedałami. Z biegiem lat pojawiły się bardziej zaawansowane rozwiązania, co w rezultacie niemal całkowicie uzależniło sterowanie od wbudowanych systemów sterowania. Wiele konstrukcji byłoby praktycznie niemożliwych do pilotowania, gdyby nie zostały wyposażone w odpowiedni układ sterowania.\\
 
@@ -605,7 +605,7 @@ Opiera się na modelowaniu systemu za pomocą równań stanu i~równań pomiarow
 \]
 
 gdzie:
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
   \item $x_k$ -- wektor stanu w chwili k, 
   \item $A$ -- macierz przejścia stanu, 
   \item $B$  -- macierz wejścia sterowania, 

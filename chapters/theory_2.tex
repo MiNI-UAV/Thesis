@@ -1,4 +1,4 @@
-\section{Grafika komputerowa 3D}
+\section{Grafika komputerowa 3D} \label{grafika}
 % Fit the following in the main chapter
 %\subsection{Procesory graficzne}
 %\subsection{OpenGL}
@@ -263,7 +263,7 @@ Przy implementacji pocisków zauważono, że małe pociski przy odpowiednio wyso
 	\caption{Wizualizacja w widoku obserwatora i pozycyjnym trybie lotu z opuszczonym ładunkiem na linie.}
 	\label{gui_game4}
 \end{figure}
-
+\newpage
 Krzywa łańcuchowa, wyrażona za pomocą wzoru przeskalowanego cosinusa hiperbolicznego, określa kształt jaki przyjmuje doskonale nierozciągliwa lina o jednakowo rozłożonej niezerowej masie, zawieszona między dwoma punktami w jednorodnym polu grawitacyjnym. Wzór ten przyjmuje postać:
 
 \[
@@ -356,7 +356,7 @@ $$
 $$
 x_1 = p.x / 2,
 $$
-gdzie
+gdzie:
 $$
 p = (h, v).
 $$
@@ -426,7 +426,7 @@ Dzięki temu, że wizualizacja opiera się na modelach w formacie glTF, możliwe
 \end{enumerate}
 
 \addtocontents{toc}{\protect\newpage}
-\section{Graficzny interfejs użytkownika}
+\section{Graficzny interfejs użytkownika} \label{chapter_gui}
 
 Graficzny interfejs użytkownika został zaprojektowany z myślą o zaprezentowaniu jak największej ilości informacji, nie tracąc na przejrzystości przekazu.
 \\
@@ -552,7 +552,7 @@ Ekran generatora przypisań kontrolera pojawia się gdy użytkownik ustawił odp
 Użytkownik ma możliwość otworzenia mapy, która ilustruje teren wokół BSP. Można z niej odczytać położenie oraz orientację horyzontalną kontrolowanego statku patrząc na białą ikonę, jak i~te zadane przez tryb kontroli lotu patrząc na czerwoną. Ponadto widoczne są kierunek oraz względna wartość prędkości w postaci żółtego wektora. Przykład wyświetlonej mapy zaprezentowano na rysunku (\ref{map})
 \\
 
-\begin{figure}[h]
+\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.7\textwidth]{map.png}
 	\caption{Mapa pokazuje okoliczny teren, położenie oraz orientację horyzontalną kontrolowanego statku (biała ikona) jak i te zadane przez tryb kontroli lotu (czerwona ikona) oraz prędkość BSP (żółty wektor).}
@@ -564,7 +564,7 @@ Do widżetów należy również opcjonalny panel deweloperski pozwalający na po
 
 
 
-\begin{figure}[h]
+\begin{figure}[!h]
 	\centering
 	\setkeys{Gin}{width=\textwidth}
 	\begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
@@ -579,7 +579,7 @@ Do widżetów należy również opcjonalny panel deweloperski pozwalający na po
 	\end{tabular}
 \end{figure}
 
-\section{Udźwiękowienie}
+\section{Udźwiękowienie} \label{audio}
 
 Udźwiękowienie symulatora zostało zrealizowane za pomocą implementacji standardu OpenAL. Dzieli się ono na muzykę oraz dźwięk śmigieł. Muzyka, która jest odtwarzana w tle, jest pobierana z katalogu wyznaczonego przez użytkownika losowo wybierając utwory w momencie, gdy poprzedni się zakończy. Użytkownik również odpowiada za uzupełnienie folderu plikami o formacie OGG, które będą odtwarzane. Dźwięk śmigieł natomiast jest częścią symulacji i wykorzystuje bardziej zaawansowane funkcjonalności OpenAL. 
 \\
