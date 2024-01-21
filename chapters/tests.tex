@@ -1,4 +1,4 @@
-\section{Testy oprogramowania}
+\chapter{Testy oprogramowania}
 
 Testowanie oprogramowania ma na celu weryfikację opracowanych rozwiązań. Odpowiednio przygotowane testy pozwalają na szybką detekcję błędu, a także rozwiązanie jego przyczyny. W zależności od przyjętej ideologi, testy oprogramowania przygotowywane są przed lub po opracowaniu właściwego kodu programu. Szczególnym przypadkiem testów pisanych po zakończeniu implementacji są testy pisane nigdy.\\
 
@@ -6,17 +6,17 @@ Metodyka realizacji testów jest dobrze rozwinięta dla typowych aplikacji webow
 
 Przygotowane testy można podzielić na cztery kategorie: testy jednostkowe, testy integracyjne, testy end-to-end oraz testy walidujące poprawność symulacji.
 
-\subsection{Testy jednostkowe}
+\section{Testy jednostkowe}
 
 Testy jednostkowe to rodzaj testów oprogramowania, które sprawdzają indywidualne jednostki kodu, takie jak funkcje, metody czy klasy. Ich celem jest sprawdzenie, czy poszczególne fragmenty programu działają poprawnie, zgodnie z oczekiwaniami.
 W programach zawierających elementy fizyki szczególnie ważne jest przetestowanie czy komponenty odpowiedzialne za przedstawienie poszczególnych zjawisk mają sens fizyczny.
 W opracowanej symulacji kompleksowo przetestowane zostały obliczenia fizyczne, konwertery, klasa ODE, klasa Controller oraz model atmosfery ISA. 
 
-\subsubsection{Testy klasy implementującej model atmosfery ISA}
+\subsection{Testy klasy implementującej model atmosfery ISA}
 
 Model wzorcowy atmosfery ISA (International Standard Atmosphere) to model matematyczny pozwalający na oszacowanie warunków atmosferycznych takich jak temperatura, ciśnienie oraz gęstość powietrza w zależności od wysokości nad poziomem morza. W bazowej formie pozwala na poprawne oszacowanie parametrów w warstwie przypowierzchniowej tj. troposferze. Testy klasy sprawdzają czy wartości obliczane przez klasę są zgodne z wartościami dostępnymi w tablicach. Analiza kilkunastu punktów testowych pozwala z dużym prawdopodobieństwem potwierdzić poprawność implementacji.
 
-\subsubsection{Testy metod całkowania równań różniczkowych}
+\subsection{Testy metod całkowania równań różniczkowych}
 
 W klasie ODE znajduje się implementacja algorytmów całkowania równań różniczkowych. Główną funkcją w klasie jest funkcja \texttt{step(...)} wykonująca jeden krok całkowania. Testy dotyczące tej klasy pokrywają kwestie programowe takie jak poprawne tworzenie i dekonstrukcja klasy, ale także mają za zadanie sprawdzenie fizycznej poprawności tej klasy. W tym celu sprawdzone zostały następujące scenariusze:
 
@@ -27,7 +27,7 @@ W klasie ODE znajduje się implementacja algorytmów całkowania równań różn
 \item całkowanie równań różniczkowych opisujących oscylator harmoniczny bez tłumienia (masa na sprężynie). W trakcie całkowania w każdym kroku obliczana jest całkowita energia mechaniczna, będąca sumą energii kinetycznej i energii potencjalnej sprężystości. Sprawdzane jest czy całkowita energia mieści się w żądanym polu tolerancji, symetrycznym względem energii początkowej układu.
 \end{enumerate}
  
-\subsubsection{Testy implementacji regulatorów}
+\subsection{Testy implementacji regulatorów}
 
 Interfejs Controller definiuje klasy reprezentujące różne regulatory wykorzystywane przez układ sterowania. Główną funkcją w interfejsie jest funkcja \texttt{calc(...)} obliczająca wyjście z regulatora dla przekazanej wartości zadanej i mierzonej zmiennej regulowanej. Do testów przygotowane zostały obiekty regulatorów z doświadczalnie dobranymi nastawami. Testy tej klasy mają na celu potwierdzić poprawność regulacji poprzez realizację następujących scenariuszy:
 
@@ -42,13 +42,12 @@ Interfejs Controller definiuje klasy reprezentujące różne regulatory wykorzys
 	\caption{Przebieg testu regulatorów}
 	\label{controller_plot}
 \end{figure}
-\newpage
 
-\subsection{Testy integracyjny}
+\section{Testy integracyjny}
 
 Testy integracyjne są kolejnym etapem testowania oprogramowania, który koncentruje się na weryfikacji poprawności całościowego działania modułów systemu. Ich celem jest sprawdzenie, czy poszczególne części oprogramowania będą działać w połączeniu ze sobą. Polegają one najczęściej na uruchomieniu wybranego modułu w izolacji i sztucznym wygenerowaniu zapytań i odpowiedzi pochodzących z innych modułów. Rozbudowane testy integracyjne zostały napisane dla modułów UAV\_drop\_physic oraz UAV\_visualization. Fizyka obiektów jest testowana pod względem tworzenia nowych obiektów oraz ich reakcji na fizyczne bodźce. Testowanie wizualizacji przeprowadzone jest za pomocą skryptu w języku Python, który imitując serwer inicjalizuje wizualizację oraz wysyła dane, które tester jest w stanie zweryfikować na podstawie wygenerowanego obrazu.
 
-\subsubsection{Testy modułu UAV\_drop\_physic}
+\subsection{Testy modułu UAV\_drop\_physic}
 
 Moduł \textbf{UAV\_drop\_physic} odpowiada za symulację lotu pocisków i ładunków, a wiec obiektów nie posiadających własnego źródła napędu. Testy modułu zawierają sprawdzenie poprawności uruchomienia i zamknięcia modułu, nawiązanie z nim komunikację, ale także sprawdzają poprawność działania przez symulację następujących scenariuszy testowych:
 
@@ -60,20 +59,20 @@ Moduł \textbf{UAV\_drop\_physic} odpowiada za symulację lotu pocisków i ładu
 \item symulacja odbić od płaszczyzn, wykorzystywana w mechanizmie kolizji. Sprawdzane są odbicie plastyczne, sprężyste i sprężyste z tarciem. W każdym z testów sprawdzane są cechy charakterystyczne położenia i prędkości po odbiciu.
 \item symulacja długotrwałego lotu w silnym wietrze. Dla obiektu na który działa silny wiatr poziomy oczekiwane jest, że po dostatecznie długim czasie osiągnie on prędkość zgodną z działającym wiatrem. 
 \end{enumerate}
-\subsubsection{Testy integracyjne wizualizacji}
+\subsection{Testy integracyjne wizualizacji}
 
 Test integracyjny wizualizacji uruchomić można za pomocą skryptu \\ \texttt{visualization\_tests.py}, gdzie argumentami jest ścieżka do pliku wykonywalnego Javy, za pomocą której powinien zostać uruchomiony klient, katalog, w którym znajduje się klient, nazwa archiwum JAR klienta oraz suma kontrolna assetów, które wizualizacja ma wykorzystać. \\
 
 
 Test rozpoczyna się od utworzenia wszystkich wymaganych gniazd sieciowych (socket'ów) obsługiwanych przez serwer. Następnie do katalogu klienta przekopiowywane są dane testowe w postaci konfiguracji aplikacji, przypisań kontrolera oraz parametrów drona i uruchamiana jest aplikacja. Skrypt następnie nawiązuje połączenie z aplikacją i testuje proces rozpoczęcia symulacji od pobrania przez klienta danych o serwerze, wysłaniu przez klienta odpowiednich parametrów BSP po jego prośbę o utworzenie statku. Po poprawnej wymianie informacji z aplikacją zmiany wprowadzone przez dane testowe są wycofane. Następnie skrypt przechodzi do wysyłania co 5ms wygenerowanego stanu BSP, który jest widoczny z poziomu ekranu wizualizacji. Rutyna obejmuje poruszanie się oraz obrotu statku we wszystkich osiach oraz fluktuację prędkości obrotowej każdego z silników.  
 
-\subsection{Testy End-to-end}
+\section{Testy End-to-end}
 
 Testy end-to-end (E2E) są rodzajem testów oprogramowania, które sprawdzają poprawność działania systemu jako całości, od rozpoczęcia działania aż do oczekiwanych wyników. W ramach testów end-to-end przetestowane zostało działanie serwera, który rozpoczyna swoje wywołanie od modułu UAV\_aggregator. Uruchamia on moduły symulacji fizyki i kontrolera, sprawdzając, czy zainicjalizowały się poprawnie. 
 Następnie generowana jest komunikacja z wizualizacją, symulująca wejście od użytkownika. Pozwala ona na przetestowanie reakcji systemu na przychodzące wiadomości.
 Ostatecznie serwer wyłącza moduły i weryfikuje poprawne zatrzymanie wszystkich procesów. 
 
-\subsection{Testy walidujące}
+\section{Testy walidujące}
 
 Testy walidacyjne moją na celu potwierdzić użyteczność symulacji. To na podstawie ich wyniku podjęta zostaje decyzja, czy wyniki symulacji są wiarygodne i mogą zostać wykorzystane w analizach. W praktyce przygotowywania symulatorów lotniczych walidacja stanowi ostatni etap metody 4M, której poszczególnymi etapami są:
 \begin{itemize}[noitemsep]

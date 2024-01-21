@@ -1,10 +1,10 @@
-\section{Wstęp}
+\chapter{Wstęp}
 
-\subsection{O projekcie}
+\section{O projekcie}
 
-Symulacje komputerowe dynamiki ruchu stanowią użyteczne narzędzie w pracach inżynierskich. Pozwalają na analizę poprawności działania układu mechanicznego przed jego wyprodukowaniem. W szczególności w zagadnieniu jakim jest projektowanie bezzałogowych statków powietrznych, zastosowanie symulacji pozwala zminimalizować koszty wytworzenia poprawnie działającego systemu.
+Symulacje komputerowe dynamiki ruchu stanowią użyteczne narzędzie w pracach inżynierskich. Pozwalają na analizę poprawności działania układu mechanicznego przed jego wyprodukowaniem. W~szczególności w zagadnieniu jakim jest projektowanie bezzałogowych statków powietrznych, zastosowanie symulacji pozwala zminimalizować koszty wytworzenia poprawnie działającego systemu.
 
-\subsection{Przegląd istniejących rozwiązań}
+\section{Przegląd istniejących rozwiązań}
 
 Historia symulatorów lotu sięga lat 30. XX wieku. Pierwotnie zastosowanie symulatorów sprowadzało się do szkolenia pilotów cywilnych i wojskowych. W znanej obecnie formie kompletne symulatory lotu stanowią rozbudowane systemy integrujące wysokiej klasy oprogramowanie z peryferiami mającymi wierne odwzorowanie kokpitu kierowanej maszyny. Symulatory wykorzystywane do treningu pilotów podlegają rygorystycznym regulacjom prawnym i na ogół ich zadaniem jest odwzorowanie jednej konkretnej maszyny. Równolegle uproszczone wersje symulatorów zaczęły zyskiwać popularność w zastosowaniu cywilnym, jako element rozrywki. W szczególności gry komputerowe związane z lotem bardzo często poświęcały zgodność z rzeczywistością na rzecz lepszych odczuć użytkownika.\\
 
@@ -23,3 +23,145 @@ Istnieją również rozwiązania typu open-source, realizujące jedynie poszczeg
 \item JSBsim - rozbudowany silnik dynamiki lotu działający w czasie rzeczywistym,
 \item Ardupilot, INAV, Betaflight - kompletne systemy sterowania dla modeli zdalnie sterowanych.
 \end{itemize}
+
+\section{Cel projektu}
+
+Celem niniejszej projektu jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje rozbudowany model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem, którego parametry określane są przez konfigurację podaną przez użytkownika. Oprócz lotu system udostępnia dodatkowe funkcjonalności, takie jak możliwość strzału, upuszczenia ładunku, lotu z ładunkiem, rozpoznawania kolizji z~otoczeniem.\\
+
+Oprogramowanie ma stanowić zaawansowane narzędzie inżynierskie. Docelowym odbiorcą mają być zespoły R\&D opracowujące nowe konstrukcje latające lub prowadzące prace nad nowatorskimi systemami sterowania. System umożliwia zamodelowanie rzeczywistego modelu latającego i symulację jego lotu przed rzeczywistymi lotami próbnymi, co w rezultacie pozwoli na zminimalizowanie kosztów prototypowania. System rejestruje wiele parametrów lotu, umożliwiając późniejszą analizę. Potencjalnymi odbiorcami systemu są uczelnie i instytuty naukowe, a także przedsiębiorstwa prowadzące prace badawczo-rozwojowe. Ze względu na różnorodność zagadnień badanych przez wspomniane zespoły, trudno przygotować oprogramowanie uniwersalne. Z tego powodu system zostanie udostępniony na otwartej licencji MIT, aby umożliwić zespołom dostosowanie go do własnych potrzeb. Dla ułatwienia dalszego rozwoju projektu duży nacisk położony zostanie na przejrzystą implementację i realizację wzorców możliwych do ponownego użycia.\\
+
+Otwarta licencja umożliwia również wykorzystanie systemu do celów rekreacyjnych i hobbistycznych. Szczególnym przypadkiem są modelarze, posiadający nierzadko znaczną wiedzę domenową i~budujący swoje modele ze znaczną dbałością o szczegóły. Projektowany system może stanowić dla nich zamiennik profesjonalnego oprogramowania, które ze względu na koszty licencji pozostawało dla nich niedostępne. Specyfika oprogramowania pozwala na użytkowanie go również w roli gry komputerowej. Oprócz wartości rozrywkowej korzystanie z symulatora pozwala rozwijać umiejętności pilotażu, co przenosi się na rzeczywiste modele. Planowane jest wprowadzenie kilku funkcjonalności, których rolą jest jedynie polepszenie odczuć użytkownika aplikacji i zwiększenie przyjemności z korzystania z~systemu.\\
+
+\newpage
+\section{Wymagania funkcjonalne}
+
+Wyróżniono trzech aktorów korzystających z systemu: Użytkownika, Analityka i Developera. Użytkownik to osoba o najmniejszej wiedzy domenowej. Korzysta z systemu odpowiednio skonfigurowanego i przygotowanego. Rolą Użytkownika jest wykonywanie lotów i realizacja określonej misji. Można porównać go do gracza. Użytkownik korzysta z systemu, aby nauczyć się pilotować określony BSP lub aby trenować zaawansowane manewry, np. atak na poruszający się cel lub precyzyjne upuszczenie ładunku. Analityk to osoba posiadająca rozbudowaną wiedzę teoretyczną z zakresu lotnictwa. Odpowiedzialny jest za identyfikacje i wprowadzenie parametrów modelu BSP i przygotowanie konfiguracji do lotu. Po odbytym locie może zwalidować poszczególne aspekty lotu poprzez analizę zarejestrowanych logów. Developer to osoba posiadająca podstawową wiedzę domenową i rozumie kod źródłowy systemu. Rolą developera jest dostosowanie systemu na potrzeby swojego przedsiębiorstwa. Zakłada się, że główną modyfikacją jest implementacja własnych algorytmów sterowania. Developer ma dostęp do całego kodu źródłowego, przez co jego możliwości są nieograniczone.\\
+
+\textbf{Użytkownik:}
+\begin{itemize}[noitemsep,nolistsep]
+	\item może uruchomić symulację lotu,
+	\item może wybrać jedną z dostępnych konfiguracji BSP,
+	\item może dołączyć do symulacji wraz z innymi użytkownikami,
+	\item może dodać konfigurację własnego kontrolera
+	\item może w trakcie lotu wystrzelić pocisk,
+	\item może w trakcie lotu upuścić ładunek i przenosić go na elastycznej linie,
+	\item może zderzyć się z ścinami mapy, innym BSP lub pociskiem,
+	\item może połączyć się zdalnie z wykorzystaniem protokołu TCP/IP,
+	\item może odczytać stan swojego BSP z GUI,
+	\item może zmienić widok z kamery,
+	\item może uruchomić radio w grze.
+\end{itemize}
+
+\textbf{Analityk:}
+\begin{itemize}[noitemsep,nolistsep]
+	\item może przygotować nową konfigurację drona,
+	\item może analizować logi z wykonanych lotów,
+	\item może zaplanować otoczenie symulacji, wybrać mapę i ustalić warunki atmosferyczne,
+	\item może wygenerować nową mapą w oparciu o dane geograficzne.
+\end{itemize}
+
+\textbf{Developer:}
+\begin{itemize}[noitemsep,nolistsep]
+	\item może dodać i zarządzać istniejącymi algorytmami sterowania,
+	\item implementować nowe funkcjonalności systemu.
+\end{itemize}
+
+\newpage
+\section{Wymaganie niefunkcjonalne}
+
+W tabeli (\ref{non_func}) przedstawiono wymagania niefunkcjonalne, które musi spełniać oprogramowanie.
+
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{|m{0.03\textwidth}|m{0.18\textwidth}|m{0.02\textwidth}|m{0.65\textwidth}|} 
+		\hline
+		\rowcolor{Gray}		\multicolumn{2}{|c|}{Wymagania} & No. & Opis \\
+		\hline
+		\centering \multirow{9}{*}{\rotatebox[origin=c]{90}{Usability}}
+		&\multirow{1}{*}{Używalność} 
+		& 1 & Użytkownik jest w stanie dopasować rozmiar okna wizualizacji i~interfejsu do swoich potrzeb i ograniczeń sprzętu. \\
+		\cline{3-4}
+		& & 2 & Serwer da się uruchomić natywnie na Unixie lub w wirtualnym kontenerze Docker, a wizualizacja działa na wirtualnej maszynie Javy. \\
+		\cline{3-4}
+		& & 3 & Komunikacja między serwerem, a wizualizacją powinna pozwalać na responsywne sterowanie BSP. \\
+		\cline{2-4}
+		& \multirow{1}{*}{Ergonomia} 
+		& 4 & Interfejs użytkownika powinien być przejrzysty i korzystać ze standardowych liczników wykorzystywanych w~lotnictwie.  \\
+		\cline{3-4}
+		& & 5 & Konfiguracja kontrolera powinna odbyć się bez znajomości użytkownika z interpretacją wejścia przez system.  \\
+		\hline
+		\centering \multirow{3.5}{*}{\rotatebox[origin=c]{90}{Reliability}}
+		& \multirow{1}{*}{Dokładność} 
+		& 6 & Dokładność symulacji powinna zależeć wyłącznie od błędów obliczeń i dokładności wprowadzonych parametrów. \\
+		\cline{2-4}
+		& \multirow{1}{*}{Sprawdzalność} 
+		& 7 & Zgodność symulacji z rzeczywistością da się sprawdzić poprzez analizę logów oraz przez subiektywną opinię analityka. \\
+		\hline
+		\centering \multirow{1}{*}{\rotatebox[origin=c]{90}{Perf.}}
+		& \multirow{1}{*}{Przepustowość} 
+		& 8 & Wydajność serwera powinna skalować się względem liczby aktualnie symulowanych BSP. \\
+		\hline
+		\centering \multirow{7}{*}{\rotatebox[origin=c]{90}{Supportability}}
+		& \multirow{1}{*}{Konserwacja} 
+		& 9 &Systemy sterowania, elementy interfejsu i moduły konfigurowalne powinny być tak zaprojektowanie aby dodawanie nowych oraz modyfikacja istniejących była prosta i szybka.  \\
+		\cline{3-4}
+		& & 10 & System powinien być podzielony na moduły, które można niezależnie modyfikować. \\
+		\cline{2-4}
+		& \multirow{1}{*}{Audytowalność} 
+		& 11 & W czasie lotu serwer powinien zapisywać logi z symulacji. \\
+		\cline{2-4}
+		& \multirow{1}{*}{Instalowalność} 
+		& 12 & Proces instalacji serwera powinien być dobrze opisany i~prosty. Niewymagany w przypadku wizualizacji. \\
+		\cline{2-4}
+		& \multirow{1}{*}{Konfigurowalność} 
+		& 13 & Oprogramowanie powinno umożliwiać konfigurację serwera, wizualizacji, modeli, kontrolerów, parametrów BSP. \\
+		\hline
+	\end{tabular}
+	\caption{Wymaganie niefunkcjonalne - FURPS}
+	\label{non_func}
+\end{table}
+
+\newpage
+\section{Ocena ryzyka -- analiza SWOT}
+
+\begin{table}[!h]
+	\begin{tikzpicture}
+		\renewcommand{\arraystretch}{1.2}
+		\setlist{left=1em,parsep=0.5ex,after=\smallskip}
+		\def\myw{7.5cm}
+		\matrix[SWOT] 
+		{
+			\& |[fill=black!10]|\renewcommand{\arraystretch}{1.3}\begin{tabular}{Wc{\myw}Wc{\myw}}
+				Pozytywne & Negatywne\\ 
+			\end{tabular}\\
+			Wewnętrzne
+			\& \begin{tabular}{p{\myw}p{\myw}}
+				\textbf{Silne strony:} \begin{itemize}
+					\item przejrzysta implementacja zgodna z paradygmatami programowania obiektowego,
+					\item modułowość projektu, pozwalająca na modyfikację poszczególnych komponentów bez konieczności przebudowy całego projektu,
+					\item uniwersalny model dynamiki statków powietrznych, pozwalający na obliczenia w~czasie rzeczywistym.
+				\end{itemize}
+				& 
+				\textbf{Słabe strony:} \begin{itemize}
+					\item ograniczony czas projektu może skutkować niedopracowaniami we wdrożonych funkcjonalnościach,
+					\item obliczenia symulacji i kolizji obywają się na CPU, co może ograniczać wydajność,
+					\item model matematyczny jest mniej dokładny niż rozbudowana symulacja mechaniki płynów.
+			\end{itemize} \end{tabular}\\
+			Zewnętrzne \& \begin{tabular}{p{\myw}p{\myw}}
+				\textbf{Szanse:} \begin{itemize}
+					\item dzięki udostępnieniu systemu na otwartej licencji, możliwe jest wykorzystanie wypracowanych rozwiązań w przyszłych projektach,
+					\item system może stanowić narzędzie ułatwiające opracowanie i testowanie nowatorskich systemów sterowania,
+					\item system może stanowić bezpłatną alternatywę dla komercyjnych symulatorów lotu.
+				\end{itemize} & \textbf{Zagrożenia:} \begin{itemize}
+					\item język Rust wykorzystany w~UAV\_aggregator może przestać być wspierany na przestrzeni najbliższych lat,
+					\item trudności z identyfikacja wiarygodnych współczynników modelu dynamiki,
+					\item rozbudowany system może okazać się trudny w obsłudze dla użytkownika.
+					
+			\end{itemize} \end{tabular}\\
+		};
+	\end{tikzpicture}
+	\caption{Analiza SWOT}
+	\label{swot}
+\end{table}
+

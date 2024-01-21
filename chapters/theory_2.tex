@@ -1,14 +1,14 @@
-\subsection{Grafika komputerowa 3D}
+\section{Grafika komputerowa 3D}
 % Fit the following in the main chapter
-%\subsubsection{Procesory graficzne}
-%\subsubsection{OpenGL}
-%\subsubsection{Potok renderowania}
-%\subsubsection{Shadery}
-%\subsubsection{Cieniowanie}
+%\subsection{Procesory graficzne}
+%\subsection{OpenGL}
+%\subsection{Potok renderowania}
+%\subsection{Shadery}
+%\subsection{Cieniowanie}
 
 Poniżej opisane zostaną podejścia wykorzystane do wyświetlenia trójwymiarowej symulacji opisanej poprzednim rozdziale.
 
-\subsubsection{Renderowanie oparte na fizyce}
+\subsection{Renderowanie oparte na fizyce}
 
 Renderowanie oparte na fizyce (ang. Physically Based Rendering, PBR) to podejście wykorzystywane w renderowaniu grafiki, które ma na celu wierne odwzorowanie zachowania światła oraz różnych materiałów.
 \\
@@ -76,7 +76,7 @@ Wykorzystaną funkcją rozkładu wektorów normalnych jest Trowbridge-Reitz GGX,
 $$
 NDF_{GGXTR}(n,h,\alpha) = \frac{\alpha^2}{\pi\left( (n\cdot h)^2 (\alpha^2 - 1) + 1 \right)^2 },
 $$
-gdzie $\alpha$ oznacza miarę chropowatości powierzchni. Na rysunku (\ref{normaldistribution}) pokazany został efekt funkcji w zależności od chropowatości.
+gdzie $\alpha$ oznacza miarę chropowatości powierzchni. Na rysunku (\ref{normaldistribution}) pokazany został efekt funkcji w~zależności od chropowatości.
 
 
 \begin{figure}[h]
@@ -151,14 +151,14 @@ Efekt uzyskany dzięki metodzie PBR zwizualizowano na rysunkach (\ref{phongCom})
 		& 
 		\includegraphics[width=0.45\textwidth]{pbrComparison.png}
 		\\
-		\caption{Model oświetlony z wykorzystaniem modelu Blinna-Phonga.}
+		\caption{Model oświetlony z~wykorzystaniem modelu Blinna-Phonga.}
 		\label{phongCom}
-		&   \caption{Model oświetlony z wykorzystaniem podejścia PBR.}
+		&   \caption{Model oświetlony z~wykorzystaniem podejścia PBR.}
 		\label{pbrCom}
 	\end{tabular}
 \end{figure}
 
-\subsubsection{Rysowanie cieni}
+\subsection{Rysowanie cieni}
 
 Cienie zostały zaimplementowane z wykorzystaniem metody mapowania cieni (ang. shadow mapping) po raz pierwszy zaproponowanej w \cite{shadowmapping}. Polega ona na wyrenderowaniu otoczenia, które chcemy zacieniować z punktu widzenia światła, by potem z wykorzystaniem byfora głębokości, zdecydować czy analizowany fragment znajduje się w cieniu czy nie. Przykładowy bufor głębokości dla światła kierunkowego słońca został przedstawiony na rysunku (\ref{shadowMap}), a efekty takiego podejścia na rysunku (\ref{shadows}).
 \\
@@ -184,7 +184,7 @@ Pierwszym krokiem w wybranym podejściu jest inicjalizacja tekstury oraz buforu 
 Następnie dla każdej klatki, przed wyrenderowaniem domyślnej sceny, wykonywany jest shading pass, a więc renderowanie obiektów na scenie z perspektywy światła na odrębną teksturę. Shader cienia wykonuje wyłącznie transformację do perspektywy ortograficznej, a shader fragmentowy jest wyłączony. Przekształcenie ortograficzne należy dostosować do mapy poprzez zmianę głębokości, która zostanie objęta, ponieważ większe, dalej położone obiekty mogą zostać obcięte z tekstury i przestać rzucać cień. Z powodu ograniczenia na rozmiar tekstury mapa porusza się wraz ze BSP użytkownika. 
 \\
 
-Wygenerowana mapa cieni jest następnie przekazywana do głównego shadera. Tam, dla każdego fragmentu, próbkowana jest wartość tekstury dla odpowiednio zmapowanych współrzędnych. W ten sposób determinowane jest czy dany fragment zostanie oświetlony czy nie. 
+Wygenerowana mapa cieni jest następnie przekazywana do głównego shadera. Tam, dla każdego fragmentu, próbkowana jest wartość tekstury dla odpowiednio zmapowanych współrzędnych. W~ten sposób determinowane jest czy dany fragment zostanie oświetlony czy nie. 
 Aby uniknąć efektu tzw. shadow acne, a więc sytuacji spowodowanej ograniczoną rozdzielczością mapy cieni. Niektóre fragmenty, na które światło pada pod większym kątem, mogą próbkować tą samą wartość teksela. Jednocześnie jedne z nich test głębokości przejdą, a drugie nie. Z tego powodu można otrzymać efekt, który został zilustrowany na rysunku (\ref{shadow_mapping_acne_diagram}). Aby temu zaradzić, jednym z rozwiązań jest zwiększenie błędu testu dla powierzchni, których wektor normalny jest pod większym kątem w stosunku do źródła światła, co daje rezultat jak na rysunku (\ref{shadow_mapping_acne_bias})
 \\
 
@@ -204,9 +204,9 @@ Aby uniknąć efektu tzw. shadow acne, a więc sytuacji spowodowanej ograniczon�
 
 Ostatecznie, w celu uniknięcia ostrych krawędzi cieni, zdecydowano się na zastosowanie metody PCF (ang. percentage-closer filtering), która próbkuje dodatkowo 8 tekseli mapy cieni wokół analizowanego fragmentu. Wartości te następnie są uśredniane, uzyskując tym samym częściowe zacienienie.
 
-\subsubsection{Rysowanie obwódki modelu za ścianą}
+\subsection{Rysowanie obwódki modelu za ścianą}
 
-Jednym z pierwszych problemów wizualizacji był brak widoczności modelu BSP użytkownika gdy między nim, a kamerą znajdowała się przeszkoda. Zdecydowano się na rozwiązanie tego problemu za pomocą zielonej obwódki wokół modelu jak widać na rysunku (\ref{outline}). Efekt ten został osiągnięty z wykorzystaniem dodatkowej maski widocznej na rysunku (\ref{outlineDebug}) oraz manipulacji buforu głębokości oraz buforu szablonowego.
+Jednym z pierwszych problemów wizualizacji był brak widoczności modelu BSP użytkownika gdy między nim, a kamerą znajdowała się przeszkoda. Zdecydowano się na rozwiązanie tego problemu za pomocą zielonej obwódki wokół modelu jak widać na rysunku (\ref{outline}). Efekt ten został osiągnięty z~wykorzystaniem dodatkowej maski widocznej na rysunku (\ref{outlineDebug}) oraz manipulacji buforu głębokości oraz buforu szablonowego.
 \\
 
 Bufor szablonowy (ang. stencil buffer) umożliwia selektywne wyświetlanie wybranych pikseli obrazu. Gdy bufor szablonowy jest włączony, to to czy piksel zostanie narysowany determinuje funkcja testu na odpowiadającej mu wartości bufora. Do funkcji należą porównania z wykorzystaniem relacji równości i nierówności oraz funkcje, które przechodzą zawsze lub nigdy.
@@ -242,7 +242,7 @@ Statek jest rysowany ponownie za pomocą domyślnego shadera, z funkcją przecho
 	\end{tabular}
 \end{figure}
 
-\subsubsection{Ślad po wystrzelonym pocisku}
+\subsection{Ślad po wystrzelonym pocisku}
 
 Przy implementacji pocisków zauważono, że małe pociski przy odpowiednio wysokiej prędkości są praktycznie niezauważalne. Dotyczy to na przykład nabojów wystrzelonych z broni palnej. Sam model pojawia się na ekranie wyłącznie przez kilka klatek. Aby temu zaradzić, zdecydowano się na dodanie śladu podążającego za pociskami. Jest to oddzielny shader operujący bez bufora wierzchołkowego. Shader jest uruchamiany dla każdego pocisku i wykorzystuje $n$ ostatnio zapisanych pozycji. Na ich podstawie shader geometrii tworzy line strip rozpoczynający się od obecnej pozycji pocisku i kończący na ostatnim zapisanym punkcie zwiększając w każdym węźle przezroczystość linii. Dzięki zastosowaniu śladu pocisku użytkownik jest w stanie lepiej zorientować się, w jakim kierunku pocisk poleciał, a nawet zauważyć potencjalne rykoszety związane z mechanizmem wykrywania kolizji jak widać na rysunku (\ref{rykoszet}).
 
@@ -253,7 +253,7 @@ Przy implementacji pocisków zauważono, że małe pociski przy odpowiednio wyso
 	\label{rykoszet}
 \end{figure}
 
-\subsubsection{Rysowanie liny}
+\subsection{Rysowanie liny}
 
 Ładunek zrzucany przez BSP początkowo jest umocowany na linie. Serwer jest odpowiedzialny za jej fizykę, przekazując wizualizacji informacje o tym, gdzie w danej chwili znajdują się końce liny oraz jej długość. Z taką ilością informacji zdecydowano się na zamodelowanie obiektu trójwymiarowego za pomocą krzywej łańcuchowej. Efekty podejścia można zobaczyć na rysunku (\ref{gui_game4})
 \\
@@ -415,9 +415,9 @@ Następnym krokiem obliczania modelu liny jest wyznaczenie wierzchołków bryły
 	\forall_{i=1,2,\cdots, k} \hspace{1em} \vec{n_i} = \vec{n_0} \cdot M_R^i
 \end{equation*}
 
-Ostatecznie każde uruchomienie shadera geometrii tworzy siatkę trójkątów utworzonych z $2(k+1)$ punktów wokół punktów $p_n$ i $p_{n+1}$ formatu $p_n^{(i)} = p_n + n_i$, gdzie $p_n$ to punkt rozpoczynający n-ty fragment modelu. Są one następnie przekształcane do przetrzeni rzutowej i standardowo cieniowane w etapie shadera fragmentowego.
+Ostatecznie każde uruchomienie shadera geometrii tworzy siatkę trójkątów utworzonych z $2(k+1)$ punktów wokół punktów $p_n$ i $p_{n+1}$ formatu $p_n^{(i)} = p_n + n_i$, gdzie $p_n$ to punkt rozpoczynający n-ty fragment modelu. Są one następnie przekształcane do przetrzeni rzutowej i standardowo cieniowane w~etapie shadera fragmentowego.
 
-\subsubsection{Animacja modelu}
+\subsection{Animacja modelu}
 
 Dzięki temu, że wizualizacja opiera się na modelach w formacie glTF, możliwe jest zdefiniowanie oraz wykorzystanie animacji. Animacje są obsługiwane za pomocą prostego interfejsu. Udostępnia on wszystkie animacje dostępne w modelu pod nazwą podmodelu, który jest animowany, czas trwania animacji oraz liczbę w przedziale $[0,1]$, która oznacza, którą klatkę w danej chwili wybrać. W ten sposób można identyfikować kategorie animacji oraz ustalać ich przebieg. Obecnie obsługiwane są:
 \begin{enumerate}
@@ -426,16 +426,17 @@ Dzięki temu, że wizualizacja opiera się na modelach w formacie glTF, możliwe
 	\item oraz modele ładunków, które są przypisane do ładunku znajdującego się w konfiguracji statku. Gdy zostanie on wystrzelony bądź opuszczony, skala modelu zostaje ustawiona na $0$, w efekcie sprawiając, że model staje się niewidzialny.
 \end{enumerate}
 
-\subsection{Graficzny interfejs użytkownika}
+\addtocontents{toc}{\protect\newpage}
+\section{Graficzny interfejs użytkownika}
 
 Graficzny interfejs użytkownika został zaprojektowany z myślą o zaprezentowaniu jak największej ilości informacji, nie tracąc na przejrzystości przekazu.
 \\
 
 Został on zaimplementowany z wykorzystaniem czterech shaderów. Wszystkie z nich rysują płaski obraz bez testu głębokości. Shader sprite'ów umożliwia rysowanie tekstury na prostokącie (ang. quad) poddanej pewnym transformacjom oraz o danym poziomie transparentności. Z jego pomocą rysowane są bardziej skomplikowane elementy niewymagające złożonych transformacji. Shader pozwala na rysowanie dowolnej płaskiej geometrii w jednolitym kolorze. Jest on wykorzystywany do prostokątów, trójkątów oraz kół. Shader wycinka koła jest specjalizacją shadera wektorowego, która pozwala dodatkowo ustawić kąt, w którym wycinek się rozpoczyna oraz kończy. Przyjmuje on na wejściu koło odrzucając fragmenty niespełniające predykatu. Shader tekstu umożliwia wyświetlenie dowolnego ciągu znaków za pomocą wybranego fontu TrueType. Każdy glif jest wyświetlany na prostokącie dopasowanym do jego rozmiarów. Z aplikacją dostępny jest font FreeSans.
 
-\subsubsection{Sztuczny horyzont}
+\subsection{Sztuczny horyzont}
 
-Najważniejszym komponentem interfejsu jest sztuczny horyzont widoczny na rysunkach (\ref{horizon1}) i (\ref{horizon2}). Jego wygląd i działanie odpowiada typowemu wyposażeniu statków powietrznych w standardzie NATO, gdzie symbol statku jest nieruchomy, a wyświetlany horyzont utrzymuje się zgodnie z horyzontem naturalnym widocznym z perspektywy pilota. Z widżetu możemy się dowiedzieć o obecnym przechyleniu, pochyleniu oraz odchyleniu statku w stopniach, o jego prędkości poziomej na panelu po lewej stronie i wysokości po prawej jak i o jego położeniu oraz prędkości wznoszenia (ang. climb rate). Ponadto w lewym górnym rogu widnieje informacja o obecnym trybie kontroli lotu. Tryb ten warunkuje jakie wartości z wyżej wymienionych są przez niego narzucane, a więc i wyświetlane w postaci odpowiedniej nakładki jak na rysunku (\ref{horizon2}).
+Najważniejszym komponentem interfejsu jest sztuczny horyzont widoczny na rysunkach (\ref{horizon1}) i~(\ref{horizon2}). Jego wygląd i działanie odpowiada typowemu wyposażeniu statków powietrznych w standardzie NATO, gdzie symbol statku jest nieruchomy, a wyświetlany horyzont utrzymuje się zgodnie z horyzontem naturalnym widocznym z perspektywy pilota. Z widżetu możemy się dowiedzieć o obecnym przechyleniu, pochyleniu oraz odchyleniu statku w stopniach, o jego prędkości poziomej na panelu po lewej stronie i wysokości po prawej jak i o jego położeniu oraz prędkości wznoszenia (ang. climb rate). Ponadto w lewym górnym rogu widnieje informacja o obecnym trybie kontroli lotu. Tryb ten warunkuje jakie wartości z wyżej wymienionych są przez niego narzucane, a więc i wyświetlane w postaci odpowiedniej nakładki jak na rysunku (\ref{horizon2}).
 
 
 
@@ -456,7 +457,7 @@ Najważniejszym komponentem interfejsu jest sztuczny horyzont widoczny na rysunk
 	\end{tabular}
 \end{figure}
 
-\subsubsection{Wyznaczenie parametrów panelu śmigieł}
+\subsection{Wyznaczenie parametrów panelu śmigieł}
 
 Panel śmigieł jest komponentem pomagającym na zorientowanie się w prędkości obrotowej każdego z rotorów BSP. Pokazana jest dokładna liczba obrotów na minutę wraz z wizualizacją przedstawiającą prędkość względem prędkości maksymalnej. Ponadto uwzględnione jest czy śmigło obraca się zgodnie, czy przeciwnie do wskazówek zegara. Wygląd panelu jest pokazany na rysunku (\ref{smigla}). Położenie śmigieł na panelu jest generowane proceduralnie na podstawie konfiguracji BSP podczas inicjalizacji aplikacji. Algorytm bierze pod uwagę konfigurację panelu w postaci marginesu oraz paddingu poszczególnych śmigieł oraz wysokość i minimalną szerokość okna tekstu. Zwraca uwagę również na odległości względne śmigieł w konfiguracji statku. Na rysunku (\ref{smiglaDebug}) został zaprezentowany podgląd deweloperski panelu, który koloruje poszczególne jego części, a na rysunku (\ref{smiglaDebugRandom}) pokazane są możliwości algorytmu dla losowego rozmieszczenia śmigieł na BSP.
 \\
@@ -486,7 +487,7 @@ Początkowo próbowano znaleźć parametry panelu za pomocą równań matematycz
 	\label{smiglaDebugRandom}
 \end{figure}
 
-\subsubsection{Panel komunikatów}
+\subsection{Panel komunikatów}
 
 W aplikacji znajdują się dwa panele komunikatów. Panel komunikatów krytycznych wyświetlany jest na środku ekranu dużą czcionką, pokazując wyłącznie najnowszy komunikat z danej kategorii. Obsługuje on ostrzeżenia, na które pilot musi niezwłocznie zareagować. Jest wykorzystywany przez serwer do informowania użytkownika o rozpoczęciu lotu, kolizjach i przekroczeniu bezpiecznej wartości przeciążenia. Ostrzega również o zbliżaniu się do granicy terenu symulacji oraz informuje o usunięciu statku, gdy ten poza teren wyleci. Jest on zaprezentowany na rysunku (\ref{fig:critical}).
 \\
@@ -515,7 +516,7 @@ Panel komunikatów niekrytycznych wyświetla się z boku po lewej stronie ekranu
 \end{figure}
 
 
-\subsubsection{Radar}
+\subsection{Radar}
 
 Radar umożliwia użytkownikowi zorientować się w obecności innych BSP w najbliższej okolicy. Symulowane jest działanie radaru aktywnego uwzględniające aktualną orientację statku oraz ramienia radaru. Inne BSP na radarze wyświetlane są jako kropki po pewnym czasie zanikające. Został on zilustrowany na rysunku (\ref{radar}).
 
@@ -527,7 +528,7 @@ Radar umożliwia użytkownikowi zorientować się w obecności innych BSP w najb
 	\label{radar}
 \end{figure}
 
-\subsubsection{Ekran ładowania oraz ekran generatora przypisań kontrolera}
+\subsection{Ekran ładowania oraz ekran generatora przypisań kontrolera}
 	
 Ekran ładowania wyświetlany jest w momencie uruchomienia aplikacji i ma za zadanie poinformować użytkownika o postępie ładowania zawartości. Spełnia on również dodatkową rolę, upewniając użytkownika, że program się nie zawiesił, ponieważ w zależności od wagi wczytywanych tesktur, ładownie może trwać do kilkunastu sekund. Przykład został pokazany na rysunku (\ref{gui_loading}).
 
@@ -547,9 +548,9 @@ Ekran generatora przypisań kontrolera pojawia się gdy użytkownik ustawił odp
 	\label{gui_bindings1}
 \end{figure}
 
-\subsubsection{Reszta widżetów}
+\subsection{Reszta widżetów}
 
-Użytkownik ma możliwość otworzenia mapy, która ilustruje teren wokół BSP. Można z niej odczytać położenie oraz orientację horyzontalną kontrolowanego statku patrząc na białą ikonę, jak i te zadane przez tryb kontroli lotu patrząc na czerwoną. Ponadto widoczne są kierunek oraz względna wartość prędkości w postaci żółtego wektora. Przykład wyświetlonej mapy zaprezentowano na rysunku (\ref{map})
+Użytkownik ma możliwość otworzenia mapy, która ilustruje teren wokół BSP. Można z niej odczytać położenie oraz orientację horyzontalną kontrolowanego statku patrząc na białą ikonę, jak i~te zadane przez tryb kontroli lotu patrząc na czerwoną. Ponadto widoczne są kierunek oraz względna wartość prędkości w postaci żółtego wektora. Przykład wyświetlonej mapy zaprezentowano na rysunku (\ref{map})
 \\
 
 \begin{figure}[h]
@@ -579,7 +580,7 @@ Do widżetów należy również opcjonalny panel deweloperski pozwalający na po
 	\end{tabular}
 \end{figure}
 
-\subsection{Udźwiękowienie}
+\section{Udźwiękowienie}
 
 Udźwiękowienie symulatora zostało zrealizowane za pomocą implementacji standardu OpenAL. Dzieli się ono na muzykę oraz dźwięk śmigieł. Muzyka, która jest odtwarzana w tle, jest pobierana z katalogu wyznaczonego przez użytkownika losowo wybierając utwory w momencie, gdy poprzedni się zakończy. Użytkownik również odpowiada za uzupełnienie folderu plikami o formacie OGG, które będą odtwarzane. Dźwięk śmigieł natomiast jest częścią symulacji i wykorzystuje bardziej zaawansowane funkcjonalności OpenAL. 
 \\

@@ -21,7 +21,7 @@ jobs:
         with:
           # The root LaTeX file to be compiled
           root_file: main.tex
-          latexmk_use_lualatex: true
+          # latexmk_use_lualatex: true
           extra_fonts: |
             ./fonts/verdana.ttf
             ./fonts/verdanab.ttf

@@ -1,119 +1,16 @@
-\section{Specyfikacja}
+\chapter{Specyfikacja techniczna}
 
-
-\subsection{Cel projektu}
-
-Celem niniejszej projektu jest opracowanie wirtualnego środowiska do symulacji dynamiki lotu bezzałogowych statków powietrznych. System implementuje rozbudowany model dynamiki statków powietrznych wyposażonych w silniki rotorowe, silniki odrzutowe, powierzchnie nośne i powierzchnie sterowe. Pozwala na przeprowadzenie lotu symulowanym obiektem, którego parametry określane są przez konfigurację podaną przez użytkownika. Oprócz lotu system udostępnia dodatkowe funkcjonalności, takie jak możliwość strzału, upuszczenia ładunku, lotu z ładunkiem, rozpoznawania kolizji z otoczeniem.\\
-
-Oprogramowanie ma stanowić zaawansowane narzędzie inżynierskie. Docelowym odbiorcą mają być zespoły R\&D opracowujące nowe konstrukcje latające lub prowadzące prace nad nowatorskimi systemami sterowania. System umożliwia zamodelowanie rzeczywistego modelu latającego i symulację jego lotu przed rzeczywistymi lotami próbnymi, co w rezultacie pozwoli na zminimalizowanie kosztów prototypowania. System rejestruje wiele parametrów lotu, umożliwiając późniejszą analizę. Potencjalnymi odbiorcami systemu są uczelnie i instytuty naukowe, a także przedsiębiorstwa prowadzące prace badawczo-rozwojowe. Ze względu na różnorodność zagadnień badanych przez wspomniane zespoły, trudno przygotować oprogramowanie uniwersalne. Z tego powodu system zostanie udostępniony na otwartej licencji MIT, aby umożliwić zespołom dostosowanie go do własnych potrzeb. Dla ułatwienia dalszego rozwoju projektu duży nacisk położony zostanie na przejrzystą implementację i realizację wzorców możliwych do ponownego użycia.\\
-
-Otwarta licencja umożliwia również wykorzystanie systemu do celów rekreacyjnych i hobbistycznych. Szczególnym przypadkiem są modelarze, posiadający nierzadko znaczną wiedzę domenową i budujący swoje modele ze znaczną dbałością o szczegóły. Projektowany system może stanowić dla nich zamiennik profesjonalnego oprogramowania, które ze względu na koszty licencji pozostawało dla nich niedostępne. Specyfika oprogramowania pozwala na użytkowanie go również w roli gry komputerowej. Oprócz wartości rozrywkowej korzystanie z symulatora pozwala rozwijać umiejętności pilotażu, co przenosi się na rzeczywiste modele. Planowane jest wprowadzenie kilku funkcjonalności, których rolą jest jedynie polepszenie odczuć użytkownika aplikacji i zwiększenie przyjemności z korzystania z systemu.\\
-
-\newpage
-\subsection{Wymagania funkcjonalne}
-
-Wyróżniono trzech aktorów korzystających z systemu: Użytkownika, Analityka i Developera. Użytkownik to osoba o najmniejszej wiedzy domenowej. Korzysta z systemu odpowiednio skonfigurowanego i przygotowanego. Rolą Użytkownika jest wykonywanie lotów i realizacja określonej misji. Można porównać go do gracza. Użytkownik korzysta z systemu, aby nauczyć się pilotować określony BSP lub aby trenować zaawansowane manewry, np. atak na poruszający się cel lub precyzyjne upuszczenie ładunku. Analityk to osoba posiadająca rozbudowaną wiedzę teoretyczną z zakresu lotnictwa. Odpowiedzialny jest za identyfikacje i wprowadzenie parametrów modelu BSP i przygotowanie konfiguracji do lotu. Po odbytym locie może zwalidować poszczególne aspekty lotu poprzez analizę zarejestrowanych logów. Developer to osoba posiadająca podstawową wiedzę domenową i rozumie kod źródłowy systemu. Rolą developera jest dostosowanie systemu na potrzeby swojego przedsiębiorstwa. Zakłada się, że główną modyfikacją jest implementacja własnych algorytmów sterowania. Developer ma dostęp do całego kodu źródłowego, przez co jego możliwości są nieograniczone.\\
-
-\textbf{Użytkownik:}
-\begin{itemize}[noitemsep,nolistsep]
-	\item może uruchomić symulację lotu,
-	\item może wybrać jedną z dostępnych konfiguracji BSP,
-	\item może dołączyć do symulacji wraz z innymi użytkownikami,
-	\item może dodać konfigurację własnego kontrolera
-	\item może w trakcie lotu wystrzelić pocisk,
-	\item może w trakcie lotu upuścić ładunek i przenosić go na elastycznej linie,
-	\item może zderzyć się z ścinami mapy, innym BSP lub pociskiem,
-	\item może połączyć się zdalnie z wykorzystaniem protokołu TCP/IP,
-	\item może odczytać stan swojego BSP z GUI,
-	\item może zmienić widok z kamery,
-	\item może uruchomić radio w grze.
-\end{itemize}
-\ \\
-
-\textbf{Analityk:}
-\begin{itemize}[noitemsep,nolistsep]
-	\item może przygotować nową konfigurację drona,
-	\item może analizować logi z wykonanych lotów,
-	\item może zaplanować otoczenie symulacji, wybrać mapę i ustalić warunki atmosferyczne,
-	\item może wygenerować nową mapą w oparciu o dane geograficzne.
-\end{itemize}
-\ \\
-
-\textbf{Developer:}
-\begin{itemize}[noitemsep,nolistsep]
-	\item może dodać i zarządzać istniejącymi algorytmami sterowania,
-	\item implementować nowe funkcjonalności systemu.
-\end{itemize}
-\ \\
-
-
-\newpage
-\subsection{Wymaganie niefunkcjonalne}
-
-W tabeli (\ref{non_func}) przedstawiono wymagania niefunkcjonalne, które musi spełniać oprogramowanie.
-
-\renewcommand{\arraystretch}{1.5}
-\begin{table}[!h]
-	\centering
-	\begin{tabular}{|m{0.03\textwidth}|m{0.21\textwidth}|m{0.025\textwidth}|m{0.68\textwidth}|} 
-		\hline
-		\rowcolor{Gray}		\multicolumn{2}{|c|}{Wymagania} & No. & Opis \\
-		\hline
-		\centering \multirow{9}{*}{\rotatebox[origin=c]{90}{Usability}}
-		&\multirow{1}{*}{Używalność} 
-		& 1 & Użytkownik jest w stanie dopasować rozmiar okna wizualizacji i interfejsu do swoich potrzeb i ograniczeń sprzętu. \\
-		\cline{3-4}
-		& & 2 & Serwer da się uruchomić natywnie na Unixie lub w wirtualnym kontenerze Docker, a wizualizacja działa na wirtualnej maszynie Javy. \\
-		\cline{3-4}
-		& & 3 & Komunikacja między serwerem, a wizualizacją powinna pozwalać na responsywne sterowanie BSP. \\
-		\cline{2-4}
-		& \multirow{1}{*}{Ergonomia} 
-		& 4 & Interfejs użytkownika powinien być przejrzysty i korzystać ze standardowych liczników wykorzystywanych w~lotnictwie.  \\
-		\cline{3-4}
-		& & 5 & Konfiguracja kontrolera powinna odbyć się bez znajomości użytkownika z interpretacją wejścia przez system.  \\
-		\hline
-		\centering \multirow{3.5}{*}{\rotatebox[origin=c]{90}{Reliability}}
-		& \multirow{1}{*}{Dokładność} 
-		& 6 & Dokładność symulacji powinna zależeć wyłącznie od błędów obliczeń i dokładności wprowadzonych parametrów. \\
-		\cline{2-4}
-		& \multirow{1}{*}{Sprawdzalność} 
-		& 7 & Zgodność symulacji z rzeczywistością da się sprawdzić poprzez analizę logów oraz przez subiektywną opinię analityka. \\
-		\hline
-		\centering \multirow{1}{*}{\rotatebox[origin=c]{90}{Perf.}}
-		& \multirow{1}{*}{Przepustowość} 
-		& 8 & Wydajność serwera powinna skalować się względem liczby aktualnie symulowanych BSP. \\
-		\hline
-		\centering \multirow{7}{*}{\rotatebox[origin=c]{90}{Supportability}}
-		& \multirow{1}{*}{Konserwacja} 
-		& 9 &Systemy sterowania, elementy interfejsu i moduły konfigurowalne powinny być tak zaprojektowanie aby dodawanie nowych oraz modyfikacja istniejących była prosta i szybka.  \\
-		\cline{3-4}
-		& & 10 & System powinien być podzielony na moduły, które można niezależnie modyfikować. \\
-		\cline{2-4}
-		& \multirow{1}{*}{Audytowalność} 
-		& 11 & W czasie lotu serwer powinien zapisywać logi z symulacji. \\
-		\cline{2-4}
-		& \multirow{1}{*}{Instalowalność} 
-		& 12 & Proces instalacji serwera powinien być dobrze opisany i~prosty. Niewymagany w przypadku wizualizacji. \\
-		\cline{2-4}
-		& \multirow{1}{*}{Konfigurowalność} 
-		& 13 & Oprogramowanie powinno umożliwiać konfigurację serwera, wizualizacji, modeli, kontrolerów, parametrów BSP. \\
-		\hline
-	\end{tabular}
-	\caption{Wymaganie niefunkcjonalne - FURPS}
-	\label{non_func}
-\end{table}
-
-\subsection{Architektura}
+\section{Architektura}
 
 System został podzielony na moduły. Poszczególne moduły odpowiadają obiektom z domeny projektu i realizują następujące zadania:\\
 
-\textbf{UAV\_physic\_engine} -- moduł odpowiedzialny symulację dynamiki statku powietrznego, uwzględniając wszystkie jego właściwości mechaniczne i wpływ otoczenia. Oblicza stan pojedynczego BSP w czasie rzeczywistym. \\
+\textbf{UAV\_physic\_engine} -- moduł odpowiedzialny symulację dynamiki statku powietrznego, uwzględniając wszystkie jego właściwości mechaniczne i wpływ otoczenia. Oblicza stan pojedynczego BSP w~czasie rzeczywistym. \\
 
 \textbf{UAV\_controller} -- moduł reprezentujący system sterowania statkiem powietrznym. Interpretuje stan statków powietrznych i buduje symulacje otoczenie. Symuluje działanie czujników pomiarowych, systemu filtracji, algorytmów nawigacji pokładowej oraz systemów sterowania i stabilizacji. Bezpośrednio wpływa na zachowanie symulacji dynamiki.\\
 
 \textbf{UAV\_drop\_physic} -- moduł odpowiedzialny za obliczenie dynamiki pocisków. Oblicza stan wszystkich pocisków aktywnych w symulacji.\\
 
-\textbf{UAV\_aggregator} -- moduł agregujący moduły symulacyjne z wizualizacją. Zarządza pracą pozostałych modeli i wprowadza niektóre zagadnienia otoczenia takie jak atmosferę, połączenia miedzy BSP, a ładunkami oraz kolizje.\\
+\textbf{UAV\_aggregator} -- moduł agregujący moduły symulacyjne z wizualizacją. Zarządza pracą pozostałych modeli i wprowadza niektóre zagadnienia otoczenia takie jak atmosferę, połączenia miedzy BSP, a~ładunkami oraz kolizje.\\
 
 \textbf{UAV\_server} -- definicja wirtualnego kontenera, odpowiedzialna zabudowanie wszystkich modułów składających się na serwer, tj. wszystkie z wyłączeniem wizualizacji. Ze zbudowanych modułów budowany jest obraz kontenera. Umożliwia to uruchomienie serwera na dowolnej maszynie wspierającej daną konteneryzację.\\
 
@@ -121,26 +18,24 @@ System został podzielony na moduły. Poszczególne moduły odpowiadają obiekto
 
 \textbf{UAV\_map\_generator} -- skrypt automatyzujący proces generowania mapy, w oparciu o dane geograficzne. \\
 
-\newpage
-
-\subsection{Opis działania systemu}
+\section{Opis działania systemu}
 
 W centralnym punkcie aplikacji znajduje się moduł agregatora. Stanowi on główną część serwera, jest aplikacją konsolową i nie posiada interfejsu graficznego. Jest zawsze uruchamiany jako pierwszy. Po rozpoczęciu pracy agregatora uruchamiany jest moduł "drop physic" jako podproces, a agregator nawiązuje z nim połączenie. Oba moduły pozostają w stanie bezczynności do momentu podłączenia się pierwszego użytkownika. Nowy użytkownik dodawany jest przez uruchomienie wizualizacji. Po uruchomieniu wizualizacji, komunikuje się ona z serwerem i prosi o~utworzenie nowego statku powietrznego. W odpowiedzi na to żądanie, agregator uruchamia jako swoje podprocesy "physic engine" i "controller".Następnie para procesów synchronizuje się ze sobą i rozpoczyna symulację. Każdemu symulowanemu statkowi powietrznemu odpowiada para procesów "physic engine" i "controller". Ponadto każdy statek jest kontrolowany z poziomu konkretnej wizualizacji.\\
 
-W trakcie pracy systemu agregator pełni rolę pośrednika w komunikacji między wizualizacją a procesami silnika fizycznego i regulatora. Przesyła instrukcje sterujące z wizualizacji do odpowiedniej symulacji fizycznej, agreguje stany ze wszystkich aktywnych symulacji i przesyła je z powrotem do wizualizacji. Ponadto zarządza procesami strzału, upuszczania ładunku i kolizji.\\
+W trakcie pracy systemu agregator pełni rolę pośrednika w komunikacji między wizualizacją a~procesami silnika fizycznego i regulatora. Przesyła instrukcje sterujące z wizualizacji do odpowiedniej symulacji fizycznej, agreguje stany ze wszystkich aktywnych symulacji i przesyła je z powrotem do wizualizacji. Ponadto zarządza procesami strzału, upuszczania ładunku i kolizji.\\
 
 Po odłączeniu się wizualizacji od serwera, procesy związane z danym statkiem są zamykane.
 
 
-\subsection{Opis komponentów}
+\section{Opis komponentów}
 
 Kod poszczególnych modułów systemu został w całości opisany z wykorzystaniem narzędzi do dokumentowania kodu: Doxygen, JavaDoc i Rust Doc. Dla poszczególnych modułów wygenerowane zostały opisy klas oraz funkcji i załączone do pracy jako dokumenty PDF lub strony HTML.
 
 \newpage
 
-\subsection{Komunikacja}
+\section{Komunikacja}
 
-Moduły komunikują się między sobą poprzez kolejki ZeroMQ\cite{zmqguide}. ZeroMQ to uniwersalna implementacja różnych wzorów komunikacji niezależna od języka i warstwy transportowej. Istnieją oficjalne biblioteki ZeroMQ przeznaczone do wykorzystania w projektach w językach  C++, Rust, Java, Python i wielu innych. Jako warstwa transportowa wykorzystane mogą być mechanizmy komunikacji wewnątrzprocesowej, międzyprocesowej i protokół TCP/IP oraz dowolne ich kombinację. Wzorami dostępnymi w kolejkach ZeroMQ, które zostaną wykorzystane w projekcie są:
+Moduły komunikują się między sobą poprzez kolejki ZeroMQ\cite{zmqguide}. ZeroMQ to uniwersalna implementacja różnych wzorów komunikacji niezależna od języka i warstwy transportowej. Istnieją oficjalne biblioteki ZeroMQ przeznaczone do wykorzystania w projektach w językach  C++, Rust, Java, Python i~wielu innych. Jako warstwa transportowa wykorzystane mogą być mechanizmy komunikacji wewnątrzprocesowej, międzyprocesowej i protokół TCP/IP oraz dowolne ich kombinację. Wzorami dostępnymi w kolejkach ZeroMQ, które zostaną wykorzystane w projekcie są:
 
 \begin{itemize}
 \item PUB--SUB -- jednokierunkowa komunikacja publikujący --  subskrybujący. Jest to połączenie jeden do wielu.  Wielu subskrybujących ma możliwość podłączenia się do jednego publikującego i zasubskrybowania określonych wiadomości (zdefiniowanych przez prefix). Publikujący rozsyła wiadomości do wszystkich podłączonych subskrybentów, którzy subskrybują dany typ wiadomości.
@@ -164,15 +59,15 @@ Rysunek (\ref{comm}) prezentuje poszczególne moduły oraz kanały komunikacji. 
 
 \newpage
 
-\subsection{Graficzny interfejs użytkownika}
+\section{Graficzny interfejs użytkownika}
 
 Graficzny interfejs użytkownika składa się z interfejsu serwera oraz interfejsu wizualizacji. 
 
-\subsubsection*{Serwer}
+\subsection*{Serwer}
 
 Interfejs serwera zawiera komunikaty dotyczące pracy agregatora oraz otrzymywane od poszczególnych modułów, które są wyświetlane w oknie konsoli. Komunikaty są dodatkowo oznaczone różniącymi się kolorami dla poszczególnych modułów, jak pokazano na rysunkach (\ref{gui_server1}), (\ref{gui_server2}) i (\ref{gui_server3}).
 
-\subsubsection*{Wizualizacja}
+\subsection*{Wizualizacja}
 
 Interfejs graficzny wizualizacji składa się z okna konfiguracji przypisań kontrolera pokazanego na rysunku (\ref{gui_bindings1}), ekranu ładowania widocznego na rysunku (\ref{gui_loading}) oraz właściwego widoku wizualizacji ukazanego na rysunkach (\ref{gui_game1}), (\ref{gui_game2}), (\ref{gui_game3}) i (\ref{gui_game4}). \\
 
@@ -239,12 +134,12 @@ Graficzny interfejs użytkownika w wizualizacji składa się z widoku jednej z k
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{game_view_rope.png}
-	\caption{Interfejs graficzny wizualizacji w widoku obserwatora i pozycyjnym trybie lotu z opuszczonym ładunkiem na linie.}
+	\caption{Interfejs graficzny wizualizacji w widoku obserwatora i pozycyjnym trybie lotu z~opuszczonym ładunkiem na linie.}
 	\label{gui_game4}
 \end{figure}
 
 \newpage
-\subsection{Interfejs zewnętrzny}
+\section{Interfejs zewnętrzny}
 
 Konfiguracja systemu przed uruchomieniem odbywa się poprzez modyfikację plików konfiguracyjnych i zasobów (asset'ów). Pliki konfiguracyjne dotyczą:
 
@@ -296,13 +191,11 @@ W zasobie znajduje się również tekstura domyślna ładowana w przypadku niezn
 \newpage
 
 
-\subsection{Dobór technologii} \label{technologies}
+\section{Dobór technologii} \label{technologies}
 
-Do realizacji poszczególnych modułów wybrane zostały następujące narzędzia programistyczne i biblioteki zewnętrzne.\\
+Do realizacji poszczególnych modułów wybrane zostały następujące narzędzia programistyczne i~biblioteki zewnętrzne.\\
 
-
-\textbf{UAV\_physic\_engine, UAV\_controller i UAV\_drop\_physic}\\
-
+\noindent\textbf{UAV\_physic\_engine, UAV\_controller i UAV\_drop\_physic}\\
 Ze względu na duży nakład obliczeniowy -- symulacja w czasie rzeczywistym z krokiem całkowania rzędu 1ms -- wybrany został język C++. Z uwagi na swoją wydajność i elastyczność stanowi on naturalny wybór w wydajnych symulacjach komputerowych. Dodatkowo wykorzystane zostały następujące biblioteki:
 \begin{itemize}[noitemsep,nolistsep]
 	\item Eigen -- biblioteka zawierająca elementy algebry liniowej: macierze, wektory i~związane z nimi algorytmy. Eigen stawia na wydajność poprzez wykorzystanie rozkładów typu SIMD, przy 		jednoczesnym zachowaniu przejrzystej składni,
@@ -312,7 +205,6 @@ Ze względu na duży nakład obliczeniowy -- symulacja w czasie rzeczywistym z k
 \end{itemize}
 \  \\
 \textbf{UAV\_aggregator}\\
-
 Do realizacji modułu agregatora wykorzystany zostanie język Rust. Pozwala on na tworzenie wydajnego i kompilowanego kodu przy jednoczesnym zachowaniu przenośności między systemami. Natywnie wspiera zarządzanie innymi procesami i udostępnia wiele bibliotek. Wykorzystane zostały następujące biblioteki:
 \begin{itemize}[noitemsep,nolistsep]
 	\item nalgebra -- biblioteka zawierająca elementy algebry liniowej, odpowiednik biblioteki Eigen dla języka Rust,
@@ -324,13 +216,8 @@ Do realizacji modułu agregatora wykorzystany zostanie język Rust. Pozwala on n
 \end{itemize}
 \  \\
 \textbf{UAV\_server}\\
-
-Do realizacja kontenera wybrane zostało oprogramowanie Docker. Obraz został zdefiniowany przy pomocy Dockerfile i skryptów Bash. Przygotowany został również plik Docker compose ułatwiający uruchomienie serwera.
-
-\newpage
-
-\textbf{UAV\_visualization}\\
-
+Do realizacja kontenera wybrane zostało oprogramowanie Docker. Obraz został zdefiniowany przy pomocy Dockerfile i skryptów Bash. Przygotowany został również plik Docker compose ułatwiający uruchomienie serwera.\\
+\noindent\textbf{UAV\_visualization}\\
 Do zrealizowania wizualizacji zostanie wykorzystany język Java. Obiektowość języka pozwoli na wytworzenie przejrzystej implementacji łatwej w utrzymaniu. Zaletą tego wyboru jest również to, że język ten znajduje się na rynku od długiego czasu, dzięki czemu dostępny jest bogaty zasób bibliotek. W opisywanym module zostaną wykorzystane m.in.:
 \begin{itemize}[noitemsep,nolistsep]
 	\item LWJGL -- Lightweight Java Game Library. Biblioteka udostępniająca bindingi do gamy bibliotek dla deweloperów gier napisanych w języku C, takich jak Vulkan, OpenGL, OpenAL i OpenCL,
@@ -341,7 +228,6 @@ Do zrealizowania wizualizacji zostanie wykorzystany język Java. Obiektowość j
 \end{itemize}
 \  \\
 \textbf{UAV\_map\_generator}\\
-
 Do zrealizowania skryptu automatyzującego został wykorzystany język Python. Skrypt łączy wywołania zewnętrznych programów, niezbędnych do przygotowania mapy na podstawie danych geograficznych pobranych z serwisu OpenSteetMap. W skrypcie zostały wykorzystane m.in.:
 \begin{itemize}[noitemsep,nolistsep]
 	\item numpy -- moduł zawierający elementy algebry liniowej,
