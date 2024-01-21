@@ -195,9 +195,7 @@ W zasobie znajduje się również tekstura domyślna ładowana w przypadku niezn
 
 Do realizacji poszczególnych modułów wybrane zostały następujące narzędzia programistyczne i biblioteki zewnętrzne.\\
 
-
-\textbf{UAV\_physic\_engine, UAV\_controller i UAV\_drop\_physic}\\
-
+\noindent\textbf{UAV\_physic\_engine, UAV\_controller i UAV\_drop\_physic}\\
 Ze względu na duży nakład obliczeniowy -- symulacja w czasie rzeczywistym z krokiem całkowania rzędu 1ms -- wybrany został język C++. Z uwagi na swoją wydajność i elastyczność stanowi on naturalny wybór w wydajnych symulacjach komputerowych. Dodatkowo wykorzystane zostały następujące biblioteki:
 \begin{itemize}[noitemsep,nolistsep]
 	\item Eigen -- biblioteka zawierająca elementy algebry liniowej: macierze, wektory i~związane z nimi algorytmy. Eigen stawia na wydajność poprzez wykorzystanie rozkładów typu SIMD, przy 		jednoczesnym zachowaniu przejrzystej składni,
@@ -207,7 +205,6 @@ Ze względu na duży nakład obliczeniowy -- symulacja w czasie rzeczywistym z k
 \end{itemize}
 \  \\
 \textbf{UAV\_aggregator}\\
-
 Do realizacji modułu agregatora wykorzystany zostanie język Rust. Pozwala on na tworzenie wydajnego i kompilowanego kodu przy jednoczesnym zachowaniu przenośności między systemami. Natywnie wspiera zarządzanie innymi procesami i udostępnia wiele bibliotek. Wykorzystane zostały następujące biblioteki:
 \begin{itemize}[noitemsep,nolistsep]
 	\item nalgebra -- biblioteka zawierająca elementy algebry liniowej, odpowiednik biblioteki Eigen dla języka Rust,
@@ -219,13 +216,8 @@ Do realizacji modułu agregatora wykorzystany zostanie język Rust. Pozwala on n
 \end{itemize}
 \  \\
 \textbf{UAV\_server}\\
-
-Do realizacja kontenera wybrane zostało oprogramowanie Docker. Obraz został zdefiniowany przy pomocy Dockerfile i skryptów Bash. Przygotowany został również plik Docker compose ułatwiający uruchomienie serwera.
-
-\newpage
-
-\textbf{UAV\_visualization}\\
-
+Do realizacja kontenera wybrane zostało oprogramowanie Docker. Obraz został zdefiniowany przy pomocy Dockerfile i skryptów Bash. Przygotowany został również plik Docker compose ułatwiający uruchomienie serwera.\\
+\noindent\textbf{UAV\_visualization}\\
 Do zrealizowania wizualizacji zostanie wykorzystany język Java. Obiektowość języka pozwoli na wytworzenie przejrzystej implementacji łatwej w utrzymaniu. Zaletą tego wyboru jest również to, że język ten znajduje się na rynku od długiego czasu, dzięki czemu dostępny jest bogaty zasób bibliotek. W opisywanym module zostaną wykorzystane m.in.:
 \begin{itemize}[noitemsep,nolistsep]
 	\item LWJGL -- Lightweight Java Game Library. Biblioteka udostępniająca bindingi do gamy bibliotek dla deweloperów gier napisanych w języku C, takich jak Vulkan, OpenGL, OpenAL i OpenCL,
@@ -236,7 +228,6 @@ Do zrealizowania wizualizacji zostanie wykorzystany język Java. Obiektowość j
 \end{itemize}
 \  \\
 \textbf{UAV\_map\_generator}\\
-
 Do zrealizowania skryptu automatyzującego został wykorzystany język Python. Skrypt łączy wywołania zewnętrznych programów, niezbędnych do przygotowania mapy na podstawie danych geograficznych pobranych z serwisu OpenSteetMap. W skrypcie zostały wykorzystane m.in.:
 \begin{itemize}[noitemsep,nolistsep]
 	\item numpy -- moduł zawierający elementy algebry liniowej,
