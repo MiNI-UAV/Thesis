@@ -1,0 +1,55 @@
+#### Flight Control Modes ####
+modes:
+  # Name of the control mode.
+  NONE:
+    # Which parameters control mode tries to maintain and in which order they 
+    # are sent to the visualization. Available are: X, Y, Z, ROLL, PITCH, YAW, P, Q, R.
+    reply:
+  # Other control modes...
+  # Quadcopter
+  QPOS:
+    reply:
+      - X
+      - Y
+      - Z
+      - YAW
+  QANGLE:
+    reply:
+      - ROLL
+      - PITCH
+      - YAW
+      - Z
+  QACRO:
+    reply:
+      - P
+      - Q
+      - R
+      - THROTTLE
+  # Fixed-wing aircraft
+  FMANUAL:
+    reply:
+  FACRO:
+    reply:
+      - P
+      - Q
+      - R
+  FANGLE:
+    reply:
+      - ROLL
+      - PITCH
+      - YAW
+      - U
+  # Rocket
+  RAUTOLAUNCH:
+    reply:
+  RMANUAL:
+    reply:
+  RANGLE:
+    reply:
+      - PITCH
+      - YAW
+  RGUIDED:
+    reply:
+      - X
+      - Y
+      - Z
