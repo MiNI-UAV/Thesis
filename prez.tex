@@ -62,7 +62,7 @@
 \title{Opracowanie wirtualnego środowiska\\do symulacji dynamiki lotu\\ bezzałogowych statków powietrznych}
 %\subtitle{Podtytuł consectetur adispiscing elit}
 \author{Wojciech Gajda \and  Igor Faliszewski}
-\date{9 stycznia 2024} % można tam wpisać datę jaką się chce lub zakomentować dla daty dzisiejszej
+\date{7 luty 2024} % można tam wpisać datę jaką się chce lub zakomentować dla daty dzisiejszej
 
 
 
@@ -85,9 +85,83 @@
 \end{frame}
 
 
-\section{Specyfikacja}
+\section{Wstep}
 
-\section{Demonstracja}
+\begin{frame}%[allowframebreaks]
+	\frametitle{O projekcie}
+	\begin{columns}
+		\begin{column}{0.33\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<2->{\includegraphics[width=0.9\textwidth]{spitfire.png}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.33\textwidth}
+	   	 	\begin{figure}
+	   		 \centering
+	      		 \uncover<3->{\includegraphics[width=0.9\textwidth]{quadcopter_fpv.png}}
+	    		\end{figure}
+		\end{column}
+		\begin{column}{0.33\textwidth}
+	    		\begin{figure}
+	   		 \centering
+	      		 \uncover<4->{\includegraphics[width=0.9\textwidth]{missile.png}}
+	    		\end{figure}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{Cel projektu}
+	  \begin{itemize}
+	  \item<2->{
+	    Kompleksowa symulacja fizyki.
+	  }
+	  \item<3-> {   
+	    Wysoka konfigurowalność BSP, środowiska i symulacji.
+	  }
+	  % Można ustalić kiedy dany element ma się pojawić, używając <n->:
+	  \item<4-> {
+	    Bogate narzędzie dla analityków i developerów.
+	  }
+	  \item<5-> {
+	    Licencja open-source.
+	  }
+ 	 \end{itemize}
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{Wstep teoretyczny I}
+	 \uncover<2->{\epigraph{There is nothing so practical as a good theory.}{Lewin Kurt}}
+	 \uncover<3->{\epigraph{Nie ma osobnej ani teorii, ani praktyki inżynierskiej, jest tylko wspólna sztuka inżynierska.}{prof. Jan Oderfeld}}
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{Wstep teoretyczny II}
+	Tematyka poruszona we wstępie teoretycznym:
+	\begin{itemize}
+	  \item<2->{
+	    dynamika lotu BSP,
+	  }
+	  \item<3-> {   
+	    sterowania i nawigacja BSP,
+	  }
+	  \item<4-> {
+	    grafika komputerowa 3D,
+	  }
+	  \item<5-> {
+	    graficzny interfejs użytkownika,
+	  }
+	  \item<6->{
+	    udźwiękowienie.
+	  }
+ 	 \end{itemize}
+\end{frame}
+
+
+
+
+\section{Specyfikacja}
 
 \begin{frame}
 	\frametitle{Wymagania funkcjonalne}
@@ -130,7 +204,7 @@
 	
 	  \begin{column}{.33\textwidth}
 	  \centering
-	      \uncover<3->{ Analityk}
+	      \uncover<3->{Analityk}
 	  \end{column}
 	
 	  \begin{column}{.33\textwidth}
@@ -138,17 +212,6 @@
 	  \uncover<4->{Developer}
 	  \end{column}
 	\end{columns}
-\end{frame}
-
-% IF
-\begin{frame}
-	\frametitle{Wymagania niefunkcjonalne}
-	\begin{itemize}
-	\item<2-> Dokładność
-	\item<3-> Wydajność
-	\item<4-> Używalność
-	\item<5-> Utrzymywalność
-	\end{itemize}
 \end{frame}
 
 \begin{frame} % IF
@@ -164,10 +227,6 @@
             \centering
             \uncover<5->{\includegraphics[height=0.2\textheight]{logos/eigen.png}}
             \end{figure}
-            \begin{figure}
-            \centering
-            \uncover<8->{\includegraphics[height=0.2\textheight]{logos/lwjgl.png}}
-            \end{figure}
         \end{column}
         \begin{column}{0.33\textwidth}
             \begin{figure}
@@ -177,10 +236,6 @@
             \begin{figure}
                 \centering
                 \uncover<6->{\includegraphics[height=0.2\textheight]{logos/zmq.png}}
-            \end{figure}
-            \begin{figure}
-            \centering
-            \uncover<9->{\includegraphics[height=0.2\textheight]{logos/python.png}}
             \end{figure}
         \end{column}
         \begin{column}{0.33\textwidth}
@@ -192,31 +247,9 @@
                 \centering
                 \uncover<7->{\includegraphics[height=0.2\textheight]{logos/opengl.png}}
             \end{figure}
-            \begin{figure}
-                \centering
-                \uncover<10->{\includegraphics[height=0.2\textheight]{logos/osm.png}}
-            \end{figure}
         \end{column}
     \end{columns}
 \end{frame}
-
-\begin{frame}
-	\frametitle{Wymagania systemowe i sprzętowe}
-	\begin{itemize}
-	\item<2-> Serwer:
-		\begin{itemize}
-		\item<3-> natywnie pracuje na Linux, możliwy Docker,
-		\item<4-> 2 rdzenie logiczne na jednego klienta, 8GB RAM 
-		\end{itemize}
-	\item<5-> Wizualizacja:
-		\begin{itemize}
-		\item<6-> maszyna wirtualna Javy,
-		\item<7-> GPU z obsługą OpenGL 4.5,
-		\item<8-> 4 rdzenie logiczne, 8GB RAM, 2GB VRAM 
-		\end{itemize}	
-	\end{itemize}
-\end{frame}
-
 
 \begin{frame} % WG
 	\frametitle{Architektura I}
@@ -240,25 +273,11 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame} %WG
-	\frametitle{Testy oprogramowania} % testy fizyczne
-	\begin{itemize}
-	\item<2-> Maximal unnoticeable added dynamics -- \\
-		odpowiednik testu Turinga dla symulatorów lotu
-	\item<3-> Badania tunelowe
-	\item<4-> Porównanie wyników z rzeczywistą platformą
-	\end{itemize}
-\end{frame}
+\section{Demonstracja}
 
 \begin{frame}
 	  \begin{center}
 	\Huge Demo
-	\end{center}
-\end{frame}
-
-\begin{frame}
-	  \begin{center}
-	\Huge Konfiguracja
 	\end{center}
 \end{frame}
 
